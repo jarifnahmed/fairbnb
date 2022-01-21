@@ -20,7 +20,7 @@ function UserListings() {
 
     return (
       <>
-        <h2 className='rec-title'>My Uploaded Listings</h2>
+        <h2 className='rec-title'>My Listings</h2>
         <ul className='unorderedList-myupload'>
           {userListings.map((listing) => {
             return (

@@ -56,12 +56,19 @@ function ListingDetail() {
               </button>
             </div>
             <img id='sd-img' src={listing.imageUrl} alt='Bad Image Link' />
+            <p className='user-name'>{listing.name}</p>
+            <p className='user-name'>{listing.address}</p>
+            <p className='user-name'>{listing.city}</p>
+            <p className='user-name'>{listing.state}</p>
+            <p className='user-name'>{listing.country}</p>
+            <p className='user-name'>{listing.price} per day</p>
+            <p className='user-name'>{listing.description}</p>
           </div>
-          <Reviews />
+          {/* <Reviews /> */}
         </div>
       </>
     );
-  } else if (listing) {
+  } else if (listing) { //not logged in
     return (
       <>
         <div id='listing-reviews'>
@@ -70,8 +77,15 @@ function ListingDetail() {
             <h3 className='subtitle'>{listing.subtitle}</h3>
             <p className='user-name'>Listing from {listing.User.username}</p>
             <img id='sd-img' src={listing.imageUrl} alt='Bad Image Link' />
+            <p className='user-name'>{listing.name}</p>
+            <p className='user-name'>{listing.address}</p>
+            <p className='user-name'>{listing.city}</p>
+            <p className='user-name'>{listing.state}</p>
+            <p className='user-name'>{listing.country}</p>
+            <p className='user-name'>{listing.price} per day</p>
+            <p className='user-name'>{listing.description}</p>
           </div>
-          <Reviews />
+          {/* <Reviews /> */}
         </div>
       </>
     );
