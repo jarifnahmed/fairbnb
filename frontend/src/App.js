@@ -50,7 +50,8 @@ function App() {
           <Route path='/' exact>
             <Homepage />
           </Route>
-          <Route path='/username'>
+          {/* <Route path='/username'> */}
+          <Route path='/listings'>
           {/* <Route path={`/${sessionUserUserName}`}> */}
             <User />
           </Route>

@@ -7,7 +7,8 @@ function Homepage() {
   const sessionUser = useSelector((state) => state.session.user);
   if (sessionUser) {
     const sessionUserUserName = sessionUser.username;
-    return <Redirect to='/username' />
+    // return <Redirect to='/username' />
+    return <Redirect to='/listings' />
     // return <Redirect to= {`/${sessionUserUserName}`}/>
   } else {
     return (
