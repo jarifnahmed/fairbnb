@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createStory } from '../../store/stories';
+import { createListing } from '../../store/listings';
 import { useHistory } from 'react-router-dom';
-import './WriteStory.css'
+import './WriteListing.css';
 
-function WriteStory() {
+function WriteListing() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,7 +20,7 @@ function WriteStory() {
 
     const authorId = sessionUser.id;
 
-    const newStory = {
+    const newListing = {
       authorId,
       title,
       subtitle,
@@ -28,8 +28,8 @@ function WriteStory() {
       body,
     };
 
-    return dispatch(createStory(newStory))
-      .then((createdStory) => history.push(`/photos/${createdStory.id}`))
+    return dispatch(createListing(newListing))
+      .then((createdListing) => history.push(`/listings/${createdListing.id}`))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -39,9 +39,9 @@ function WriteStory() {
   if (sessionUser) {
     return (
       <>
-        <div className='story-form-container'>
-          <form className='story-form' onSubmit={handleSubmit}>
-            <h2 className='ws-title'>Upload New Photo</h2>
+        <div className='listing-form-container'>
+          <form className='listing-form' onSubmit={handleSubmit}>
+            <h2 className='ws-title'>Upload New Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -62,7 +62,7 @@ function WriteStory() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='story-subtitle'
+                id='listing-subtitle'
                 type='text'
                 value={subtitle}
                 placeholder='Description'
@@ -105,4 +105,4 @@ function WriteStory() {
   }
 }
 
-export default WriteStory;
+export default WriteListing;

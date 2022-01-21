@@ -8,12 +8,12 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Homepage from './components/HomePage';
 import User from './components/User';
-import StoryDetail from './components/StoryDetails';
-import UserStories from './components/UserStories';
-import WriteStory from './components/WriteStory';
-import EditStory from './components/UpdateStory';
-import { getStories } from './store/stories';
-import { getComments } from "./store/comments";
+import ListingDetail from './components/ListingDetails';
+import UserListings from './components/UserListings';
+import WriteListing from './components/WriteListing';
+import EditListing from './components/UpdateListing';
+import { getListings } from './store/listings';
+import { getReviews } from "./store/reviews";
 
 //import thunk
 import * as sessionActions from './store/session';
@@ -26,13 +26,11 @@ function App() {
   if (sessionUser) {
     const sessionUserUserName = sessionUser.username;
   }
-
-
   // const sessionUserUserName = sessionUser.username;
 
   useEffect(() => {
-    dispatch(getStories());
-    dispatch(getComments());
+    dispatch(getListings());
+    dispatch(getReviews());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -50,23 +48,23 @@ function App() {
           <Route path='/' exact>
             <Homepage />
           </Route>
-          {/* <Route path='/username'> */}
-          <Route path='/listings'>
+          <Route path='/username'>
+          {/* <Route path='/listings'> */}
           {/* <Route path={`/${sessionUserUserName}`}> */}
             <User />
           </Route>
-          {/* <Route path='/user/photos'>
-            <UserStories />
+          <Route path='/user/listings'>
+            <UserListings />
           </Route>
-          <Route path='/photo/new'>
-            <WriteStory />
+          <Route path='/listings/new'>
+            <WriteListing />
           </Route>
-          <Route path='/photos/:storyId'>
-            <StoryDetail />
+          <Route path='/listings/:listingId'>
+            <ListingDetail />
           </Route>
-          <Route path='/edit/photo/:editStoryId'>
-            <EditStory />
-          </Route> */}
+          <Route path='/edit/listing/:editListingId'>
+            <EditListing />
+          </Route>
         </Switch>
       )}
     </>

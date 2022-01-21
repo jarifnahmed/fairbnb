@@ -5,24 +5,24 @@ import '../HomeFeed/HomeFeed.css';
 
 function UserFeed() {
   const sessionUser = useSelector((state) => state.session.user);
-  const allStories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(allStories);
-  const recStories = storiesArr.filter(
-    (story) => story.authorId !== sessionUser.id
+  const allListings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(allListings);
+  const recListings = listingsArr.filter(
+    (listing) => listing.authorId !== sessionUser.id
   );
 
-  if (recStories.length) {
+  if (recListings.length) {
     return (
       <>
         <p id='about'>LISTINGS HERE</p>
         {/* <ul className='unorderedList'>
-          {recStories.map((story) => {
+          {recListings.map((listing) => {
             return (
-              <li key={story.id} className='allStories'>
-                <div className='story-container'>
+              <li key={listing.id} className='allListings'>
+                <div className='listing-container'>
                   <div className='imgDiv'>
-                    <NavLink className='story-link' to={`/photos/${story.id}`}>
-                      <img id='imgThumbnail' src={story.imageUrl} />
+                    <NavLink className='listing-link' to={`/listings/${listing.id}`}>
+                      <img id='imgThumbnail' src={listing.imageUrl} />
                     </NavLink>
                   </div>
                 </div>

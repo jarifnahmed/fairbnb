@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
-import './ProfileButton.css'
+import './ProfileButton.css';
 
 function ProfileButton() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -36,22 +36,24 @@ function ProfileButton() {
 
   return (
     <div id='profile-div'>
-      <button id='profile-button' onClick={openMenu}> {sessionUser.username}
+      <button id='profile-button' onClick={openMenu}>
+        {' '}
+        {sessionUser.username}
       </button>
       {showMenu && (
         <ul id='profile-dropdown'>
           {/* <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/username`}>
+            <NavLink className='listing-link' to={`/username`}>
               {sessionUser.username}
             </NavLink>
           </li> */}
           <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/photo/new`}>
+            <NavLink className='listing-link' to={`/listing/new`}>
               Create Listing
             </NavLink>
           </li>
           <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/user/photos`}>
+            <NavLink className='listing-link' to={`/user/listings`}>
               My Listings
             </NavLink>
           </li>
