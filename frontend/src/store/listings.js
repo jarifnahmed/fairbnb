@@ -5,7 +5,6 @@ const ADD_LISTING = "listings/ADD_LISTING";
 const UPDATE_LISTING = "listings/UPDATE_LISTING";
 const DELETE_LISTING = "listings/DELETE_LISTING";
 
-
 const loadListing = (listings) => ({
     type: LOAD_LISTING,
     listings,

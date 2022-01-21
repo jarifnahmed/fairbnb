@@ -25,7 +25,7 @@ function ListingDetail() {
             <p className='user-name'>Listing from {listing.User.username}</p>
             <img id='sd-img' src={listing.imageUrl} alt='Bad Image Link' />
           </div>
-          <Reviews />
+          {/* <Reviews /> */}
         </div>
       </>
     );

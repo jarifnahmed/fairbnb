@@ -1,8 +1,8 @@
 #imgThumbnail {
   border-radius: 8px;
-  border: 1px solid #4d4d4d;
-  padding: 5px;
-  width: 250px;
+  /* border: 1px solid #4d4d4d; */
+  /* padding: 5px; */
+  width: 600px;
   margin-top: auto;
   margin-bottom: auto;
   display: flex;

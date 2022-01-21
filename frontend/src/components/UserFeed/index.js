@@ -15,7 +15,7 @@ function UserFeed() {
     return (
       <>
         <p id='about'>LISTINGS HERE</p>
-        {/* <ul className='unorderedList'>
+        <ul className='unorderedList'>
           {recListings.map((listing) => {
             return (
               <li key={listing.id} className='allListings'>
@@ -29,7 +29,7 @@ function UserFeed() {
               </li>
             );
           })}
-        </ul> */}
+        </ul>
       </>
     );
   }

@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-color: #212124;
+  /* background-color: #212124; */
   padding-bottom: 30px;
 }
 
@@ -21,7 +21,7 @@
 .subtitle,
 .user-name {
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: black;
   margin: 0px;
   padding-top: 20px;
 }
@@ -32,7 +32,7 @@
 
 #listing-body {
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: black;
 }
 
 .del-btn {
