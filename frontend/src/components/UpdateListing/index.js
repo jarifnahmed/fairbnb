@@ -11,25 +11,38 @@ function EditListing() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [title, setTitle] = useState(listing.title);
-  const [subtitle, setSubtitle] = useState(listing.subtitle);
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
   const [imageUrl, setImageUrl] = useState(listing.imageUrl);
-  const [body, setBody] = useState(listing.body);
+  const [body, setBody] = useState('');
+
+  const [name, setName] = useState(listing.name);
+  const [address, setAddress] = useState(listing.address);
+  const [city, setCity] = useState(listing.city);
+  const [state, setState] = useState(listing.state);
+  const [country, setCountry] = useState(listing.country);
+  const [price, setPrice] = useState(listing.price);
+  const [description, setDescription] = useState(listing.description);
+
   const [errors, setErrors] = useState([]);
 
   if (sessionUser && listing) {
     const handleSubmit = async (e) => {
       e.preventDefault();
 
-      const authorId = sessionUser.id;
+      const userId = sessionUser.id;
 
       const editedListing = {
         id: editListingId,
-        authorId,
-        title,
-        subtitle,
+        userId,
+        name,
+        address,
+        city,
+        state,
+        country,
+        price,
+        description,
         imageUrl,
-        body,
       };
 
       return dispatch(updateListing(editedListing))
@@ -55,10 +68,11 @@ function EditListing() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='title'
+                id='name'
                 type='text'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={name}
+                placeholder='Name'
+                onChange={(e) => setName(e.target.value)}
                 required
                 autoFocus={true}
               />
@@ -66,10 +80,67 @@ function EditListing() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='listing-subtitle'
+                id='address'
                 type='text'
-                value={subtitle}
-                onChange={(e) => setSubtitle(e.target.value)}
+                value={address}
+                placeholder='Address'
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+            <div className='ws-form-field'>
+              <input
+                className='sf-input'
+                id='city'
+                type='text'
+                value={city}
+                placeholder='State'
+                onChange={(e) => setCity(e.target.value)}
+                required
+              />
+            </div>
+            <div className='ws-form-field'>
+              <input
+                className='sf-input'
+                id='state'
+                type='text'
+                value={state}
+                placeholder='State'
+                onChange={(e) => setState(e.target.value)}
+                required
+              />
+            </div>
+            <div className='ws-form-field'>
+              <input
+                className='sf-input'
+                id='country'
+                type='text'
+                value={country}
+                placeholder='Country'
+                onChange={(e) => setCountry(e.target.value)}
+                required
+              />
+            </div>
+            <div className='ws-form-field'>
+              <input
+                className='sf-input'
+                id='price'
+                type='text'
+                value={price}
+                placeholder='Price'
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+            </div>
+            <div className='ws-form-field'>
+              <textarea
+                className='sf-content'
+                id='description'
+                rows="5"
+                cols="60"
+                value={description}
+                placeholder='Description'
+                onChange={(e) => setDescription(e.target.value)}
                 required
               />
             </div>
@@ -79,21 +150,11 @@ function EditListing() {
                 id='image'
                 type='text'
                 value={imageUrl}
+                placeholder='Image URL'
                 onChange={(e) => setImageUrl(e.target.value)}
                 required
               />
             </div>
-            {/* <div className='ws-form-field'>
-              <textarea
-                className='sf-content'
-                id='content'
-                rows="5"
-                cols="60"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
-            </div> */}
             <button className='ws-button' type='submit'>
               Edit
             </button>

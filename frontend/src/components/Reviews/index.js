@@ -13,7 +13,7 @@ function Reviews() {
   let listing;
   if (sessionUser) {
     listing = listingsArr.filter(
-      (listing) => listing.authorId === sessionUser.id
+      (listing) => listing.userId === sessionUser.id
     );
   }
 
@@ -142,7 +142,7 @@ function Reviews() {
                     )}
                     {sessionUser &&
                       (sessionUser.id === review.userId ||
-                        sessionUser.id === listing.authorId) && (
+                        sessionUser.id === listing.userId) && (
                         <button
                           className='delete-button'
                           type='submit'

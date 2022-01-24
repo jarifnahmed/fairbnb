@@ -8,7 +8,7 @@ function UserFeed() {
   const allListings = useSelector((state) => state.listings);
   const listingsArr = Object.values(allListings);
   const recListings = listingsArr.filter(
-    (listing) => listing.authorId !== sessionUser.id
+    (listing) => listing.userId !== sessionUser.id
   );
 
   if (recListings.length) {

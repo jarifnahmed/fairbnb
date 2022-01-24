@@ -15,7 +15,7 @@ function UserListings() {
 
   if (sessionUser) {
     userListings = listingsArr.filter(
-      (listing) => listing.authorId === sessionUser.id
+      (listing) => listing.userId === sessionUser.id
     );
 
     return (
