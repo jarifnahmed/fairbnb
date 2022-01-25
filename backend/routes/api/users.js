@@ -9,7 +9,7 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-//sing up validators
+//sign up validators
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
