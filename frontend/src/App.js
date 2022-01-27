@@ -58,7 +58,7 @@ function App() {
           <Route path='/edit/listing/:editStoryId'>
             <EditStory />
           </Route>
-          <Footer />
+          {/* <Footer /> */}
         </Switch>
       )}
     </>

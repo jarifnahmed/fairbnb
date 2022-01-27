@@ -3,7 +3,7 @@ import './Footer.css'
 
 function Footer() {
     return (
-        <div id="footer-container">
+        <footer id="footer-container">
                 <p id="name">Nawal Ahmed</p>
                 <div id="links">
                     <div id="github">
@@ -12,7 +12,7 @@ function Footer() {
                         </a>
                     </div>
                 </div>
-        </div>
+        </footer>
     );
 }
 
