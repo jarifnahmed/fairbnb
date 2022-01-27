@@ -28,17 +28,15 @@ function UserStories() {
               <li key={story.id} className='allStories-myupload'>
                 <div className='story-container-myupload'>
                   <NavLink className='header' to={`/listings/${story.id}`}>
-                    <h2 className='myuploadStoryTitle'>{story.title}</h2>
                   </NavLink>
                   <div className='imgDiv'>
                     <NavLink
                       className='story-link'
                       to={`/listings/${story.id}`}
                     >
+                                          <h2 className='myuploadStoryTitle'>{story.title}</h2>
                       <img id='imgThumbnail' src={story.imageUrl} />
-                    </NavLink>
-                  </div>
-                  <div className='story-details'>
+                      <div className='story-details'>
                     <div id='e-d-btn-ctn'>
                       <NavLink to={`/edit/listing/${story.id}`}>
                         <button className='edit-btn-myupload' type='submit'>
@@ -53,6 +51,9 @@ function UserStories() {
                         Delete
                       </button>
                     </div>
+                  </div>
+                    </NavLink>
+
                   </div>
                 </div>
               </li>
