@@ -14,7 +14,7 @@ function UserFeed() {
   if (recStories.length) {
     return (
       <>
-        <p id='about'>Recommended Listings</p>
+        <p id='recommended'>Recommended Listings</p>
         <ul className='unorderedList'>
           {recStories.map((story) => {
             return (
