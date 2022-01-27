@@ -44,7 +44,27 @@
 }
 
 a.story-link{
-    background-color: rgb(46, 121, 121);
+    background-color: rgb(0, 135, 214);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    /* font-weight: bolder; */
+    font-size: medium;
+    border: 0;
+    box-shadow: none;
+    border-radius: 8px;
+    margin-right: 30px;
+    transition-duration: 0.4s;
+    font-family: Arial, Helvetica, sans-serif;
+
+    padding-top: 4px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+}
+
+a.story-link:hover{
+    background-color: rgb(255, 90, 96);
     color: white;
     text-align: center;
     text-decoration: none;
@@ -54,6 +74,19 @@ a.story-link{
     box-shadow: none;
     /* border-radius: 4px; */
     margin-right: 30px;
+}
+
+a.story-link-nav{
+    background-color: rgb(0, 135, 214);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    /* font-weight: bolder; */
+    font-size: medium;
+    border: 0;
+    box-shadow: none;
+    /* border-radius: 8px; */
+    margin-right: 30px;
     transition-duration: 0.4s;
     font-family: Arial, Helvetica, sans-serif;
 
@@ -61,11 +94,9 @@ a.story-link{
     padding-right: 6px;
     padding-bottom: 4px;
     padding-left: 6px;
-
-
 }
 
-a.story-link:hover{
+a.story-link-nav:hover{
     background-color: rgb(255, 90, 96);
     color: white;
     text-align: center;

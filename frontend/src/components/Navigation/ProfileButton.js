@@ -48,12 +48,12 @@ function ProfileButton() {
             </NavLink>
           </li> */}
           <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/listing/new`}>
+            <NavLink className='story-link-nav' to={`/listing/new`}>
               Create Listing
             </NavLink>
           </li>
           <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/user/listings`}>
+            <NavLink className='story-link-nav' to={`/user/listings`}>
               My Listings
             </NavLink>
           </li>
