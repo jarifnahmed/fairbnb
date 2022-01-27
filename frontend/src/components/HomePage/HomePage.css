@@ -1,4 +1,4 @@
-/* #main {
+#main {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -6,7 +6,7 @@
     margin: 0;
     margin-left: 150px;
     margin-right: 150px;
-} */
+}
 
 #about{
     display: flex;
@@ -16,4 +16,39 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     font-weight: bolder;
+}
+
+#hp-misc-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 400px;
+    background-color: rgb(255, 183, 185);
+    /* border-bottom: 1px solid black; */
+}
+
+#quotes-container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    align-items: left;
+    justify-content: space-evenly;
+}
+
+#quote1 {
+    font-size: 45px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#quote2 {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#home-house-img {
+    /* max-width: 50%; */
+    margin-top: 80px;
+    max-height: 50%;
 }

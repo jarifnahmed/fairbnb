@@ -1,5 +1,5 @@
 'use strict';
-// const faker = require('faker');
+const faker = require('faker');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
       'Users',
       [
         {
-          email: 'demo@demo.com',
+          email: 'demo@user.io',
           username: 'Demo',
           hashedPassword: bcrypt.hashSync('password'),
         },
@@ -32,7 +32,7 @@ module.exports = {
     await queryInterface.bulkDelete(
       'Users',
       {
-        username: { [Op.in]: ['Demo', 'FakeUser1', 'FakeUser2'] },
+        username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] },
       },
       {}
     );

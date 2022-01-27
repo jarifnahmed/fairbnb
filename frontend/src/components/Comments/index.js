@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReview, updateReview, deleteReview } from '../../store/reviews';
-import './Reviews.css';
+import {
+  createComment,
+  updateComment,
+  deleteComment,
+} from '../../store/comments';
+import './Comments.css';
 
-function Reviews() {
-  const { listingId } = useParams();
+function Comments() {
+  const { storyId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const listings = useSelector((state) => state.listings);
-  const listingsArr = Object.values(listings);
-  let listing;
+  const stories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(stories);
+  let story;
   if (sessionUser) {
-    listing = listingsArr.filter(
-      (listing) => listing.authorId === sessionUser.id
-    );
+    story = storiesArr.filter((story) => story.authorId === sessionUser.id);
   }
 
-  const reviews = useSelector((state) => state.reviews);
-  const reviewsArr = Object.values(reviews);
-  const listingReviews = reviewsArr.filter(
-    (review) => review.listingId === Number(listingId)
+  const comments = useSelector((state) => state.comments);
+  const commentsArr = Object.values(comments);
+  const storyComments = commentsArr.filter(
+    (comment) => comment.storyId === Number(storyId)
   );
 
   const dispatch = useDispatch();
@@ -28,33 +30,33 @@ function Reviews() {
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
   let newObj = {};
-  for (const review of reviewsArr) {
-    newObj[review.id] = false;
+  for (const comment of commentsArr) {
+    newObj[comment.id] = false;
   }
 
   const [editBody, setEditBody] = useState('');
   const [editErrors, setEditErrors] = useState([]);
   const [showEditBox, setshowEditBox] = useState(false);
-  const [showReviewId, setshowReviewId] = useState(null);
+  const [showCommentId, setshowCommentId] = useState(null);
   const [showEditBoxArr, setEditBoxArr] = useState(newObj);
 
-  //handles an edited review submission
+  //handles an edited comment submission
   const handleEdit = async (e) => {
     e.preventDefault();
 
     const userId = sessionUser.id;
 
-    const editedReview = {
-      id: showReviewId,
+    const editedComment = {
+      id: showCommentId,
       userId,
-      listingId: Number(listingId),
+      storyId: Number(storyId),
       body: editBody,
     };
 
     setshowEditBox(false);
-    setshowReviewId(null);
+    setshowCommentId(null);
 
-    return dispatch(updateReview(editedReview))
+    return dispatch(updateComment(editedComment))
       .then(() => {
         setBody('');
         setEditErrors([]);
@@ -65,19 +67,19 @@ function Reviews() {
       });
   };
 
-  //handles new review submission
+  //handles new comment submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = sessionUser.id;
 
-    const newReview = {
+    const newComment = {
       userId,
-      listingId: Number(listingId),
+      storyId: Number(storyId),
       body,
     };
 
-    return dispatch(createReview(newReview))
+    return dispatch(createComment(newComment))
       .then(() => setBody(''))
       .catch(async (res) => {
         const data = await res.json();
@@ -87,66 +89,44 @@ function Reviews() {
 
   return (
     <>
-      <h2 className='reviews-title'>Reviews</h2>
-      {sessionUser && (
-        <div>
-          <form id='reviews-form' onSubmit={handleSubmit}>
-            <ul className='ws-errors'>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
-            <label>
-              <textarea
-                className='ic-field'
-                rows='7'
-                cols='80'
-                value={body}
-                placeholder='Share your thoughts.'
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
-            </label>
-            <button className='wc-button' type='submit'>
-              Submit
-            </button>
-          </form>
-        </div>
-      )}
-      <div id='reviews-div'>
-        <ul>
-          {listingReviews.map((review) => {
-            return (
-              <li key={review.id} className='reviews-list'>
-                {!showEditBoxArr[review.id] && (
-                  <div className='reviewsDiv' id={review.id}>
-                    <p className='the-review'>
-                      {review.User.username}: "{review.body}"
-                    </p>
+      <h2 className='comments-title'>Reviews</h2>
 
-                    {sessionUser && sessionUser.id === review.userId && (
+
+      <div id='comments-div'>
+        <ul>
+          {storyComments.map((comment) => {
+            return (
+              <li key={comment.id} className='comments-list'>
+
+                {!showEditBoxArr[comment.id] && (
+                  <div className='commentsDiv' id={comment.id}>
+                    <p className='the-comment'>
+                      {comment.User.username}: "{comment.body}"
+                    </p>
+                    {sessionUser && sessionUser.id === comment.userId && (
                       <button
                         className='edit-button'
                         type='submit'
                         onClick={() => {
                           setshowEditBox(true);
-                          setshowReviewId(review.id);
-                          setEditBody(review.body);
+                          setshowCommentId(comment.id);
+                          setEditBody(comment.body);
                           let newobj = { ...newObj };
-                          newobj[review.id] = true;
+                          newobj[comment.id] = true;
                           setEditBoxArr(newobj);
                         }}
                       >
                         Edit
                       </button>
                     )}
+
                     {sessionUser &&
-                      (sessionUser.id === review.userId ||
-                        sessionUser.id === listing.authorId) && (
+                      (sessionUser.id === comment.userId ||
+                        sessionUser.id === story.authorId) && (
                         <button
                           className='delete-button'
                           type='submit'
-                          onClick={() => dispatch(deleteReview(review.id))}
+                          onClick={() => dispatch(deleteComment(comment.id))}
                         >
                           Delete
                         </button>
@@ -154,9 +134,9 @@ function Reviews() {
                   </div>
                 )}
 
-                {sessionUser && showEditBox && showReviewId === review.id && (
+                {sessionUser && showEditBox && showCommentId === comment.id && (
                   <div>
-                    <form id='reviews-form' onSubmit={handleEdit}>
+                    <form id='comments-form' onSubmit={handleEdit}>
                       <ul className='ws-errors'>
                         {editErrors.map((error, idx) => (
                           <li key={idx}>{error}</li>
@@ -177,29 +157,19 @@ function Reviews() {
                         type='submit'
                         onClick={() => {
                           let newobj = { ...newObj };
-                          newobj[review.id] = false;
+                          newobj[comment.id] = false;
                           setEditBoxArr(newobj);
                         }}
                       >
                         Edit
                       </button>
-                      {/* <span className="clear" onClick={() => {
-                                        setshowEditBox(false)
-                                        setshowReviewId(null)
-                                        let newobj = {...newObj}
-                                        newobj[review.id] = false;
-                                        setEditBoxArr(newobj)
-                                        }
-                                    }>
-                                        Cancel
-                                    </span> */}
                       <button
                         className='clear'
                         onClick={() => {
                           setshowEditBox(false);
-                          setshowReviewId(null);
+                          setshowCommentId(null);
                           let newobj = { ...newObj };
-                          newobj[review.id] = false;
+                          newobj[comment.id] = false;
                           setEditBoxArr(newobj);
                         }}
                       >
@@ -213,8 +183,36 @@ function Reviews() {
           })}
         </ul>
       </div>
+
+      {sessionUser && story.authorId !== sessionUser.id && (
+
+        <div>
+          <form id='comments-form' onSubmit={handleSubmit}>
+            <ul className='ws-errors'>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <label>
+              <textarea
+                className='ic-field'
+                rows='1'
+                cols='80'
+                value={body}
+                placeholder='Share your thoughts.'
+                onChange={(e) => setBody(e.target.value)}
+                required
+              />
+            </label>
+            <button className='wc-button' type='submit'>
+              Submit
+            </button>
+          </form>
+        </div>
+      )}
+
     </>
   );
 }
 
-export default Reviews;
+export default Comments;

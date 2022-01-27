@@ -1,45 +1,45 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { deleteListing } from '../../store/listings';
-import './UserListings.css';
+import { deleteStory } from '../../store/stories';
+import './UserStories.css';
 
-function UserListings() {
+function UserStories() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
-  const allListings = useSelector((state) => state.listings);
-  const listingsArr = Object.values(allListings);
+  const allStories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(allStories);
 
-  let userListings;
+  let userStories;
 
   if (sessionUser) {
-    userListings = listingsArr.filter(
-      (listing) => listing.authorId === sessionUser.id
+    userStories = storiesArr.filter(
+      (story) => story.authorId === sessionUser.id
     );
 
     return (
       <>
         <h2 className='rec-title'>My Listings</h2>
         <ul className='unorderedList-myupload'>
-          {userListings.map((listing) => {
+          {userStories.map((story) => {
             return (
-              <li key={listing.id} className='allListings-myupload'>
-                <div className='listing-container-myupload'>
-                  <NavLink className='header' to={`/listings/${listing.id}`}>
-                    <h2 className='myuploadListingTitle'>{listing.title}</h2>
+              <li key={story.id} className='allStories-myupload'>
+                <div className='story-container-myupload'>
+                  <NavLink className='header' to={`/listings/${story.id}`}>
+                    <h2 className='myuploadStoryTitle'>{story.title}</h2>
                   </NavLink>
                   <div className='imgDiv'>
                     <NavLink
-                      className='listing-link'
-                      to={`/listings/${listing.id}`}
+                      className='story-link'
+                      to={`/listings/${story.id}`}
                     >
-                      <img id='imgThumbnail' src={listing.imageUrl} />
+                      <img id='imgThumbnail' src={story.imageUrl} />
                     </NavLink>
                   </div>
-                  <div className='listing-details'>
+                  <div className='story-details'>
                     <div id='e-d-btn-ctn'>
-                      <NavLink to={`/edit/listing/${listing.id}`}>
+                      <NavLink to={`/edit/listing/${story.id}`}>
                         <button className='edit-btn-myupload' type='submit'>
                           Edit
                         </button>
@@ -47,7 +47,7 @@ function UserListings() {
                       <button
                         className='del-btn'
                         type='submit'
-                        onClick={() => dispatch(deleteListing(listing.id))}
+                        onClick={() => dispatch(deleteStory(story.id))}
                       >
                         Delete
                       </button>
@@ -65,4 +65,4 @@ function UserListings() {
   }
 }
 
-export default UserListings;
+export default UserStories;

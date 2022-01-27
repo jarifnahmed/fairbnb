@@ -43,17 +43,17 @@ function ProfileButton() {
       {showMenu && (
         <ul id='profile-dropdown'>
           {/* <li className='prof-list-item'>
-            <NavLink className='listing-link' to={`/username`}>
+            <NavLink className='story-link' to={`/username`}>
               {sessionUser.username}
             </NavLink>
           </li> */}
           <li className='prof-list-item'>
-            <NavLink className='listing-link' to={`/listing/new`}>
+            <NavLink className='story-link' to={`/listing/new`}>
               Create Listing
             </NavLink>
           </li>
           <li className='prof-list-item'>
-            <NavLink className='listing-link' to={`/user/listings`}>
+            <NavLink className='story-link' to={`/user/listings`}>
               My Listings
             </NavLink>
           </li>
