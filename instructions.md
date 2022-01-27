@@ -1,1 +1,3 @@
 ## To run locally, you must have NodeJS and Postgres installed on your machine. Once they are installed, Download/Git Clone the repo and create an .env and database following the .env.example located in the root of the repo. Then look at the repo's package.json located in the root to see what packages the project is dependant one. Use npm install to install those dependencies. After that, use Sequelize to run all the migrations (npx dotenv sequelize-cli db:migrate) and then run all pending seeds (npx dotenv sequelize-cli db:seed:all). Check to see if the database was properly seeded using psql. If seeded correctly, run the server using npm start.
+
+## Undo seeds (npx dotenv sequelize-cli db:seed:undo:all), undo migrations (npx dotenv sequelize-cli db:migrate:undo:all)
