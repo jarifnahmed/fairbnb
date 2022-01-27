@@ -60,7 +60,7 @@ a.story-link{
 
 a.story-link:hover{
     background-color: rgb(255, 90, 96);
-    color: #161618;
+    color: white;
     text-align: center;
     text-decoration: none;
     /* font-weight: bolder; */
