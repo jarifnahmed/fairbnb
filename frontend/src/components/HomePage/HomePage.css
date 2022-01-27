@@ -4,8 +4,13 @@
     justify-content: space-evenly;
     height: fit-content;
     margin: 0;
-    margin-left: 150px;
-    margin-right: 150px;
+    /* margin-left: 150px;
+    margin-right: 150px; */
+    background-color: black;
+}
+
+#aboutDiv{
+    background-color: black;
 }
 
 #about{
@@ -16,6 +21,7 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
     font-weight: bolder;
+    color: white;
 }
 
 #hp-misc-div {
