@@ -44,7 +44,7 @@
 }
 
 a.story-link{
-    /* background-color: rgb(255, 90, 96); */
+    background-color: rgb(46, 121, 121);
     color: white;
     text-align: center;
     text-decoration: none;
@@ -56,6 +56,13 @@ a.story-link{
     margin-right: 30px;
     transition-duration: 0.4s;
     font-family: Arial, Helvetica, sans-serif;
+
+    padding-top: 4px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+    padding-left: 6px;
+
+
 }
 
 a.story-link:hover{
