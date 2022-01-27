@@ -7,6 +7,7 @@ function User() {
 
   if (sessionUser) {
     return (
+
       <div className='ud-feed-container'>
         <div className='ud-center-div'>
           <UserFeed />
