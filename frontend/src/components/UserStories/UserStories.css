@@ -41,12 +41,16 @@ ul {
 
 .unorderedList{
     padding: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* margin-bottom: 30px; */
     list-style-type: none;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     align-content: center;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .ud-feed-container {
@@ -66,7 +70,7 @@ ul {
     flex-direction: row;
     justify-content: space-evenly;
     height: fit-content;
-    margin-bottom: 13px;
+    margin-bottom: 60px;
 }
 
 .rec-title{
