@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 //import components
@@ -8,12 +8,13 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Homepage from './components/HomePage';
 import User from './components/User';
-import ListingDetail from './components/ListingDetails';
-import UserListings from './components/UserListings';
-import WriteListing from './components/WriteListing';
-import EditListing from './components/UpdateListing';
-import { getListings } from './store/listings';
-import { getReviews } from "./store/reviews";
+import StoryDetail from './components/StoryDetails';
+import UserStories from './components/UserStories';
+import WriteStory from './components/WriteStory';
+import EditStory from './components/UpdateStory';
+import Footer from './components/Footer';
+import { getStories } from './store/stories';
+import { getComments } from './store/comments';
 
 //import thunk
 import * as sessionActions from './store/session';
@@ -21,16 +22,10 @@ import * as sessionActions from './store/session';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const sessionUser = useSelector(state => state.session.user);
-
-  if (sessionUser) {
-    const sessionUserUserName = sessionUser.username;
-  }
-  // const sessionUserUserName = sessionUser.username;
 
   useEffect(() => {
-    dispatch(getListings());
-    dispatch(getReviews());
+    dispatch(getStories());
+    dispatch(getComments());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -49,22 +44,21 @@ function App() {
             <Homepage />
           </Route>
           <Route path='/username'>
-          {/* <Route path='/listings'> */}
-          {/* <Route path={`/${sessionUserUserName}`}> */}
             <User />
           </Route>
           <Route path='/user/listings'>
-            <UserListings />
+            <UserStories />
           </Route>
-          <Route path='/listings/new'>
-            <WriteListing />
+          <Route path='/listing/new'>
+            <WriteStory />
           </Route>
-          <Route path='/listings/:listingId'>
-            <ListingDetail />
+          <Route path='/listings/:storyId'>
+            <StoryDetail />
           </Route>
-          <Route path='/edit/listing/:editListingId'>
-            <EditListing />
+          <Route path='/edit/listing/:editStoryId'>
+            <EditStory />
           </Route>
+          <Footer />
         </Switch>
       )}
     </>

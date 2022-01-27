@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
-import { updateListing } from '../../store/listings';
+import { updateStory } from '../../store/stories';
 
-function EditListing() {
+function EditStory() {
   const sessionUser = useSelector((state) => state.session.user);
-  const { editListingId } = useParams();
-  const listing = useSelector((state) => state.listings[editListingId]);
+  const { editStoryId } = useParams();
+  const story = useSelector((state) => state.stories[editStoryId]);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [title, setTitle] = useState(listing.title);
-  const [subtitle, setSubtitle] = useState(listing.subtitle);
-  const [imageUrl, setImageUrl] = useState(listing.imageUrl);
-  const [body, setBody] = useState(listing.body);
+  const [title, setTitle] = useState(story.title);
+  const [subtitle, setSubtitle] = useState(story.subtitle);
+  const [imageUrl, setImageUrl] = useState(story.imageUrl);
+  const [body, setBody] = useState(story.body);
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser && listing) {
+  if (sessionUser && story) {
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       const authorId = sessionUser.id;
 
-      const editedListing = {
-        id: editListingId,
+      const editedStory = {
+        id: editStoryId,
         authorId,
         title,
         subtitle,
@@ -32,10 +32,8 @@ function EditListing() {
         body,
       };
 
-      return dispatch(updateListing(editedListing))
-        .then((updatedListing) =>
-          history.push(`/listings/${updatedListing.id}`)
-        )
+      return dispatch(updateStory(editedStory))
+        .then((updatedStory) => history.push(`/listings/${updatedStory.id}`))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
@@ -44,8 +42,8 @@ function EditListing() {
 
     return (
       <>
-        <div className='listing-form-container'>
-          <form className='listing-form' onSubmit={handleSubmit}>
+        <div className='story-form-container'>
+          <form className='story-form' onSubmit={handleSubmit}>
             <h2 className='ws-title'>Edit Listing Details</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
@@ -66,7 +64,7 @@ function EditListing() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='listing-subtitle'
+                id='story-subtitle'
                 type='text'
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
@@ -83,17 +81,17 @@ function EditListing() {
                 required
               />
             </div>
-            {/* <div className='ws-form-field'>
+            <div className='ws-form-field'>
               <textarea
                 className='sf-content'
                 id='content'
-                rows="5"
-                cols="60"
+                rows='5'
+                cols='60'
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 required
               />
-            </div> */}
+            </div>
             <button className='ws-button' type='submit'>
               Edit
             </button>
@@ -106,4 +104,4 @@ function EditListing() {
   }
 }
 
-export default EditListing;
+export default EditStory;

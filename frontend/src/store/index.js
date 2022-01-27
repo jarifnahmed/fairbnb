@@ -3,14 +3,14 @@ import thunk from 'redux-thunk';
 
 //importing reducers
 import sessionReducer from './session';
-import listingsReducer from "./listings";
-import reviewsReducer from "./reviews";
+import storiesReducer from "./stories";
+import commentsReducer from "./comments";
 
 //reducer combiner
 const rootReducer = combineReducers({
-  listings: listingsReducer,
+  stories: storiesReducer,
   session: sessionReducer,
-  reviews: reviewsReducer,
+  comments: commentsReducer,
 });
 
 let enhancer;

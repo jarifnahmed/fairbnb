@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createListing } from '../../store/listings';
+import { createStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
-import './WriteListing.css';
+import './WriteStory.css';
 
-function WriteListing() {
+function WriteStory() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,7 +20,7 @@ function WriteListing() {
 
     const authorId = sessionUser.id;
 
-    const newListing = {
+    const newStory = {
       authorId,
       title,
       subtitle,
@@ -28,8 +28,8 @@ function WriteListing() {
       body,
     };
 
-    return dispatch(createListing(newListing))
-      .then((createdListing) => history.push(`/listings/${createdListing.id}`))
+    return dispatch(createStory(newStory))
+      .then((createdStory) => history.push(`/listings/${createdStory.id}`))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -39,9 +39,9 @@ function WriteListing() {
   if (sessionUser) {
     return (
       <>
-        <div className='listing-form-container'>
-          <form className='listing-form' onSubmit={handleSubmit}>
-            <h2 className='ws-title'>Upload New Listing</h2>
+        <div className='story-form-container'>
+          <form className='story-form' onSubmit={handleSubmit}>
+            <h2 className='ws-title'>Create a Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -53,7 +53,7 @@ function WriteListing() {
                 id='title'
                 type='text'
                 value={title}
-                placeholder='Title'
+                placeholder='Name'
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 autoFocus={true}
@@ -62,10 +62,10 @@ function WriteListing() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='listing-subtitle'
+                id='story-subtitle'
                 type='text'
                 value={subtitle}
-                placeholder='Description'
+                placeholder='Address'
                 onChange={(e) => setSubtitle(e.target.value)}
                 required
               />
@@ -81,20 +81,20 @@ function WriteListing() {
                 required
               />
             </div>
-            {/* <div className='ws-form-field'>
+            <div className='ws-form-field'>
               <textarea
                 className='sf-content'
                 id='content'
-                rows="5"
-                cols="60"
+                rows='5'
+                cols='60'
                 value={body}
-                placeholder='Body'
+                placeholder='Description'
                 onChange={(e) => setBody(e.target.value)}
                 required
               />
-            </div> */}
+            </div>
             <button className='ws-button' type='submit'>
-              Upload
+              Create
             </button>
           </form>
         </div>
@@ -105,4 +105,4 @@ function WriteListing() {
   }
 }
 
-export default WriteListing;
+export default WriteStory;

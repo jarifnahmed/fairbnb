@@ -10,6 +10,11 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import { ModalProvider } from './context/Modal';
 
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+</style>
+
 //configure the store
 const store = configureStore();
 

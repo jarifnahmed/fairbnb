@@ -1,4 +1,4 @@
-#listing-details {
+#story-details {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 }
 
 #sd-img:hover {
-  max-width: 1500px;
+    /* max-width: 1500px; */
 }
 
 .title,
@@ -30,9 +30,9 @@
   padding-bottom: 20px;
 }
 
-#listing-body {
+#story-body {
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
+  color: white;
 }
 
 .del-btn {
@@ -61,7 +61,8 @@
   /* border-radius: 4px; */
 }
 
-.edit-btn {
+
+.edit-btn{
   background-color: #4d4d4d;
   color: white;
   text-align: center;
@@ -75,7 +76,7 @@
   margin-right: 10px;
 }
 
-.edit-btn:hover {
+.edit-btn:hover{
   background-color: rgb(255, 255, 255);
   color: #161618;
   text-align: center;
