@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Footer from '../Footer/index';
 // import './HomeFeed.css';
 import '../UserStories/UserStories.css';
 
@@ -29,6 +30,7 @@ function Home() {
             );
           })}
         </ul>
+        {/* <Footer /> */}
       </>
     );
   } else {
