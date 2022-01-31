@@ -30,7 +30,7 @@
 
 <div align="justify">
 
-//TODO: is a [Remember The Milk](https://www.rememberthemilk.com/) inspired full-stack web application with dynamic features catered to programmers. //TODO: lets users create groups, add members, set tasks, subtasks, and assign due dates for members. Try out the app as a Demo user by clicking on the [link](https://aa-todo.herokuapp.com/) above!
+FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web application with dynamic features catered to people who want to list and rent affordable places. FairBnB lets users create listings and other users. Other users can review those listings. Try out the app as a Demo user by clicking on the [link](https://fairbnb-app.herokuapp.com/) above!
 
 <div>
 
@@ -43,19 +43,13 @@
 <div align="justify">
 
 - Account Signup/Login/Logout
-- Personal Dashboard Created Upon Signup
+- Recommended Listings Viewed Upon Signup
 - Demo User
-- Create/Delete Groups
-- Add/Remove Group Members
-- Add New Personal/Group Tasks
-- Display Tasks By Ascending Due Date
-- Assign Tasks To Group Members By Having Them Become The Task Owner
-- All Tasks Assigned To User Appear On Dashboard
-- Task Owners Can Create/Delete Subtasks
-- Edit Tasks If Task Owner
-- Mark Task As Complete If Task Owner
-- Search Through Tasks In Group
-- Scroll Through Long List Of Tasks
+- Create, Update, and Delete Listings
+- Dashboard For Viewing Own Listings
+- Filtered View For Other Listings
+- Add New Reviews
+- Edit and Delete Reviews
 
 <div>
 
@@ -117,7 +111,7 @@
 
 <div align="justify">
 
-To run locally, you must have **NodeJS** and **Postgres** installed on your machine. Once they are installed, Download/Git Clone the repo and create an *.env* and database following the *.env.example* located in the root of the repo. Then look at the repo's *package.json* located in the root to see what packages the project is dependant one. Use `npm install` to install those dependencies. After that, use **Sequelize** to run all the migrations (`npx dotenv sequelize-cli db:migrate`) and then run all pending seeds (`npx dotenv sequelize-cli db:seed:all`). Check to see if the database was properly seeded using **psql**. If seeded correctly, run the server using `npm start`.
+To run locally, you must have **NodeJS** and **Postgres** installed on your machine. Once they are installed, Download/Git Clone the repo and create an *.env* and database following the *.env.example* located in the root of the repo. Then look at the repo's *package.json* located in both the backend and frontend folders to see what packages the project is dependant on. Use `npm install` in both folders to install those dependencies. After that, use **Sequelize** in the backend folder to run all the migrations (`npx dotenv sequelize-cli db:migrate`) and then run all pending seeds (`npx dotenv sequelize-cli db:seed:all`). Check to see if the database was properly seeded using **psql**. If seeded correctly, run `npm start` in both folders.
 
 <div>
 
@@ -138,7 +132,8 @@ To run locally, you must have **NodeJS** and **Postgres** installed on your mach
 - HTTP Errors - Create HTTP Error Objects.
 - Morgan - HTTP request logger middleware.
 - Per ENV - Clean up package.json.
-- Pug - HTML templating engine.
+- React - User Interface Components.
+- Redux - State Management.
 - Sequelize - ORM.
 - Dotenv - Load environment variables.
 - Nodemon - Development monitoring script.
@@ -153,14 +148,13 @@ To run locally, you must have **NodeJS** and **Postgres** installed on your mach
 
 <div align="justify">
 
-- Make overdue task name in red.
-- Prevent from making task due in past.
-- Indicate task have subtask on the left panel.
-- Right pane subtasks are checkboxes.
+- Implement a bookings feature.
+- Implement a search feature.
+- Implement a side map that shows location.
 - Animation.
 - Improved UI/UX.
-- Extended group functionality.
-- NPM tests hooked to complete subtasks.
+- Extended create listings functionality.
+- Extended create reviews functionality.
 
 <div>
 
@@ -173,7 +167,17 @@ To run locally, you must have **NodeJS** and **Postgres** installed on your mach
 
 <div align="justify">
 
- The database schema required more forethought than any other technical aspect of this project. Thinking carefully about this led to a schema that was aligned with our front-end queries. For example, deciding early that a group owner was not a member of that group kept the group owner out of the member table. This kept our queries shorter and easier to debug when we needed to, for example, restrict non group owners from write/update/delete privileges.
+This is a great project for practicing making CRUD features with the PERN stack. It is also good practice for using Redux which is used for state management.
+
+My map for making CRUD features goes as the following:
+1. Ensure that your database is set up correctly.
+2. Set up your router on your backend to hit the database.
+3. Set up your thunk function to hit the API server and dispatch the action creator.
+4. Set up your action creator / action object.
+5. Set up your reducer with switches and default cases.
+6. Be sure to export your reducer to rootReducer.
+7. Make a controlled component / useEffect that dispatches the thunk.
+8. useSelector is then used to listen into the state and pull relevant information from the "slice of state". You can now use that information to display data from your database.
 
 <div>
 
