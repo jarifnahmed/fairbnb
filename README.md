@@ -3,7 +3,7 @@
 # [FairBnB](https://fairbnb-app.herokuapp.com/)
 
 [![Website](https://img.shields.io/website?down_message=OFFLINE%20%3A%28&label=APP%20IS%20&logo=HEROKU&style=for-the-badge&up_message=ONLINE.%20CLICK%20HERE%21&url=https%3A%2F%2Ffairbnb-app.herokuapp.com%2F)](https://fairbnb-app.herokuapp.com/)
-[![Project Wiki - Click Here!](https://img.shields.io/static/v1?label=Project+Wiki&message=Click+Here!&color=%23CFD8DC&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/juniporous/TODO-Project/wiki)
+[![Project Wiki - Click Here!](https://img.shields.io/static/v1?label=Project+Wiki&message=Click+Here!&color=%23CFD8DC&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/NawalJAhmed/fairbnb/wiki)
 
 ## Technologies
 
@@ -63,43 +63,55 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 
 ### Demo User
 
-![demo](https://user-images.githubusercontent.com/11577850/138720984-be43bf04-c4df-484d-bd8a-d4dd87f159b3.png)
+![demo](https://user-images.githubusercontent.com/11577850/151828224-161be74a-83cc-4bf6-982c-134cb6f63c70.png)
 
 ### Sign Up
 
-![sign-up](https://user-images.githubusercontent.com/11577850/138721169-8c6443e6-cd43-4386-a2fd-12d4396572b5.png)
+![signup](https://user-images.githubusercontent.com/11577850/151828276-27ed651e-7cf3-4971-8d56-d2f1a28bbfa7.png)
 
 ### Login
 
-![login](https://user-images.githubusercontent.com/11577850/138721230-54f5a525-9729-46db-ab40-a230acecbcf5.png)
+![login](https://user-images.githubusercontent.com/11577850/151828334-d7eaa130-e67e-4cc5-8dda-cd7655b65215.png)
 
-### Create Group
+### Signed-In Navigation Bar
 
-![create new group](https://user-images.githubusercontent.com/11577850/138721293-3de5c9d5-417c-4ff0-812d-ad3beb4765cf.png)
+![signed-in-navbar](https://user-images.githubusercontent.com/11577850/151828500-88b24516-b144-44fa-b5e5-d3c7fa73bf18.png)
 
-### Add/Remove Group Members
+### Recommended Listings
 
-![add⁄removeGroupMembers](https://user-images.githubusercontent.com/11577850/138721475-4d6f78c3-bebc-47b4-8171-9e04450e4e1f.png)
+![recommended listings](https://user-images.githubusercontent.com/11577850/151828609-5c02fad4-91a7-45fe-b043-63073e48e01f.png)
 
-### Add Tasks
+### View Listing
 
-![addNewTask](https://user-images.githubusercontent.com/11577850/138721510-d09c0ab1-f7b6-412b-920a-2ac9127d1a39.png)
+![view-listing](https://user-images.githubusercontent.com/11577850/151828687-c4d1dc42-46f7-4e73-b5ce-d4e724872e51.png)
 
-### Search Tasks
+### View & Create Reviews
 
-![search](https://user-images.githubusercontent.com/11577850/138721549-7233741b-b20a-44c3-9c95-51460296ed45.png)
+![view-review](https://user-images.githubusercontent.com/11577850/151828770-0ab14a0d-e518-4025-9301-08ca0fba6216.png)
 
-### Edit Task Details
+### Review Functionalities
 
-![editTaskDetails](https://user-images.githubusercontent.com/11577850/138721596-d8c9a82d-df05-4deb-b699-9aaf35d4a238.png)
+![review-options](https://user-images.githubusercontent.com/11577850/151828914-2d8bf668-9d51-4782-8f4a-650e5ee2a1f8.png)
 
-### Create Subtasks
+### Editing A Review
 
-![createSubTasks](https://user-images.githubusercontent.com/11577850/138723133-f83588ce-0f45-43b5-8d91-b7c050ccb7bb.png)
+![editing-review](https://user-images.githubusercontent.com/11577850/151829009-0c18029a-ccca-4260-b042-491e1c978d2b.png)
 
-### Mark Task Completed
+### Create Listing
 
-![markTaskAsCompleted](https://user-images.githubusercontent.com/11577850/138721671-2b15ae27-7b74-445d-b9de-ba7c13781ce6.png)
+![create-listing](https://user-images.githubusercontent.com/11577850/151829091-7f7bed8f-513e-45c1-afdc-be9032427bce.png)
+
+### My Listings
+
+![my-listings](https://user-images.githubusercontent.com/11577850/151829218-e621ca9e-8acd-4c19-be6b-e6f0efcdca10.png)
+
+### Owner Of A Listing
+
+![owner-listing](https://user-images.githubusercontent.com/11577850/151829359-c5ecfdbc-444e-4e51-a588-ca30d1e93eba.png)
+
+### Edit A Listing
+
+![edit-listing](https://user-images.githubusercontent.com/11577850/151829400-01bfc1f0-f1c7-46ca-bac2-e224682f5091.png)
 
 <div>
 
