@@ -26,6 +26,7 @@ function UserFeed() {
                       className='story-link'
                       to={`/listings/${story.id}`}
                     >
+                                                                <h2 className='myuploadStoryTitle'>{story.title}</h2>
                       <img id='imgThumbnail' src={story.imageUrl} />
                     </NavLink>
                   </div>

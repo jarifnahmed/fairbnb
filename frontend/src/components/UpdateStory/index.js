@@ -56,6 +56,7 @@ function EditStory() {
                 id='title'
                 type='text'
                 value={title}
+                placeholder='Name'
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 autoFocus={true}
@@ -67,6 +68,7 @@ function EditStory() {
                 id='story-subtitle'
                 type='text'
                 value={subtitle}
+                placeholder='Address'
                 onChange={(e) => setSubtitle(e.target.value)}
                 required
               />
@@ -77,6 +79,7 @@ function EditStory() {
                 id='image'
                 type='text'
                 value={imageUrl}
+                placeholder='Image (URL)'
                 onChange={(e) => setImageUrl(e.target.value)}
                 required
               />
@@ -88,6 +91,7 @@ function EditStory() {
                 rows='5'
                 cols='60'
                 value={body}
+                placeholder='Description'
                 onChange={(e) => setBody(e.target.value)}
                 required
               />

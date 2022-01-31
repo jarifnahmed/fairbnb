@@ -11,6 +11,11 @@ function Footer() {
                             <img className="links-logo" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Github logo"/>
                         </a>
                     </div>
+                    <div id="linkedin">
+                        <a className="gl-links" href='https://www.linkedin.com/in/nawaljahmed/'>
+                            <img className="links-logo" src="https://www.edigitalagency.com.au/wp-content/uploads/new-linkedin-logo-white-black-png.png" alt="LinkedIn logo"/>
+                        </a>
+                    </div>
                 </div>
         </footer>
     );

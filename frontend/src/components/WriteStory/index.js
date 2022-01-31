@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
+import Footer from '../Footer/index';
 import './WriteStory.css';
 
 function WriteStory() {
@@ -76,7 +77,7 @@ function WriteStory() {
                 id='image'
                 type='text'
                 value={imageUrl}
-                placeholder='Image'
+                placeholder='Image (URL)'
                 onChange={(e) => setImageUrl(e.target.value)}
                 required
               />
@@ -97,6 +98,7 @@ function WriteStory() {
               Create
             </button>
           </form>
+          <Footer />
         </div>
       </>
     );
