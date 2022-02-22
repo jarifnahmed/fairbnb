@@ -8,13 +8,13 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Homepage from './components/HomePage';
 import User from './components/User';
-import StoryDetail from './components/StoryDetails';
-import UserStories from './components/UserStories';
-import WriteStory from './components/WriteStory';
-import EditStory from './components/UpdateStory';
+import ListingDetail from './components/ListingDetails';
+import UserListings from './components/UserListings';
+import WriteListing from './components/WriteListing';
+import EditListing from './components/UpdateListing';
 import Footer from './components/Footer';
-import { getStories } from './store/stories';
-import { getComments } from './store/comments';
+import { getListings } from './store/listings';
+import { getReviews } from './store/reviews';
 
 //import thunk
 import * as sessionActions from './store/session';
@@ -24,8 +24,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getStories());
-    dispatch(getComments());
+    dispatch(getListings());
+    dispatch(getReviews());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -47,16 +47,16 @@ function App() {
             <User />
           </Route>
           <Route path='/user/listings'>
-            <UserStories />
+            <UserListings />
           </Route>
           <Route path='/listing/new'>
-            <WriteStory />
+            <WriteListing />
           </Route>
-          <Route path='/listings/:storyId'>
-            <StoryDetail />
+          <Route path='/listings/:listingId'>
+            <ListingDetail />
           </Route>
-          <Route path='/edit/listing/:editStoryId'>
-            <EditStory />
+          <Route path='/edit/listing/:editListingId'>
+            <EditListing />
           </Route>
           {/* <Footer /> */}
         </Switch>

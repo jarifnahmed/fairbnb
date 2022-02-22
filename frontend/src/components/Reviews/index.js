@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  createComment,
-  updateComment,
-  deleteComment,
-} from '../../store/comments';
-import './Comments.css';
+import { createReview, updateReview, deleteReview } from '../../store/reviews';
+import './Reviews.css';
 
-function Comments() {
-  const { storyId } = useParams();
+function Reviews() {
+  const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const stories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(stories);
-  let story;
+  const listings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(listings);
+  let listing;
   if (sessionUser) {
-    story = storiesArr.filter((story) => story.authorId === sessionUser.id);
+    listing = listingsArr.filter(
+      (listing) => listing.authorId === sessionUser.id
+    );
   }
 
-  const comments = useSelector((state) => state.comments);
-  const commentsArr = Object.values(comments);
-  const storyComments = commentsArr.filter(
-    (comment) => comment.storyId === Number(storyId)
+  const reviews = useSelector((state) => state.reviews);
+  const reviewsArr = Object.values(reviews);
+  const listingReviews = reviewsArr.filter(
+    (review) => review.listingId === Number(listingId)
   );
 
   const dispatch = useDispatch();
@@ -30,33 +28,33 @@ function Comments() {
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
   let newObj = {};
-  for (const comment of commentsArr) {
-    newObj[comment.id] = false;
+  for (const review of reviewsArr) {
+    newObj[review.id] = false;
   }
 
   const [editBody, setEditBody] = useState('');
   const [editErrors, setEditErrors] = useState([]);
   const [showEditBox, setshowEditBox] = useState(false);
-  const [showCommentId, setshowCommentId] = useState(null);
+  const [showReviewId, setshowReviewId] = useState(null);
   const [showEditBoxArr, setEditBoxArr] = useState(newObj);
 
-  //handles an edited comment submission
+  //handles an edited review submission
   const handleEdit = async (e) => {
     e.preventDefault();
 
     const userId = sessionUser.id;
 
-    const editedComment = {
-      id: showCommentId,
+    const editedReview = {
+      id: showReviewId,
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       body: editBody,
     };
 
     setshowEditBox(false);
-    setshowCommentId(null);
+    setshowReviewId(null);
 
-    return dispatch(updateComment(editedComment))
+    return dispatch(updateReview(editedReview))
       .then(() => {
         setBody('');
         setEditErrors([]);
@@ -67,19 +65,19 @@ function Comments() {
       });
   };
 
-  //handles new comment submission
+  //handles new review submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userId = sessionUser.id;
 
-    const newComment = {
+    const newReview = {
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       body,
     };
 
-    return dispatch(createComment(newComment))
+    return dispatch(createReview(newReview))
       .then(() => setBody(''))
       .catch(async (res) => {
         const data = await res.json();
@@ -89,30 +87,28 @@ function Comments() {
 
   return (
     <>
-      <h2 className='comments-title'>Reviews</h2>
+      <h2 className='reviews-title'>Reviews</h2>
 
-
-      <div id='comments-div'>
+      <div id='reviews-div'>
         <ul>
-          {storyComments.map((comment) => {
+          {listingReviews.map((review) => {
             return (
-              <li key={comment.id} className='comments-list'>
-
-                {!showEditBoxArr[comment.id] && (
-                  <div className='commentsDiv' id={comment.id}>
-                    <p className='the-comment'>
-                      {comment.User.username}: "{comment.body}"
+              <li key={review.id} className='reviews-list'>
+                {!showEditBoxArr[review.id] && (
+                  <div className='reviewsDiv' id={review.id}>
+                    <p className='the-review'>
+                      {review.User.username}: "{review.body}"
                     </p>
-                    {sessionUser && sessionUser.id === comment.userId && (
+                    {sessionUser && sessionUser.id === review.userId && (
                       <button
                         className='edit-button'
                         type='submit'
                         onClick={() => {
                           setshowEditBox(true);
-                          setshowCommentId(comment.id);
-                          setEditBody(comment.body);
+                          setshowReviewId(review.id);
+                          setEditBody(review.body);
                           let newobj = { ...newObj };
-                          newobj[comment.id] = true;
+                          newobj[review.id] = true;
                           setEditBoxArr(newobj);
                         }}
                       >
@@ -121,12 +117,12 @@ function Comments() {
                     )}
 
                     {sessionUser &&
-                      (sessionUser.id === comment.userId ||
-                        sessionUser.id === story.authorId) && (
+                      (sessionUser.id === review.userId ||
+                        sessionUser.id === listing.authorId) && (
                         <button
                           className='delete-button'
                           type='submit'
-                          onClick={() => dispatch(deleteComment(comment.id))}
+                          onClick={() => dispatch(deleteReview(review.id))}
                         >
                           Delete
                         </button>
@@ -134,9 +130,9 @@ function Comments() {
                   </div>
                 )}
 
-                {sessionUser && showEditBox && showCommentId === comment.id && (
+                {sessionUser && showEditBox && showReviewId === review.id && (
                   <div>
-                    <form id='comments-form' onSubmit={handleEdit}>
+                    <form id='reviews-form' onSubmit={handleEdit}>
                       <ul className='ws-errors'>
                         {editErrors.map((error, idx) => (
                           <li key={idx}>{error}</li>
@@ -157,7 +153,7 @@ function Comments() {
                         type='submit'
                         onClick={() => {
                           let newobj = { ...newObj };
-                          newobj[comment.id] = false;
+                          newobj[review.id] = false;
                           setEditBoxArr(newobj);
                         }}
                       >
@@ -167,9 +163,9 @@ function Comments() {
                         className='clear'
                         onClick={() => {
                           setshowEditBox(false);
-                          setshowCommentId(null);
+                          setshowReviewId(null);
                           let newobj = { ...newObj };
-                          newobj[comment.id] = false;
+                          newobj[review.id] = false;
                           setEditBoxArr(newobj);
                         }}
                       >
@@ -184,10 +180,9 @@ function Comments() {
         </ul>
       </div>
 
-      {sessionUser && story.authorId !== sessionUser.id && (
-
+      {sessionUser && listing.authorId !== sessionUser.id && (
         <div>
-          <form id='comments-form' onSubmit={handleSubmit}>
+          <form id='reviews-form' onSubmit={handleSubmit}>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -210,9 +205,8 @@ function Comments() {
           </form>
         </div>
       )}
-
     </>
   );
 }
 
-export default Comments;
+export default Reviews;

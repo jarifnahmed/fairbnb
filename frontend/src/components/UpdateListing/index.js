@@ -1,48 +1,52 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
-import Footer from '../Footer/index';
-import './WriteStory.css';
+import { useParams } from 'react-router';
+import { updateListing } from '../../store/listings';
 
-function WriteStory() {
+function EditListing() {
   const sessionUser = useSelector((state) => state.session.user);
+  const { editListingId } = useParams();
+  const listing = useSelector((state) => state.listings[editListingId]);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(listing.title);
+  const [subtitle, setSubtitle] = useState(listing.subtitle);
+  const [imageUrl, setImageUrl] = useState(listing.imageUrl);
+  const [body, setBody] = useState(listing.body);
   const [errors, setErrors] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  if (sessionUser && listing) {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    const authorId = sessionUser.id;
+      const authorId = sessionUser.id;
 
-    const newStory = {
-      authorId,
-      title,
-      subtitle,
-      imageUrl,
-      body,
+      const editedListing = {
+        id: editListingId,
+        authorId,
+        title,
+        subtitle,
+        imageUrl,
+        body,
+      };
+
+      return dispatch(updateListing(editedListing))
+        .then((updatedListing) =>
+          history.push(`/listings/${updatedListing.id}`)
+        )
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
     };
 
-    return dispatch(createStory(newStory))
-      .then((createdStory) => history.push(`/listings/${createdStory.id}`))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
-  };
-
-  if (sessionUser) {
     return (
       <>
-        <div className='story-form-container'>
-          <form className='story-form' onSubmit={handleSubmit}>
-            <h2 className='ws-title'>Create a Listing</h2>
+        <div className='listing-form-container'>
+          <form className='listing-form' onSubmit={handleSubmit}>
+            <h2 className='ws-title'>Edit Listing Details</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -63,7 +67,7 @@ function WriteStory() {
             <div className='ws-form-field'>
               <input
                 className='sf-input'
-                id='story-subtitle'
+                id='listing-subtitle'
                 type='text'
                 value={subtitle}
                 placeholder='Address'
@@ -95,10 +99,9 @@ function WriteStory() {
               />
             </div>
             <button className='ws-button' type='submit'>
-              Create
+              Edit
             </button>
           </form>
-          <Footer />
         </div>
       </>
     );
@@ -107,4 +110,4 @@ function WriteStory() {
   }
 }
 
-export default WriteStory;
+export default EditListing;

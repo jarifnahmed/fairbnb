@@ -13,7 +13,7 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
-.story-details{
+.listing-details{
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     font-size: 15px;
@@ -48,7 +48,7 @@ ul {
     flex-wrap: wrap;
 }
 
-.allStories{
+.allListings{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -57,5 +57,5 @@ ul {
 } */
 
 #spacer {
-    margin-bottom: 300px;
+  margin-bottom: 300px;
 }

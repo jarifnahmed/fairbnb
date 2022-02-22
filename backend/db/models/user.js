@@ -51,8 +51,16 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function (models) {
     // associations are defined here
-    User.hasMany(models.Story, { foreignKey: 'authorId', onDelete: 'CASCADE', hooks: true  });
-    User.hasMany(models.Comment, { foreignKey: 'userId', onDelete: 'CASCADE', hooks: true  });
+    User.hasMany(models.Listing, {
+      foreignKey: 'authorId',
+      onDelete: 'CASCADE',
+      hooks: true,
+    });
+    User.hasMany(models.Review, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE',
+      hooks: true,
+    });
   };
 
   User.prototype.toSafeObject = function () {
@@ -96,4 +104,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return User;
 };
-

@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-const storiesRouter = require('./stories.js');
-const commentsRouter = require('./comments.js')
+const listingsRouter = require('./listings.js');
+const reviewsRouter = require('./reviews.js');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-router.use('/stories', storiesRouter);
-router.use('/comments', commentsRouter);
+router.use('/listings', listingsRouter);
+router.use('/reviews', reviewsRouter);
 
 //POST test route
 // router.post('/test', (req, res) => {
