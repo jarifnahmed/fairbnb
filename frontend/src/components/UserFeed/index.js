@@ -3,19 +3,48 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../HomeFeed/HomeFeed.css';
 import Footer from '../Footer/index';
+import Search from '../Search/index';
+import { useState } from 'react';
 
 function UserFeed() {
+const { search } = window.location;
+const query = new URLSearchParams(search).get('s');
+const [searchQuery, setSearchQuery] = useState(query || '');
+
+
   const sessionUser = useSelector((state) => state.session.user);
   const allListings = useSelector((state) => state.listings);
   const listingsArr = Object.values(allListings);
-  const recListings = listingsArr.filter(
+
+
+  const filterListings = (recListings, query) => {
+    if (!query) {
+        return recListings;
+    }
+
+    return recListings.filter((listing) => {
+        const listingTitle = listing.title.toLowerCase();
+        return listingTitle.includes(query);
+    });
+};
+
+
+
+  const recListings = filterListings(listingsArr.filter(
     (listing) => listing.authorId !== sessionUser.id
-  );
+  ), searchQuery);
 
   if (recListings.length) {
     return (
       <>
         <h2 id='recommended'>Recommended Listings</h2>
+        <Search
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+
+        <h2>There are {recListings.length} listing(s).</h2>
+
         <ul className='unorderedList'>
           {recListings.map((listing) => {
             return (
@@ -39,6 +68,17 @@ function UserFeed() {
         <Footer />
       </>
     );
+  } else {
+    return (
+      <>
+      <h2 id='recommended'>No Listings Currently Match</h2>
+      <Search
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
+      </>
+
+    )
   }
 }
 
