@@ -4,10 +4,8 @@ import { createStory } from "../../store/stories";
 import { useHistory } from 'react-router-dom';
 import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import './WriteStory.css'
-
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 
 function WriteStory() {
     const sessionUser = useSelector(state => state.session.user);
@@ -83,7 +81,8 @@ function WriteStory() {
         return (
             <>
                 <div className="story-form-container">
-                        <form className="story-form" onSubmit={handleSubmit}>
+                        <form className="story-form" onSubmit={handleSubmit}
+  autoComplete="off">
                         <h2 className="ws-title">Create A Listing</h2>
                         <ul className="ws-errors">
                             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -103,27 +102,10 @@ function WriteStory() {
                         </div>
                         <div className="ws-form-field">
                             <label htmlFor="story-subtitle"></label>
-                                {/* <input
-                                className="sf-input"
-                                id="story-subtitle"
-                                type="text"
-                                value={subtitle}
-                                placeholder="Address"
-                                onChange={(e) => setSubtitle(e.target.value)}
-                                required
-                                /> */}
-                        </div>
-
-
-
-
-
-
-
-
-                        <Autocomplete
-  apiKey={"AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g"}
+                            <Autocomplete
+//   apiKey={process.env.REACT_APP_GOOGLE}
 //   style={{ width: "90%" }}
+apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
   onPlaceSelected={(place) => {
     setSubtitle(place.formatted_address);
   }}
@@ -137,28 +119,7 @@ function WriteStory() {
   onChange={(place) => setSubtitle(place.formatted_address)}
 />
 
-
-{/* <input
-ref={ref}
-style={{ width: "90%" }}
-className="sf-input"
-id="story-subtitle"
-type="text"
-value={subtitle}
-placeholder="Address"
-autocomplete="off"
-onChange={(e) => setSubtitle(e.target.value)}
-required
-/> */}
-
-
-
-
-
-
-
-
-
+                        </div>
                         <div className="ws-form-field">
                             <label></label>
                                 <input
