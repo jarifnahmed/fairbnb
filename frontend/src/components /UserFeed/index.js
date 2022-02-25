@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState } from "react";
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FaRegUserCircle } from 'react-icons/fa';
@@ -7,7 +7,6 @@ import './UserFeed.css';
 
 import Search from '../Search/index';
 import SearchBad from '../SearchBad/index';
-import { useState } from 'react';
 
 function UserFeed() {
 
@@ -40,9 +39,12 @@ const recStories = filterStories(storiesArr.filter(
   (story) => story.authorId !== sessionUser.id
 ), searchQuery);
 
+
   if (recStories.length) {
     return (
       <>
+
+
         <h2 className='rec-title'>Recommended Listings</h2>
         <Search
           searchQuery={searchQuery}

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createStory } from "../../store/stories";
 import { useHistory } from 'react-router-dom';
+import Autocomplete, { usePlacesWidget } from "react-google-autocomplete";
 import './WriteStory.css'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -64,7 +65,16 @@ function WriteStory() {
      };
 
 
-
+     const { ref } = usePlacesWidget({
+        apiKey: "AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g",
+        onPlaceSelected: (place) => {
+          console.log(place);
+        },
+        options: {
+          types: ["(cities)"],
+          componentRestrictions: { country: "us" },
+        },
+      });
 
 
 
@@ -93,7 +103,7 @@ function WriteStory() {
                         </div>
                         <div className="ws-form-field">
                             <label htmlFor="story-subtitle"></label>
-                                <input
+                                {/* <input
                                 className="sf-input"
                                 id="story-subtitle"
                                 type="text"
@@ -101,8 +111,54 @@ function WriteStory() {
                                 placeholder="Address"
                                 onChange={(e) => setSubtitle(e.target.value)}
                                 required
-                                />
+                                /> */}
                         </div>
+
+
+
+
+
+
+
+
+                        <Autocomplete
+  apiKey={"AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g"}
+//   style={{ width: "90%" }}
+  onPlaceSelected={(place) => {
+    setSubtitle(place.formatted_address);
+  }}
+  options={{
+    types: ["(cities)"],
+    componentRestrictions: { country: "us" },
+  }}
+  // defaultValue="New York, NY, USA"
+  placeholder="City"
+  value={subtitle}
+  onChange={(place) => setSubtitle(place.formatted_address)}
+/>
+
+
+{/* <input
+ref={ref}
+style={{ width: "90%" }}
+className="sf-input"
+id="story-subtitle"
+type="text"
+value={subtitle}
+placeholder="Address"
+autocomplete="off"
+onChange={(e) => setSubtitle(e.target.value)}
+required
+/> */}
+
+
+
+
+
+
+
+
+
                         <div className="ws-form-field">
                             <label></label>
                                 <input
