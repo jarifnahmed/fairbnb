@@ -44,10 +44,10 @@ const recStories = filterStories(storiesArr.filter(
     return (
       <>
         <h2 className='rec-title'>Recommended Listings</h2>
-        {/* <Search
+        <Search
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-        /> */}
+        />
         <h2 className='rec-title'> There {recStories.length > 1 ? 'are' : 'is'} {recStories.length} {recStories.length > 1 ? 'listings' : 'listing'}.</h2>
         <ul>
           {recStories.map((story) => {
@@ -82,10 +82,10 @@ const recStories = filterStories(storiesArr.filter(
     return (
       <>
               <h2 className='rec-title'>Recommended Listings</h2>
-          {/* <SearchBad
+          <SearchBad
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-          /> */}
+          />
       <h2 className='rec-title'>No Listings Match Current Search</h2>
       </>
     )
