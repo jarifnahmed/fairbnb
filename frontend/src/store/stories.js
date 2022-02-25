@@ -1,14 +1,13 @@
 import { csrfFetch } from './csrf';
 
-const LOAD_STORY = "stories/LOAD";
-const ADD_STORY = "stories/ADD_STORY";
-const UPDATE_STORY = "stories/UPDATE_STORY";
-const DELETE_STORY = "stories/DELETE_STORY";
-
+const LOAD_STORY = 'stories/LOAD';
+const ADD_STORY = 'stories/ADD_STORY';
+const UPDATE_STORY = 'stories/UPDATE_STORY';
+const DELETE_STORY = 'stories/DELETE_STORY';
 
 const loadStory = (stories) => ({
-    type: LOAD_STORY,
-    stories,
+  type: LOAD_STORY,
+  stories,
 });
 
 const addOneStory = (newStory) => ({
@@ -26,29 +25,29 @@ const deleteOneStory = (deletedStoryId) => ({
   deletedStoryId,
 });
 
-
 export const getStories = () => async (dispatch) => {
-    const response = await csrfFetch(`/api/stories`);
+  const response = await csrfFetch(`/api/stories`);
 
-    if (response.ok) {
-      const stories = await response.json();
-      dispatch(loadStory(stories));
-    }
+  if (response.ok) {
+    const stories = await response.json();
+    dispatch(loadStory(stories));
+  }
 };
 
 export const createStory = (newStory) => async (dispatch) => {
-  const { authorId, title, subtitle, image, body } = newStory;
+  const { authorId, title, city, price, image, body } = newStory;
   const formData = new FormData();
-  formData.append("authorId", authorId);
-  formData.append("title", title);
-  formData.append("subtitle", subtitle);
-  formData.append("body", body);
+  formData.append('authorId', authorId);
+  formData.append('title', title);
+  formData.append('city', city);
+  formData.append('price', price);
+  formData.append('body', body);
 
-  if (image) formData.append("image", image);
+  if (image) formData.append('image', image);
 
   const response = await csrfFetch(`/api/stories`, {
-    method: "POST",
-    headers: { "Content-Type": "multipart/form-data" },
+    method: 'POST',
+    headers: { 'Content-Type': 'multipart/form-data' },
     body: formData,
   });
 
@@ -60,20 +59,21 @@ export const createStory = (newStory) => async (dispatch) => {
 };
 
 export const updateStory = (updateStory) => async (dispatch) => {
-  const {id, authorId, title, subtitle, oldImage, newImage, body } = updateStory;
+  const { id, authorId, title, city, price, oldImage, newImage, body } = updateStory;
   const formData = new FormData();
-  formData.append("id", id);
-  formData.append("authorId", authorId);
-  formData.append("title", title);
-  formData.append("subtitle", subtitle);
-  formData.append("body", body);
+  formData.append('id', id);
+  formData.append('authorId', authorId);
+  formData.append('title', title);
+  formData.append('city', city);
+  formData.append('price', price);
+  formData.append('body', body);
 
-  if (oldImage) formData.append("imageUrl",oldImage)
-  if (newImage) formData.append("imageUrl", newImage);
+  if (oldImage) formData.append('imageUrl', oldImage);
+  if (newImage) formData.append('imageUrl', newImage);
 
   const response = await csrfFetch(`/api/stories/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "multipart/form-data" },
+    method: 'PUT',
+    headers: { 'Content-Type': 'multipart/form-data' },
     body: formData,
   });
 
@@ -86,7 +86,7 @@ export const updateStory = (updateStory) => async (dispatch) => {
 
 export const deleteStory = (storyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/delete/${storyId}`, {
-    method: "DELETE"
+    method: 'DELETE',
   });
 
   if (response.ok) {
@@ -97,29 +97,28 @@ export const deleteStory = (storyId) => async (dispatch) => {
 
 const initialState = {};
 
-
 const storiesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_STORY: {
-        const newState = {};
-        action.stories.forEach((story) => {
-          newState[story.id] = story;
-        });
-        return newState;
-    }
-    case ADD_STORY:{
-        const newState = {...state}
-        newState[action.newStory.id] = {...action.newStory}
-        return newState;
-    }
-    case UPDATE_STORY:{
-      const newState = {...state}
-      newState[action.updatedStory.id] = {...action.updatedStory}
+      const newState = {};
+      action.stories.forEach((story) => {
+        newState[story.id] = story;
+      });
       return newState;
     }
-    case DELETE_STORY:{
-      const newState = {...state}
-      delete newState[action.deletedStoryId]
+    case ADD_STORY: {
+      const newState = { ...state };
+      newState[action.newStory.id] = { ...action.newStory };
+      return newState;
+    }
+    case UPDATE_STORY: {
+      const newState = { ...state };
+      newState[action.updatedStory.id] = { ...action.updatedStory };
+      return newState;
+    }
+    case DELETE_STORY: {
+      const newState = { ...state };
+      delete newState[action.deletedStoryId];
       return newState;
     }
     default:

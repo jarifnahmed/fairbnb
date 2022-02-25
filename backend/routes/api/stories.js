@@ -1,10 +1,13 @@
-const express = require('express')
+const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Story, User } = require('../../db/models');
-const { singleMulterUpload, singlePublicFileUpload} = require('../../awsS3.js')
+const {
+  singleMulterUpload,
+  singlePublicFileUpload,
+} = require('../../awsS3.js');
 
 const router = express.Router();
 
@@ -13,10 +16,14 @@ const validateStory = [
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
     .withMessage('Add a title.'),
-  check('subtitle')
+  check('city')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
-    .withMessage('Add an address.'),
+    .withMessage('Add a city.'),
+  check('price')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1 })
+    .withMessage('Add a price.'),
   check('body')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
@@ -25,81 +32,86 @@ const validateStory = [
 ];
 
 //gets all stories from the Stories table
-router.get('/', asyncHandler(async function(req, res) {
+router.get(
+  '/',
+  asyncHandler(async function (req, res) {
     const stories = await Story.findAll({
-        include: User
+      include: User,
     });
     return res.json(stories);
-}));
-
+  })
+);
 
 //inserts a story into the Stories table
-router.post('/',
-            requireAuth,
-            singleMulterUpload("image"),
-            validateStory,
-            asyncHandler(async function(req, res) {
-              const { authorId, title, subtitle, body } = req.body;
-              const imageUrl = await singlePublicFileUpload(req.file);
-              const newStory = await Story.create({
-                authorId,
-                title,
-                subtitle,
-                body,
-                imageUrl
-              });
-              const story = await Story.findByPk(newStory.id, {
-                include: User
-              });
-              if(story) {
-                return res.json(story);
-              }
-            })
-  );
-
+router.post(
+  '/',
+  requireAuth,
+  singleMulterUpload('image'),
+  validateStory,
+  asyncHandler(async function (req, res) {
+    const { authorId, title, city, price, body } = req.body;
+    const imageUrl = await singlePublicFileUpload(req.file);
+    const newStory = await Story.create({
+      authorId,
+      title,
+      city,
+      price,
+      body,
+      imageUrl,
+    });
+    const story = await Story.findByPk(newStory.id, {
+      include: User,
+    });
+    if (story) {
+      return res.json(story);
+    }
+  })
+);
 
 //edits a story
-router.put('/:id',
-            requireAuth,
-            singleMulterUpload("imageUrl"),
-            validateStory,
-            asyncHandler(async function(req, res) {
-              let { id, authorId, title, subtitle, body, imageUrl } = req.body;
+router.put(
+  '/:id',
+  requireAuth,
+  singleMulterUpload('imageUrl'),
+  validateStory,
+  asyncHandler(async function (req, res) {
+    let { id, authorId, title, city, price, body, imageUrl } = req.body;
 
-              if(req.file) {
-                imageUrl = await singlePublicFileUpload(req.file);
-              }
+    if (req.file) {
+      imageUrl = await singlePublicFileUpload(req.file);
+    }
 
-              const editedStory = {
-                authorId,
-                title,
-                subtitle,
-                body,
-                imageUrl
-              };
+    const editedStory = {
+      authorId,
+      title,
+      city,
+      price,
+      body,
+      imageUrl,
+    };
 
-              await Story.update(editedStory, { where: { id: id } });
-              const updatedStory = await Story.findByPk(id, {
-                include: User
-              });
+    await Story.update(editedStory, { where: { id: id } });
+    const updatedStory = await Story.findByPk(id, {
+      include: User,
+    });
 
-              if(updatedStory) {
-                return res.json(updatedStory);
-              }
-            })
+    if (updatedStory) {
+      return res.json(updatedStory);
+    }
+  })
 );
 
 //deletes a story
-router.delete('/delete/:id', requireAuth, asyncHandler(async function(req, res) {
-  const storyId = req.params.id;
-  const deletedStory = await Story.destroy({ where: { id: storyId } })
-  if(deletedStory) {
-    return res.json(storyId);
-  }
-})
+router.delete(
+  '/delete/:id',
+  requireAuth,
+  asyncHandler(async function (req, res) {
+    const storyId = req.params.id;
+    const deletedStory = await Story.destroy({ where: { id: storyId } });
+    if (deletedStory) {
+      return res.json(storyId);
+    }
+  })
 );
-
-
-
 
 module.exports = router;
