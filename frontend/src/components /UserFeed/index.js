@@ -28,8 +28,8 @@ function UserFeed() {
     }
 
     return recStories.filter((story) => {
-        const storyTitle = story.title.toLowerCase();
-        return storyTitle.includes(query);
+        const storySearch = (story.title.toLowerCase()) && (story.User.name.toLowerCase());
+        return storySearch.includes(query.toLowerCase());
     });
 };
 
