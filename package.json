@@ -1,7 +1,7 @@
 {
   "name": "fairbnb",
   "version": "1.0.0",
-  "description": "test",
+  "description": "FairBnB is an Airbnb inspired full-stack web application with dynamic features catered to people who want to list and rent affordable places. FairBnB lets users create listings and other users. Other users can review those listings.",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
