@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       authorId: {
         type: Sequelize.INTEGER,
@@ -16,33 +16,37 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
-      subtitle: {
+      city: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+      },
+      price: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       imageUrl: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       body: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
-      }
+        defaultValue: Sequelize.fn('now'),
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Stories');
-  }
+  },
 };
