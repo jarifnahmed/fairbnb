@@ -1,25 +1,30 @@
-const express = require('express');
+const express = require('express')
 const asyncHandler = require('express-async-handler');
-
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
-const router = express.Router();
-
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-//sing up validators
+const router = express.Router();
+
+
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
+  check('name')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1 })
+    .withMessage('Please provide a name with at least 1 character.'),
   check('username')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
     .withMessage('Please provide a username with at least 4 characters.'),
-  check('username').not().isEmail().withMessage('Username cannot be an email.'),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.'),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -27,20 +32,17 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-//sign up POST route
-router.post(
-  '/',
-  validateSignup,
-  asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
-    const user = await User.signup({ email, username, password });
+// Sign up
+router.post('/', validateSignup, asyncHandler(async (req, res) => {
+      const { name, email, password, username } = req.body;
+      const user = await User.signup({ name, email, username, password });
 
-    await setTokenCookie(res, user);
+      await setTokenCookie(res, user);
 
-    return res.json({
-      user,
-    });
-  })
-);
+      return res.json({
+        user,
+      });
+    }),
+  );
 
 module.exports = router;

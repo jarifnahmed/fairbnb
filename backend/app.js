@@ -14,6 +14,7 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Security Middleware
@@ -26,7 +27,7 @@ if (!isProduction) {
   //   contentSecurityPolicy: false
   // }));
 
-  // use this instead
+  //new way bill showed for us
   app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
   // Set the _csrf token and create req.csrfToken method

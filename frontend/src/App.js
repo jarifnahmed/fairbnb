@@ -1,31 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router";
+import { useDispatch } from "react-redux";
+import * as sessionActions from "./store/session";
+import Navigation from "./components /Navigation";
+import Homepage from "./components /HomePage";
+import Userdashboard from "./components /UserDashboard";
+import StoryDetail from "./components /StoryDetails";
+import UserStories from "./components /UserStories";
+import WriteStory from "./components /WriteStory";
+import EditStory from "./components /UpdateStory";
+import Footer from "./components /Footer";
+import { getStories } from "./store/stories";
+import { getComments } from "./store/comments";
+import PageNotFound from "./components /PageNotFound";
 
-//import components
-// import LoginFormPage from './components/LoginFormPage';
-// import SignupFormPage from './components/SignupFormPage';
-import Navigation from './components/Navigation';
-import Homepage from './components/HomePage';
-import User from './components/User';
-import ListingDetail from './components/ListingDetails';
-import UserListings from './components/UserListings';
-import WriteListing from './components/WriteListing';
-import EditListing from './components/UpdateListing';
-import Footer from './components/Footer';
-import { getListings } from './store/listings';
-import { getReviews } from './store/reviews';
-
-//import thunk
-import * as sessionActions from './store/session';
 
 function App() {
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getListings());
-    dispatch(getReviews());
+    dispatch(getStories());
+    dispatch(getComments());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -33,34 +30,31 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          {/* <Route path='/login'>
-            <LoginFormPage />
-          </Route>
-          <Route path='/signup'>
-            <SignupFormPage />
-          </Route> */}
-          <Route path='/' exact>
+      <Switch>
+        <Route path="/" exact>
             <Homepage />
-          </Route>
-          <Route path='/username'>
-            <User />
-          </Route>
-          <Route path='/user/listings'>
-            <UserListings />
-          </Route>
-          <Route path='/listing/new'>
-            <WriteListing />
-          </Route>
-          <Route path='/listings/:listingId'>
-            <ListingDetail />
-          </Route>
-          <Route path='/edit/listing/:editListingId'>
-            <EditListing />
-          </Route>
-          {/* <Footer /> */}
-        </Switch>
+        </Route>
+        <Route path="/stories/:storyId">
+          <StoryDetail />
+        </Route>
+        <Route path="/user/dashboard">
+          <Userdashboard />
+        </Route>
+        <Route path="/user/stories">
+          <UserStories />
+        </Route>
+        <Route path="/story/new">
+          <WriteStory />
+        </Route>
+        <Route path="/edit/story/:editStoryId">
+          <EditStory />
+        </Route>
+        <Route path="/">
+          <PageNotFound />
+        </Route>
+      </Switch>
       )}
+      <Footer />
     </>
   );
 }

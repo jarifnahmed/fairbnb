@@ -1,11 +1,13 @@
 const { validationResult } = require('express-validator');
 
-//middleware for formatting errors from the express-validator middleware - look at docs for express-validator middleware for more info on how to customize
+// middleware for formatting errors from express-validator middleware
 const handleValidationErrors = (req, _res, next) => {
   const validationErrors = validationResult(req);
 
   if (!validationErrors.isEmpty()) {
-    const errors = validationErrors.array().map((error) => `${error.msg}`);
+    const errors = validationErrors
+      .array()
+      .map((error) => `${error.msg}`);
 
     const err = Error('Bad request.');
     err.errors = errors;
