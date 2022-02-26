@@ -14,6 +14,9 @@ function WriteStory() {
 
   const [title, setTitle] = useState('');
   const [city, setCity] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [coordinates, setCoordinates] = useState('');
   const [price, setPrice] = useState('100');
   const [image, setImage] = useState(null);
   const [body, setBody] = useState('');
@@ -33,6 +36,8 @@ function WriteStory() {
       authorId,
       title,
       city,
+      lat,
+      lng,
       price,
       image,
       body,
@@ -106,6 +111,9 @@ function WriteStory() {
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
                   setCity(place.formatted_address);
+                  setCoordinates(place.geometry.location);
+                  setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
+                  setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
                 }}
                 options={{
                   types: ['address'],
@@ -116,6 +124,9 @@ function WriteStory() {
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
+                {/* <p>{coordinates}</p> */}
+                {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)}
             </div>
             <div className='ws-form-field'>
               <label htmlFor='price'></label>

@@ -17,28 +17,32 @@ module.exports = {
       [
         {
           authorId: 1,
-          title: 'Bed-Stuy Apartment',
-          city: 'New York, NY, USA',
+          title: 'Zoo Nearby',
+          city: '6445 Main St, Houston, TX 77030, USA',
+          lat: 29.712680,
+          lng: -95.399800,
           price: 150,
           imageUrl:
             'https://cdn.vox-cdn.com/thumbor/wr36UvgMmAov36FoIN_BIyXcaOE=/0x0:1199x800/1200x800/filters:focal(505x305:695x495)/cdn.vox-cdn.com/uploads/chorus_image/image/58640751/305507067.0.jpg',
-          body: 'An affordable apartment in Brooklyn with a great view!',
+          body: 'An affordable apartment in Houston with a great view!',
         },
-
         {
           authorId: 3,
-          title: 'Atlanta Condo',
-          city: 'Atlanta, GA, USA',
+          title: 'Comfortable Condo',
+          city: '3620 Reeves Ridge Dr, Charlotte, NC 28214, USA',
+          lat: 35.261540,
+          lng: -80.986010,
           price: 120,
           imageUrl:
             'https://i.pinimg.com/originals/76/59/8b/76598b322860535e0a7cccb6f821c215.jpg',
-          body: 'An affordable apartment in Atlanta at a great location.',
+          body: 'An affordable condo at a great location.',
         },
-
         {
           authorId: 2,
-          title: 'Boston Condo',
-          city: 'Boston, MA, USA',
+          title: 'River View',
+          city: '55 Fruit St, Boston, MA 02114, USA',
+          lat: 42.363155,
+          lng: -71.068832,
           price: 100,
           imageUrl:
             'https://www.manored.com/wp-content/uploads/2021/02/Nerdy-and-Cozy-Setup.jpg',
@@ -46,21 +50,14 @@ module.exports = {
         },
         {
           authorId: 2,
-          title: 'Jacksonville Apartment',
-          city: 'Jacksonville, FL, USA',
+          title: 'Downtown Apartment',
+          city: '4528 S Avalon Blvd, Los Angeles, CA 90011, USA',
+          lat: 34.002240,
+          lng: -118.265190,
           price: 130,
           imageUrl:
             'https://i.pinimg.com/originals/18/c8/44/18c84416bf261cc3d0a85ef87ba3ad98.jpg',
-          body: 'A nice clean place in the heart of Jacksonville!',
-        },
-        {
-          authorId: 3,
-          title: 'Chicago Apartment',
-          city: 'Chicago, IL, USA',
-          price: 110,
-          imageUrl:
-            'https://preview.redd.it/6kbcba25gar21.jpg?width=640&crop=smart&auto=webp&s=822f4d65900164287b1f3a8e2cdd4e15620bb35b',
-          body: 'An affordable apartment with many stores nearby!',
+          body: 'A nice clean place in the heart of LA!',
         },
       ],
       {}
