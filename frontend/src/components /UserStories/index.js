@@ -40,8 +40,8 @@ function UserStories() {
                           to={`/stories/${story.id}`}
                         >
                           <h2>{story.title}</h2>
-                          <p className='city'>{story.city}</p>
-                          <p className='city'>${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
+                          <p className='address'>{story.address}</p>
+                          <p className='address'>${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
                         </NavLink>
                         {/* <p className="date-written">{dateWritten}</p> */}
                         <div id='e-d-btn-ctn'>

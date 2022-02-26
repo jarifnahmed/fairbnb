@@ -16,10 +16,10 @@ const validateStory = [
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
     .withMessage('Add a title.'),
-  check('city')
+  check('address')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
-    .withMessage('Add a city.'),
+    .withMessage('Add an address.'),
   check('price')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
@@ -49,12 +49,12 @@ router.post(
   singleMulterUpload('image'),
   validateStory,
   asyncHandler(async function (req, res) {
-    const { authorId, title, city, price, body } = req.body;
+    const { authorId, title, address, price, body } = req.body;
     const imageUrl = await singlePublicFileUpload(req.file);
     const newStory = await Story.create({
       authorId,
       title,
-      city,
+      address,
       price,
       body,
       imageUrl,
@@ -75,7 +75,7 @@ router.put(
   singleMulterUpload('imageUrl'),
   validateStory,
   asyncHandler(async function (req, res) {
-    let { id, authorId, title, city, price, body, imageUrl } = req.body;
+    let { id, authorId, title, address, price, body, imageUrl } = req.body;
 
     if (req.file) {
       imageUrl = await singlePublicFileUpload(req.file);
@@ -84,7 +84,7 @@ router.put(
     const editedStory = {
       authorId,
       title,
-      city,
+      address,
       price,
       body,
       imageUrl,

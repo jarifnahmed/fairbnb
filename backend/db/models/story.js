@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       authorId: DataTypes.INTEGER,
       title: DataTypes.STRING,
-      city: DataTypes.STRING,
+      address: DataTypes.STRING,
+      lat: DataTypes.DECIMAL,
+      lng: DataTypes.DECIMAL,
       price: DataTypes.INTEGER,
       imageUrl: DataTypes.STRING,
       body: DataTypes.TEXT,

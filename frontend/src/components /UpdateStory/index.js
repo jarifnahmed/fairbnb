@@ -16,7 +16,7 @@ function EditStory() {
   const history = useHistory();
 
   const [title, setTitle] = useState(story.title);
-  const [city, setCity] = useState(story.city);
+  const [address, setAddress] = useState(story.address);
   const [price, setPrice] = useState(story.price);
   const [oldImage, setOldImage] = useState(story.imageUrl);
   const [showImg, setShowImg] = useState(true);
@@ -39,7 +39,7 @@ function EditStory() {
         id: editStoryId,
         authorId,
         title,
-        city,
+        address,
         price,
         oldImage,
         newImage,
@@ -101,14 +101,14 @@ function EditStory() {
               />
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='story-city'></label>
+              <label htmlFor='story-address'></label>
               <input
                 className='sf-input'
-                id='story-city'
+                id='story-address'
                 type='text'
-                value={city}
+                value={address}
                 placeholder='Address'
-                onChange={(e) => setCity(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
                 required
               />
             </div>

@@ -21,7 +21,7 @@ function HomeFeed() {
                 <div className='story-container'>
                   <div className='story-details'>
                       <h2 className='title'>{story.title}</h2>
-                      <p className="city">{story.city}</p>
+                      <p className="address">{story.address}</p>
                       <p className="price">${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
 
 

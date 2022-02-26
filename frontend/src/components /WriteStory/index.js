@@ -13,7 +13,10 @@ function WriteStory() {
   const history = useHistory();
 
   const [title, setTitle] = useState('');
-  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [coordinates, setCoordinates] = useState('');
   const [price, setPrice] = useState('100');
   const [image, setImage] = useState(null);
   const [body, setBody] = useState('');
@@ -32,7 +35,9 @@ function WriteStory() {
     const newStory = {
       authorId,
       title,
-      city,
+      address,
+      lat,
+      lng,
       price,
       image,
       body,
@@ -99,23 +104,28 @@ function WriteStory() {
               />
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='story-city'></label>
+              <label htmlFor='story-address'></label>
               <Autocomplete
                 //   apiKey={process.env.REACT_APP_GOOGLE}
                 //   style={{ width: "90%" }}
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
-                  setCity(place.formatted_address);
+                  setAddress(place.formatted_address);
+                  setCoordinates(place.geometry.location)
                 }}
                 options={{
                   types: ['address'],
+                  fields: ["address_components", "geometry.location", "place_id", "formatted_address"],
                   componentRestrictions: { country: 'us' },
                 }}
                 // defaultValue="New York, NY, USA"
                 placeholder='Address'
-                value={city}
-                onChange={(place) => setCity(place.formatted_address)}
-              />
+                value={address}
+                onChange={(place) => setAddress(place.formatted_address)}
+                />
+                {/* <p>{coordinates}</p> */}
+                {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)}
             </div>
             <div className='ws-form-field'>
               <label htmlFor='price'></label>
