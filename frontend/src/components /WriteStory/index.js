@@ -70,17 +70,6 @@ function WriteStory() {
     shouldNotGroupWhenFull: true,
   };
 
-  const { ref } = usePlacesWidget({
-    apiKey: 'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g',
-    onPlaceSelected: (place) => {
-      console.log(place);
-    },
-    options: {
-      types: ['(cities)'],
-      componentRestrictions: { country: 'us' },
-    },
-  });
-
   if (sessionUser) {
     return (
       <>
@@ -119,11 +108,11 @@ function WriteStory() {
                   setCity(place.formatted_address);
                 }}
                 options={{
-                  types: ['(cities)'],
+                  types: ['address'],
                   componentRestrictions: { country: 'us' },
                 }}
                 // defaultValue="New York, NY, USA"
-                placeholder='City'
+                placeholder='Address'
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
