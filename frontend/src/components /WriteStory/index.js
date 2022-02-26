@@ -14,9 +14,8 @@ function WriteStory() {
 
   const [title, setTitle] = useState('');
   const [address, setAddress] = useState('');
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
-  const [coordinates, setCoordinates] = useState('');
+//   const [lat, setLat] = useState('');
+//   const [lng, setLng] = useState('');
   const [price, setPrice] = useState('100');
   const [image, setImage] = useState(null);
   const [body, setBody] = useState('');
@@ -36,8 +35,8 @@ function WriteStory() {
       authorId,
       title,
       address,
-      lat,
-      lng,
+    //   lat,
+    //   lng,
       price,
       image,
       body,
@@ -111,7 +110,8 @@ function WriteStory() {
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
                   setAddress(place.formatted_address);
-                  setCoordinates(place.geometry.location)
+                //   setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
+                //   setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
                 }}
                 options={{
                   types: ['address'],
@@ -121,12 +121,19 @@ function WriteStory() {
                 // defaultValue="New York, NY, USA"
                 placeholder='Address'
                 value={address}
-                onChange={(place) => setAddress(place.formatted_address)}
+                onChange={(place) => {
+                    setAddress(place.formatted_address);
+                    // setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
+                    // setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
+                }
+                }
                 />
-                {/* <p>{coordinates}</p> */}
-                {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
-                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)}
             </div>
+{/*
+                {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
+                {/* {console.log("story-address lat is", lat)}
+                {console.log("story-address lng is", lng)} */}
             <div className='ws-form-field'>
               <label htmlFor='price'></label>
               <input
@@ -159,7 +166,6 @@ function WriteStory() {
                                 onChange={(e) => setBody(e.target.value)}
                                 required
                                 /> */}
-
               <CKEditor
                 className='input-data'
                 editor={ClassicEditor}
