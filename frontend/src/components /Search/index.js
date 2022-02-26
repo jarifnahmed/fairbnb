@@ -1,7 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./Search.css"
-import OutsideClickHandler from 'react-outside-click-handler';
 
 const Search = ({ searchQuery, setSearchQuery }) => {
   const history = useHistory();
@@ -35,7 +34,6 @@ const Search = ({ searchQuery, setSearchQuery }) => {
                 placeholder='What are you looking for?'
                 name='s'
               />
-                  {/* </OutsideClickHandler> */}
               {/* <button type="submit">Search</button> */}
             </div>
           </div>
