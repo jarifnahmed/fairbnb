@@ -22,13 +22,6 @@ function StoryDetail() {
   const story = useSelector((state) => state.stories[storyId]);
   const [showComments, setShowComments] = useState(false);
 
-
-
-  const coordinates = {
-    lat: parseFloat(story.lat),
-    lng: parseFloat(story.lng),
-  };
-
   const position = {
     lat: parseFloat(story.lat),
     lng: parseFloat(story.lng),
@@ -76,7 +69,7 @@ function StoryDetail() {
             <LoadScript googleMapsApiKey="AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g">
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={coordinates}
+          center={position}
           zoom={13}
         >
           <Marker

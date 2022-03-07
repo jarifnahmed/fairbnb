@@ -6,13 +6,13 @@
     margin: 0;
     /* margin-left: 150px;
     margin-right: 150px; */
-    background-color: black;
+    /* background-color: black; */
     padding-bottom: 50px;
 }
 
 #aboutDiv{
     background-color: black;
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 #about{
@@ -24,7 +24,7 @@
     font-size: 30px;
     font-weight: bolder;
     color: white;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 
 #recommended{

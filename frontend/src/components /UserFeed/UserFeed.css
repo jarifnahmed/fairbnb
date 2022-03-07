@@ -48,7 +48,7 @@
   .neumorphic-btn {
     font-size: 20px;
     border: none;
-    padding: 10px 40px;
+    padding: 10px 20px;
     border-radius: 40px;
     color: #6D7587;
     background-color: var(--back-color);
@@ -63,6 +63,7 @@
                 inset -7px -7px 20px rgba(255, 255, 255, 0),
                 0px 0px 4px rgba(255, 255, 255, 0) !important;
     transition: box-shadow .25s ease !important;
+    cursor: pointer;
   }
 
   .neumorphic-btn:active {
@@ -75,8 +76,8 @@
   }
 
   .neumorphic-progress, .neumorphic-slider {
-    width: 260px;
-    margin: auto;
+    /* width: 260px; */
+    margin: 0;
   }
 
   .neumorphic-progress__back, .neumorphic-slider__back {
@@ -93,13 +94,17 @@
   }
 
   .neumorphic-slider {
-    width: 240px;
+    /* width: 240px; */
   }
 
   .neumorphic-slider__back {
-    width: calc(100% + 20px);
-    margin-left: -10px;
+      /* width: calc(100% + 20px); */
+      /* margin-left: -10px; */
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
   }
+
 
   .neumorphic-progress__line {
     width: var(--value);

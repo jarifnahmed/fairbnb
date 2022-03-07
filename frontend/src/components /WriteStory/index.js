@@ -44,7 +44,7 @@ function WriteStory() {
 
   const editorConfiguration = {
     toolbar: [
-      'heading', '|', 'bold','italic', '|','link','|', 'bulletedList', 'numberedList', '|','blockQuote','|','undo','redo', ],
+      'heading', '|', 'bold','italic', '|','link','|', 'numberedList', '|','|','undo','redo', ],
     shouldNotGroupWhenFull: true,
   };
 
@@ -115,6 +115,7 @@ function WriteStory() {
                 }}
                 placeholder='City'
                 value={city}
+                className='sf-input'
                 onChange={(place) => setCity(place.formatted_address)}
               />
                 {/* <p>{coordinates}</p> */}
@@ -122,9 +123,12 @@ function WriteStory() {
                 {console.log("story-city lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='price'>Price:</label>
+              <div className='priceAndDigits'>
+                <label htmlFor='price'>Price: </label>
+                <output name="result" for="price priceValue">${price} / night</output>
+              </div>
               <input
-                className='sf-input'
+                // className='sf-input'
                 id='price'
                 name="priceValue"
                 type='range'
@@ -135,11 +139,10 @@ function WriteStory() {
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
-              <output name="result" for="price priceValue">${price} / night</output>
             </div>
-            <div className='ws-form-field'>
-              <label>Upload Image</label>
-              <input className='sf-input' type='file' onChange={updateFile} />
+            <div className='ws-form-field-uploadImage'>
+              <label></label>
+              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/>
             </div>
             <div className='ws-form-field'>
               <label htmlFor='content'></label>

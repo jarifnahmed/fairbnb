@@ -12,24 +12,20 @@
     display: flex;
 } */
 
+#e-d-btn-ctn {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+#deleteButton:hover {
+  color:rgb(207, 43, 43);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#editButton:hover {
+  color:rgb(50, 202, 108);
+}
 
 #imgThumbnail {
     border-radius: 8px;

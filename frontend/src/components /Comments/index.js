@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaEdit, FaRegUserCircle } from 'react-icons/fa';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
 import {
   createComment,
   updateComment,
@@ -164,7 +163,7 @@ function Comments() {
                           type='submit'
                           onClick={() => dispatch(deleteComment(comment.id))}
                         >
-                          <RiDeleteBin5Line />
+                          <FaTrashAlt />
                         </button>
                       )}
                   </div>
