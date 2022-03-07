@@ -18,6 +18,9 @@ function EditStory() {
 
   const [title, setTitle] = useState(story.title);
   const [city, setCity] = useState(story.city);
+  const [lat, setLat] = useState(story.lat);
+  const [lng, setLng] = useState(story.lng);
+  const [coordinates, setCoordinates] = useState('');
   const [propertyType, setPropertyType] = useState(story.propertyType);
   const [price, setPrice] = useState(story.price);
   const [oldImage, setOldImage] = useState(story.imageUrl);
@@ -43,6 +46,8 @@ function EditStory() {
         title,
         propertyType,
         city,
+        lat,
+        lng,
         price,
         oldImage,
         newImage,
@@ -137,6 +142,9 @@ function EditStory() {
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
                   setCity(place.formatted_address);
+                  setCoordinates(place.geometry.location);
+                  setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
+                  setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
                 }}
                 options={{
                   types: ['(cities)'],

@@ -53,13 +53,15 @@ router.post(
   singleMulterUpload('image'),
   validateStory,
   asyncHandler(async function (req, res) {
-    const { authorId, title, propertyType, city, price, body } = req.body;
+    const { authorId, title, propertyType, city, lat, lng, price, body } = req.body;
     const imageUrl = await singlePublicFileUpload(req.file);
     const newStory = await Story.create({
       authorId,
       title,
       propertyType,
       city,
+      lat,
+      lng,
       price,
       body,
       imageUrl,
@@ -80,7 +82,7 @@ router.put(
   singleMulterUpload('imageUrl'),
   validateStory,
   asyncHandler(async function (req, res) {
-    let { id, authorId, title, propertyType, city, price, body, imageUrl } = req.body;
+    let { id, authorId, title, propertyType, city, lat, lng, price, body, imageUrl } = req.body;
 
     if (req.file) {
       imageUrl = await singlePublicFileUpload(req.file);
@@ -91,6 +93,8 @@ router.put(
       title,
       propertyType,
       city,
+      lat,
+      lng,
       price,
       body,
       imageUrl,
