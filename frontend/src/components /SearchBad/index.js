@@ -1,7 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./SearchBad.css"
-import OutsideClickHandler from 'react-outside-click-handler';
 
 const SearchBad = ({ searchQuery, setSearchQuery }) => {
   const history = useHistory();
