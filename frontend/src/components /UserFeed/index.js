@@ -25,7 +25,8 @@ function UserFeed() {
     return recStories.filter((story) => {
       const storyTitleSearch = story.title.toLowerCase();
       const storyCitySearch = story.city.toLowerCase();
-      return (storyTitleSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase()));
+      const storyPropertyTypeSearch = story.propertyType.toLowerCase();
+      return (storyPropertyTypeSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase()));
     });
   };
 

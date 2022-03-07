@@ -14,6 +14,7 @@ function WriteStory() {
 
   const [title, setTitle] = useState('');
   const [city, setCity] = useState('');
+  const [propertyType, setPropertyType] = useState('');
   const [price, setPrice] = useState('100');
   const [image, setImage] = useState(null);
   const [body, setBody] = useState('');
@@ -32,6 +33,7 @@ function WriteStory() {
     const newStory = {
       authorId,
       title,
+      propertyType,
       city,
       price,
       image,
@@ -56,14 +58,9 @@ function WriteStory() {
       'link',
       '|',
       // 'outdent', 'indent', '|',
-      'bulletedList',
       'numberedList',
       '|',
       // 'code', 'codeBlock', '|',
-      'insertTable',
-      '|',
-      'blockQuote',
-      '|',
       'undo',
       'redo',
     ],
@@ -108,6 +105,26 @@ function WriteStory() {
                 required
                 autoFocus={true}
               />
+            </div>
+            <div className='ws-form-field'>
+              <label htmlFor='propertyType'></label>
+                <select
+                    className='sf-input'
+                    id='propertyType'
+                    type='text'
+                    value={propertyType}
+                    placeholder='Property Type'
+                    onChange={(e) => setPropertyType(e.target.value)}
+                    required
+                >
+                    <option value="House">House</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Townhouse">Townhouse</option>
+                    <option value="Cabin">Cabin</option>
+                    <option value="Treehouse">Treehouse</option>
+                    <option value="Mansion">Mansion</option>
+                </select>
             </div>
             <div className='ws-form-field'>
               <label htmlFor='story-city'></label>

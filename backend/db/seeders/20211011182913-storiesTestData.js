@@ -17,8 +17,9 @@ module.exports = {
       [
         {
           authorId: 1,
-          title: 'Bed-Stuy Apartment',
-          city: 'New York, NY, USA',
+          title: 'Nice Clean Apartment!',
+          propertyType: 'Apartment',
+          city: 'Houston, TX, USA',
           price: 150,
           imageUrl:
             'https://cdn.vox-cdn.com/thumbor/wr36UvgMmAov36FoIN_BIyXcaOE=/0x0:1199x800/1200x800/filters:focal(505x305:695x495)/cdn.vox-cdn.com/uploads/chorus_image/image/58640751/305507067.0.jpg',
@@ -27,8 +28,9 @@ module.exports = {
 
         {
           authorId: 3,
-          title: 'Atlanta Condo',
-          city: 'Atlanta, GA, USA',
+          title: 'Comfortable Condo',
+          propertyType: 'Condo',
+          city: 'Charlotte, NC, USA',
           price: 120,
           imageUrl:
             'https://i.pinimg.com/originals/76/59/8b/76598b322860535e0a7cccb6f821c215.jpg',
@@ -37,7 +39,8 @@ module.exports = {
 
         {
           authorId: 2,
-          title: 'Boston Condo',
+          title: 'River View Home',
+          propertyType: 'House',
           city: 'Boston, MA, USA',
           price: 100,
           imageUrl:
@@ -46,8 +49,9 @@ module.exports = {
         },
         {
           authorId: 2,
-          title: 'Jacksonville Apartment',
-          city: 'Jacksonville, FL, USA',
+          title: 'Downtown Apartment',
+          propertyType: 'Apartment',
+          city: 'Los Angeles, CA, USA',
           price: 130,
           imageUrl:
             'https://i.pinimg.com/originals/18/c8/44/18c84416bf261cc3d0a85ef87ba3ad98.jpg',
@@ -55,7 +59,8 @@ module.exports = {
         },
         {
           authorId: 3,
-          title: 'Chicago Apartment',
+          title: 'Modern Apartment',
+          propertyType: 'Apartment',
           city: 'Chicago, IL, USA',
           price: 110,
           imageUrl:
