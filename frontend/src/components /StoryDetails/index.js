@@ -27,7 +27,7 @@ function StoryDetail() {
         <div id='story-comments'>
           <div id='story-details'>
           <h2 className='story-elements-title'>{story.title}</h2>
-            <h4 className='story-elements-city'>{story.city}</h4>
+            <h4 className='story-elements-city'>{story.city.slice(0,-5)}</h4>
             <h4 className='story-elements-propertyType'>{story.propertyType}</h4>
             {/* <p className='story-elements-lat'>{story.lat}</p>
             <p className='story-elements-lng'>{story.lng}</p> */}
