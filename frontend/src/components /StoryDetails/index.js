@@ -1,6 +1,6 @@
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { deleteStory } from '../../store/stories';
 import Comments from '../Comments';
 import EditStory from '../UpdateStory';
@@ -8,6 +8,16 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import './StoryDetails.css';
 
 import renderHTML from 'react-render-html';
+
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
+import Geocode from "react-geocode";
+Geocode.setApiKey("AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g");
+Geocode.setLanguage("en");
+
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
 
 function StoryDetail() {
   const dispatch = useDispatch();
@@ -17,6 +27,20 @@ function StoryDetail() {
   const story = useSelector((state) => state.stories[storyId]);
   const [showComments, setShowComments] = useState(false);
   const deletingStory = () => dispatch(deleteStory(story.id));
+
+  const coordinates = {
+    lat: parseFloat(story.lat),
+    lng: parseFloat(story.lng),
+  };
+
+  const position = {
+    lat: parseFloat(story.lat),
+    lng: parseFloat(story.lng),
+  }
+
+  const onLoad = marker => {
+    console.log('marker: ', marker)
+  }
 
   if (story) {
     let d = new Date(story.createdAt);
@@ -41,6 +65,21 @@ function StoryDetail() {
             <p className='story-elements-body' id='story-body'>
               {renderHTML(story.body)}
             </p>
+            <LoadScript googleMapsApiKey="AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={coordinates}
+          zoom={13}
+        >
+          { /* Child components, such as markers, info windows, etc. */ }
+          <></>
+
+          <Marker
+      onLoad={onLoad}
+      position={position}
+    />
+        </GoogleMap>
+       </LoadScript>
               <div className='allReviewsSection'>
               <Comments />
             </div>
