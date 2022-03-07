@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { updateStory } from '../../store/stories';
+import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
 import './UpdateStory.css';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -80,7 +81,7 @@ function EditStory() {
     return (
       <>
         <div className='story-form-container'>
-          <form className='story-form' onSubmit={handleSubmit}>
+          <form className='story-form' onSubmit={handleSubmit}             autoComplete='off'>
             <h2 className='ws-title'>Edit Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
@@ -102,7 +103,7 @@ function EditStory() {
             </div>
             <div className='ws-form-field'>
               <label htmlFor='story-city'></label>
-              <input
+              {/* <input
                 className='sf-input'
                 id='story-city'
                 type='text'
@@ -110,6 +111,22 @@ function EditStory() {
                 placeholder='Address'
                 onChange={(e) => setCity(e.target.value)}
                 required
+              /> */}
+                            <Autocomplete
+                //   apiKey={process.env.REACT_APP_GOOGLE}
+                //   style={{ width: "90%" }}
+                apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
+                onPlaceSelected={(place) => {
+                  setCity(place.formatted_address);
+                }}
+                options={{
+                  types: ['(cities)'],
+                  componentRestrictions: { country: 'us' },
+                }}
+                // defaultValue="New York, NY, USA"
+                placeholder='City'
+                value={city}
+                onChange={(place) => setCity(place.formatted_address)}
               />
             </div>
             <div className='ws-form-field'>

@@ -70,16 +70,16 @@ function WriteStory() {
     shouldNotGroupWhenFull: true,
   };
 
-  const { ref } = usePlacesWidget({
-    apiKey: 'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g',
-    onPlaceSelected: (place) => {
-      console.log(place);
-    },
-    options: {
-      types: ['(cities)'],
-      componentRestrictions: { country: 'us' },
-    },
-  });
+  // const { ref } = usePlacesWidget({
+  //   apiKey: 'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g',
+  //   onPlaceSelected: (place) => {
+  //     console.log(place);
+  //   },
+  //   options: {
+  //     types: ['(cities)'],
+  //     componentRestrictions: { country: 'us' },
+  //   },
+  // });
 
   if (sessionUser) {
     return (
