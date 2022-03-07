@@ -6,15 +6,17 @@
 }
 
 .ws-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 30px;
-    margin-left: 250px;
 }
 
 .story-form {
     display: flex;
     justify-content: center;
-    align-items: left;
     flex-direction: column;
+    width: 50%;
 }
 
 .ws-errors {
@@ -49,7 +51,7 @@
 
 .sf-input:focus {
     outline: none;
-    box-shadow: 0 0 5px 5px rgb(215, 231, 250);
+    box-shadow: 0 0 5px 5px rgb(250, 215, 229);
     transition: all 0.20s ease-in-out;
 }
 
@@ -82,3 +84,14 @@
     border: 0;
     box-shadow: none;
   }
+
+
+.ws-form-field-uploadImage{
+    margin: 0;
+    padding: 0;
+}
+
+
+.ck-editor__editable_inline {
+    min-height: 200px !important;
+}

@@ -124,29 +124,32 @@ function WriteStory() {
                 }}
                 // defaultValue="New York, NY, USA"
                 placeholder='City'
+                className='sf-input'
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='price'></label>
+              <div className='priceAndDigits'>
+                <label htmlFor='price'>Price: </label>
+                <output name="result" for="price priceValue">${price} / night</output>
+              </div>
               <input
-                className='sf-input'
+                // className='sf-input'
                 id='price'
-                type='number'
-                // value={Math.trunc(Math.round(price))}
+                name="priceValue"
+                type='range'
                 value={(Math.round(price).toFixed()) == 0 ? (Math.round(price).toFixed()) + 1 : (Math.round(price).toFixed())}
-                // value={(Math.round(price).toFixed())}
-                // step="1"
-                placeholder='Price'
                 min='10'
+                max="200"
+                step="10"
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
             </div>
-            <div className='ws-form-field'>
+            <div className='ws-form-field-uploadImage'>
               <label></label>
-              <input className='sf-input' type='file' onChange={updateFile} />
+              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/>
             </div>
             <div className='ws-form-field'>
               <label htmlFor='content'></label>

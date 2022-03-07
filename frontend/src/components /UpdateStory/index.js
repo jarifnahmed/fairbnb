@@ -130,13 +130,19 @@ function EditStory() {
               />
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='story-price'></label>
+              <div className='priceAndDigits'>
+                <label htmlFor='price'>Price: </label>
+                <output name="result" for="price priceValue">${price} / night</output>
+              </div>
               <input
-                className='sf-input'
-                id='story-price'
-                type='number'
+                // className='sf-input'
+                id='price'
+                name="priceValue"
+                type='range'
                 value={(Math.round(price).toFixed()) == 0 ? (Math.round(price).toFixed()) + 1 : (Math.round(price).toFixed())}
-                placeholder='Price'
+                min='10'
+                max="200"
+                step="10"
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />

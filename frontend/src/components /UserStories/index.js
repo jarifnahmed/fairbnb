@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { deleteStory } from '../../store/stories';
-import { FaEdit, FaRegUserCircle } from 'react-icons/fa';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
 import './UserStories.css';
 
 function UserStories() {
@@ -32,43 +31,55 @@ function UserStories() {
                 let dateWritten = d.toString().slice(4, 10);
                 return (
                   <li key={story.id} className='feed-list'>
-                    <div className='story-container'>
-                      <div className='story-details'>
-                        {/* <p className="user-name">{story.User.name}</p> */}
-                        <NavLink
-                          className='story-link'
-                          to={`/stories/${story.id}`}
-                        >
-                          <h2>{story.title}</h2>
-                          <p className='city'>{story.city}</p>
-                          <p className='city'>${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
-                        </NavLink>
-                        {/* <p className="date-written">{dateWritten}</p> */}
-                        <div id='e-d-btn-ctn'>
+                  <NavLink className='story-link' to={`/stories/${story.id}`}>
+                  <div className='neumorphic-card mx-auto'>
+                    <div className='neumorphic-card__outer'>
+                        {/* <h2 className='title'>{story.title}</h2> */}
+                        <img class='neumorphic-image' src={story.imageUrl} alt='story' />
+                        <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
+                        <div className="propertyTypeAndPriceLine">
+                          <p className='neumorphic-card__text'>{story.propertyType}</p>
+                          <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+                        </div>
+                        {/* <div id='e-d-btn-ctn'>
                           <NavLink to={`/edit/story/${story.id}`}>
-                            <button className='edit-del-btn' type='submit'>
-                              Edit
+                            <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
+                              <FaEdit id='editBttnLogo' />
                             </button>
                           </NavLink>
                           <button
-                            className='edit-del-btn'
+                            className='my-5 btn neumorphic-btn'
+                            id="deleteButton"
                             type='submit'
                             onClick={() => dispatch(deleteStory(story.id))}
                           >
-                            Delete
+                            <FaTrashAlt id='trashBttnLogo' />
+                          </button>
+                        </div> */}
+                        {/* <p className='user-name'>{story.User.name}</p> */}
+                      {/* <p className="date-written">{dateWritten}</p> */}
+                    </div>
+                    <div>
+                        {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
+                   </div>
+                  </div>
+                    </NavLink>
+                    <div id='e-d-btn-ctn'>
+                          <NavLink to={`/edit/story/${story.id}`}>
+                            <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
+                              <FaEdit id='editBttnLogo' />
+                            </button>
+                          </NavLink>
+                          <button
+                            className='my-5 btn neumorphic-btn'
+                            id="deleteButton"
+                            type='submit'
+                            onClick={() => dispatch(deleteStory(story.id))}
+                          >
+                            <FaTrashAlt id='trashBttnLogo' />
                           </button>
                         </div>
-                      </div>
-                      <div>
-                        <NavLink
-                          className='story-link'
-                          to={`/stories/${story.id}`}
-                        >
-                          <img id='feed-img' src={story.imageUrl} alt='story' />
-                        </NavLink>
-                      </div>
-                    </div>
-                  </li>
+                </li>
                 );
               })}
             </ul>
