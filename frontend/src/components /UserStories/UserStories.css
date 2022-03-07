@@ -12,7 +12,7 @@
     display: flex;
 } */
 
-#e-d-btn-ctn {
+/* #e-d-btn-ctn {
   display: flex;
   justify-content: space-evenly;
   margin-top: 10px;
@@ -23,10 +23,25 @@
   color:rgb(207, 43, 43);
 }
 
+#cancelButton:hover {
+  color:rgb(207, 43, 43);
+}
+
+#saveButton:hover {
+  color:rgb(50, 73, 202);
+}
+
+#deleteButton:hover {
+  color:rgb(207, 43, 43);
+}
+
 #editButton:hover {
   color:rgb(50, 202, 108);
 }
 
+#sendButton:hover {
+  color:rgb(50, 73, 202);
+} */
 
 
 

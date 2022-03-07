@@ -1,16 +1,22 @@
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { FaRegUserCircle } from 'react-icons/fa';
+import { deleteStory } from '../../store/stories';
 import Comments from '../Comments';
+import EditStory from '../UpdateStory';
+import { FaRegUserCircle } from 'react-icons/fa';
 import './StoryDetails.css';
 
 import renderHTML from 'react-render-html';
 
 function StoryDetail() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { storyId } = useParams();
+  const sessionUser = useSelector((state) => state.session.user);
   const story = useSelector((state) => state.stories[storyId]);
   const [showComments, setShowComments] = useState(false);
+  const deletingStory = () => dispatch(deleteStory(story.id));
 
   if (story) {
     let d = new Date(story.createdAt);
@@ -35,15 +41,9 @@ function StoryDetail() {
             <p className='story-elements-body' id='story-body'>
               {renderHTML(story.body)}
             </p>
-          </div>
-          <div
-            className='sidebar'
-            style={showComments ? { transform: 'translateX(-100%)' } : {}}
-          >
-            <Comments />
-            <span id='sidebar-close' onClick={() => setShowComments(false)}>
-              X
-            </span>
+              <div className='allReviewsSection'>
+              <Comments />
+            </div>
           </div>
         </div>
       </>

@@ -67,7 +67,7 @@ function UserStories() {
                     <div id='e-d-btn-ctn'>
                           <NavLink to={`/edit/story/${story.id}`}>
                             <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
-                              <FaEdit id='editBttnLogo' />
+                              <FaEdit />
                             </button>
                           </NavLink>
                           <button
@@ -76,7 +76,7 @@ function UserStories() {
                             type='submit'
                             onClick={() => dispatch(deleteStory(story.id))}
                           >
-                            <FaTrashAlt id='trashBttnLogo' />
+                            <FaTrashAlt />
                           </button>
                         </div>
                 </li>

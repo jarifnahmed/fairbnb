@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaEdit, FaRegUserCircle } from 'react-icons/fa';
-import { RiDeleteBin5Line } from 'react-icons/ri';
 import {
   createComment,
   updateComment,
   deleteComment,
 } from '../../store/comments';
 import './Comments.css';
+import { FaEdit, FaUserCircle, FaTrashAlt } from 'react-icons/fa';
+import { GiCancel } from 'react-icons/gi';
+import { BiSave } from 'react-icons/bi';
+import { MdSend } from 'react-icons/md';
 
 function Comments() {
   const { storyId } = useParams();
@@ -91,82 +93,52 @@ function Comments() {
 
   return (
     <>
-      <h3 className='comments-title'>Comments</h3>
-      {!sessionUser && (
-        <h5 className='comments-subtitle'>
-          Log in / sign up to submit, edit, or delete a comment!
-        </h5>
-      )}
-      {sessionUser && (
-        <div>
-          <form id='comments-form' onSubmit={handleSubmit}>
-            <ul className='ws-errors'>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
-            </ul>
-            <label>
-              <textarea
-                className='ic-field'
-                rows='7'
-                cols='40'
-                value={body}
-                placeholder='Add A Review'
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
-            </label>
-            <button className='wc-button' type='submit'>
-              Submit
-            </button>
-            <span className='clear' onClick={() => setBody('')}>
-              Clear
-            </span>
-          </form>
-        </div>
-      )}
+      <h2 className='comments-title'>Reviews</h2>
       <div id='comments-div'>
-        <ul>
+        <ul id='commentUl'>
           {storyComments.map((comment) => {
-            let d = new Date(comment.createdAt);
-            let dateWritten = d.toString().slice(4, 10);
             return (
               <li key={comment.id} className='comments-list'>
-                {!showEditBoxArr[comment.id] && (
-                  <div id={comment.id}>
-                    <p className='user-name'>
-                      <FaRegUserCircle /> {comment.User.name}
-                    </p>
-                    <p className='date-written'>{dateWritten}</p>
-                    <p id='cmt-bdy'>{comment.body}</p>
 
-                    {sessionUser && sessionUser.id === comment.userId && (
-                      <button
-                        className='ed-button'
-                        type='submit'
-                        onClick={() => {
-                          setshowEditBox(true);
-                          setshowCommentId(comment.id);
-                          setEditBody(comment.body);
-                          let newobj = { ...newObj };
-                          newobj[comment.id] = true;
-                          setEditBoxArr(newobj);
-                        }}
-                      >
-                        <FaEdit />
-                      </button>
-                    )}
-                    {sessionUser &&
-                      (sessionUser.id === comment.userId ||
-                        sessionUser.id === story.authorId) && (
+                {!showEditBoxArr[comment.id] && (
+                  <div className='commentsDiv' id={comment.id}>
+                    <p className='the-comment'>
+                      <div className='commentIcon'>
+                      <FaUserCircle />
+                        </div>
+                      {comment.User.username}: "{comment.body}"
+                    </p>
+                    <div className='editAndDeleteButtonRow'>
+                      {sessionUser && sessionUser.id === comment.userId && (
                         <button
-                          className='ed-button'
+                          className='my-5 btn neumorphic-btn'
+                          id="editButton"
                           type='submit'
-                          onClick={() => dispatch(deleteComment(comment.id))}
+                          onClick={() => {
+                            setshowEditBox(true);
+                            setshowCommentId(comment.id);
+                            setEditBody(comment.body);
+                            let newobj = { ...newObj };
+                            newobj[comment.id] = true;
+                            setEditBoxArr(newobj);
+                          }}
                         >
-                          <RiDeleteBin5Line />
+                          <FaEdit />
                         </button>
                       )}
+                      {sessionUser &&
+                        (sessionUser.id === comment.userId ||
+                          sessionUser.id === story.authorId) && (
+                          <button
+                            className='my-5 btn neumorphic-btn'
+                            id="deleteButton"
+                            type='submit'
+                            onClick={() => dispatch(deleteComment(comment.id))}
+                          >
+                            <FaTrashAlt />
+                          </button>
+                        )}
+                      </div>
                   </div>
                 )}
 
@@ -182,35 +154,40 @@ function Comments() {
                         <textarea
                           className='ic-field'
                           rows='5'
-                          cols='30'
+                          cols='60'
                           value={editBody}
                           onChange={(e) => setEditBody(e.target.value)}
                           required
                         />
                       </label>
-                      <button
-                        className='sc-button'
-                        type='submit'
-                        onClick={() => {
-                          let newobj = { ...newObj };
-                          newobj[comment.id] = false;
-                          setEditBoxArr(newobj);
-                        }}
-                      >
-                        Save
-                      </button>
-                      <span
-                        className='clear'
-                        onClick={() => {
-                          setshowEditBox(false);
-                          setshowCommentId(null);
-                          let newobj = { ...newObj };
-                          newobj[comment.id] = false;
-                          setEditBoxArr(newobj);
-                        }}
-                      >
-                        Cancel
-                      </span>
+                      <div className='saveAndCancelButtn'>
+                        <button
+                          className='my-5 btn neumorphic-btn'
+                          id="saveButton"
+                          // className='sc-button'
+                          type='submit'
+                          onClick={() => {
+                            let newobj = { ...newObj };
+                            newobj[comment.id] = false;
+                            setEditBoxArr(newobj);
+                          }}
+                        >
+                          <BiSave />
+                        </button>
+                        <button
+                          className='my-5 btn neumorphic-btn'
+                          id="cancelButton"
+                          onClick={() => {
+                            setshowEditBox(false);
+                            setshowCommentId(null);
+                            let newobj = { ...newObj };
+                            newobj[comment.id] = false;
+                            setEditBoxArr(newobj);
+                          }}
+                        >
+                          <GiCancel />
+                        </button>
+                        </div>
                     </form>
                   </div>
                 )}
@@ -219,6 +196,35 @@ function Comments() {
           })}
         </ul>
       </div>
+
+      {sessionUser && story.authorId !== sessionUser.id && (
+
+        <div>
+          <form id='comments-form-send' onSubmit={handleSubmit}>
+            <ul className='ws-errors'>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <label>
+              <textarea
+                className='ic-field'
+                rows='1'
+                cols='60'
+                value={body}
+                placeholder='Share your thoughts.'
+                onChange={(e) => setBody(e.target.value)}
+                required
+              />
+            </label>
+            <button type='submit' className='my-5 btn neumorphic-btn'
+            id="sendButton">
+            <MdSend />
+            </button>
+          </form>
+        </div>
+      )}
+
     </>
   );
 }
