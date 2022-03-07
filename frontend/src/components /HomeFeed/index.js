@@ -20,12 +20,12 @@ function HomeFeed() {
                 <NavLink className='story-link' to={`/stories/${story.id}`}>
                 <div className='story-container'>
                   <div className='story-details'>
-                      <h2 className='title'>{story.title}</h2>
+                      {/* <h2 className='title'>{story.title}</h2> */}
                       <p className="city">{story.city}</p>
                       <p className="price">${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
 
 
-                      <p className='user-name'>{story.User.name}</p>
+                      {/* <p className='user-name'>{story.User.name}</p> */}
                     {/* <p className="date-written">{dateWritten}</p> */}
                   </div>
                   <div>

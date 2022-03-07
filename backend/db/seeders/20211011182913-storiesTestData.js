@@ -17,10 +17,11 @@ module.exports = {
       [
         {
           authorId: 1,
-          title: 'Zoo Nearby',
-          city: '6445 Main St, Houston, TX 77030, USA',
-          lat: 29.712680,
-          lng: -95.399800,
+          title: 'Nice Clean Apartment!',
+          propertyType: 'Apartment',
+          city: 'Houston, TX, USA',
+          lat: 29.749907,
+          lng: -95.358421,
           price: 150,
           imageUrl:
             'https://cdn.vox-cdn.com/thumbor/wr36UvgMmAov36FoIN_BIyXcaOE=/0x0:1199x800/1200x800/filters:focal(505x305:695x495)/cdn.vox-cdn.com/uploads/chorus_image/image/58640751/305507067.0.jpg',
@@ -29,9 +30,10 @@ module.exports = {
         {
           authorId: 3,
           title: 'Comfortable Condo',
-          city: '3620 Reeves Ridge Dr, Charlotte, NC 28214, USA',
-          lat: 35.261540,
-          lng: -80.986010,
+          propertyType: 'Condo',
+          city: 'Charlotte, NC, USA',
+          lat: 35.227085,
+          lng: -80.843124,
           price: 120,
           imageUrl:
             'https://i.pinimg.com/originals/76/59/8b/76598b322860535e0a7cccb6f821c215.jpg',
@@ -39,10 +41,11 @@ module.exports = {
         },
         {
           authorId: 2,
-          title: 'River View',
-          city: '55 Fruit St, Boston, MA 02114, USA',
-          lat: 42.363155,
-          lng: -71.068832,
+          title: 'River View Home',
+          propertyType: 'House',
+          city: 'Boston, MA, USA',
+          lat: 42.361145,
+          lng: -71.057083,
           price: 100,
           imageUrl:
             'https://www.manored.com/wp-content/uploads/2021/02/Nerdy-and-Cozy-Setup.jpg',
@@ -51,9 +54,10 @@ module.exports = {
         {
           authorId: 2,
           title: 'Downtown Apartment',
-          city: '4528 S Avalon Blvd, Los Angeles, CA 90011, USA',
-          lat: 34.002240,
-          lng: -118.265190,
+          propertyType: 'Apartment',
+          city: 'Los Angeles, CA, USA',
+          lat: 34.052235,
+          lng: -118.243683,
           price: 130,
           imageUrl:
             'https://i.pinimg.com/originals/18/c8/44/18c84416bf261cc3d0a85ef87ba3ad98.jpg',

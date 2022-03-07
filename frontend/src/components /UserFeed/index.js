@@ -25,7 +25,8 @@ function UserFeed() {
     return recStories.filter((story) => {
       const storyTitleSearch = story.title.toLowerCase();
       const storyCitySearch = story.city.toLowerCase();
-      return (storyTitleSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase()));
+      const storyPropertyTypeSearch = story.propertyType.toLowerCase();
+      return (storyPropertyTypeSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase()));
     });
   };
 
@@ -37,6 +38,8 @@ function UserFeed() {
   if (recStories.length) {
     return (
       <>
+<div class="container card-collection p-4">
+</div>
         <h2 className='rec-title'>Recommended Listings</h2>
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <h2 className='rec-title'>
@@ -51,17 +54,21 @@ function UserFeed() {
             return (
               <li key={story.id} className='feed-list'>
                 <NavLink className='story-link' to={`/stories/${story.id}`}>
-                <div className='story-container'>
-                  <div className='story-details'>
-                      <h2 className='title'>{story.title}</h2>
-                      <p className="city">{story.city}</p>
-                      <p className="price">${(story.price) == 0 ? (story.price) + 1 : (story.price)}</p>
-                      <p className='user-name'>{story.User.name}</p>
+                <div className='neumorphic-card mx-auto'>
+                  <div className='neumorphic-card__outer'>
+                      {/* <h2 className='title'>{story.title}</h2> */}
+                      <img class='neumorphic-image' src={story.imageUrl} alt='story' />
+                      <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
+                      <div className="propertyTypeAndPriceLine">
+                        <p className='neumorphic-card__text'>{story.propertyType}</p>
+                        <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+                      </div>
+                      {/* <p className='user-name'>{story.User.name}</p> */}
                     {/* <p className="date-written">{dateWritten}</p> */}
                   </div>
                   <div>
-                      <img id='feed-img' src={story.imageUrl} alt='story' />
-                  </div>
+                      {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
+                 </div>
                 </div>
                   </NavLink>
               </li>

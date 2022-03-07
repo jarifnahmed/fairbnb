@@ -40,7 +40,6 @@
 
    .finderBad__outer {
     display: flex;
-    width: 400px;
     padding: 1.5rem 2rem;
     border-radius: 100px;
     box-shadow: inset 10px 10px 15px -10px #c3c3c3, inset -10px -10px 15px -10px #ffffff;
@@ -58,7 +57,6 @@
    .finderBad__input {
     text-align: center;
     height: calc(100% + 3rem);
-    width: 320px;
     padding-left: 30px;
     border: none;
     background-color: transparent;

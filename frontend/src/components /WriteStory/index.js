@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
-import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
+import Autocomplete from 'react-google-autocomplete';
 import './WriteStory.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -14,9 +14,10 @@ function WriteStory() {
 
   const [title, setTitle] = useState('');
   const [city, setCity] = useState('');
+  const [propertyType, setPropertyType] = useState('');
   const [lat, setLat] = useState('');
   const [lng, setLng] = useState('');
-  const [coordinates, setCoordinates] = useState('');
+//   const [coordinates, setCoordinates] = useState('');
   const [price, setPrice] = useState('100');
   const [image, setImage] = useState(null);
   const [body, setBody] = useState('');
@@ -31,17 +32,7 @@ function WriteStory() {
     e.preventDefault();
 
     const authorId = sessionUser.id;
-
-    const newStory = {
-      authorId,
-      title,
-      city,
-      lat,
-      lng,
-      price,
-      image,
-      body,
-    };
+    const newStory = { authorId, title, propertyType, city, lat, lng, price, image, body, };
 
     return dispatch(createStory(newStory))
       .then((createdStory) => history.push(`/stories/${createdStory.id}`))
@@ -53,27 +44,10 @@ function WriteStory() {
 
   const editorConfiguration = {
     toolbar: [
-      'heading',
-      '|',
-      'bold',
-      'italic',
-      '|',
-      'link',
-      '|',
-      // 'outdent', 'indent', '|',
-      'bulletedList',
-      'numberedList',
-      '|',
-      // 'code', 'codeBlock', '|',
-      'insertTable',
-      '|',
-      'blockQuote',
-      '|',
-      'undo',
-      'redo',
-    ],
+      'heading', '|', 'bold','italic', '|','link','|', 'bulletedList', 'numberedList', '|','blockQuote','|','undo','redo', ],
     shouldNotGroupWhenFull: true,
   };
+
 
   if (sessionUser) {
     return (
@@ -87,8 +61,8 @@ function WriteStory() {
             <h2 className='ws-title'>Create A Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
+                  <li key={idx}>{error}</li>
+                  ))}
             </ul>
             <div className='ws-form-field'>
               <label htmlFor='title'></label>
@@ -104,6 +78,26 @@ function WriteStory() {
               />
             </div>
             <div className='ws-form-field'>
+              <label htmlFor='propertyType'></label>
+                <select
+                    className='sf-input'
+                    id='propertyType'
+                    type='text'
+                    value={propertyType}
+                    placeholder='Property Type'
+                    onChange={(e) => setPropertyType(e.target.value)}
+                    required
+                >
+                    <option value="House">House</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Townhouse">Townhouse</option>
+                    <option value="Cabin">Cabin</option>
+                    <option value="Treehouse">Treehouse</option>
+                    <option value="Mansion">Mansion</option>
+                </select>
+            </div>
+            <div className='ws-form-field'>
               <label htmlFor='story-city'></label>
               <Autocomplete
                 //   apiKey={process.env.REACT_APP_GOOGLE}
@@ -111,56 +105,54 @@ function WriteStory() {
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
                   setCity(place.formatted_address);
-                  setCoordinates(place.geometry.location);
+                //   setCoordinates(place.geometry.location);
                   setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
                   setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
                 }}
                 options={{
-                  types: ['address'],
+                  types: ['(cities)'],
                   componentRestrictions: { country: 'us' },
                 }}
-                // defaultValue="New York, NY, USA"
-                placeholder='Address'
+                placeholder='City'
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
                 {/* <p>{coordinates}</p> */}
-                {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
-                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)}
+                {/* {console.log("story-city lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+                {console.log("story-city lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='price'></label>
+              <label htmlFor='price'>Price:</label>
               <input
                 className='sf-input'
                 id='price'
-                type='number'
-                // value={Math.trunc(Math.round(price))}
+                name="priceValue"
+                type='range'
                 value={(Math.round(price).toFixed()) == 0 ? (Math.round(price).toFixed()) + 1 : (Math.round(price).toFixed())}
-                // value={(Math.round(price).toFixed())}
-                // step="1"
-                placeholder='Price'
                 min='10'
+                max="200"
+                step="10"
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
+              <output name="result" for="price priceValue">${price} / night</output>
             </div>
             <div className='ws-form-field'>
-              <label></label>
+              <label>Upload Image</label>
               <input className='sf-input' type='file' onChange={updateFile} />
             </div>
             <div className='ws-form-field'>
               <label htmlFor='content'></label>
               {/* <textarea
-                                className="sf-content"
-                                id="content"
-                                rows="15"
-                                cols="70"
-                                value={body}
-                                placeholder="Description"
-                                onChange={(e) => setBody(e.target.value)}
-                                required
-                                /> */}
-
+                className="sf-content"
+                id="content"
+                rows="15"
+                cols="70"
+                value={body}
+                placeholder="Description"
+                onChange={(e) => setBody(e.target.value)}
+                required
+                /> */}
               <CKEditor
                 className='input-data'
                 editor={ClassicEditor}
@@ -173,9 +165,7 @@ function WriteStory() {
                 required
               />
             </div>
-            <button className='ws-button' type='submit'>
-              Submit
-            </button>
+            <button className='ws-button' type='submit'>Submit</button>
           </form>
         </div>
       </>

@@ -35,10 +35,11 @@ export const getStories = () => async (dispatch) => {
 };
 
 export const createStory = (newStory) => async (dispatch) => {
-  const { authorId, title, city, lat, lng, price, image, body } = newStory;
+  const { authorId, title, propertyType, city, lat, lng, price, image, body } = newStory;
   const formData = new FormData();
   formData.append('authorId', authorId);
   formData.append('title', title);
+  formData.append('propertyType', propertyType)
   formData.append('city', city);
   formData.append('lat', lat);
   formData.append('lng', lng);
@@ -61,11 +62,12 @@ export const createStory = (newStory) => async (dispatch) => {
 };
 
 export const updateStory = (updateStory) => async (dispatch) => {
-  const { id, authorId, title, city, lat, lng, price, oldImage, newImage, body } = updateStory;
+  const { id, authorId, title, propertyType, city, lat, lng, price, oldImage, newImage, body } = updateStory;
   const formData = new FormData();
   formData.append('id', id);
   formData.append('authorId', authorId);
   formData.append('title', title);
+  formData.append('propertyType', propertyType);
   formData.append('city', city);
   formData.append('lat', lat);
   formData.append('lng', lng);
