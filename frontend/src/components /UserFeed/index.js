@@ -43,12 +43,15 @@ function UserFeed() {
         <div className='topSearchBar'>
           <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </div>
+        {console.log("searchQuery is", searchQuery)}
+        {console.log("setSearchQuery is", setSearchQuery)}
       <div className='searchResults'>
         <h2 className='rec-title'>
           {' '}
           There {recStories.length > 1 ? 'are' : 'is'} {recStories.length}{' '}
           {recStories.length > 1 ? 'listings' : 'listing'}.
         </h2>
+        {console.log('recStories is ', recStories)}
         <ul className='allCards'>
           {recStories.map((story) => {
             let d = new Date(story.createdAt);

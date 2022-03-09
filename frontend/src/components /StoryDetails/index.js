@@ -18,9 +18,7 @@ const containerStyle = {
   // Lookup CSSProperties to see what is available
   width: '800px',
   height: '400px',
-  color: 'rgb(61, 152, 255)',
   borderRadius: '20px',
-  backgroundClip: 'content-box, padding-box',
   boxShadow: '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
 };
 
