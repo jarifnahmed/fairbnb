@@ -45,13 +45,14 @@ function UserFeed() {
   if (recStories.length) {
     return (
       <>
-
       <div className='searchBarAndResults'>
         {/* <h2 className='rec-title'>Recommended Listings</h2> */}
-        <div className='topSearchBar'>
-            <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-            <FilterButton filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
-        </div>
+        <div className='barAndFilter'>
+          <div className='topSearchBar'>
+              <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              <FilterButton filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
+          </div>
+          </div>
       <div className='searchResults'>
         {/* <h2 className='rec-title'>
           {' '}
@@ -136,7 +137,13 @@ function UserFeed() {
     return (
       <>
         {/* <h2 className='rec-title'>Recommended Listings</h2> */}
-        <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <div className='barAndFilter'>
+          <div className='topSearchBar'>
+              <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              <FilterButton filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
+          </div>
+          </div>
+        {/* <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> */}
         <h2 className='rec-title'>No Listings Match Current Search</h2>
       </>
     );
