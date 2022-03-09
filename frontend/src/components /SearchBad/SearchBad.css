@@ -9,10 +9,11 @@
    }
    .finderBad {
     background-color: #f6f5f0;
+    background-color: var(--back-color);
     border-radius: 100px;
     padding: 8px;
     width: 464px;
-    width: 95%;
+    /* width: 95%; */
     height: 60px;
     box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
    }
@@ -44,7 +45,6 @@
    .finderBad__outer {
     display: flex;
     width: 400px;
-    width: 21%;
     padding: 1.5rem 2rem;
     padding-top: 10px;
     padding-bottom: 10px;

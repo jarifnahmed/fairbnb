@@ -54,7 +54,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
               <button className='neumorphic-btn-filter' value={'Mansion'}
               onClick={(e) => setSearchQuery(e.target.value)}
               >Mansion</button> */}
-              <select
+              {/* <select
                     className='neumorphic-btn-filter'
                     value={searchQuery}
                     placeholder='Property Type'
@@ -69,7 +69,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
                     <option value="Cabin">Cabin</option>
                     <option value="Treehouse">Treehouse</option>
                     <option value="Mansion">Mansion</option>
-                </select>
+                </select> */}
             </div>
           </div>
         </div>
