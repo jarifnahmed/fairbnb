@@ -29,9 +29,10 @@ function UserFeed() {
 
     return recStories.filter((story) => {
       const storyTitleSearch = story.title.toLowerCase();
+      const storyPriceSearch = story.price.toString();
       const storyCitySearch = story.city.toLowerCase();
       const storyPropertyTypeSearch = story.propertyType.toLowerCase();
-      return (storyPropertyTypeSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase()));
+      return (storyPropertyTypeSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase())) || (storyPriceSearch.includes(query));
     });
   };
 
