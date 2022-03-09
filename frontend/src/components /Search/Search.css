@@ -9,9 +9,12 @@
    }
    .finder {
     background-color: #f6f5f0;
+    background-color: var(--back-color);
     border-radius: 100px;
     padding: 8px;
     width: 464px;
+    /* width: 95%; */
+    height: 60px;
     box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
    }
 
@@ -51,7 +54,10 @@
    .finder__outer {
     display: flex;
     width: 400px;
+    /* width: 21%; */
     padding: 1.5rem 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 100px;
     box-shadow: inset 10px 10px 15px -10px #c3c3c3, inset -10px -10px 15px -10px #ffffff;
    }
@@ -73,7 +79,9 @@
     border: none;
     background-color: transparent;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    /* font-size: 18px; */
+    /* font-weight: bold; */
     letter-spacing: 0.75px;
    }
    .finder__icon {
@@ -138,4 +146,8 @@
     100% {
      transform: rotateZ(405deg);
     }
+   }
+
+   .searchContainer {
+     margin-bottom: 30px;
    }
