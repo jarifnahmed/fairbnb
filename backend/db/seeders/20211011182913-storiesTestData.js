@@ -42,6 +42,19 @@ module.exports = {
         },
 
         {
+          authorId: 3,
+          title: 'Nice and Clean Home!',
+          propertyType: 'House',
+          lat: 35.227085,
+          lng: -80.843124,
+          city: 'Charlotte, NC, USA',
+          price: 120,
+          imageUrl:
+            'https://i1.wp.com/cbf-fund.org/wp-content/uploads/2017/08/Classic-Male-Living-Space-Ideas.jpg?resize=770%2C513',
+          body: 'An affordable house at a great location.',
+        },
+
+        {
           authorId: 2,
           title: 'River View Home',
           propertyType: 'House',
