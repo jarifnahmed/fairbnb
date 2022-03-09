@@ -38,16 +38,18 @@ function UserFeed() {
   if (recStories.length) {
     return (
       <>
-      <div class="container card-collection p-4">
-</div>
+      <div className='searchBarAndResults'>
         {/* <h2 className='rec-title'>Recommended Listings</h2> */}
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <div className='topSearchBar'>
+          <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        </div>
+      <div className='searchResults'>
         <h2 className='rec-title'>
           {' '}
           There {recStories.length > 1 ? 'are' : 'is'} {recStories.length}{' '}
           {recStories.length > 1 ? 'listings' : 'listing'}.
         </h2>
-        <ul>
+        <ul className='allCards'>
           {recStories.map((story) => {
             let d = new Date(story.createdAt);
             let dateWritten = d.toString().slice(4, 10);
@@ -76,6 +78,11 @@ function UserFeed() {
             );
           })}
         </ul>
+
+      </div>
+
+
+      </div>
       </>
     );
   } else {
