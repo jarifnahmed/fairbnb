@@ -13,7 +13,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <div className='container'>
-      <form action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
+      <form className='searchContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div className='finder'>
           <div className='finder__outer'>
             <div className='finder__inner'>

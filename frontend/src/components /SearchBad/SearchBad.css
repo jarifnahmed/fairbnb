@@ -135,3 +135,7 @@
      transform: rotateZ(405deg);
     }
    }
+
+   .searchContainer {
+    margin-bottom: 30px;
+  }

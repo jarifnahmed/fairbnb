@@ -15,7 +15,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
 
   return (
     <div className='container'>
-      <form action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
+      <form className ='searchContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div className={styleBad}>
           <div className='finderBad__outer'>
             <div className='finderBad__inner'>
