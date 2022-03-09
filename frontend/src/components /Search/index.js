@@ -55,6 +55,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
               onClick={(e) => setSearchQuery(e.target.value)}
               >Mansion</button> */}
               <select
+                    class='neumorphic-btn-filter'
                     className='neumorphic-btn-filter'
                     value={searchQuery}
                     placeholder='Property Type'
