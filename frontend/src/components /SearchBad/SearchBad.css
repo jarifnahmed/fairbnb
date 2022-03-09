@@ -139,3 +139,26 @@
    .searchContainer {
     margin-bottom: 30px;
   }
+
+  .topSearchBar {
+    background-color: #f6f5f0;
+    background-color: var(--back-color);
+    border-radius: 100px;
+    width: 464px;
+    width: 90%;
+    height: 76px;
+    box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 0;
+    margin-top: 30px;
+    justify-content: flex-start;
+   }
+
+   .barAndFilter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
