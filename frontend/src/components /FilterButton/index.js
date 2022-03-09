@@ -57,6 +57,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
                     <option value="Cabin">Cabin</option>
                     <option value="Treehouse">Treehouse</option>
                     <option value="Mansion">Mansion</option>
+                    <option value="120">120</option>
                 </select>
         </div>
       </form>

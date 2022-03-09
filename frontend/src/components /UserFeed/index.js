@@ -16,7 +16,7 @@ function UserFeed() {
   const [searchQuery, setSearchQuery] = useState(query || '');
 
   const queryFilter = new URLSearchParams(search).get('s');
-  const [filterQuery, setFilterQuery] = useState(queryFilter || '' );
+  const [filterQuery, setFilterQuery] = useState(queryFilter || '');
 
   const sessionUser = useSelector((state) => state.session.user);
   const allStories = useSelector((state) => state.stories);
@@ -32,105 +32,150 @@ function UserFeed() {
       const storyPriceSearch = story.price.toString();
       const storyCitySearch = story.city.toLowerCase();
       const storyPropertyTypeSearch = story.propertyType.toLowerCase();
-      return (storyPropertyTypeSearch.includes(query.toLowerCase())) || (storyCitySearch.includes(query.toLowerCase())) || (storyPriceSearch.includes(query));
+      return (
+        storyPropertyTypeSearch.includes(query.toLowerCase()) ||
+        storyCitySearch.includes(query.toLowerCase()) ||
+        storyPriceSearch.includes(query.toString())
+      );
     });
   };
 
   const recStories = filterStories(
     storiesArr.filter((story) => story.authorId !== sessionUser.id),
     searchQuery,
-    filterQuery,
+    filterQuery
   );
 
   if (recStories.length) {
     return (
       <>
-      <div className='searchBarAndResults'>
-        {/* <h2 className='rec-title'>Recommended Listings</h2> */}
-        <div className='barAndFilter'>
-          <div className='topSearchBar'>
-              <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-              <FilterButton filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
+        <div className='searchBarAndResults'>
+          {/* <h2 className='rec-title'>Recommended Listings</h2> */}
+          <div className='barAndFilter'>
+            <div className='topSearchBar'>
+              <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+              <FilterButton
+                filterQuery={filterQuery}
+                setFilterQuery={setFilterQuery}
+              />
+            </div>
           </div>
-          </div>
-      <div className='searchResults'>
-        {/* <h2 className='rec-title'>
+          <div className='searchResults'>
+            {/* <h2 className='rec-title'>
           {' '}
           There {recStories.length > 1 ? 'are' : 'is'} {recStories.length}{' '}
           {recStories.length > 1 ? 'listings' : 'listing'}.
         </h2> */}
-        <ul className='allCards'>
-          {recStories.map((story) => {
-            if (story.propertyType == filterQuery) {
-              return (
-                <li key={story.id} className='feed-list' >
-                  <NavLink className='story-link' to={`/stories/${story.id}`}>
-                  <div className='neumorphic-card mx-auto'>
-                    <div className='neumorphic-card__outer'>
-                        {/* <h2 className='title'>{story.title}</h2> */}
-                        <img class='neumorphic-image' src={story.imageUrl} alt='story' />
-                        <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
-                        <div className="propertyTypeAndPriceLine">
-                          <p className='neumorphic-card__text'>{story.propertyType}</p>
-                          <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+            <ul className='allCards'>
+              {recStories.map((story) => {
+                if (
+                  story.propertyType == filterQuery ||
+                  story.price <= filterQuery
+                ) {
+                  return (
+                    <li key={story.id} className='feed-list'>
+                      <NavLink
+                        className='story-link'
+                        to={`/stories/${story.id}`}
+                      >
+                        <div className='neumorphic-card mx-auto'>
+                          <div className='neumorphic-card__outer'>
+                            {/* <h2 className='title'>{story.title}</h2> */}
+                            <img
+                              class='neumorphic-image'
+                              src={story.imageUrl}
+                              alt='story'
+                            />
+                            <p className='neumorphic-card__title'>
+                              {story.city.slice(0, -5)}
+                            </p>
+                            <div className='propertyTypeAndPriceLine'>
+                              <p className='neumorphic-card__text'>
+                                {story.propertyType}
+                              </p>
+                              <p className='neumorphic-card__text'>
+                                $
+                                {story.price == 0
+                                  ? story.price + 1
+                                  : story.price}{' '}
+                                / night
+                              </p>
+                            </div>
+                          </div>
+                          <div></div>
                         </div>
-                    </div>
-                    <div>
-                   </div>
-                  </div>
-                    </NavLink>
-                </li>
-              )
-            } else if (filterQuery == '') {
-              return (
-                <li key={story.id} className='feed-list' >
-                  <NavLink className='story-link' to={`/stories/${story.id}`}>
-                  <div className='neumorphic-card mx-auto'>
-                    <div className='neumorphic-card__outer'>
-                        {/* <h2 className='title'>{story.title}</h2> */}
-                        <img class='neumorphic-image' src={story.imageUrl} alt='story' />
-                        <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
-                        <div className="propertyTypeAndPriceLine">
-                          <p className='neumorphic-card__text'>{story.propertyType}</p>
-                          <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+                      </NavLink>
+                    </li>
+                  );
+                } else if (filterQuery == '') {
+                  return (
+                    <li key={story.id} className='feed-list'>
+                      <NavLink
+                        className='story-link'
+                        to={`/stories/${story.id}`}
+                      >
+                        <div className='neumorphic-card mx-auto'>
+                          <div className='neumorphic-card__outer'>
+                            {/* <h2 className='title'>{story.title}</h2> */}
+                            <img
+                              class='neumorphic-image'
+                              src={story.imageUrl}
+                              alt='story'
+                            />
+                            <p className='neumorphic-card__title'>
+                              {story.city.slice(0, -5)}
+                            </p>
+                            <div className='propertyTypeAndPriceLine'>
+                              <p className='neumorphic-card__text'>
+                                {story.propertyType}
+                              </p>
+                              <p className='neumorphic-card__text'>
+                                $
+                                {story.price == 0
+                                  ? story.price + 1
+                                  : story.price}{' '}
+                                / night
+                              </p>
+                            </div>
+                          </div>
+                          <div></div>
                         </div>
-                    </div>
-                    <div>
-                   </div>
-                  </div>
-                    </NavLink>
-                </li>
-              )
-            }
-            let d = new Date(story.createdAt);
-            let dateWritten = d.toString().slice(4, 10);
-            // return (
-            //   <li key={story.id} className='feed-list' >
-            //     <NavLink className='story-link' to={`/stories/${story.id}`}>
+                      </NavLink>
+                    </li>
+                  );
+                }
+                let d = new Date(story.createdAt);
+                let dateWritten = d.toString().slice(4, 10);
+                // return (
+                //   <li key={story.id} className='feed-list' >
+                //     <NavLink className='story-link' to={`/stories/${story.id}`}>
 
-            //     <div className='neumorphic-card mx-auto'>
-            //       <div className='neumorphic-card__outer'>
-            //           {/* <h2 className='title'>{story.title}</h2> */}
-            //           <img class='neumorphic-image' src={story.imageUrl} alt='story' />
-            //           <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
-            //           <div className="propertyTypeAndPriceLine">
-            //             <p className='neumorphic-card__text'>{story.propertyType}</p>
-            //             <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
-            //           </div>
-            //           {/* <p className='user-name'>{story.User.name}</p> */}
-            //         {/* <p className="date-written">{dateWritten}</p> */}
-            //       </div>
-            //       <div>
-            //           {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
-            //      </div>
-            //     </div>
-            //       </NavLink>
-            //   </li>
-            // );
-          })}
-        </ul>
-      </div>
-      </div>
+                //     <div className='neumorphic-card mx-auto'>
+                //       <div className='neumorphic-card__outer'>
+                //           {/* <h2 className='title'>{story.title}</h2> */}
+                //           <img class='neumorphic-image' src={story.imageUrl} alt='story' />
+                //           <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
+                //           <div className="propertyTypeAndPriceLine">
+                //             <p className='neumorphic-card__text'>{story.propertyType}</p>
+                //             <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+                //           </div>
+                //           {/* <p className='user-name'>{story.User.name}</p> */}
+                //         {/* <p className="date-written">{dateWritten}</p> */}
+                //       </div>
+                //       <div>
+                //           {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
+                //      </div>
+                //     </div>
+                //       </NavLink>
+                //   </li>
+                // );
+              })}
+            </ul>
+          </div>
+        </div>
       </>
     );
   } else {
@@ -139,10 +184,16 @@ function UserFeed() {
         {/* <h2 className='rec-title'>Recommended Listings</h2> */}
         <div className='barAndFilter'>
           <div className='topSearchBar'>
-              <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-              <FilterButton filterQuery={filterQuery} setFilterQuery={setFilterQuery} />
+            <SearchBad
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <FilterButton
+              filterQuery={filterQuery}
+              setFilterQuery={setFilterQuery}
+            />
           </div>
-          </div>
+        </div>
         {/* <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> */}
         <h2 className='rec-title'>No Listings Match Current Search</h2>
       </>
