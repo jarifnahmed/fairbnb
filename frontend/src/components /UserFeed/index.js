@@ -40,7 +40,7 @@ function UserFeed() {
       <>
       <div class="container card-collection p-4">
 </div>
-        <h2 className='rec-title'>Recommended Listings</h2>
+        {/* <h2 className='rec-title'>Recommended Listings</h2> */}
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <h2 className='rec-title'>
           {' '}
@@ -81,7 +81,7 @@ function UserFeed() {
   } else {
     return (
       <>
-        <h2 className='rec-title'>Recommended Listings</h2>
+        {/* <h2 className='rec-title'>Recommended Listings</h2> */}
         <SearchBad searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <h2 className='rec-title'>No Listings Match Current Search</h2>
       </>
