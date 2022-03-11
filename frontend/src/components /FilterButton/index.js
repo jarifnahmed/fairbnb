@@ -60,24 +60,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
                 </select>
 
 
-
-                {/* <div className='priceAndDigits'>
-                <label htmlFor='price'>Price: </label>
-                <output name="result" for="price priceValue">${filterQuery} / night</output>
-              </div>
-              <input
-                // className='sf-input'
-                id='price'
-                name="priceValue"
-                type='range'
-                value={filterQuery}
-                min='10'
-                max="200"
-                step="10"
-                onChange={(e) => setFilterQuery(e.target.value)}
-                required
-              /> */}
-                <output name="result" for="price priceValue">Max Price: ${filterQuery} / night</output>
+                {/* <output name="result" for="price priceValue">Max Price: ${filterQuery} / night</output>
                 <input
                 className="priceValueSearch"
                 type='range'
@@ -108,7 +91,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
               <option value="180" label="$180"></option>
               <option value="190" label="$190"></option>
               <option value="200" label="$200"></option>
-              </datalist>
+              </datalist> */}
         </div>
       </form>
     </div>

@@ -9,6 +9,7 @@ import Search from '../Search/index';
 import SearchBad from '../SearchBad/index';
 
 import FilterButton from '../FilterButton/index';
+import FilterPrice from '../FilterPrice/index';
 
 function UserFeed() {
   const { search } = window.location;
@@ -17,6 +18,9 @@ function UserFeed() {
 
   const queryFilter = new URLSearchParams(search).get('s');
   const [filterQuery, setFilterQuery] = useState(queryFilter || '');
+
+  const queryFilterPrice = new URLSearchParams(search).get('s');
+  const [filterQueryPrice, setFilterQueryPrice] = useState(queryFilterPrice || '200');
 
   const sessionUser = useSelector((state) => state.session.user);
   const allStories = useSelector((state) => state.stories);
@@ -43,7 +47,8 @@ function UserFeed() {
   const recStories = filterStories(
     storiesArr.filter((story) => story.authorId !== sessionUser.id),
     searchQuery,
-    filterQuery
+    filterQuery,
+    filterQueryPrice,
   );
 
   if (recStories.length) {
@@ -61,6 +66,14 @@ function UserFeed() {
                 filterQuery={filterQuery}
                 setFilterQuery={setFilterQuery}
               />
+              {/* <FilterPrice
+                filterQueryPrice={filterQueryPrice}
+                setFilterQueryPrice={setFilterQueryPrice}
+              /> */}
+              <FilterPrice
+                filterQueryPrice={filterQueryPrice}
+                setFilterQueryPrice={setFilterQueryPrice}
+              />
             </div>
           </div>
           <div className='searchResults'>
@@ -72,8 +85,8 @@ function UserFeed() {
             <ul className='allCards'>
               {recStories.map((story) => {
                 if (
-                  story.propertyType === filterQuery ||
-                  story.price <= filterQuery
+                  (story.propertyType === filterQuery &&
+                  story.price <= filterQueryPrice)
                 ) {
                   return (
                     <li key={story.id} className='feed-list'>
@@ -110,7 +123,8 @@ function UserFeed() {
                       </NavLink>
                     </li>
                   );
-                } else if (filterQuery === '') {
+                }
+                else if (filterQuery === '' && story.price <= filterQueryPrice) {
                   return (
                     <li key={story.id} className='feed-list'>
                       <NavLink
