@@ -72,7 +72,7 @@ function UserFeed() {
             <ul className='allCards'>
               {recStories.map((story) => {
                 if (
-                  story.propertyType == filterQuery ||
+                  story.propertyType === filterQuery ||
                   story.price <= filterQuery
                 ) {
                   return (
@@ -98,7 +98,7 @@ function UserFeed() {
                               </p>
                               <p className='neumorphic-card__text'>
                                 $
-                                {story.price == 0
+                                {story.price === 0
                                   ? story.price + 1
                                   : story.price}{' '}
                                 / night
@@ -110,7 +110,7 @@ function UserFeed() {
                       </NavLink>
                     </li>
                   );
-                } else if (filterQuery == '') {
+                } else if (filterQuery === '') {
                   return (
                     <li key={story.id} className='feed-list'>
                       <NavLink
@@ -134,7 +134,7 @@ function UserFeed() {
                               </p>
                               <p className='neumorphic-card__text'>
                                 $
-                                {story.price == 0
+                                {story.price === 0
                                   ? story.price + 1
                                   : story.price}{' '}
                                 / night
