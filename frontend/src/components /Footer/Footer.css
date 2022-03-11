@@ -1,5 +1,6 @@
 #footer-container {
     /* position: fixed; */
+    /* z-index: -1; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,8 +9,8 @@
     width: 100%;
     padding-bottom: 20px;
     margin-top: 3%;
-    /* background-color: rgb(255, 255, 255); */
-    /* border: 2px solid hotpink; */
+    /* position: fixed; */
+    /* bottom: 0; */
 }
 
 #name {

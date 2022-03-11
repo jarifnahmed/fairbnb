@@ -34,6 +34,7 @@ TODO Add site wide styles
   body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
   /*
     6. Improve media defaults
@@ -60,3 +61,7 @@ TODO Add site wide styles
   #root, #__next {
     isolation: isolate;
   }
+
+footer{
+    margin-top: auto;
+}
