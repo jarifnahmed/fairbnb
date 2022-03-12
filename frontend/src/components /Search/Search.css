@@ -12,10 +12,15 @@
     background-color: var(--back-color);
     border-radius: 100px;
     padding: 8px;
-    width: 464px;
+    /* width: 464px; */
     /* width: 95%; */
-    height: 60px;
     box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+    box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+    -7px -7px 20px rgba(255, 255, 255, 1),
+    inset 0px 0px 4px rgba(255, 255, 255, .2),
+    inset 7px 7px 15px rgba(55, 84, 170, 0),
+    inset -7px -7px 20px rgba(255, 255, 255, 0),
+    0px 0px 4px rgba(255, 255, 255, 0) !important;
    }
 
    /* BLUE */
@@ -53,13 +58,14 @@
 
    .finder__outer {
     display: flex;
-    width: 400px;
+    /* width: 400px; */
     /* width: 21%; */
     padding: 1.5rem 2rem;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 100px;
     box-shadow: inset 10px 10px 15px -10px #c3c3c3, inset -10px -10px 15px -10px #ffffff;
+    box-shadow: inset 10px 10px 15px -10px #d6dcf7, inset -10px -10px 15px -10px #ffffff;
    }
    .finder__inner {
     display: flex;
@@ -74,20 +80,20 @@
    .finder__input {
     text-align: center;
     height: calc(100% + 3rem);
-    width: 320px;
-    padding-left: 30px;
+    /* width: 320px;
+    padding-left: 30px; */
     border: none;
     background-color: transparent;
     outline: none;
     font-size: 1.4rem;
-    /* font-size: 18px; */
-    /* font-weight: bold; */
-    letter-spacing: 0.75px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6D7587;
+    /* letter-spacing: 0.75px; */
    }
    .finder__icon {
     width: 40px;
     height: 40px;
-    /* margin-right: 1rem; */
     transition: all 0.2s;
     box-shadow: inset 0 0 0 20px #292929;
     border-radius: 50%;
@@ -150,7 +156,7 @@
 
    .searchContainer {
      margin: 0;
-     margin-bottom: 30px;
+     /* margin-bottom: 30px; */
    }
 
 
@@ -160,15 +166,21 @@
     border-radius: 100px;
     width: 464px;
     width: 90%;
-    height: 76px;
-    box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+    /* height: 76px;*/
+    box-shadow: 9px 9px 16px rgb(189 189 189 / 60%), -9px -9px 16px rgb(255 255 255 / 50%);
+    box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+    -7px -7px 20px rgba(255, 255, 255, 1),
+    inset 0px 0px 4px rgba(255, 255, 255, .2),
+    inset 7px 7px 15px rgba(55, 84, 170, 0),
+    inset -7px -7px 20px rgba(255, 255, 255, 0),
+    0px 0px 4px rgba(255, 255, 255, 0) !important;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: flex-start;
+    align-items: center;
     margin: 0;
     margin-top: 30px;
-    justify-content: flex-start;
+    justify-content: space-between;
    }
 
    .barAndFilter {

@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./Search.css"
+import { FaSearch } from 'react-icons/fa';
 
 const Search = ({ searchQuery, setSearchQuery }) => {
   const history = useHistory();
@@ -17,7 +18,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
         <div className='finder'>
           <div className='finder__outer'>
             <div className='finder__inner'>
-            <div class="finder__icon" ref={magnifyingGlass}></div>
+            {/* <div class="finder__icon" ref={magnifyingGlass}></div> */}
               <input
                 className='finder__input'
                 value={searchQuery}
@@ -43,6 +44,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
                     <option value="House">House</option>
                     <option value="Condo">Condo</option>
                 </select> */}
+                <FaSearch />
             </div>
           </div>
         </div>

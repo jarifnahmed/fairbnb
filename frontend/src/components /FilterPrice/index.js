@@ -15,9 +15,9 @@ const FilterPrice = ({ filterQueryPrice, setFilterQueryPrice }) => {
 
   return (
     <div className='container'>
-      <form action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
+      <form className='priceSliderContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div>
-                <output name="result" for="price priceValue">Max Price: ${filterQueryPrice} / night</output>
+                <output className='priceSliderContainerOutput' name="result" for="price priceValue">Max Price: ${filterQueryPrice} / night</output>
                 <input
                 className="priceValueSearch"
                 type='range'

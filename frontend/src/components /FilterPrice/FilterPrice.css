@@ -1,3 +1,47 @@
 .priceValueSearch{
     width: 300px;
 }
+
+.priceSliderContainer{
+    margin: 0;
+    padding: 0;
+    display: block;
+
+
+      /* margin-left: 50px; */
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  /* padding: 10px 20px;
+  padding: 10px 40px; */
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 40px;
+  color: #6D7587;
+  background-color: var(--back-color);
+  /*box-shadow: 3px 4px 6px 1px rgba(0, 0, 0, 0.3),
+              -2px -2px 4px 2px rgba(255, 255, 255, 1),
+              inset -14px -14px 20px -10px rgba(0, 0, 0, 0.1),
+              inset 14px 14px 20px -10px rgba(255, 255, 255, 0.5) !important;  */
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, .2),
+              inset 7px 7px 15px rgba(55, 84, 170, 0),
+              inset -7px -7px 20px rgba(255, 255, 255, 0),
+              0px 0px 4px rgba(255, 255, 255, 0) !important;
+  cursor: pointer;
+  outline: none;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+.priceSliderContainerOutput{
+    margin-right: 10px;
+}

@@ -15,7 +15,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
 
   return (
     <div className='container'>
-      <form action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
+      <form className='propertyTypeDropdownContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div>
               {/* <button className='neumorphic-btn-filter' value={''}
               onClick={(e) => setFilterQuery(e.target.value)}
