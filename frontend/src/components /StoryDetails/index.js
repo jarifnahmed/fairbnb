@@ -64,7 +64,7 @@ function StoryDetail() {
                 Hosted by {story.User.name}
               </p>
               <p className='story-elements-price'>
-                ${story.price == 0 ? story.price + 1 : story.price}
+                ${story.price === 0 ? story.price + 1 : story.price}
               </p>
               {/* <p className="story-elements date-written">{dateWritten}</p> */}
               <img id='sd-img' src={story.imageUrl} alt='story' />

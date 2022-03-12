@@ -25,7 +25,7 @@ function HomeFeed() {
                       <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
                       <div className="propertyTypeAndPriceLine">
                         <p className='neumorphic-card__text'>{story.propertyType}</p>
-                        <p className="neumorphic-card__text">${(story.price) == 0 ? (story.price) + 1 : (story.price)} / night</p>
+                        <p className="neumorphic-card__text">${(story.price) === 0 ? (story.price) + 1 : (story.price)} / night</p>
                       </div>
                       {/* <p className='user-name'>{story.User.name}</p> */}
                     {/* <p className="date-written">{dateWritten}</p> */}

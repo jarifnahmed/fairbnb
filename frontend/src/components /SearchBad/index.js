@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./SearchBad.css"
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBad = ({ searchQuery, setSearchQuery }) => {
   const history = useHistory();
@@ -19,7 +20,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
         <div className={styleBad}>
           <div className='finderBad__outer'>
             <div className='finderBad__inner'>
-            <div class="finderBad__icon" ref={magnifyingGlass}></div>
+            {/* <div class="finderBad__icon" ref={magnifyingGlass}></div> */}
               <input
                 className='finderBad__input'
                 value={searchQuery}
@@ -70,6 +71,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
                     <option value="Treehouse">Treehouse</option>
                     <option value="Mansion">Mansion</option>
                 </select> */}
+                <FaSearch color='#7a7a7a'/>
             </div>
           </div>
         </div>
