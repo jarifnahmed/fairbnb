@@ -199,7 +199,7 @@ function WriteStory() {
               </datalist>
             </div>
             <div className='ws-form-field-uploadImage'>
-              <label></label>
+              <label>Upload Image</label>
               <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/>
             </div>
             <div className='ws-form-field'>
