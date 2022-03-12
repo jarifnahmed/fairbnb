@@ -51,7 +51,7 @@
    .finderBad__outer {
     display: flex;
     /* width: 400px; */
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1rem;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 100px;
@@ -154,7 +154,7 @@
     background-color: var(--back-color);
     border-radius: 100px;
     width: 464px;
-    width: 90%;
+    width: 55%;
     /* height: 76px;*/
     box-shadow: 9px 9px 16px rgb(189 189 189 / 60%), -9px -9px 16px rgb(255 255 255 / 50%);
     box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),

@@ -16,7 +16,9 @@ const FilterPrice = ({ filterQueryPrice, setFilterQueryPrice }) => {
   return (
     <div className='container'>
       <form className='priceSliderContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
-        <div>
+        <div className='finder'>
+          <div className='finder__outer__dropdown'>
+            <div className='finder__inner'>
                 <output className='priceSliderContainerOutput' name="result" for="price priceValue">Max Price: ${filterQueryPrice} / night</output>
                 <input
                 className="priceValueSearch"
@@ -49,6 +51,8 @@ const FilterPrice = ({ filterQueryPrice, setFilterQueryPrice }) => {
               <option value="190" label="$190"></option>
               <option value="200" label="$200"></option>
               </datalist>
+              </div>
+            </div>
         </div>
       </form>
     </div>

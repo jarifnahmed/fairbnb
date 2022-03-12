@@ -71,7 +71,7 @@ const SearchBad = ({ searchQuery, setSearchQuery }) => {
                     <option value="Treehouse">Treehouse</option>
                     <option value="Mansion">Mansion</option>
                 </select> */}
-                <FaSearch />
+                <FaSearch color='#7a7a7a'/>
             </div>
           </div>
         </div>

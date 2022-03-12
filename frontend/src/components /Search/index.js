@@ -44,7 +44,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
                     <option value="House">House</option>
                     <option value="Condo">Condo</option>
                 </select> */}
-                <FaSearch />
+                <FaSearch color='#7a7a7a'/>
             </div>
           </div>
         </div>

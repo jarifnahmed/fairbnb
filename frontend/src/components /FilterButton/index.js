@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./FilterButton.css"
+import { IoMdArrowDropdownCircle } from 'react-icons/io';
 
 const FilterButton = ({ filterQuery, setFilterQuery }) => {
   const history = useHistory();
@@ -17,6 +18,29 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
     <div className='container'>
       <form className='propertyTypeDropdownContainer' action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div>
+        <div className='finder'>
+          <div className='finder__outer__dropdown'>
+            <div className='finder__inner'>
+            <select
+                    className='neumorphic-btn-filter'
+                    value={filterQuery}
+                    placeholder='Property Type'
+                    onChange={(e) => setFilterQuery(e.target.value)}
+                >
+                    <option disabled hidden value="">Property Type</option>
+                    <option value="">Everything</option>
+                    <option value="House">House</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Townhouse">Townhouse</option>
+                    <option value="Cabin">Cabin</option>
+                    <option value="Treehouse">Treehouse</option>
+                    <option value="Mansion">Mansion</option>
+                </select>
+                <div className='dropwDownIcon'><IoMdArrowDropdownCircle color='#7a7a7a' size='1.5em'/></div>
+              </div>
+            </div>
+          </div>
               {/* <button className='neumorphic-btn-filter' value={''}
               onClick={(e) => setFilterQuery(e.target.value)}
               >Everything</button>
@@ -41,7 +65,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
               <button className='neumorphic-btn-filter' value={'Mansion'}
               onClick={(e) => setFilterQuery(e.target.value)}
               >Mansion</button> */}
-              <select
+              {/* <select
                     class='neumorphic-btn-filter'
                     className='neumorphic-btn-filter'
                     value={filterQuery}
@@ -57,7 +81,7 @@ const FilterButton = ({ filterQuery, setFilterQuery }) => {
                     <option value="Cabin">Cabin</option>
                     <option value="Treehouse">Treehouse</option>
                     <option value="Mansion">Mansion</option>
-                </select>
+                </select> */}
 
 
                 {/* <output name="result" for="price priceValue">Max Price: ${filterQuery} / night</output>

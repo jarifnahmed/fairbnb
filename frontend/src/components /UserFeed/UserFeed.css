@@ -364,28 +364,23 @@
 
 .neumorphic-btn-filter {
   /* margin-left: 50px; */
-  font-size: 16px;
+  /* font-size: 16px;
   font-weight: bold;
-  border: none;
+  border: none; */
   /* padding: 10px 20px;
   padding: 10px 40px; */
-  padding-top: 15px;
+  /* padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 20px;
   padding-right: 40px;
   border-radius: 40px;
   color: #6D7587;
   background-color: var(--back-color);
-  /*box-shadow: 3px 4px 6px 1px rgba(0, 0, 0, 0.3),
-              -2px -2px 4px 2px rgba(255, 255, 255, 1),
-              inset -14px -14px 20px -10px rgba(0, 0, 0, 0.1),
-              inset 14px 14px 20px -10px rgba(255, 255, 255, 0.5) !important;  */
   box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              /* -7px -7px 20px rgba(255, 255, 255, 1), */
               inset 0px 0px 4px rgba(255, 255, 255, .2),
               inset 7px 7px 15px rgba(55, 84, 170, 0),
               inset -7px -7px 20px rgba(255, 255, 255, 0),
-              0px 0px 4px rgba(255, 255, 255, 0) !important;
+              0px 0px 4px rgba(255, 255, 255, 0) !important; */
   cursor: pointer;
   outline: none;
   -webkit-box-sizing: border-box;
@@ -394,56 +389,68 @@
   -webkit-appearance: none;
   -moz-appearance: none;
 
+
+  text-align: center;
+  height: calc(100% + 3rem);
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 1.4rem;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6D7587;
+
   /* height: 76px; */
 }
 
 /* Dropdown arrow */
 select.neumorphic-btn-filter {
-  background-image:
+  /* background-image:
     linear-gradient(45deg, transparent 50%, gray 50%),
     linear-gradient(135deg, gray 50%, transparent 50%),
-    radial-gradient(#ddd 70%, transparent 72%);
-  background-position:
+    radial-gradient(#ddd 70%, transparent 72%)
+    ; */
+  /* background-position: */
     /* calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px),
     calc(100% - .5em) .5em; */
-    calc(100% - 25px) calc(1em + 10px),
-    calc(100% - 20px) calc(1em + 10px),
-    130px
+    /* calc(100% - 21px) calc(1em + 9px),
+    calc(100% - 16px) calc(1em + 9px),
+    135px
+    ; */
+  /* background-size:
+    5px 5px,
+    5px 5px,
+    1.3em 1.3em
     ;
-  background-size:
-    5px 5px,
-    5px 5px,
-    1.5em 1.5em;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 
   /* height: 76px; */
 }
 
 select.neumorphic-btn-filter:focus {
-  background-image:
+  /* background-image:
     linear-gradient(45deg, white 50%, transparent 50%),
     linear-gradient(135deg, transparent 50%, white 50%),
-    radial-gradient(rgb(189, 189, 189) 70%, transparent 72%);
-  background-position:
+    radial-gradient(rgb(189, 189, 189) 70%, transparent 72%); */
+  /* background-position: */
     /* calc(100% - 15px) 1em,
     calc(100% - 20px) 1em,
     calc(100% - .5em) .5em; */
-    calc(100% - 20px) calc(1em + 8px),
-    calc(100% - 25px) calc(1em + 8px),
-    130px
-    ;
-  background-size:
+    /* calc(100% - 16px) calc(1em + 8px),
+    calc(100% - 21px) calc(1em + 8px),
+    135px
+    ; */
+  /* background-size:
     5px 5px,
     5px 5px,
-    1.5em 1.5em;
+    1.3em 1.3em;
   background-repeat: no-repeat;
-  outline: 0;
+  outline: 0; */
 }
 
-.neumorphic-btn-filter:hover {
+/* .neumorphic-btn-filter:hover {
   box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              /* -7px -7px 20px rgba(255, 255, 255, 1), */
               inset 0px 0px 4px rgba(255, 255, 255, 0),
               inset 7px 7px 15px rgba(55, 84, 170, .15),
               inset -7px -7px 20px rgba(255, 255, 255, 1),
@@ -452,9 +459,8 @@ select.neumorphic-btn-filter:focus {
 
 .neumorphic-btn-filter:active {
   box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              /* -7px -7px 20px rgba(255, 255, 255, 1), */
               inset 0px 0px 4px rgba(255, 255, 255, 0),
               inset 7px 7px 15px rgba(55, 84, 170, .15),
               inset -7px -7px 20px rgba(255, 255, 255, 1),
               0px 0px 4px rgba(255, 255, 255, .2) !important;
-}
+} */
