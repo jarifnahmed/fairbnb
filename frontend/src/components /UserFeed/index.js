@@ -98,7 +98,7 @@ function UserFeed() {
                           <div className='neumorphic-card__outer'>
                             <img
                               class='neumorphic-image'
-                              src={story.imageUrl}
+                              src={story.imageUrl[0]}
                               alt='story'
                             />
                             <p className='neumorphic-card__title'>
@@ -136,7 +136,7 @@ function UserFeed() {
                           <div className='neumorphic-card__outer'>
                             <img
                               class='neumorphic-image'
-                              src={story.imageUrl}
+                              src={story.imageUrl[0]}
                               alt='story'
                             />
                             <p className='neumorphic-card__title'>
