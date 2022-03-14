@@ -221,6 +221,7 @@ function EditStory() {
               <input
                 className='sf-input'
                 multiple
+                required
                 type='file'
                 onChange={updateFiles}
               />
