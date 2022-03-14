@@ -39,7 +39,7 @@ module.exports = {
         allowNull: false,
       },
       imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: false,
       },
       body: {

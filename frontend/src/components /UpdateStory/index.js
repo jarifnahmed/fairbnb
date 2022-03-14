@@ -25,7 +25,7 @@ function EditStory() {
   const [price, setPrice] = useState(story.price);
   const [oldImage, setOldImage] = useState(story.imageUrl);
   const [showImg, setShowImg] = useState(true);
-  const [newImage, setNewImage] = useState(null);
+  const [newImage, setNewImage] = useState([]);
   const [body, setBody] = useState(story.body);
   const [errors, setErrors] = useState([]);
 
@@ -34,6 +34,15 @@ function EditStory() {
       const file = e.target.files[0];
       if (file) setNewImage(file);
     };
+
+    const updateFiles = (e) => {
+      const files = e.target.files;
+      if (files) setNewImage(files);
+      console.log('files is ', files);
+    };
+
+    console.log('oldImage is ', oldImage);
+    console.log('newImage is ', newImage);
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -85,7 +94,11 @@ function EditStory() {
     return (
       <>
         <div className='story-form-container'>
-          <form className='story-form' onSubmit={handleSubmit}             autoComplete='off'>
+          <form
+            className='story-form'
+            onSubmit={handleSubmit}
+            autoComplete='off'
+          >
             <h2 className='ws-title'>Edit Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
@@ -107,23 +120,23 @@ function EditStory() {
             </div>
             <div className='ws-form-field'>
               <label htmlFor='propertyType'></label>
-                <select
-                    className='sf-input'
-                    id='propertyType'
-                    type='text'
-                    value={propertyType}
-                    placeholder='Property Type'
-                    onChange={(e) => setPropertyType(e.target.value)}
-                    required
-                >
-                    <option value="House">House</option>
-                    <option value="Condo">Condo</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="Townhouse">Townhouse</option>
-                    <option value="Cabin">Cabin</option>
-                    <option value="Treehouse">Treehouse</option>
-                    <option value="Mansion">Mansion</option>
-                </select>
+              <select
+                className='sf-input'
+                id='propertyType'
+                type='text'
+                value={propertyType}
+                placeholder='Property Type'
+                onChange={(e) => setPropertyType(e.target.value)}
+                required
+              >
+                <option value='House'>House</option>
+                <option value='Condo'>Condo</option>
+                <option value='Apartment'>Apartment</option>
+                <option value='Townhouse'>Townhouse</option>
+                <option value='Cabin'>Cabin</option>
+                <option value='Treehouse'>Treehouse</option>
+                <option value='Mansion'>Mansion</option>
+              </select>
             </div>
             <div className='ws-form-field'>
               <label htmlFor='story-city'></label>
@@ -136,15 +149,19 @@ function EditStory() {
                 onChange={(e) => setCity(e.target.value)}
                 required
               /> */}
-                            <Autocomplete
+              <Autocomplete
                 //   apiKey={process.env.REACT_APP_GOOGLE}
                 //   style={{ width: "90%" }}
                 apiKey={'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'}
                 onPlaceSelected={(place) => {
                   setCity(place.formatted_address);
                   setCoordinates(place.geometry.location);
-                  setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
-                  setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
+                  setLat(
+                    JSON.parse(JSON.stringify(place.geometry.location))['lat']
+                  );
+                  setLng(
+                    JSON.parse(JSON.stringify(place.geometry.location))['lng']
+                  );
                 }}
                 options={{
                   types: ['(cities)'],
@@ -159,17 +176,23 @@ function EditStory() {
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
                 <label htmlFor='price'>Price: </label>
-                <output name="result" for="price priceValue">${price} / night</output>
+                <output name='result' for='price priceValue'>
+                  ${price} / night
+                </output>
               </div>
               <input
                 // className='sf-input'
                 id='price'
-                name="priceValue"
+                name='priceValue'
                 type='range'
-                value={(Math.round(price).toFixed()) == 0 ? (Math.round(price).toFixed()) + 1 : (Math.round(price).toFixed())}
+                value={
+                  Math.round(price).toFixed() == 0
+                    ? Math.round(price).toFixed() + 1
+                    : Math.round(price).toFixed()
+                }
                 min='10'
-                max="200"
-                step="10"
+                max='200'
+                step='10'
                 onChange={(e) => setPrice(e.target.value)}
                 required
               />
@@ -177,23 +200,30 @@ function EditStory() {
             <div className='ws-form-field'>
               {showImg && (
                 <>
-                  <label></label>
                   <div className='old-img-cnt'>
-                    <span
-                      className='close'
-                      onClick={() => {
-                        setShowImg(false);
-                        setOldImage(null);
-                      }}
-                    >
-                      X
-                    </span>
-                    <img className='old-img' src={oldImage} alt='existing' />
+                    {oldImage.map((pic) => {
+                      return (
+                        <div
+                          onClick={() => {
+                            setShowImg(false);
+                            setOldImage([]);
+                          }}
+                        >
+                          X
+                          <img className='rowPics' src={pic} />
+                        </div>
+                      );
+                    })}
                   </div>
                 </>
               )}
               <label></label>
-              <input className='sf-input' type='file' onChange={updateFile} />
+              <input
+                className='sf-input'
+                multiple
+                type='file'
+                onChange={updateFiles}
+              />
             </div>
             {/* <div className="ws-form-field">
                             <label htmlFor="content"></label>

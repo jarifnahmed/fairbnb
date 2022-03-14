@@ -7,6 +7,8 @@ const { Story, User } = require('../../db/models');
 const {
   singleMulterUpload,
   singlePublicFileUpload,
+  multipleMulterUpload,
+  multiplePublicFileUpload,
 } = require('../../awsS3.js');
 
 const router = express.Router();
@@ -50,11 +52,11 @@ router.get(
 router.post(
   '/',
   requireAuth,
-  singleMulterUpload('image'),
+  multipleMulterUpload("images"),
   validateStory,
   asyncHandler(async function (req, res) {
     const { authorId, title, propertyType, city, lat, lng, price, body } = req.body;
-    const imageUrl = await singlePublicFileUpload(req.file);
+    const imageUrl = await multiplePublicFileUpload(req.files);
     const newStory = await Story.create({
       authorId,
       title,
@@ -79,13 +81,13 @@ router.post(
 router.put(
   '/:id',
   requireAuth,
-  singleMulterUpload('imageUrl'),
+  multipleMulterUpload('imageUrl'),
   validateStory,
   asyncHandler(async function (req, res) {
     let { id, authorId, title, propertyType, city, lat, lng, price, body, imageUrl } = req.body;
 
-    if (req.file) {
-      imageUrl = await singlePublicFileUpload(req.file);
+    if (req.files) {
+      imageUrl = await multiplePublicFileUpload(req.files);
     }
 
     const editedStory = {

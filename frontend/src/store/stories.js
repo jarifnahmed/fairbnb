@@ -35,7 +35,7 @@ export const getStories = () => async (dispatch) => {
 };
 
 export const createStory = (newStory) => async (dispatch) => {
-  const { authorId, title, propertyType, city, lat, lng, price, image, body } = newStory;
+  const { authorId, title, propertyType, city, lat, lng, price, image, images, body } = newStory;
   const formData = new FormData();
   formData.append('authorId', authorId);
   formData.append('title', title);
@@ -46,6 +46,14 @@ export const createStory = (newStory) => async (dispatch) => {
   formData.append('price', price);
   formData.append('body', body);
 
+  // for multiple files
+  if (images && images.length !== 0) {
+    for (var i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+  }
+
+  // for single file
   if (image) formData.append('image', image);
 
   const response = await csrfFetch(`/api/stories`, {
@@ -74,8 +82,21 @@ export const updateStory = (updateStory) => async (dispatch) => {
   formData.append('price', price);
   formData.append('body', body);
 
-  if (oldImage) formData.append('imageUrl', oldImage);
-  if (newImage) formData.append('imageUrl', newImage);
+  // for multiple files
+  if (oldImage && oldImage.length !== 0) {
+    for (var i = 0; i < oldImage.length; i++) {
+      formData.append("imageUrl", oldImage[i]);
+    }
+  }
+  if (newImage && newImage.length !== 0) {
+    for (var i = 0; i < newImage.length; i++) {
+      formData.append("imageUrl", newImage[i]);
+    }
+  }
+  
+  // for single file
+  // if (oldImage) formData.append('imageUrl', oldImage);
+  // if (newImage) formData.append('imageUrl', newImage);
 
   const response = await csrfFetch(`/api/stories/${id}`, {
     method: 'PUT',

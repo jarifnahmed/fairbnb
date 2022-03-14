@@ -67,7 +67,13 @@ function StoryDetail() {
                 ${story.price === 0 ? story.price + 1 : story.price}
               </p>
               {/* <p className="story-elements date-written">{dateWritten}</p> */}
-              <img id='sd-img' src={story.imageUrl} alt='story' />
+              {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+
+              {story.imageUrl.map((pic) => {
+                  return (
+                      <img id='sd-img' src={pic} />
+                  );
+              })}
               {/* <p className="story-elements" id="story-body">{story.body}</p> */}
               <p className='story-elements-body' id='story-body'>
                 {renderHTML(story.body)}

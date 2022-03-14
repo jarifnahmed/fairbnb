@@ -19,14 +19,26 @@ function WriteStory() {
   const [coordinates, setCoordinates] = useState('');
   const [propertyType, setPropertyType] = useState('');
   const [price, setPrice] = useState('100');
-  const [image, setImage] = useState(null);
+  // const [image, setImage] = useState(null);
+
+  // for multiple file upload
+  const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
 
-  const updateFile = (e) => {
-    const file = e.target.files[0];
-    if (file) setImage(file);
-  };
+  // for single upload
+  // const updateFile = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) setImage(file);
+  // };
+
+    // for multiple file upload
+    const updateFiles = (e) => {
+      const files = e.target.files;
+      setImages(files);
+    };
+
+    console.log('images is ', images)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +53,7 @@ function WriteStory() {
       lat,
       lng,
       price,
-      image,
+      images,
       body,
     };
 
@@ -199,8 +211,17 @@ function WriteStory() {
               </datalist>
             </div>
             <div className='ws-form-field-uploadImage'>
-              <label>Upload Image</label>
-              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/>
+              {/* <label>Upload Image</label>
+              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/> */}
+        <label>
+            Multiple Upload
+            <input
+              type="file"
+              multiple
+              required
+              onChange={updateFiles} />
+          </label>
+
             </div>
             <div className='ws-form-field'>
               <label htmlFor='content'></label>

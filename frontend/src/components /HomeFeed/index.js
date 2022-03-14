@@ -21,7 +21,7 @@ function HomeFeed() {
                 <div className='neumorphic-card mx-auto'>
                   <div className='neumorphic-card__outer'>
                       {/* <h2 className='title'>{story.title}</h2> */}
-                      <img class='neumorphic-image' src={story.imageUrl} alt='story' />
+                      <img class='neumorphic-image' src={story.imageUrl[0]} alt='story' />
                       <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
                       <div className="propertyTypeAndPriceLine">
                         <p className='neumorphic-card__text'>{story.propertyType}</p>

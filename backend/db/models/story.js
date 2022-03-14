@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       lat: DataTypes.DECIMAL,
       lng: DataTypes.DECIMAL,
       price: DataTypes.INTEGER,
-      imageUrl: DataTypes.STRING,
+      imageUrl: DataTypes.ARRAY(DataTypes.STRING),
       body: DataTypes.TEXT,
     },
     {
