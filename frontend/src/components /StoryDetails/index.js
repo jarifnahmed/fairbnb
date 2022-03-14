@@ -8,16 +8,23 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import './StoryDetails.css';
 import renderHTML from 'react-render-html';
 
+import { Carousel } from 'react-responsive-carousel';
+import Slider from "react-slick";
+import { Slide } from 'react-slideshow-image';
+
+
+
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 Geocode.setApiKey('AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g');
 Geocode.setLanguage('en');
 
+
 const containerStyle = {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
   // Lookup CSSProperties to see what is available
-  width: '800px',
-  height: '400px',
+  width: '1000px',
+  height: '600px',
   borderRadius: '20px',
   boxShadow: '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
 };
@@ -30,6 +37,19 @@ function StoryDetail() {
   const story = useSelector((state) => state.stories[storyId]);
   const [showComments, setShowComments] = useState(false);
   const deletingStory = () => dispatch(deleteStory(story.id));
+
+  const [image, setImage] = useState(story.imageUrl);
+
+
+  const [style, setStyle] = useState("sd-img");
+
+  const changeStyle = () => {
+    if(style==='sd-img2'){
+      setStyle("sd-img");
+    } else {
+      setStyle("sd-img2");
+    }
+  };
 
   const coordinates = {
     lat: parseFloat(story.lat),
@@ -53,31 +73,44 @@ function StoryDetail() {
       <>
         <div className='storyDetailsAll'>
             <div id='story-details'>
-              <h2 className='story-elements-title'>{story.title}</h2>
-              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
-              <h4 className='story-elements-propertyType'>
-                {story.propertyType}
-              </h4>
-              {/* <p className='story-elements-lat'>{story.lat}</p>
-              <p className='story-elements-lng'>{story.lng}</p> */}
-              <p className='story-elements-userName'>
-                Hosted by {story.User.name}
-              </p>
-              <p className='story-elements-price'>
-                ${story.price === 0 ? story.price + 1 : story.price}
-              </p>
+              <div className='topStoryDetails'>
+              {/* <h2 className='story-elements-title'>{story.title}</h2>
+              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
               {/* <p className="story-elements date-written">{dateWritten}</p> */}
               {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+                </div>
+              <div className='imageGallery'>
+              <div className='topStoryDetails'>
+                <h2 className='story-elements-title'>{story.title}</h2>
+                <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+                </div>
+                <div className='pics'>
+                  {image.map((pic) => {
+                    return (
+                      <button className='bttnforImageLarger'>
+                        <img id={style} src={pic} onClick={changeStyle}/>
 
-              {story.imageUrl.map((pic) => {
-                  return (
-                      <img id='sd-img' src={pic} />
-                  );
-              })}
+                      </button>
+                      );
+                    })}
+
+                  </div>
+
+                </div>
+
+                <div className='bottomStoryDetails'>
+                  <h4 className='story-elements-propertyType'>{story.propertyType} hosted by {story.User.name} for ${story.price === 0 ? story.price + 1 : story.price} / night</h4>
+                  {/* <p className='story-elements-price'>
+                    ${story.price === 0 ? story.price + 1 : story.price} / night
+                  </p> */}
+                  </div>
+                  <div className='bottomStoryDetails'>
+                    <p className='story-elements-body' id='story-body'>
+                      {renderHTML(story.body)}
+                    </p>
+                  </div>
               {/* <p className="story-elements" id="story-body">{story.body}</p> */}
-              <p className='story-elements-body' id='story-body'>
-                {renderHTML(story.body)}
-              </p>
+              <div className='bottomStoryDetails'>
                 <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
               <div className='allGoogleMapWidgetInfo'>
                   <GoogleMap
@@ -93,6 +126,7 @@ function StoryDetail() {
               <div className='allReviewsSection'>
                 <Comments />
               </div>
+                </div>
             </div>
         </div>
       </>

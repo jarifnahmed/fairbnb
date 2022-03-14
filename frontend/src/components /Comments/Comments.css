@@ -141,12 +141,21 @@ ul {
   box-shadow: none;
 } */
 
+.comments-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 44px;
+  margin-bottom: 15px;
+}
 
 #commentUl {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-wrap: nowrap;
 }
 
 #comments-form {
@@ -156,13 +165,13 @@ ul {
 }
 
 #comments-form-send {
-
 }
 
 .the-comment {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 24px;
 }
 
 .commentIcon {
@@ -172,18 +181,34 @@ ul {
 .comments-list {
   margin: 0;
   padding: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: flex;
 }
 
-.editAndDeleteButtonRow{
+.editAndDeleteButtonRow {
   /* margin-top: 10px; */
   margin-left: 20px;
 }
 
-.ic-field{
-  border-color: rgb(255, 90, 96);
-  border-width: 5px;
+.ic-field {
+  /* border-color: rgb(255, 90, 96);
+  border-width: 5px; */
+
+
+
+
+  background-color: var(--back-color);
+  border-radius: 20px;
+  border: 3px solid #f3f4f7;
+  box-shadow: 2px 2px 3px rgba(55, 84, 170, .15),
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
+  padding: 5px 15px;
+  outline: none !important;
+  color: #535D74;
+  font-size: 24px;
 }
 
 .commentsDiv {
@@ -212,25 +237,38 @@ ul {
 }
 
 #deleteButton:hover {
-  color:rgb(207, 43, 43);
+  color: rgb(207, 43, 43);
 }
 
 #cancelButton:hover {
-  color:rgb(207, 43, 43);
+  color: rgb(207, 43, 43);
 }
 
 #saveButton:hover {
-  color:rgb(50, 73, 202);
+  color: rgb(50, 73, 202);
 }
 
 #deleteButton:hover {
-  color:rgb(207, 43, 43);
+  color: rgb(207, 43, 43);
 }
 
 #editButton:hover {
-  color:rgb(50, 202, 108);
+  color: rgb(50, 202, 108);
 }
 
 #sendButton:hover {
-  color:rgb(50, 73, 202);
+  color: rgb(50, 73, 202);
 }
+
+.review__input {
+  text-align: center;
+  /* width: 320px;
+  padding-left: 30px; */
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #6D7587;
+  /* letter-spacing: 0.75px; */
+ }

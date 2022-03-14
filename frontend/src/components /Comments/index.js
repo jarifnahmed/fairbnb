@@ -207,15 +207,22 @@ function Comments() {
               ))}
             </ul>
             <label>
-              <textarea
-                className='ic-field'
-                rows='1'
-                cols='60'
-                value={body}
-                placeholder='Share your thoughts.'
-                onChange={(e) => setBody(e.target.value)}
-                required
-              />
+              <div className='finder'>
+                <div className='finder__outer__dropdown'>
+                <div className='finder__inner'>
+                    <textarea
+                      // className='ic-field'
+                      className='review__input'
+                      rows='1'
+                      cols='60'
+                      value={body}
+                      placeholder='Share your thoughts.'
+                      onChange={(e) => setBody(e.target.value)}
+                      required
+                    />
+                  </div>
+                  </div>
+                </div>
             </label>
             <button type='submit' className='my-5 btn neumorphic-btn'
             id="sendButton">
