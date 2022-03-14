@@ -81,13 +81,13 @@ router.post(
 router.put(
   '/:id',
   requireAuth,
-  singleMulterUpload('imageUrl'),
+  multipleMulterUpload('imageUrl'),
   validateStory,
   asyncHandler(async function (req, res) {
     let { id, authorId, title, propertyType, city, lat, lng, price, body, imageUrl } = req.body;
 
-    if (req.file) {
-      imageUrl = await singlePublicFileUpload(req.file);
+    if (req.files) {
+      imageUrl = await multiplePublicFileUpload(req.files);
     }
 
     const editedStory = {

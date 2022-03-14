@@ -38,6 +38,8 @@ function WriteStory() {
       setImages(files);
     };
 
+    console.log('images is ', images)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

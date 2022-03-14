@@ -82,8 +82,21 @@ export const updateStory = (updateStory) => async (dispatch) => {
   formData.append('price', price);
   formData.append('body', body);
 
-  if (oldImage) formData.append('imageUrl', oldImage);
-  if (newImage) formData.append('imageUrl', newImage);
+  // for multiple files
+  if (oldImage && oldImage.length !== 0) {
+    for (var i = 0; i < oldImage.length; i++) {
+      formData.append("imageUrl", oldImage[i]);
+    }
+  }
+  if (newImage && newImage.length !== 0) {
+    for (var i = 0; i < newImage.length; i++) {
+      formData.append("imageUrl", newImage[i]);
+    }
+  }
+  
+  // for single file
+  // if (oldImage) formData.append('imageUrl', oldImage);
+  // if (newImage) formData.append('imageUrl', newImage);
 
   const response = await csrfFetch(`/api/stories/${id}`, {
     method: 'PUT',
