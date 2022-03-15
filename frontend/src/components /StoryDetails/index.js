@@ -79,10 +79,10 @@ function StoryDetail() {
               {/* <p className="story-elements date-written">{dateWritten}</p> */}
               {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
                 </div>
-              <div className='imageGallery'>
-              <div className='topStoryDetails'>
                 <h2 className='story-elements-title'>{story.title}</h2>
                 <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <div className='imageGallery'>
+              <div className='topStoryDetails'>
                 </div>
                 <div className='pics'>
                   {image.map((pic) => {

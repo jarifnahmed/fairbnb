@@ -82,6 +82,7 @@ a.story-link-nav {
   text-decoration: none;
   /* font-weight: bolder; */
   font-size: medium;
+  font-weight: bold;
   border: 0;
   box-shadow: none;
   /* border-radius: 8px; */
@@ -89,9 +90,9 @@ a.story-link-nav {
   transition-duration: 0.4s;
   /* font-family: Arial, Helvetica, sans-serif; */
 
-  padding-top: 3px;
+  /* padding-top: 3px; */
   padding-right: 6px;
-  padding-bottom: 5px;
+  /* padding-bottom: 5px; */
   padding-left: 6px;
 }
 

@@ -171,7 +171,7 @@ function WriteStory() {
             </div>
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
-                <label htmlFor='price'>Price: </label>
+                {/* <label htmlFor='price'>Price: </label> */}
                 <output name="result" for="price priceValue">${price} / night</output>
               </div>
               <input
@@ -210,18 +210,30 @@ function WriteStory() {
               <option value="200" label="$200"></option>
               </datalist>
             </div>
+            <label className='ws-form-field-uploadImage'>
+            <div className='centeringChooseFilesButton'>
+            <strong>Upload Multiple Images. </strong>Or Drag In Them Below.
+            <input
+              className='uploadImageButton'
+              type="file"
+              accept="image/*"
+              multiple
+              name
+              required
+              onChange={updateFiles} />
+              </div>
+              </label>
             <div className='ws-form-field-uploadImage'>
               {/* <label>Upload Image</label>
               <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/> */}
-        <label>
-            Multiple Upload
+        {/* <label>
+            Choose Multiple Files. Or Drag Them Here.</label>
             <input
+              className='uploadImageButton'
               type="file"
               multiple
               required
-              onChange={updateFiles} />
-          </label>
-
+              onChange={updateFiles} /> */}
             </div>
             <div className='ws-form-field'>
               <label htmlFor='content'></label>

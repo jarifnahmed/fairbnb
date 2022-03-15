@@ -217,12 +217,13 @@ function EditStory() {
                   </div>
                 </>
               )}
-              <label></label>
               <input
-                className='sf-input'
+                className='uploadImageButton'
                 multiple
                 required
-                type='file'
+                name
+                type="file"
+                accept="image/*"
                 onChange={updateFiles}
               />
             </div>

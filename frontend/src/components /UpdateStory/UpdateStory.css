@@ -28,3 +28,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.priceAndDigits{
+    font-size: 1.1em;
+}
