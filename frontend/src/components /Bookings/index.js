@@ -236,7 +236,7 @@ function Bookings() {
                 ))}
             </ul>
             <div className='dateInputFields'>
-            <label>Check-In:</label>
+            <label>CHECK-IN:</label>
                     <input
                       // className='ic-field'
                       type="date"
@@ -244,7 +244,7 @@ function Bookings() {
                       onChange={(e) => setStartDate(e.target.value)}
                       required
                       />
-            <label>Check-Out:</label>
+            <label>CHECKOUT:</label>
                     <input
                       // className='ic-field'
                       type="date"
@@ -254,10 +254,10 @@ function Bookings() {
                       />
                       </div>
             <div>
-              Days: {(-1 * (dayjs(startDate).diff(dayjs(endDate), 'day')))}
+              Days: {(Number.isNaN(-1 * (dayjs(startDate).diff(dayjs(endDate), 'day')))) ? '0' : (-1 * (dayjs(startDate).diff(dayjs(endDate), 'day')))}
             </div>
             <div>
-              Cost: ${((-1 * (dayjs(startDate).diff(dayjs(endDate), 'day'))) * (currentStory.price))}
+              <strong>Total:</strong> ${(Number.isNaN(-1 * (dayjs(startDate).diff(dayjs(endDate), 'day'))) * (currentStory.price)) ? '0' : ((-1 * (dayjs(startDate).diff(dayjs(endDate), 'day'))) * (currentStory.price))}
             </div>
             <button type='submit' className='my-5 btn neumorphic-btn'
             id="sendButton">Reserve</button>
