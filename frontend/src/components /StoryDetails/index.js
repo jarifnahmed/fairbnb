@@ -12,6 +12,8 @@ import { Carousel } from 'react-responsive-carousel';
 import Slider from "react-slick";
 import { Slide } from 'react-slideshow-image';
 
+import Bookings from '../Bookings';
+
 
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -125,6 +127,9 @@ function StoryDetail() {
                 </LoadScript>
               <div className='allReviewsSection'>
                 <Comments />
+              </div>
+              <div className='allBookingsSection'>
+                <Bookings />
               </div>
                 </div>
             </div>
