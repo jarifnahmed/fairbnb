@@ -22,6 +22,7 @@
 }
 
 #bookings-form-send {
+  margin: 10px;
 }
 
 .the-booking {
@@ -142,6 +143,7 @@
   background-color: var(--back-color);
   border-radius: 20px;
   padding: 8px;
+  /* width: 50%; */
   box-shadow: 9px 9px 16px rgb(189 189 189 / 60%), -9px -9px 16px rgb(255 255 255 / 50%);
   box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), inset 0px 0px 4px rgb(255 255 255 / 20%), inset 7px 7px 15px rgb(55 84 170 / 0%), inset -7px -7px 20px rgb(255 255 255 / 0%), 0px 0px 4px rgb(255 255 255 / 0%) !important;
  }
@@ -180,4 +182,70 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.startingDate, .endingDate{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+#startingDateInputBox, #endingDateInputBox{
+  background-color: var(--back-color);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), inset 0px 0px 4px rgb(255 255 255 / 20%), inset 7px 7px 15px rgb(55 84 170 / 0%), inset -7px -7px 20px rgb(255 255 255 / 0%), 0px 0px 4px rgb(255 255 255 / 0%) !important;
+}
+
+.daysAndTotal{
+  display: flex;
+  flex-direction: row;
+}
+
+.daysAndTotalNumber{
+  margin: 10px;
+}
+
+
+
+
+.neumorphicReserve-btn {
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  padding: 5px 50px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  color: #3f6dd8;
+  background-color: var(--back-color);
+  /*box-shadow: 3px 4px 6px 1px rgba(0, 0, 0, 0.3),
+              -2px -2px 4px 2px rgba(255, 255, 255, 1),
+              inset -14px -14px 20px -10px rgba(0, 0, 0, 0.1),
+              inset 14px 14px 20px -10px rgba(255, 255, 255, 0.5) !important;  */
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, .2),
+              inset 7px 7px 15px rgba(55, 84, 170, 0),
+              inset -7px -7px 20px rgba(255, 255, 255, 0),
+              0px 0px 4px rgba(255, 255, 255, 0) !important;
+  cursor: pointer;
+}
+
+.neumorphicReserve-btn:active {
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
+}
+
+.neumorphicReserve-btn:hover {
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
 }

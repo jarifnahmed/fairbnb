@@ -29,7 +29,7 @@ function Bookings() {
     (booking) => booking.storyId === Number(storyId)
   );
 
-  const dayjs = require('dayjs')
+  const dayjs = require('dayjs');
 
   const currentStory = useSelector((state) => state.stories[storyId]);
 
@@ -104,7 +104,6 @@ function Bookings() {
       });
   };
 
-
   return (
     <>
       <h2 className='bookings-title'>Bookings</h2>
@@ -113,26 +112,36 @@ function Bookings() {
           {storyBookings.map((booking) => {
             return (
               <li key={booking.id} className='bookings-list'>
-
                 {!showEditBoxArr[booking.id] && (
                   <div className='bookingsDiv' id={booking.id}>
                     <p className='the-booking'>
-                      <div className='bookingIcon'>
-                        </div>
-                      {booking.User.username}: Start Date: {dayjs(booking.startDate).format('MM/DD/YYYY')} | End Date: {dayjs(booking.endDate).format('MM/DD/YYYY')} | Days: {(-1 * (dayjs(booking.startDate).diff(dayjs(booking.endDate), 'day')))} | Cost: ${((-1 * (dayjs(booking.startDate).diff(dayjs(booking.endDate), 'day'))) * (currentStory.price))}
+                      <div className='bookingIcon'></div>
+                      {booking.User.username}: Start Date:{' '}
+                      {dayjs(booking.startDate).format('MM/DD/YYYY')} | End
+                      Date: {dayjs(booking.endDate).format('MM/DD/YYYY')} |
+                      Days:{' '}
+                      {-1 *
+                        dayjs(booking.startDate).diff(
+                          dayjs(booking.endDate),
+                          'day'
+                        )}{' '}
+                      | Cost: $
+                      {-1 *
+                        dayjs(booking.startDate).diff(
+                          dayjs(booking.endDate),
+                          'day'
+                        ) *
+                        currentStory.price}
                       {/* {console.log('Start Date is', booking.startDate , 'and End Date is', booking.endDate)}
                       {console.log('typeof Date is', parseInt(booking.startDate))} */}
-
                       {/* {console.log((-1 * (dayjs(booking.startDate).diff(dayjs(booking.endDate), 'day'))) * (story.price))} */}
-
                       {console.log('storyPrice is', currentStory.price)}
-
                     </p>
                     <div className='editAndDeleteButtonRow'>
                       {sessionUser && sessionUser.id === booking.userId && (
                         <button
                           className='my-5 btn neumorphic-btn'
-                          id="editButton"
+                          id='editButton'
                           type='submit'
                           onClick={() => {
                             setshowEditBox(true);
@@ -152,14 +161,14 @@ function Bookings() {
                           sessionUser.id === story.authorId) && (
                           <button
                             className='my-5 btn neumorphic-btn'
-                            id="deleteButton"
+                            id='deleteButton'
                             type='submit'
                             onClick={() => dispatch(deleteBooking(booking.id))}
                           >
                             <FaTrashAlt />
                           </button>
                         )}
-                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -171,17 +180,21 @@ function Bookings() {
                           <li key={idx}>{error}</li>
                         ))}
                       </ul>
-                      <label> Start Date:
+                      <label>
+                        {' '}
+                        Start Date:
                         <input
-                          type="date"
+                          type='date'
                           value={editStartDate}
                           onChange={(e) => setEditStartDate(e.target.value)}
                           required
                         />
                       </label>
-                      <label> End Date:
+                      <label>
+                        {' '}
+                        End Date:
                         <input
-                          type="date"
+                          type='date'
                           value={editEndDate}
                           onChange={(e) => setEditEndDate(e.target.value)}
                           required
@@ -190,7 +203,7 @@ function Bookings() {
                       <div className='saveAndCancelButtn'>
                         <button
                           className='my-5 btn neumorphic-btn'
-                          id="saveButton"
+                          id='saveButton'
                           // className='sc-button'
                           type='submit'
                           onClick={() => {
@@ -203,7 +216,7 @@ function Bookings() {
                         </button>
                         <button
                           className='my-5 btn neumorphic-btn'
-                          id="cancelButton"
+                          id='cancelButton'
                           onClick={() => {
                             setshowEditBox(false);
                             setshowBookingId(null);
@@ -214,7 +227,7 @@ function Bookings() {
                         >
                           <GiCancel />
                         </button>
-                        </div>
+                      </div>
                     </form>
                   </div>
                 )}
@@ -225,48 +238,71 @@ function Bookings() {
       </div>
 
       {sessionUser && story.authorId !== sessionUser.id && (
-
         <div className='bookingsInputBox'>
           <div className='bookingsInputBox__outer'>
             <div className='bookingsInputBox__inner'>
-          <form id='bookings-form-send' onSubmit={handleSubmit}>
-            <ul className='ws-errors'>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <div className='dateInputFields'>
-            <label>CHECK-IN:</label>
+              <form id='bookings-form-send' onSubmit={handleSubmit}>
+                <ul className='ws-errors'>
+                  {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                  ))}
+                </ul>
+                <div className='dateInputFields'>
+                  <div className='startingDate'>
+                    <label>CHECK-IN:</label>
                     <input
                       // className='ic-field'
-                      type="date"
+                      id='startingDateInputBox'
+                      type='date'
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
                       required
-                      />
-            <label>CHECKOUT:</label>
+                    />
+                  </div>
+                  <div className='endingDate'>
+                    <label>CHECKOUT:</label>
                     <input
                       // className='ic-field'
-                      type="date"
+                      id='endingDateInputBox'
+                      type='date'
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
                       required
-                      />
-                      </div>
-            <div>
-              Days: {(Number.isNaN(-1 * (dayjs(startDate).diff(dayjs(endDate), 'day')))) ? '0' : (-1 * (dayjs(startDate).diff(dayjs(endDate), 'day')))}
+                    />
+                  </div>
+                </div>
+                <div className='daysAndTotal'>
+                  <div className='daysAndTotalNumber'>
+                    Days:{' '}
+                    {Number.isNaN(
+                      -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
+                    )
+                      ? '0'
+                      : -1 * dayjs(startDate).diff(dayjs(endDate), 'day')}
+                  </div>
+                  <div className='daysAndTotalNumber'>
+                    <strong>Total:</strong> $
+                    {Number.isNaN(
+                      -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
+                    ) * currentStory.price
+                      ? '0'
+                      : -1 *
+                        dayjs(startDate).diff(dayjs(endDate), 'day') *
+                        currentStory.price}
+                  </div>
+                </div>
+                <button
+                  type='submit'
+                  className='my-5 btn neumorphicReserve-btn'
+                  id='reserveButton'
+                >
+                  Reserve
+                </button>
+              </form>
             </div>
-            <div>
-              <strong>Total:</strong> ${(Number.isNaN(-1 * (dayjs(startDate).diff(dayjs(endDate), 'day'))) * (currentStory.price)) ? '0' : ((-1 * (dayjs(startDate).diff(dayjs(endDate), 'day'))) * (currentStory.price))}
-            </div>
-            <button type='submit' className='my-5 btn neumorphic-btn'
-            id="sendButton">Reserve</button>
-          </form>
-              </div>
-  </div>
+          </div>
         </div>
       )}
-
     </>
   );
 }
