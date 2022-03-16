@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
     */
      await queryInterface.bulkInsert('Bookings', [
-      {userId: 1, storyId: 2, startDate: '2022-04-01', endDate: '2022-04-05'},
+      {userId: 1, storyId: 2, startDate: '2022-04-01', endDate: '2022-04-05', days: 4, total: 480},
      ], {});
   },
 

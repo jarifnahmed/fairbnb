@@ -28,10 +28,14 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false
       },
-      // cost: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false
-      // },
+      days: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      total: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

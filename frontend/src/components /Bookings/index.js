@@ -39,6 +39,8 @@ function Bookings() {
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [days, setDays] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const [errors, setErrors] = useState([]);
   let newObj = {};
@@ -48,6 +50,10 @@ function Bookings() {
 
   const [editStartDate, setEditStartDate] = useState('');
   const [editEndDate, setEditEndDate] = useState('');
+
+
+  const [editDays, setEditDays] = useState('');
+  const [editTotal, setEditTotal] = useState('');
 
   const [editErrors, setEditErrors] = useState([]);
   const [showEditBox, setshowEditBox] = useState(false);
@@ -66,6 +72,10 @@ function Bookings() {
       storyId: Number(storyId),
       startDate: editStartDate,
       endDate: editEndDate,
+      // days: editDays,
+      // total: editTotal,
+      days: -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'),
+      total: -1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price,
     };
 
     setshowEditBox(false);
@@ -75,6 +85,8 @@ function Bookings() {
       .then(() => {
         setStartDate('');
         setEndDate('');
+        setDays('');
+        setTotal('');
         setEditErrors([]);
       })
       .catch(async (res) => {
@@ -94,10 +106,17 @@ function Bookings() {
       storyId: Number(storyId),
       startDate,
       endDate,
+      days: -1 * dayjs(startDate).diff(dayjs(endDate), 'day'),
+      total: -1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price,
     };
 
     return dispatch(createBooking(newBooking))
-      .then(() => setStartDate(''))
+      .then(() => {
+        setStartDate('');
+        setEndDate('');
+        setDays('');
+        setTotal('');
+      })
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -120,18 +139,8 @@ function Bookings() {
                       {dayjs(booking.startDate).format('MM/DD/YYYY')} | End
                       Date: {dayjs(booking.endDate).format('MM/DD/YYYY')} |
                       Days:{' '}
-                      {-1 *
-                        dayjs(booking.startDate).diff(
-                          dayjs(booking.endDate),
-                          'day'
-                        )}{' '}
-                      | Cost: $
-                      {-1 *
-                        dayjs(booking.startDate).diff(
-                          dayjs(booking.endDate),
-                          'day'
-                        ) *
-                        currentStory.price}
+                      {booking.days}{' '}
+                      | Total: ${booking.total}
                       {/* {console.log('Start Date is', booking.startDate , 'and End Date is', booking.endDate)}
                       {console.log('typeof Date is', parseInt(booking.startDate))} */}
                       {/* {console.log((-1 * (dayjs(booking.startDate).diff(dayjs(booking.endDate), 'day'))) * (story.price))} */}
@@ -148,6 +157,8 @@ function Bookings() {
                             setshowBookingId(booking.id);
                             setEditStartDate(booking.startDate);
                             setEditEndDate(booking.endDate);
+                            setEditDays(booking.days);
+                            setEditTotal(booking.total);
                             let newobj = { ...newObj };
                             newobj[booking.id] = true;
                             setEditBoxArr(newobj);
@@ -200,6 +211,20 @@ function Bookings() {
                           required
                         />
                       </label>
+
+
+                      <div className='daysAndTotal'>
+                  <div className='daysAndTotalNumber'>
+                    Days: {-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')}
+                  </div>
+                  <div className='daysAndTotalNumber'>
+                    <strong>Total:</strong> ${-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price}
+                  </div>
+                </div>
+
+
+
+
                       <div className='saveAndCancelButtn'>
                         <button
                           className='my-5 btn neumorphic-btn'

@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     storyId: DataTypes.INTEGER,
     startDate: DataTypes.DATEONLY,
     endDate: DataTypes.DATEONLY,
-    // cost: DataTypes.INTEGER,
+    days: DataTypes.INTEGER,
+    total: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Booking',

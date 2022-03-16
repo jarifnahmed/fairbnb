@@ -36,17 +36,22 @@ function ProfileButton() {
 
   return (
     <div id='profile-div'>
-                  <NavLink className='story-link-nav' to={`/story/new`}>
-              Create Listing
-            </NavLink>
+      <NavLink className='story-link-nav' to={`/story/new`}>
+        Create Listing
+      </NavLink>
 
-            <NavLink className='story-link-nav' to={`/user/stories`}>
-              My Listings
-            </NavLink>
+      <NavLink className='story-link-nav' to={`/user/stories`}>
+        My Listings
+      </NavLink>
 
-            <button id='logout-btn' onClick={logout}>
-              Log Out
-            </button>
+      <NavLink className='story-link-nav' to={`/user/bookings`}>
+        My Bookings
+      </NavLink>
+
+
+      <button id='logout-btn' onClick={logout}>
+        Log Out
+      </button>
       <button id='profile-button' onClick={openMenu}>
         {' '}
         {sessionUser.username}
