@@ -8,6 +8,20 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import './UserBookings.css';
 
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import Geocode from 'react-geocode';
+Geocode.setApiKey('AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g');
+Geocode.setLanguage('en');
+
+const containerStyle = {
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
+  // Lookup CSSProperties to see what is available
+  width: '400px',
+  height: '300px',
+  borderRadius: '20px',
+  boxShadow: '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
+};
+
 function UserBookings() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,6 +32,11 @@ function UserBookings() {
   const bookingsArr = Object.values(allBookings);
 
   const dayjs = require('dayjs');
+
+  const onLoad = (marker) => {
+    console.log('marker: ', marker);
+  };
+
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -125,8 +144,27 @@ function UserBookings() {
                           <h2 className='neumorphic-card__title'>
                             Lat: {booking.listingLng}
                           </h2>
+                          <div>
+                          <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+              <div className='allGoogleMapWidgetInfo'>
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={{
+                      lat: parseFloat(booking.listingLat),
+                      lng: parseFloat(booking.listingLng),
+                    }}
+                    zoom={13}
+                  >
+                    {/* Child components, such as markers, info windows, etc. */}
+                    <Marker onLoad={onLoad} position={{
+    lat: parseFloat(booking.listingLat),
+    lng: parseFloat(booking.listingLng),
+  }} />
+                  </GoogleMap>
+                </div>
+                </LoadScript>
+                          </div>
                         </div>
-                        <div></div>
                       </div>
                     </NavLink>
                     {sessionUser &&

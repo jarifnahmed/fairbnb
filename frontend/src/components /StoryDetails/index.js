@@ -58,11 +58,6 @@ function StoryDetail() {
     lng: parseFloat(story.lng),
   };
 
-  const position = {
-    lat: parseFloat(story.lat),
-    lng: parseFloat(story.lng),
-  };
-
   const onLoad = (marker) => {
     console.log('marker: ', marker);
   };
@@ -121,7 +116,7 @@ function StoryDetail() {
                     zoom={13}
                   >
                     {/* Child components, such as markers, info windows, etc. */}
-                    <Marker onLoad={onLoad} position={position} />
+                    <Marker onLoad={onLoad} position={coordinates} />
                   </GoogleMap>
                 </div>
                 </LoadScript>
