@@ -36,10 +36,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      // listingFirstImage: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false
-      // },
+      listingFirstImageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       listingPricePerNight: {
         type: Sequelize.INTEGER,
         allowNull: false

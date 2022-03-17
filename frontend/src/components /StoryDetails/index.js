@@ -42,6 +42,7 @@ function StoryDetail() {
 
   const [image, setImage] = useState(story.imageUrl);
 
+  console.log('the imagesURl is', story.imageUrl)
 
   const [style, setStyle] = useState("sd-img");
 

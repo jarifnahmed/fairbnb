@@ -116,31 +116,13 @@ function UserBookings() {
                     >
                       <div className='neumorphic-card-booking mx-auto'>
                         <div className='neumorphic-card__outer'>
-                          <h2 className='neumorphic-card__title'>
-                            Check-In:{' '}
-                            {dayjs(booking.startDate).format(
-                              'dddd MMMM DD, YYYY'
-                            )}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Checkout:{' '}
-                            {dayjs(booking.endDate).format(
-                              'dddd MMMM DD, YYYY'
-                            )}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Days: {booking.days}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Total: ${booking.total}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Price Per Night: ${booking.listingPricePerNight}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Location: {booking.listingCity.slice(0, -5)}
-                          </h2>
-                          <div>
+                          <div className='bookingImageCenter'>
+                            <div className='bookingImageAsWellAsMapColumn'>
+                            <img
+                              class='neumorphic-image-for-booking'
+                              src={booking.listingFirstImageUrl}
+                              alt='story'
+                            />
                             <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
                               <div className='allGoogleMapWidgetInfoForBookings'>
                                 <GoogleMap
@@ -162,6 +144,33 @@ function UserBookings() {
                                 </GoogleMap>
                               </div>
                             </LoadScript>
+                                    </div>
+                            <div className='bookingDetails'>
+                              <h2 className='neumorphic-card__text'>
+                                Location: {booking.listingCity.slice(0, -5)}
+                              </h2>
+                              <h2 className='neumorphic-card__text'>
+                                Check-In:{' '}
+                                {dayjs(booking.startDate).format(
+                                  'dddd MMMM DD, YYYY'
+                                )}
+                              </h2>
+                              <h2 className='neumorphic-card__text'>
+                                Checkout:{' '}
+                                {dayjs(booking.endDate).format(
+                                  'dddd MMMM DD, YYYY'
+                                )}
+                              </h2>
+                              <h2 className='neumorphic-card__text'>
+                                Days: {booking.days}
+                              </h2>
+                              <h2 className='neumorphic-card__text'>
+                                Price Per Night: ${booking.listingPricePerNight}
+                              </h2>
+                              <h2 className='neumorphic-card__title'>
+                                Total: ${booking.total}
+                              </h2>
+                            </div>
                           </div>
                         </div>
                       </div>

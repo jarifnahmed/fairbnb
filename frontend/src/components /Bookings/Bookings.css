@@ -21,7 +21,7 @@
   padding: 40px;
   box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), 0px 0px 4px rgb(255 255 255 / 20%) !important;
   border-radius: 30px;
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .neumorphic-card-booking:hover{
