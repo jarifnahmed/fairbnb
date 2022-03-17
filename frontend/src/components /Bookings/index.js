@@ -72,8 +72,6 @@ function Bookings() {
       storyId: Number(storyId),
       startDate: editStartDate,
       endDate: editEndDate,
-      // days: editDays,
-      // total: editTotal,
       days: -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'),
       total: -1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price,
     };

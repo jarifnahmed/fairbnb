@@ -15,6 +15,22 @@
   flex-wrap: nowrap;
 }
 
+.neumorphic-card-booking{
+  display: block;
+  background-color: var(--back-color);
+  padding: 40px;
+  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), 0px 0px 4px rgb(255 255 255 / 20%) !important;
+  border-radius: 30px;
+  max-width: 400px;
+}
+
+.neumorphic-card-booking:hover{
+  background-color: #f6f5f0;
+  background-image:linear-gradient(to bottom, #f6f5f0 100%, #f6f5f0 100%), linear-gradient(to bottom, rgb(61, 152, 255) 0%, rgb(90, 195, 255) 100%);
+  background-clip: content-box, padding-box;
+  box-shadow: 9px 9px 16px rgba(116, 192, 255, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
 #bookings-form {
   display: flex;
   flex-direction: column;

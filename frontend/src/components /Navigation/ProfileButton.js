@@ -6,6 +6,13 @@ import './ProfileButton.css';
 
 function ProfileButton() {
   const sessionUser = useSelector((state) => state.session.user);
+  const allBookings = useSelector((state) => state.bookings);
+  const bookingsArr = Object.values(allBookings);
+
+  const userBookings = bookingsArr.filter(
+    (booking) => booking.userId === sessionUser.id
+  );
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -45,7 +52,7 @@ function ProfileButton() {
       </NavLink>
 
       <NavLink className='story-link-nav' to={`/user/bookings`}>
-        My Bookings
+        My Bookings ({userBookings.length})
       </NavLink>
 
 
