@@ -74,7 +74,7 @@ function UserStories() {
                             className='my-5 btn neumorphic-btn'
                             id="deleteButton"
                             type='submit'
-                            onClick={() => dispatch(deleteStory(story.id))}
+                            onClick={() => dispatch(deleteStory(story.id), window.location.reload(false)) }
                           >
                             <FaTrashAlt />
                           </button>
