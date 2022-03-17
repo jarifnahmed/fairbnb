@@ -6,6 +6,8 @@ import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
 import './WriteStory.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function WriteStory() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -42,6 +44,17 @@ function WriteStory() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    toast.success('Listing Created!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      closeButton: false,
+      });
 
     const authorId = sessionUser.id;
 
@@ -134,6 +147,7 @@ function WriteStory() {
                     onChange={(e) => setPropertyType(e.target.value)}
                     required
                 >
+                    <option value="">Property Type</option>
                     <option value="House">House</option>
                     <option value="Condo">Condo</option>
                     <option value="Apartment">Apartment</option>
@@ -263,6 +277,19 @@ function WriteStory() {
             <button className='ws-button' type='submit'>
               Submit
             </button>
+            <ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+// closeOnClick
+rtl={false}
+// pauseOnFocusLoss
+// draggable
+// pauseOnHover
+closeButton={false}
+theme='colored'
+/>
           </form>
         </div>
       </>

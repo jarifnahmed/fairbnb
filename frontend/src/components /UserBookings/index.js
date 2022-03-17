@@ -8,6 +8,10 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import './UserBookings.css';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 Geocode.setApiKey('AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g');
@@ -26,6 +30,7 @@ const containerStyle = {
 };
 
 function UserBookings() {
+  const toastId = React.useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -62,42 +67,6 @@ function UserBookings() {
   const [showEditBox, setshowEditBox] = useState(false);
   const [showBookingId, setshowBookingId] = useState(null);
   const [showEditBoxArr, setEditBoxArr] = useState(newObj);
-
-  //handles an edited booking submission
-  const handleEdit = async (e) => {
-    e.preventDefault();
-
-    const userId = sessionUser.id;
-
-    const editedBooking = {
-      id: showBookingId,
-      userId,
-      // storyId: Number(storyId),
-      startDate: editStartDate,
-      endDate: editEndDate,
-      days: ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
-        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-      )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
-
-      total: editTotal,
-    };
-
-    setshowEditBox(false);
-    setshowBookingId(null);
-
-    return dispatch(updateBooking(editedBooking))
-      .then(() => {
-        setStartDate('');
-        setEndDate('');
-        setDays('');
-        setTotal('');
-        setEditErrors([]);
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setEditErrors(data.errors);
-      });
-  };
 
   if (sessionUser) {
     const userBookings = bookingsArr.filter(
@@ -187,6 +156,29 @@ function UserBookings() {
                             id='bookings-form'
                             onSubmit={async (e) => {
                               e.preventDefault();
+
+                              if(! toast.isActive(toastId.current)) {
+                                toastId.current = toast.success('Booking Updated!', {
+                                  position: "top-center",
+                                  autoClose: 1000,
+                                  hideProgressBar: false,
+                                  closeOnClick: false,
+                                  pauseOnHover: false,
+                                  draggable: false,
+                                  progress: undefined,
+                                  closeButton: false,
+                                  });
+                              }
+
+                              // toast.success('Booking Reserved!', {
+                              //   position: "top-center",
+                              //   autoClose: 5000,
+                              //   hideProgressBar: false,
+                              //   closeOnClick: true,
+                              //   pauseOnHover: true,
+                              //   draggable: true,
+                              //   progress: undefined,
+                              //   });
 
                               const userId = sessionUser.id;
 
@@ -313,6 +305,20 @@ function UserBookings() {
                           </form>
                         </div>
                       )}
+                                                  <ToastContainer
+position="top-center"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+// closeOnClick
+rtl={false}
+// pauseOnFocusLoss
+// draggable
+// pauseOnHover
+closeButton={false}
+toastStyle={{ backgroundColor: '#3249CA' }}
+theme='colored'
+/>
 
                     {!showEditBoxArr[booking.id] && (
                       <div className='bookingsDiv' id={booking.id}>
