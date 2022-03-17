@@ -36,6 +36,26 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
+      // listingFirstImage: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false
+      // },
+      listingPricePerNight: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      listingCity: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      listingLat: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+      },
+      listingLng: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

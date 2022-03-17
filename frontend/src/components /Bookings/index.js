@@ -42,6 +42,15 @@ function Bookings() {
   const [days, setDays] = useState(0);
   const [total, setTotal] = useState(0);
 
+
+
+  const [listingPricePerNight, setListingPricePerNight] = useState('');
+  const [listingCity, setListingCity] = useState('');
+  const [listingLat, setListingLat] = useState('');
+  const [listingLng, setListingLng] = useState('');
+
+
+
   const [errors, setErrors] = useState([]);
   let newObj = {};
   for (const booking of bookingsArr) {
@@ -106,6 +115,10 @@ function Bookings() {
       endDate,
       days: -1 * dayjs(startDate).diff(dayjs(endDate), 'day'),
       total: -1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price,
+      listingPricePerNight: currentStory.price,
+      listingCity: currentStory.city,
+      listingLat: currentStory.lat,
+      listingLng: currentStory.lng,
     };
 
     return dispatch(createBooking(newBooking))
@@ -114,6 +127,10 @@ function Bookings() {
         setEndDate('');
         setDays('');
         setTotal('');
+        setListingPricePerNight('');
+        setListingCity('');
+        setListingLat('');
+        setListingLng('');
       })
       .catch(async (res) => {
         const data = await res.json();

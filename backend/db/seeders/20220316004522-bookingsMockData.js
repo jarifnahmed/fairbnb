@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
     */
      await queryInterface.bulkInsert('Bookings', [
-      {userId: 1, storyId: 2, startDate: '2022-04-01', endDate: '2022-04-05', days: 4, total: 480},
+      {userId: 1, storyId: 2, startDate: '2022-04-01', endDate: '2022-04-05', days: 4, total: 480, listingPricePerNight: 120, listingCity: 'Charlotte, NC, USA', listingLat: 35.227085, listingLng: -80.843124,},
      ], {});
   },
 

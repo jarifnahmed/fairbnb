@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     endDate: DataTypes.DATEONLY,
     days: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
+    // listingFirstImage: DataTypes.INTEGER,
+    listingPricePerNight: DataTypes.INTEGER,
+    listingCity: DataTypes.STRING,
+    listingLat: DataTypes.DECIMAL,
+    listingLng: DataTypes.DECIMAL,
   }, {
     sequelize,
     modelName: 'Booking',
