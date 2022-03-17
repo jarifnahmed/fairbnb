@@ -6,6 +6,20 @@ import './ProfileButton.css';
 
 function ProfileButton() {
   const sessionUser = useSelector((state) => state.session.user);
+  const allBookings = useSelector((state) => state.bookings);
+  const bookingsArr = Object.values(allBookings);
+
+  const allStories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(allStories);
+
+  const userStories = storiesArr.filter(
+    (story) => story.authorId === sessionUser.id
+  );
+
+  const userBookings = bookingsArr.filter(
+    (booking) => booking.userId === sessionUser.id
+  );
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -36,17 +50,22 @@ function ProfileButton() {
 
   return (
     <div id='profile-div'>
-                  <NavLink className='story-link-nav' to={`/story/new`}>
-              Create Listing
-            </NavLink>
+      <NavLink className='story-link-nav' to={`/story/new`}>
+        Create Listing
+      </NavLink>
 
-            <NavLink className='story-link-nav' to={`/user/stories`}>
-              My Listings
-            </NavLink>
+      <NavLink className='story-link-nav' to={`/user/stories`}>
+        My Listings {userStories.length === 0 ? '' : ('(' + userStories.length + ')')}
+      </NavLink>
 
-            <button id='logout-btn' onClick={logout}>
-              Log Out
-            </button>
+      <NavLink className='story-link-nav' to={`/user/bookings`}>
+        My Bookings {userBookings.length === 0 ? '' : ('(' + userBookings.length + ')')}
+      </NavLink>
+
+
+      <button id='logout-btn' onClick={logout}>
+        Log Out
+      </button>
       <button id='profile-button' onClick={openMenu}>
         {' '}
         {sessionUser.username}

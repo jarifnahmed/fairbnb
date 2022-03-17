@@ -12,6 +12,8 @@ import { Carousel } from 'react-responsive-carousel';
 import Slider from "react-slick";
 import { Slide } from 'react-slideshow-image';
 
+import Bookings from '../Bookings';
+
 
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -40,6 +42,7 @@ function StoryDetail() {
 
   const [image, setImage] = useState(story.imageUrl);
 
+  console.log('the imagesURl is', story.imageUrl)
 
   const [style, setStyle] = useState("sd-img");
 
@@ -52,11 +55,6 @@ function StoryDetail() {
   };
 
   const coordinates = {
-    lat: parseFloat(story.lat),
-    lng: parseFloat(story.lng),
-  };
-
-  const position = {
     lat: parseFloat(story.lat),
     lng: parseFloat(story.lng),
   };
@@ -119,12 +117,15 @@ function StoryDetail() {
                     zoom={13}
                   >
                     {/* Child components, such as markers, info windows, etc. */}
-                    <Marker onLoad={onLoad} position={position} />
+                    <Marker onLoad={onLoad} position={coordinates} />
                   </GoogleMap>
                 </div>
                 </LoadScript>
               <div className='allReviewsSection'>
                 <Comments />
+              </div>
+              <div className='allBookingsSection'>
+                <Bookings />
               </div>
                 </div>
             </div>

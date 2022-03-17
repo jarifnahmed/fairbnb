@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         hooks: true,
       });
+      Story.hasMany(models.Booking, {
+        foreignKey: 'storyId',
+        onDelete: 'CASCADE',
+        hooks: true,
+      });
     }
   }
   Story.init(

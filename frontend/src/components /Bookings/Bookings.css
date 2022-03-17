@@ -1,0 +1,271 @@
+.bookings-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.7rem;
+  margin-bottom: 15px;
+}
+
+#bookingUl {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+}
+
+.neumorphic-card-booking{
+  display: block;
+  background-color: var(--back-color);
+  padding: 40px;
+  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), 0px 0px 4px rgb(255 255 255 / 20%) !important;
+  border-radius: 30px;
+  max-width: 100%;
+}
+
+.neumorphic-card-booking:hover{
+  background-color: #f6f5f0;
+  background-image:linear-gradient(to bottom, #f6f5f0 100%, #f6f5f0 100%), linear-gradient(to bottom, rgb(61, 152, 255) 0%, rgb(90, 195, 255) 100%);
+  background-clip: content-box, padding-box;
+  box-shadow: 9px 9px 16px rgba(116, 192, 255, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
+#bookings-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  margin-top: 20px;
+}
+
+#bookings-form-send {
+  margin: 10px;
+}
+
+.the-booking {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.bookingIcon {
+  margin-right: 10px;
+}
+
+.bookings-list {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.editAndDeleteButtonRow {
+  /* margin-top: 10px; */
+  margin-left: 20px;
+}
+
+.ic-field {
+  /* border-color: rgb(255, 90, 96);
+  border-width: 5px; */
+
+
+
+
+  background-color: var(--back-color);
+  border-radius: 20px;
+  border: 3px solid #f3f4f7;
+  box-shadow: 2px 2px 3px rgba(55, 84, 170, .15),
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
+  padding: 5px 15px;
+  outline: none !important;
+  color: #535D74;
+  font-size: 1.5rem;
+}
+
+.bookingsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#deleteButton {
+  margin-left: 10px;
+}
+
+#cancelButton {
+  margin-left: 10px;
+}
+
+#sendButton {
+  margin-left: 10px;
+}
+
+#e-d-btn-ctn {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#deleteButton:hover {
+  color: rgb(207, 43, 43);
+}
+
+#cancelButton:hover {
+  color: rgb(207, 43, 43);
+}
+
+#saveButton:hover {
+  color: rgb(50, 73, 202);
+}
+
+#deleteButton:hover {
+  color: rgb(207, 43, 43);
+}
+
+#editButton:hover {
+  color: rgb(50, 202, 108);
+}
+
+#sendButton:hover {
+  color: rgb(50, 73, 202);
+}
+
+#bookings-form-send {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.booking__input {
+  text-align: center;
+  /* width: 320px;
+  padding-left: 30px; */
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #6D7587;
+  /* letter-spacing: 0.75px; */
+ }
+
+
+ .bookingsInputBox{
+  background-color: #f6f5f0;
+  background-color: var(--back-color);
+  border-radius: 20px;
+  padding: 8px;
+  /* width: 50%; */
+  box-shadow: 9px 9px 16px rgb(189 189 189 / 60%), -9px -9px 16px rgb(255 255 255 / 50%);
+  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), inset 0px 0px 4px rgb(255 255 255 / 20%), inset 7px 7px 15px rgb(55 84 170 / 0%), inset -7px -7px 20px rgb(255 255 255 / 0%), 0px 0px 4px rgb(255 255 255 / 0%) !important;
+ }
+
+ .bookingsInputBox__outer{
+  display: flex;
+  /* width: 400px; */
+  /* width: 21%; */
+  /* padding: 1.5rem 1rem;
+  padding-top: 10px;
+  padding-bottom: 10px; */
+  border-radius: 20px;
+  box-shadow: inset 10px 10px 15px -10px #d6dcf7, inset -10px -10px 15px -10px #ffffff;
+ }
+
+ .bookingsInputBox__inner{
+  flex: 1 1;
+ }
+
+/* BLUE */
+.bookingsInputBox:hover{
+  background-color: #f6f5f0;
+  background-image:linear-gradient(to bottom, #f6f5f0 100%, #f6f5f0 100%), linear-gradient(to bottom, rgb(61, 152, 255) 0%, rgb(90, 195, 255) 100%);
+  background-clip: content-box, padding-box;
+  box-shadow: 9px 9px 16px rgba(116, 192, 255, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+  }
+
+.bookingsInputBox:focus-within{
+  background-color: #f6f5f0;
+  background-image:linear-gradient(to bottom, #f6f5f0 100%, #f6f5f0 100%), linear-gradient(to bottom, rgb(67, 255, 61) 0%, rgb(178, 255, 90)100%);
+  background-clip: content-box, padding-box;
+  box-shadow: 9px 9px 16px rgba(128, 255, 116, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
+.dateInputFields{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.startingDate, .endingDate{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+#startingDateInputBox, #endingDateInputBox{
+  background-color: var(--back-color);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), inset 0px 0px 4px rgb(255 255 255 / 20%), inset 7px 7px 15px rgb(55 84 170 / 0%), inset -7px -7px 20px rgb(255 255 255 / 0%), 0px 0px 4px rgb(255 255 255 / 0%) !important;
+}
+
+.daysAndTotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.daysAndTotalNumber{
+  margin: 10px;
+}
+
+
+
+
+.neumorphicReserve-btn {
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  padding: 5px 50px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  color: #3f6dd8;
+  background-color: var(--back-color);
+  /*box-shadow: 3px 4px 6px 1px rgba(0, 0, 0, 0.3),
+              -2px -2px 4px 2px rgba(255, 255, 255, 1),
+              inset -14px -14px 20px -10px rgba(0, 0, 0, 0.1),
+              inset 14px 14px 20px -10px rgba(255, 255, 255, 0.5) !important;  */
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, .2),
+              inset 7px 7px 15px rgba(55, 84, 170, 0),
+              inset -7px -7px 20px rgba(255, 255, 255, 0),
+              0px 0px 4px rgba(255, 255, 255, 0) !important;
+  cursor: pointer;
+}
+
+.neumorphicReserve-btn:active {
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
+}
+
+.neumorphicReserve-btn:hover {
+  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+              /* -7px -7px 20px rgba(255, 255, 255, 1), */
+              inset 0px 0px 4px rgba(255, 255, 255, 0),
+              inset 7px 7px 15px rgba(55, 84, 170, .15),
+              inset -7px -7px 20px rgba(255, 255, 255, 1),
+              0px 0px 4px rgba(255, 255, 255, .2) !important;
+}

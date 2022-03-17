@@ -12,7 +12,9 @@ import EditStory from "./components /UpdateStory";
 import Footer from "./components /Footer";
 import { getStories } from "./store/stories";
 import { getComments } from "./store/comments";
+import { getBookings } from "./store/bookings";
 import PageNotFound from "./components /PageNotFound";
+import UserBookings from "./components /UserBookings";
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
   useEffect(() => {
     dispatch(getStories());
     dispatch(getComments());
+    dispatch(getBookings());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -48,6 +51,9 @@ function App() {
         </Route>
         <Route path="/edit/story/:editStoryId">
           <EditStory />
+        </Route>
+        <Route path="/user/bookings">
+          <UserBookings />
         </Route>
         <Route path="/">
           <PageNotFound />
