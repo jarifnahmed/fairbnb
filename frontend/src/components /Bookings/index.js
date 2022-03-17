@@ -42,8 +42,7 @@ function Bookings() {
   const [days, setDays] = useState(0);
   const [total, setTotal] = useState(0);
 
-
-
+  const [listingFirstImageUrl, setListingFirstImageUrl] = useState('');
   const [listingPricePerNight, setListingPricePerNight] = useState('');
   const [listingCity, setListingCity] = useState('');
   const [listingLat, setListingLat] = useState('');
@@ -115,6 +114,8 @@ function Bookings() {
       endDate,
       days: -1 * dayjs(startDate).diff(dayjs(endDate), 'day'),
       total: -1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price,
+      listingFirstImageUrl: currentStory.imageUrl[0],
+      listingPricePerNight: currentStory.price,
       listingPricePerNight: currentStory.price,
       listingCity: currentStory.city,
       listingLat: currentStory.lat,
@@ -127,6 +128,7 @@ function Bookings() {
         setEndDate('');
         setDays('');
         setTotal('');
+        setListingFirstImageUrl('');
         setListingPricePerNight('');
         setListingCity('');
         setListingLat('');
