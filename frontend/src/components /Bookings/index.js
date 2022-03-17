@@ -12,6 +12,9 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import { MdSend } from 'react-icons/md';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Bookings() {
   const { storyId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
@@ -121,6 +124,17 @@ function Bookings() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    toast.success('Booking Reserved!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      closeButton: false,
+      });
+
     const userId = sessionUser.id;
 
     const newBooking = {
@@ -221,6 +235,19 @@ function Bookings() {
                 >
                   Reserve
                 </button>
+                <ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+// closeOnClick
+rtl={false}
+// pauseOnFocusLoss
+// draggable
+// pauseOnHover
+closeButton={false}
+theme='colored'
+/>
               </form>
             </div>
           </div>

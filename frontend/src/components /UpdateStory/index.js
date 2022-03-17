@@ -9,7 +9,11 @@ import './UpdateStory.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function EditStory() {
+  const toastId = React.useRef(null);
   const sessionUser = useSelector((state) => state.session.user);
   const { editStoryId } = useParams();
   const story = useSelector((state) => state.stories[editStoryId]);
@@ -46,6 +50,19 @@ function EditStory() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+      if(! toast.isActive(toastId.current)) {
+        toastId.current = toast.success('Listing Updated!', {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          closeButton: false,
+          });
+      }
 
       const authorId = sessionUser.id;
 
@@ -260,6 +277,20 @@ function EditStory() {
             <button className='ws-button' type='submit'>
               Update
             </button>
+            <ToastContainer
+position="top-center"
+autoClose={1000}
+hideProgressBar={false}
+newestOnTop={false}
+// closeOnClick
+rtl={false}
+// pauseOnFocusLoss
+// draggable
+// pauseOnHover
+closeButton={false}
+toastStyle={{ backgroundColor: '#3249CA' }}
+theme='colored'
+/>
           </form>
         </div>
       </>
