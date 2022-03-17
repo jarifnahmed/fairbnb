@@ -35,6 +35,7 @@ function UserBookings() {
   const bookingsArr = Object.values(allBookings);
 
   const dayjs = require('dayjs');
+  const now = dayjs();
 
   const onLoad = (marker) => {
     console.log('marker: ', marker);
@@ -74,7 +75,10 @@ function UserBookings() {
       // storyId: Number(storyId),
       startDate: editStartDate,
       endDate: editEndDate,
-      days: -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'),
+      days: ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
+        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+      )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
+
       total: editTotal,
     };
 
@@ -193,18 +197,13 @@ function UserBookings() {
                                 startDate: editStartDate,
                                 endDate: editEndDate,
                                 days:
-                                  -1 *
-                                  dayjs(editStartDate).diff(
-                                    dayjs(editEndDate),
-                                    'day'
-                                  ),
+                                ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
+                                  -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+                                )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
                                 total:
-                                  -1 *
-                                  dayjs(editStartDate).diff(
-                                    dayjs(editEndDate),
-                                    'day'
-                                  ) *
-                                  booking.listingPricePerNight,
+                                ((-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * booking.listingPricePerNight) === 0) || (Number.isNaN(
+                                  -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+                                ) * booking.listingPricePerNight) ? booking.listingPricePerNight : (-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * booking.listingPricePerNight),
                               };
 
                               setshowEditBox(false);
@@ -242,6 +241,7 @@ function UserBookings() {
                                         id='startingDateInputBox'
                                         type='date'
                                         value={editStartDate}
+                                        min={now.format('YYYY-MM-DD')}
                                         onChange={(e) =>
                                           setEditStartDate(e.target.value)
                                         }
@@ -255,6 +255,7 @@ function UserBookings() {
                                         id='endingDateInputBox'
                                         type='date'
                                         value={editEndDate}
+                                        min={editStartDate}
                                         onChange={(e) =>
                                           setEditEndDate(e.target.value)
                                         }
@@ -264,21 +265,17 @@ function UserBookings() {
                                   </div>
                                   <div className='daysAndTotal'>
                                     <div className='daysAndTotalNumber'>
-                                      Days:{' '}
-                                      {-1 *
-                                        dayjs(editStartDate).diff(
-                                          dayjs(editEndDate),
-                                          'day'
-                                        )}
+                                    Days: {(editStartDate === editEndDate) || (Number.isNaN(
+                      -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+                    )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'))}
                                     </div>
                                     <div className='daysAndTotalNumber'>
                                       <strong>Total:</strong> $
-                                      {-1 *
-                                        dayjs(editStartDate).diff(
-                                          dayjs(editEndDate),
-                                          'day'
-                                        ) *
-                                        booking.listingPricePerNight}
+                                      {(editStartDate === editEndDate) || (Number.isNaN(
+                      -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+                    ) * booking.listingPricePerNight) ? booking.listingPricePerNight : (-1 *
+                      dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
+                      booking.listingPricePerNight) }
                                     </div>
                                   </div>
                                 </div>

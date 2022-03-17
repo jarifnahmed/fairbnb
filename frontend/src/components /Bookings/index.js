@@ -30,6 +30,12 @@ function Bookings() {
   );
 
   const dayjs = require('dayjs');
+  const now = dayjs();
+
+  const tmmrw = now.add(1,'day');
+
+  console.log('today is', now.format('YYYY-MM-DD'))
+  console.log('tomorrow is', tmmrw.format('YYYY-MM-DD'))
 
   const currentStory = useSelector((state) => state.stories[storyId]);
 
@@ -38,7 +44,12 @@ function Bookings() {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState('');
+  // const tmmrwFromStartDate = startDate.add(1,'day');
   const [endDate, setEndDate] = useState('');
+
+  console.log('startDate is', startDate)
+  // console.log('startDateTomorrow is', startDate.add(1, 'day'))
+
   const [days, setDays] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -80,8 +91,13 @@ function Bookings() {
       storyId: Number(storyId),
       startDate: editStartDate,
       endDate: editEndDate,
-      days: -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'),
-      total: -1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price,
+      days: ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
+        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+      )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
+
+      total: ((-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price) === 0) || (Number.isNaN(
+        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+      ) * currentStory.price) ? currentStory.price : (-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price),
     };
 
     setshowEditBox(false);
@@ -112,8 +128,13 @@ function Bookings() {
       storyId: Number(storyId),
       startDate,
       endDate,
-      days: -1 * dayjs(startDate).diff(dayjs(endDate), 'day'),
-      total: -1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price,
+      days: ((-1 * dayjs(startDate).diff(dayjs(endDate), 'day')) === 0) || (Number.isNaN(
+        -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
+      )) ? 1 : (-1 * dayjs(startDate).diff(dayjs(endDate), 'day')),
+
+      total: ((-1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price) === 0) || (Number.isNaN(
+        -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
+      ) * currentStory.price) ? currentStory.price : (-1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price),
       listingFirstImageUrl: currentStory.imageUrl[0],
       listingPricePerNight: currentStory.price,
       listingPricePerNight: currentStory.price,
@@ -160,6 +181,7 @@ function Bookings() {
                       id='startingDateInputBox'
                       type='date'
                       value={startDate}
+                      min={now.format('YYYY-MM-DD')}
                       onChange={(e) => setStartDate(e.target.value)}
                       required
                     />
@@ -171,6 +193,7 @@ function Bookings() {
                       id='endingDateInputBox'
                       type='date'
                       value={endDate}
+                      min={startDate}
                       onChange={(e) => setEndDate(e.target.value)}
                       required
                     />
@@ -178,22 +201,17 @@ function Bookings() {
                 </div>
                 <div className='daysAndTotal'>
                   <div className='daysAndTotalNumber'>
-                    Days:{' '}
-                    {Number.isNaN(
+                  Days: {(startDate === endDate) || (Number.isNaN(
                       -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-                    )
-                      ? '0'
-                      : -1 * dayjs(startDate).diff(dayjs(endDate), 'day')}
+                    )) ? 1 : (-1 * dayjs(startDate).diff(dayjs(endDate), 'day'))}
                   </div>
                   <div className='daysAndTotalNumber'>
                     <strong>Total:</strong> $
-                    {Number.isNaN(
+                    {(startDate === endDate) || (Number.isNaN(
                       -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-                    ) * currentStory.price
-                      ? '0'
-                      : -1 *
-                        dayjs(startDate).diff(dayjs(endDate), 'day') *
-                        currentStory.price}
+                    ) * currentStory.price) ? currentStory.price : (-1 *
+                      dayjs(startDate).diff(dayjs(endDate), 'day') *
+                      currentStory.price) }
                   </div>
                 </div>
                 <button
