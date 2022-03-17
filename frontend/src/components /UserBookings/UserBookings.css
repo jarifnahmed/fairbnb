@@ -53,10 +53,16 @@
 
 
 
+.editAndDeleteButtonRowForBookings{
+  margin: 20px;
+  display: flex;
+}
 
-
-
-
+.allGoogleMapWidgetInfoForBookings{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
 #imgThumbnail {

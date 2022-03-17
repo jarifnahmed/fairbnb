@@ -16,10 +16,13 @@ Geocode.setLanguage('en');
 const containerStyle = {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
   // Lookup CSSProperties to see what is available
-  width: '400px',
-  height: '300px',
+  // width: '400px',
+  // height: '300px',
+  width: '230px',
+  height: '170px',
   borderRadius: '20px',
-  boxShadow: '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
+  boxShadow:
+    '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
 };
 
 function UserBookings() {
@@ -36,7 +39,6 @@ function UserBookings() {
   const onLoad = (marker) => {
     console.log('marker: ', marker);
   };
-
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -138,31 +140,28 @@ function UserBookings() {
                           <h2 className='neumorphic-card__title'>
                             Location: {booking.listingCity.slice(0, -5)}
                           </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Lat: {booking.listingLat}
-                          </h2>
-                          <h2 className='neumorphic-card__title'>
-                            Lat: {booking.listingLng}
-                          </h2>
                           <div>
-                          <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
-              <div className='allGoogleMapWidgetInfo'>
-                  <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={{
-                      lat: parseFloat(booking.listingLat),
-                      lng: parseFloat(booking.listingLng),
-                    }}
-                    zoom={10}
-                  >
-                    {/* Child components, such as markers, info windows, etc. */}
-                    <Marker onLoad={onLoad} position={{
-    lat: parseFloat(booking.listingLat),
-    lng: parseFloat(booking.listingLng),
-  }} />
-                  </GoogleMap>
-                </div>
-                </LoadScript>
+                            <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+                              <div className='allGoogleMapWidgetInfoForBookings'>
+                                <GoogleMap
+                                  mapContainerStyle={containerStyle}
+                                  center={{
+                                    lat: parseFloat(booking.listingLat),
+                                    lng: parseFloat(booking.listingLng),
+                                  }}
+                                  zoom={10}
+                                >
+                                  {/* Child components, such as markers, info windows, etc. */}
+                                  <Marker
+                                    onLoad={onLoad}
+                                    position={{
+                                      lat: parseFloat(booking.listingLat),
+                                      lng: parseFloat(booking.listingLng),
+                                    }}
+                                  />
+                                </GoogleMap>
+                              </div>
+                            </LoadScript>
                           </div>
                         </div>
                       </div>
@@ -217,51 +216,63 @@ function UserBookings() {
                                 });
                             }}
                           >
-                            <ul className='ws-errors'>
-                              {editErrors.map((error, idx) => (
-                                <li key={idx}>{error}</li>
-                              ))}
-                            </ul>
-                            <label>
-                              {' '}
-                              Start Date:
-                              <input
-                                type='date'
-                                value={editStartDate}
-                                onChange={(e) =>
-                                  setEditStartDate(e.target.value)
-                                }
-                                required
-                              />
-                            </label>
-                            <label>
-                              {' '}
-                              End Date:
-                              <input
-                                type='date'
-                                value={editEndDate}
-                                onChange={(e) => setEditEndDate(e.target.value)}
-                                required
-                              />
-                            </label>
+                            <div className='bookingsInputBox'>
+                              <div className='bookingsInputBox__outer'>
+                                <div className='bookingsInputBox__inner'>
+                                  <ul className='ws-errors'>
+                                    {editErrors.map((error, idx) => (
+                                      <li key={idx}>{error}</li>
+                                    ))}
+                                  </ul>
 
-                            <div className='daysAndTotal'>
-                              <div className='daysAndTotalNumber'>
-                                Days:{' '}
-                                {-1 *
-                                  dayjs(editStartDate).diff(
-                                    dayjs(editEndDate),
-                                    'day'
-                                  )}
-                              </div>
-                              <div className='daysAndTotalNumber'>
-                                <strong>Total:</strong> $
-                                {-1 *
-                                  dayjs(editStartDate).diff(
-                                    dayjs(editEndDate),
-                                    'day'
-                                  ) *
-                                  booking.listingPricePerNight}
+                                  <div className='dateInputFields'>
+                                    <div className='startingDate'>
+                                      <label>CHECK-IN:</label>
+                                      <input
+                                        // className='ic-field'
+                                        id='startingDateInputBox'
+                                        type='date'
+                                        value={editStartDate}
+                                        onChange={(e) =>
+                                          setEditStartDate(e.target.value)
+                                        }
+                                        required
+                                      />
+                                    </div>
+                                    <div className='endingDate'>
+                                      <label>CHECKOUT:</label>
+                                      <input
+                                        // className='ic-field'
+                                        id='endingDateInputBox'
+                                        type='date'
+                                        value={editEndDate}
+                                        onChange={(e) =>
+                                          setEditEndDate(e.target.value)
+                                        }
+                                        required
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className='daysAndTotal'>
+                                    <div className='daysAndTotalNumber'>
+                                      Days:{' '}
+                                      {-1 *
+                                        dayjs(editStartDate).diff(
+                                          dayjs(editEndDate),
+                                          'day'
+                                        )}
+                                    </div>
+                                    <div className='daysAndTotalNumber'>
+                                      <strong>Total:</strong> $
+                                      {-1 *
+                                        dayjs(editStartDate).diff(
+                                          dayjs(editEndDate),
+                                          'day'
+                                        ) *
+                                        booking.listingPricePerNight}
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
 
@@ -302,7 +313,7 @@ function UserBookings() {
                         <p className='the-booking'>
                           <div className='bookingIcon'></div>
                         </p>
-                        <div className='editAndDeleteButtonRow'>
+                        <div className='editAndDeleteButtonRowForBookings'>
                           {sessionUser && sessionUser.id === booking.userId && (
                             <button
                               className='my-5 btn neumorphic-btn'
