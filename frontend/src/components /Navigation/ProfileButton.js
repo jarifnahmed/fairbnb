@@ -9,6 +9,13 @@ function ProfileButton() {
   const allBookings = useSelector((state) => state.bookings);
   const bookingsArr = Object.values(allBookings);
 
+  const allStories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(allStories);
+
+  const userStories = storiesArr.filter(
+    (story) => story.authorId === sessionUser.id
+  );
+
   const userBookings = bookingsArr.filter(
     (booking) => booking.userId === sessionUser.id
   );
@@ -48,11 +55,11 @@ function ProfileButton() {
       </NavLink>
 
       <NavLink className='story-link-nav' to={`/user/stories`}>
-        My Listings
+        My Listings {userStories.length === 0 ? '' : ('(' + userStories.length + ')')}
       </NavLink>
 
       <NavLink className='story-link-nav' to={`/user/bookings`}>
-        My Bookings ({userBookings.length})
+        My Bookings {userBookings.length === 0 ? '' : ('(' + userBookings.length + ')')}
       </NavLink>
 
 
