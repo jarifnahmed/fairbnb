@@ -153,7 +153,7 @@ function UserBookings() {
                       lat: parseFloat(booking.listingLat),
                       lng: parseFloat(booking.listingLng),
                     }}
-                    zoom={13}
+                    zoom={10}
                   >
                     {/* Child components, such as markers, info windows, etc. */}
                     <Marker onLoad={onLoad} position={{
