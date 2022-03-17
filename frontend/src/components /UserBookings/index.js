@@ -276,7 +276,7 @@ function UserBookings() {
                               </div>
                             </div>
 
-                            <div className='saveAndCancelButtn'>
+                            <div className='saveAndCancelButtnForBookings'>
                               <button
                                 className='my-5 btn neumorphic-btn'
                                 id='saveButton'

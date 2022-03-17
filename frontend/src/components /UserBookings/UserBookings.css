@@ -50,8 +50,9 @@
 
 
 
-
-
+.saveAndCancelButtnForBookings{
+  margin: 20px;
+}
 
 .editAndDeleteButtonRowForBookings{
   margin: 20px;
