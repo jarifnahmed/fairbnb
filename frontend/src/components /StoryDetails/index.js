@@ -65,6 +65,8 @@ function StoryDetail() {
     let d = new Date(story.createdAt);
     let dateWritten = d.toString().slice(4, 10);
 
+    // if you don't own the listing, then you can make a review and booking for it
+    if (story && sessionUser && (story.authorId !== sessionUser.id)) {
     return (
       <>
         <div className='storyDetailsAll'>
@@ -143,7 +145,173 @@ function StoryDetail() {
           </div>
         </div>
       </>
-    );
+    )
+                }
+
+                    // if you do own the listing then you can't review or book it.
+    else if (story && sessionUser && (story.authorId === sessionUser.id)) {
+      return (
+        <>
+          <div className='storyDetailsAll'>
+            <div id='story-details'>
+              <div className='topStoryDetails'>
+                {/* <h2 className='story-elements-title'>{story.title}</h2>
+                <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
+                {/* <p className="story-elements date-written">{dateWritten}</p> */}
+                {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+              </div>
+              <h2 className='story-elements-title'>{story.title}</h2>
+              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <div className='imageGallery'>
+                <div className='topStoryDetails'></div>
+                <div className='pics'>
+                  {image.map((pic) => {
+                    return (
+                      <button className='bttnforImageLarger'>
+                        <img id={style} src={pic} onClick={changeStyle} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+
+  <div className='allStoryDetailsAndBooking'>
+    <div className='allStoryDetails'>
+              <div className='bottomStoryDetails'>
+                <h4 className='story-elements-propertyType'>
+                  {story.propertyType} hosted by {story.User.name}
+                </h4>
+                <h4 className='story-elements-propertyType'>
+                  ${story.price === 0 ? story.price + 1 : story.price} / night
+                </h4>
+                {/* <p className='story-elements-price'>
+                      ${story.price === 0 ? story.price + 1 : story.price} / night
+                    </p> */}
+              </div>
+              <div className='bottomStoryDetails'>
+                <p className='story-elements-body' id='story-body'>
+                  {renderHTML(story.body)}
+                </p>
+              </div>
+              </div>
+
+
+
+              </div>
+
+
+
+              {/* <p className="story-elements" id="story-body">{story.body}</p> */}
+              <div className='bottomMapAndReviews'>
+                <div className='mapAndBooking'>
+                  <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+                    <div className='allGoogleMapWidgetInfo'>
+                      <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={coordinates}
+                        zoom={13}
+                      >
+                        {/* Child components, such as markers, info windows, etc. */}
+                        <Marker onLoad={onLoad} position={coordinates} />
+                      </GoogleMap>
+                    </div>
+                  </LoadScript>
+                </div>
+                <div className='allReviewsSection'>
+                  <Comments />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+                  }
+
+
+                                      // if you aren't signed in then you can't make a review or booking
+    else if (story) {
+      return (
+        <>
+          <div className='storyDetailsAll'>
+            <div id='story-details'>
+              <div className='topStoryDetails'>
+                {/* <h2 className='story-elements-title'>{story.title}</h2>
+                <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
+                {/* <p className="story-elements date-written">{dateWritten}</p> */}
+                {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+              </div>
+              <h2 className='story-elements-title'>{story.title}</h2>
+              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <div className='imageGallery'>
+                <div className='topStoryDetails'></div>
+                <div className='pics'>
+                  {image.map((pic) => {
+                    return (
+                      <button className='bttnforImageLarger'>
+                        <img id={style} src={pic} onClick={changeStyle} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+
+
+  <div className='allStoryDetailsAndBooking'>
+    <div className='allStoryDetails'>
+              <div className='bottomStoryDetails'>
+                <h4 className='story-elements-propertyType'>
+                  {story.propertyType} hosted by {story.User.name}
+                </h4>
+                <h4 className='story-elements-propertyType'>
+                  ${story.price === 0 ? story.price + 1 : story.price} / night
+                </h4>
+                {/* <p className='story-elements-price'>
+                      ${story.price === 0 ? story.price + 1 : story.price} / night
+                    </p> */}
+              </div>
+              <div className='bottomStoryDetails'>
+                <p className='story-elements-body' id='story-body'>
+                  {renderHTML(story.body)}
+                </p>
+              </div>
+              </div>
+
+
+
+              </div>
+
+
+
+              {/* <p className="story-elements" id="story-body">{story.body}</p> */}
+              <div className='bottomMapAndReviews'>
+                <div className='mapAndBooking'>
+                  <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+                    <div className='allGoogleMapWidgetInfo'>
+                      <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={coordinates}
+                        zoom={13}
+                      >
+                        {/* Child components, such as markers, info windows, etc. */}
+                        <Marker onLoad={onLoad} position={coordinates} />
+                      </GoogleMap>
+                    </div>
+                  </LoadScript>
+                </div>
+                <div className='allReviewsSection'>
+                  <Comments />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+                  }
+
+
   } else {
     return null;
   }
