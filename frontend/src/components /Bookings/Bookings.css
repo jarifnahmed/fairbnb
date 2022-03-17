@@ -164,7 +164,6 @@
   padding: 8px;
   /* width: 50%; */
   box-shadow: 9px 9px 16px rgb(189 189 189 / 60%), -9px -9px 16px rgb(255 255 255 / 50%);
-  box-shadow: 7px 7px 15px rgb(55 84 170 / 15%), -7px -7px 20px rgb(255 255 255), inset 0px 0px 4px rgb(255 255 255 / 20%), inset 7px 7px 15px rgb(55 84 170 / 0%), inset -7px -7px 20px rgb(255 255 255 / 0%), 0px 0px 4px rgb(255 255 255 / 0%) !important;
  }
 
  .bookingsInputBox__outer{

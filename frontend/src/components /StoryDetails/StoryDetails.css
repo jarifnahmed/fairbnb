@@ -165,12 +165,20 @@
 .bottomStoryDetails {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+}
+
+.bottomMapAndReviews {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
+
 
 .story-elements-propertyType, .story-elements-price{
     font-size: 1.5rem;
     margin-top: 10px;
+    display: flex;
 }
 
 .storyBodyDiv{
@@ -184,4 +192,26 @@
     font-size: 1.4rem;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.mapAndBooking{
+    display: flex;
+}
+
+.allStoryDetailsAndBooking {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+
+.allStoryDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    flex-wrap: wrap;
 }
