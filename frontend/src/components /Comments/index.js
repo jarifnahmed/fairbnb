@@ -12,6 +12,9 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import { MdSend } from 'react-icons/md';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Comments() {
   const { storyId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
@@ -55,6 +58,18 @@ function Comments() {
   const handleEdit = async (e) => {
     e.preventDefault();
 
+    toast.success('Review Updated!', {
+      toastId: "updateReviewToast",
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      closeButton: false,
+      });
+
     const userId = sessionUser.id;
 
     const editedComment = {
@@ -82,6 +97,17 @@ function Comments() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    toast.success('Review Created!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      closeButton: false,
+      });
+
     const userId = sessionUser.id;
 
     const newComment = {
@@ -107,10 +133,6 @@ function Comments() {
     ) {
       return (
         <>
-          <div className='storyDetailsAll'>
-            LOGGED IN BUT I DO NOT OWN THE LISTING.
-          </div>
-
           {storyComments.length === 0 && (
             <h2 className='comments-title'>No Reviews</h2>
           )}
@@ -160,7 +182,18 @@ function Comments() {
                                 id='deleteButton'
                                 type='submit'
                                 onClick={() =>
-                                  dispatch(deleteComment(comment.id))
+                                  {dispatch(deleteComment(comment.id))
+
+                                    toast.error('Review Deleted!', {
+                                      position: "top-center",
+                                      autoClose: 1000,
+                                      hideProgressBar: false,
+                                      closeOnClick: false,
+                                      pauseOnHover: false,
+                                      draggable: false,
+                                      progress: undefined,
+                                      closeButton: false,
+                                      });}
                                 }
                               >
                                 <FaTrashAlt />

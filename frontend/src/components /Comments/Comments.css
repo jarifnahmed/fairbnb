@@ -272,3 +272,11 @@ ul {
   color: #6D7587;
   /* letter-spacing: 0.75px; */
  }
+
+ /* .Toastify__toast-theme--colored.Toastify__toast--success {
+   width: 600px;
+} */
+
+#updateReviewToast{
+  background-color: #3249CA
+}

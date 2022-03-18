@@ -30,7 +30,6 @@ const containerStyle = {
 };
 
 function UserBookings() {
-  const toastId = React.useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -157,8 +156,8 @@ function UserBookings() {
                             onSubmit={async (e) => {
                               e.preventDefault();
 
-                              if(! toast.isActive(toastId.current)) {
-                                toastId.current = toast.success('Booking Updated!', {
+                              toast.success('Booking Updated!', {
+                                  toastId: "updateBookingToast",
                                   position: "top-center",
                                   autoClose: 1000,
                                   hideProgressBar: false,
@@ -168,17 +167,6 @@ function UserBookings() {
                                   progress: undefined,
                                   closeButton: false,
                                   });
-                              }
-
-                              // toast.success('Booking Reserved!', {
-                              //   position: "top-center",
-                              //   autoClose: 5000,
-                              //   hideProgressBar: false,
-                              //   closeOnClick: true,
-                              //   pauseOnHover: true,
-                              //   draggable: true,
-                              //   progress: undefined,
-                              //   });
 
                               const userId = sessionUser.id;
 
@@ -316,7 +304,7 @@ rtl={false}
 // draggable
 // pauseOnHover
 closeButton={false}
-toastStyle={{ backgroundColor: '#3249CA' }}
+// toastStyle={{ backgroundColor: '#3249CA' }}
 theme='colored'
 />
 
@@ -359,7 +347,19 @@ theme='colored'
                               id='deleteButton'
                               type='submit'
                               onClick={() =>
-                                dispatch(deleteBooking(booking.id))
+                                {dispatch(deleteBooking(booking.id))
+
+                                  toast.error('Booking Removed!', {
+                                    toastId: "deleteBookingToast",
+                                    position: "top-center",
+                                    autoClose: 1000,
+                                    hideProgressBar: false,
+                                    closeOnClick: false,
+                                    pauseOnHover: false,
+                                    draggable: false,
+                                    progress: undefined,
+                                    closeButton: false,
+                                    });}
                               }
                             >
                               <FaTrashAlt />

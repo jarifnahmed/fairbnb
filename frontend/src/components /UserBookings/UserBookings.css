@@ -295,3 +295,11 @@
     box-shadow: none;
     /* border-radius: 4px; */
   }
+
+  #deleteBookingToast{
+    background-color: #E74C3C
+  }
+
+  #updateBookingToast{
+    background-color: #3249CA
+  }
