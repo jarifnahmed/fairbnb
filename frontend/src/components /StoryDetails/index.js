@@ -302,7 +302,8 @@ function StoryDetail() {
                   </LoadScript>
                 </div>
                 <div className='allReviewsSection'>
-                  <Comments />
+            <h2 className='comments-title'>Log In To See Reviews</h2>
+                  {/* <Comments /> */}
                 </div>
               </div>
             </div>
