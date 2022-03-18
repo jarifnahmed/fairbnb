@@ -34,19 +34,19 @@ function WriteStory() {
   //   if (file) setImage(file);
   // };
 
-    // for multiple file upload
-    const updateFiles = (e) => {
-      const files = e.target.files;
-      setImages(files);
-    };
+  // for multiple file upload
+  const updateFiles = (e) => {
+    const files = e.target.files;
+    setImages(files);
+  };
 
-    console.log('images is ', images)
+  console.log('images is ', images);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     toast.success('Listing Created!', {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -54,7 +54,7 @@ function WriteStory() {
       draggable: false,
       progress: undefined,
       closeButton: false,
-      });
+    });
 
     const authorId = sessionUser.id;
 
@@ -138,24 +138,24 @@ function WriteStory() {
             </div>
             <div className='ws-form-field'>
               <label htmlFor='propertyType'></label>
-                <select
-                    className='sf-input'
-                    id='propertyType'
-                    type='text'
-                    value={propertyType}
-                    placeholder='Property Type'
-                    onChange={(e) => setPropertyType(e.target.value)}
-                    required
-                >
-                    <option value="">Property Type</option>
-                    <option value="House">House</option>
-                    <option value="Condo">Condo</option>
-                    <option value="Apartment">Apartment</option>
-                    <option value="Townhouse">Townhouse</option>
-                    <option value="Cabin">Cabin</option>
-                    <option value="Treehouse">Treehouse</option>
-                    <option value="Mansion">Mansion</option>
-                </select>
+              <select
+                className='sf-input'
+                id='propertyType'
+                type='text'
+                value={propertyType}
+                placeholder='Property Type'
+                onChange={(e) => setPropertyType(e.target.value)}
+                required
+              >
+                <option value=''>Property Type</option>
+                <option value='House'>House</option>
+                <option value='Condo'>Condo</option>
+                <option value='Apartment'>Apartment</option>
+                <option value='Townhouse'>Townhouse</option>
+                <option value='Cabin'>Cabin</option>
+                <option value='Treehouse'>Treehouse</option>
+                <option value='Mansion'>Mansion</option>
+              </select>
             </div>
             <div className='ws-form-field'>
               <label htmlFor='story-city'></label>
@@ -166,8 +166,12 @@ function WriteStory() {
                 onPlaceSelected={(place) => {
                   setCity(place.formatted_address);
                   setCoordinates(place.geometry.location);
-                  setLat(JSON.parse(JSON.stringify(place.geometry.location))["lat"]);
-                  setLng(JSON.parse(JSON.stringify(place.geometry.location))["lng"]);
+                  setLat(
+                    JSON.parse(JSON.stringify(place.geometry.location))['lat']
+                  );
+                  setLng(
+                    JSON.parse(JSON.stringify(place.geometry.location))['lng']
+                  );
                 }}
                 options={{
                   types: ['(cities)'],
@@ -179,68 +183,75 @@ function WriteStory() {
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
-                {/* <p>{coordinates}</p> */}
-                {/* {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+              {/* <p>{coordinates}</p> */}
+              {/* {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
                 {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
             </div>
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
                 {/* <label htmlFor='price'>Price: </label> */}
-                <output name="result" for="price priceValue">${price} / night</output>
+                <output name='result' for='price priceValue'>
+                  ${price} / night
+                </output>
               </div>
               <input
                 // className='sf-input'
                 id='price'
-                name="priceValue"
+                name='priceValue'
                 type='range'
-                value={(Math.round(price).toFixed()) === 0 ? (Math.round(price).toFixed()) + 1 : (Math.round(price).toFixed())}
+                value={
+                  Math.round(price).toFixed() === 0
+                    ? Math.round(price).toFixed() + 1
+                    : Math.round(price).toFixed()
+                }
                 min='10'
-                max="200"
-                step="10"
+                max='200'
+                step='10'
                 onChange={(e) => setPrice(e.target.value)}
-                list="tickmarks"
+                list='tickmarks'
                 required
               />
-              <datalist id="tickmarks">
-              <option value="10"></option>
-              <option value="20" label="$20"></option>
-              <option value="30"></option>
-              <option value="40" label="$40"></option>
-              <option value="50"></option>
-              <option value="60" label="$60"></option>
-              <option value="70"></option>
-              <option value="80" label="$80"></option>
-              <option value="90"></option>
-              <option value="100" label="$100"></option>
-              <option value="110"></option>
-              <option value="120" label="$120"></option>
-              <option value="130"></option>
-              <option value="140" label="$140"></option>
-              <option value="150"></option>
-              <option value="160" label="$160"></option>
-              <option value="170"></option>
-              <option value="180" label="$180"></option>
-              <option value="190"></option>
-              <option value="200" label="$200"></option>
+              <datalist id='tickmarks'>
+                <option value='10'></option>
+                <option value='20' label='$20'></option>
+                <option value='30'></option>
+                <option value='40' label='$40'></option>
+                <option value='50'></option>
+                <option value='60' label='$60'></option>
+                <option value='70'></option>
+                <option value='80' label='$80'></option>
+                <option value='90'></option>
+                <option value='100' label='$100'></option>
+                <option value='110'></option>
+                <option value='120' label='$120'></option>
+                <option value='130'></option>
+                <option value='140' label='$140'></option>
+                <option value='150'></option>
+                <option value='160' label='$160'></option>
+                <option value='170'></option>
+                <option value='180' label='$180'></option>
+                <option value='190'></option>
+                <option value='200' label='$200'></option>
               </datalist>
             </div>
             <label className='ws-form-field-uploadImage'>
-            <div className='centeringChooseFilesButton'>
-            <strong>Upload Multiple Images. </strong>Or Drag In Them Below.
-            <input
-              className='uploadImageButton'
-              type="file"
-              accept="image/*"
-              multiple
-              name
-              required
-              onChange={updateFiles} />
+              <div className='centeringChooseFilesButton'>
+                <strong>Upload Multiple Images. </strong>Or Drag In Them Below.
+                <input
+                  className='uploadImageButton'
+                  type='file'
+                  accept='image/*'
+                  multiple
+                  name
+                  required
+                  onChange={updateFiles}
+                />
               </div>
-              </label>
+            </label>
             <div className='ws-form-field-uploadImage'>
               {/* <label>Upload Image</label>
               <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/> */}
-        {/* <label>
+              {/* <label>
             Choose Multiple Files. Or Drag Them Here.</label>
             <input
               className='uploadImageButton'
@@ -278,18 +289,18 @@ function WriteStory() {
               Submit
             </button>
             <ToastContainer
-position="top-center"
-autoClose={3000}
-hideProgressBar={false}
-newestOnTop={false}
-// closeOnClick
-rtl={false}
-// pauseOnFocusLoss
-// draggable
-// pauseOnHover
-closeButton={false}
-theme='colored'
-/>
+              position='top-center'
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              // closeOnClick
+              rtl={false}
+              // pauseOnFocusLoss
+              // draggable
+              // pauseOnHover
+              closeButton={false}
+              theme='colored'
+            />
           </form>
         </div>
       </>

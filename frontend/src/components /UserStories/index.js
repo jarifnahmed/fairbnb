@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { deleteStory } from '../../store/stories';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
-import './UserStories.css'
+import './UserStories.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -112,15 +112,15 @@ function UserStories() {
                         <FaTrashAlt />
                       </button>
                       <ToastContainer
-position="top-center"
-autoClose={3000}
-hideProgressBar={false}
-newestOnTop={false}
-rtl={false}
-containerId={'deleteBookingToast'}
-closeButton={false}
-theme='colored'
-/>
+                        position='top-center'
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        rtl={false}
+                        containerId={'deleteBookingToast'}
+                        closeButton={false}
+                        theme='colored'
+                      />
                     </div>
                   </li>
                 );

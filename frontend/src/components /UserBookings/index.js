@@ -11,7 +11,6 @@ import './UserBookings.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 Geocode.setApiKey('AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g');
@@ -90,33 +89,33 @@ function UserBookings() {
                         <div className='neumorphic-card__outer'>
                           <div className='bookingImageCenter'>
                             <div className='bookingImageAsWellAsMapColumn'>
-                            <img
-                              class='neumorphic-image-for-booking'
-                              src={booking.listingFirstImageUrl}
-                              alt='story'
-                            />
-                            <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
-                              <div className='allGoogleMapWidgetInfoForBookings'>
-                                <GoogleMap
-                                  mapContainerStyle={containerStyle}
-                                  center={{
-                                    lat: parseFloat(booking.listingLat),
-                                    lng: parseFloat(booking.listingLng),
-                                  }}
-                                  zoom={10}
-                                >
-                                  {/* Child components, such as markers, info windows, etc. */}
-                                  <Marker
-                                    onLoad={onLoad}
-                                    position={{
+                              <img
+                                class='neumorphic-image-for-booking'
+                                src={booking.listingFirstImageUrl}
+                                alt='story'
+                              />
+                              <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+                                <div className='allGoogleMapWidgetInfoForBookings'>
+                                  <GoogleMap
+                                    mapContainerStyle={containerStyle}
+                                    center={{
                                       lat: parseFloat(booking.listingLat),
                                       lng: parseFloat(booking.listingLng),
                                     }}
-                                  />
-                                </GoogleMap>
-                              </div>
-                            </LoadScript>
-                                    </div>
+                                    zoom={10}
+                                  >
+                                    {/* Child components, such as markers, info windows, etc. */}
+                                    <Marker
+                                      onLoad={onLoad}
+                                      position={{
+                                        lat: parseFloat(booking.listingLat),
+                                        lng: parseFloat(booking.listingLng),
+                                      }}
+                                    />
+                                  </GoogleMap>
+                                </div>
+                              </LoadScript>
+                            </div>
                             <div className='bookingDetails'>
                               <h2 className='neumorphic-card__text'>
                                 Location: {booking.listingCity.slice(0, -5)}
@@ -157,16 +156,16 @@ function UserBookings() {
                               e.preventDefault();
 
                               toast.success('Booking Updated!', {
-                                  toastId: "updateBookingToast",
-                                  position: "top-center",
-                                  autoClose: 1000,
-                                  hideProgressBar: false,
-                                  closeOnClick: false,
-                                  pauseOnHover: false,
-                                  draggable: false,
-                                  progress: undefined,
-                                  closeButton: false,
-                                  });
+                                toastId: 'updateBookingToast',
+                                position: 'top-center',
+                                autoClose: 1000,
+                                hideProgressBar: false,
+                                closeOnClick: false,
+                                pauseOnHover: false,
+                                draggable: false,
+                                progress: undefined,
+                                closeButton: false,
+                              });
 
                               const userId = sessionUser.id;
 
@@ -177,13 +176,47 @@ function UserBookings() {
                                 startDate: editStartDate,
                                 endDate: editEndDate,
                                 days:
-                                ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
-                                  -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-                                )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
+                                  -1 *
+                                    dayjs(editStartDate).diff(
+                                      dayjs(editEndDate),
+                                      'day'
+                                    ) ===
+                                    0 ||
+                                  Number.isNaN(
+                                    -1 *
+                                      dayjs(editStartDate).diff(
+                                        dayjs(editEndDate),
+                                        'day'
+                                      )
+                                  )
+                                    ? 1
+                                    : -1 *
+                                      dayjs(editStartDate).diff(
+                                        dayjs(editEndDate),
+                                        'day'
+                                      ),
                                 total:
-                                ((-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * booking.listingPricePerNight) === 0) || (Number.isNaN(
-                                  -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-                                ) * booking.listingPricePerNight) ? booking.listingPricePerNight : (-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * booking.listingPricePerNight),
+                                  -1 *
+                                    dayjs(editStartDate).diff(
+                                      dayjs(editEndDate),
+                                      'day'
+                                    ) *
+                                    booking.listingPricePerNight ===
+                                    0 ||
+                                  Number.isNaN(
+                                    -1 *
+                                      dayjs(editStartDate).diff(
+                                        dayjs(editEndDate),
+                                        'day'
+                                      )
+                                  ) * booking.listingPricePerNight
+                                    ? booking.listingPricePerNight
+                                    : -1 *
+                                      dayjs(editStartDate).diff(
+                                        dayjs(editEndDate),
+                                        'day'
+                                      ) *
+                                      booking.listingPricePerNight,
                               };
 
                               setshowEditBox(false);
@@ -245,17 +278,39 @@ function UserBookings() {
                                   </div>
                                   <div className='daysAndTotal'>
                                     <div className='daysAndTotalNumber'>
-                                    Days: {(editStartDate === editEndDate) || (Number.isNaN(
-                      -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-                    )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'))}
+                                      Days:{' '}
+                                      {editStartDate === editEndDate ||
+                                      Number.isNaN(
+                                        -1 *
+                                          dayjs(editStartDate).diff(
+                                            dayjs(editEndDate),
+                                            'day'
+                                          )
+                                      )
+                                        ? 1
+                                        : -1 *
+                                          dayjs(editStartDate).diff(
+                                            dayjs(editEndDate),
+                                            'day'
+                                          )}
                                     </div>
                                     <div className='daysAndTotalNumber'>
                                       <strong>Total:</strong> $
-                                      {(editStartDate === editEndDate) || (Number.isNaN(
-                      -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-                    ) * booking.listingPricePerNight) ? booking.listingPricePerNight : (-1 *
-                      dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
-                      booking.listingPricePerNight) }
+                                      {editStartDate === editEndDate ||
+                                      Number.isNaN(
+                                        -1 *
+                                          dayjs(editStartDate).diff(
+                                            dayjs(editEndDate),
+                                            'day'
+                                          )
+                                      ) * booking.listingPricePerNight
+                                        ? booking.listingPricePerNight
+                                        : -1 *
+                                          dayjs(editStartDate).diff(
+                                            dayjs(editEndDate),
+                                            'day'
+                                          ) *
+                                          booking.listingPricePerNight}
                                     </div>
                                   </div>
                                 </div>
@@ -293,20 +348,20 @@ function UserBookings() {
                           </form>
                         </div>
                       )}
-                                                  <ToastContainer
-position="top-center"
-autoClose={1000}
-hideProgressBar={false}
-newestOnTop={false}
-// closeOnClick
-rtl={false}
-// pauseOnFocusLoss
-// draggable
-// pauseOnHover
-closeButton={false}
-// toastStyle={{ backgroundColor: '#3249CA' }}
-theme='colored'
-/>
+                    <ToastContainer
+                      position='top-center'
+                      autoClose={1000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      // closeOnClick
+                      rtl={false}
+                      // pauseOnFocusLoss
+                      // draggable
+                      // pauseOnHover
+                      closeButton={false}
+                      // toastStyle={{ backgroundColor: '#3249CA' }}
+                      theme='colored'
+                    />
 
                     {!showEditBoxArr[booking.id] && (
                       <div className='bookingsDiv' id={booking.id}>
@@ -346,21 +401,21 @@ theme='colored'
                               className='my-5 btn neumorphic-btn'
                               id='deleteButton'
                               type='submit'
-                              onClick={() =>
-                                {dispatch(deleteBooking(booking.id))
+                              onClick={() => {
+                                dispatch(deleteBooking(booking.id));
 
-                                  toast.error('Booking Removed!', {
-                                    toastId: "deleteBookingToast",
-                                    position: "top-center",
-                                    autoClose: 1000,
-                                    hideProgressBar: false,
-                                    closeOnClick: false,
-                                    pauseOnHover: false,
-                                    draggable: false,
-                                    progress: undefined,
-                                    closeButton: false,
-                                    });}
-                              }
+                                toast.error('Booking Removed!', {
+                                  toastId: 'deleteBookingToast',
+                                  position: 'top-center',
+                                  autoClose: 1000,
+                                  hideProgressBar: false,
+                                  closeOnClick: false,
+                                  pauseOnHover: false,
+                                  draggable: false,
+                                  progress: undefined,
+                                  closeButton: false,
+                                });
+                              }}
                             >
                               <FaTrashAlt />
                             </button>
