@@ -43,8 +43,8 @@ module.exports = {
           lng: -84.38633,
           price: 80,
           imageUrl: [
-            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647602699/fairbnb-SeedData/Rhythm%20of%20Atlanta/a1c1a1a36c9e4ff8adcb958c4276f28d-jumbo_v1p1kb.jpg',
-            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647602976/fairbnb-SeedData/Rhythm%20of%20Atlanta/Zandberg-London-Townhouse_11_sombbx.jpg',
+            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647602876/fairbnb-SeedData/Rhythm%20of%20Atlanta/960x0_ghn5v5.jpg',
+            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647608401/fairbnb-SeedData/Rhythm%20of%20Atlanta/featured-image-living-room-lighting_xi8qac.jpg',
             'https://res.cloudinary.com/diiwknzfk/image/upload/v1647601815/fairbnb-SeedData/Rhythm%20of%20Atlanta/18c84416bf261cc3d0a85ef87ba3ad98_kv9aea.jpg',
             'https://res.cloudinary.com/diiwknzfk/image/upload/v1647601799/fairbnb-SeedData/Rhythm%20of%20Atlanta/Nerdy-and-Cozy-Setup_dwmxwr.jpg',
             // 'https://res.cloudinary.com/diiwknzfk/image/upload/v1647601785/fairbnb-SeedData/Rhythm%20of%20Atlanta/Classic-Male-Living-Space-Ideas_mpdlux.jpg',
