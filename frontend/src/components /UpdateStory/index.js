@@ -90,8 +90,6 @@ function EditStory() {
 
     const editorConfiguration = {
       toolbar: [
-        'heading',
-        '|',
         'bold',
         'italic',
         '|',

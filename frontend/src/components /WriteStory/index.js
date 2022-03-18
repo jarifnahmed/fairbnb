@@ -80,8 +80,6 @@ function WriteStory() {
 
   const editorConfiguration = {
     toolbar: [
-      'heading',
-      '|',
       'bold',
       'italic',
       '|',

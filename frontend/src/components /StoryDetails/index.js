@@ -111,6 +111,23 @@ function StoryDetail() {
                       {renderHTML(story.body)}
                     </p>
                   </div>
+                  <div className='mapAndBooking'>
+                    <hr></hr>
+                    <h2 className='mapHeader'>Where You'll Be</h2>
+                    <h3 className='mapCity'>{story.city}</h3>
+                    <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
+                      <div className='allGoogleMapWidgetInfo'>
+                        <GoogleMap
+                          mapContainerStyle={containerStyle}
+                          center={coordinates}
+                          zoom={13}
+                        >
+                          {/* Child components, such as markers, info windows, etc. */}
+                          <Marker onLoad={onLoad} position={coordinates} />
+                        </GoogleMap>
+                      </div>
+                    </LoadScript>
+                  </div>
                 </div>
 
                 <div className='allBookingsSection'>
@@ -120,20 +137,6 @@ function StoryDetail() {
 
               {/* <p className="story-elements" id="story-body">{story.body}</p> */}
               <div className='bottomMapAndReviews'>
-                <div className='mapAndBooking'>
-                  <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
-                    <div className='allGoogleMapWidgetInfo'>
-                      <GoogleMap
-                        mapContainerStyle={containerStyle}
-                        center={coordinates}
-                        zoom={13}
-                      >
-                        {/* Child components, such as markers, info windows, etc. */}
-                        <Marker onLoad={onLoad} position={coordinates} />
-                      </GoogleMap>
-                    </div>
-                  </LoadScript>
-                </div>
                 <div className='allReviewsSection'>
                   <Comments />
                 </div>
