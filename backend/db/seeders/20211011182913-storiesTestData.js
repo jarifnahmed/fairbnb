@@ -41,9 +41,9 @@ module.exports = {
           city: 'Atlanta, GA, USA',
           lat: 33.753746,
           lng: -84.38633,
-          price: 140,
+          price: 80,
           imageUrl: [
-            'https://res.cloudinary.https://res.cloudinary.com/diiwknzfk/image/upload/v1647602699/fairbnb-SeedData/Rhythm%20of%20Atlanta/a1c1a1a36c9e4ff8adcb958c4276f28d-jumbo_v1p1kb.jpg/diiwknzfk/image/upload/v1647602193/fairbnb-SeedData/The%20Midtown%20Spot/929253f5-f7a2-4252-bc2b-ff3af405bfcd-0219_Growth_and_Development_Apartments_at_Hartwell_Village_in_Seneca_008_zule7z.jpg',
+            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647602699/fairbnb-SeedData/Rhythm%20of%20Atlanta/a1c1a1a36c9e4ff8adcb958c4276f28d-jumbo_v1p1kb.jpg',
             'https://res.cloudinary.com/diiwknzfk/image/upload/v1647602976/fairbnb-SeedData/Rhythm%20of%20Atlanta/Zandberg-London-Townhouse_11_sombbx.jpg',
             'https://res.cloudinary.com/diiwknzfk/image/upload/v1647601815/fairbnb-SeedData/Rhythm%20of%20Atlanta/18c84416bf261cc3d0a85ef87ba3ad98_kv9aea.jpg',
             'https://res.cloudinary.com/diiwknzfk/image/upload/v1647601799/fairbnb-SeedData/Rhythm%20of%20Atlanta/Nerdy-and-Cozy-Setup_dwmxwr.jpg',
