@@ -59,8 +59,8 @@ function Comments() {
     e.preventDefault();
 
     toast.success('Review Updated!', {
-      toastId: "updateReviewToast",
-      position: "top-center",
+      toastId: 'updateReviewToast',
+      position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -68,7 +68,7 @@ function Comments() {
       draggable: false,
       progress: undefined,
       closeButton: false,
-      });
+    });
 
     const userId = sessionUser.id;
 
@@ -98,7 +98,7 @@ function Comments() {
     e.preventDefault();
 
     toast.success('Review Created!', {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -106,7 +106,7 @@ function Comments() {
       draggable: false,
       progress: undefined,
       closeButton: false,
-      });
+    });
 
     const userId = sessionUser.id;
 
@@ -181,20 +181,20 @@ function Comments() {
                                 className='my-5 btn neumorphic-btn'
                                 id='deleteButton'
                                 type='submit'
-                                onClick={() =>
-                                  {dispatch(deleteComment(comment.id))
+                                onClick={() => {
+                                  dispatch(deleteComment(comment.id));
 
-                                    toast.error('Review Removed!', {
-                                      position: "top-center",
-                                      autoClose: 1000,
-                                      hideProgressBar: false,
-                                      closeOnClick: false,
-                                      pauseOnHover: false,
-                                      draggable: false,
-                                      progress: undefined,
-                                      closeButton: false,
-                                      });}
-                                }
+                                  toast.error('Review Removed!', {
+                                    position: 'top-center',
+                                    autoClose: 1000,
+                                    hideProgressBar: false,
+                                    closeOnClick: false,
+                                    pauseOnHover: false,
+                                    draggable: false,
+                                    progress: undefined,
+                                    closeButton: false,
+                                  });
+                                }}
                               >
                                 <FaTrashAlt />
                               </button>
