@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { deleteStory } from '../../store/stories';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
-import './UserStories.css';
+import './UserStories.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function UserStories() {
   const dispatch = useDispatch();
@@ -31,17 +33,31 @@ function UserStories() {
                 let dateWritten = d.toString().slice(4, 10);
                 return (
                   <li key={story.id} className='feed-list'>
-                  <NavLink className='story-link' to={`/stories/${story.id}`}>
-                  <div className='neumorphic-card mx-auto'>
-                    <div className='neumorphic-card__outer'>
-                        {/* <h2 className='title'>{story.title}</h2> */}
-                        <img class='neumorphic-image' src={story.imageUrl[0]} alt='story' />
-                        <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
-                        <div className="propertyTypeAndPriceLine">
-                          <p className='neumorphic-card__text'>{story.propertyType}</p>
-                          <p className="neumorphic-card__text">${(story.price) === 0 ? (story.price) + 1 : (story.price)} / night</p>
-                        </div>
-                        {/* <div id='e-d-btn-ctn'>
+                    <NavLink className='story-link' to={`/stories/${story.id}`}>
+                      <div className='neumorphic-card mx-auto'>
+                        <div className='neumorphic-card__outer'>
+                          {/* <h2 className='title'>{story.title}</h2> */}
+                          <img
+                            class='neumorphic-image'
+                            src={story.imageUrl[0]}
+                            alt='story'
+                          />
+                          <p className='neumorphic-card__title'>
+                            {story.city.slice(0, -5)}
+                          </p>
+                          <div className='propertyTypeAndPriceLine'>
+                            <p className='neumorphic-card__text'>
+                              {story.propertyType}
+                            </p>
+                            <p className='neumorphic-card__text'>
+                              $
+                              {story.price === 0
+                                ? story.price + 1
+                                : story.price}{' '}
+                              / night
+                            </p>
+                          </div>
+                          {/* <div id='e-d-btn-ctn'>
                           <NavLink to={`/edit/story/${story.id}`}>
                             <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
                               <FaEdit id='editBttnLogo' />
@@ -56,30 +72,57 @@ function UserStories() {
                             <FaTrashAlt id='trashBttnLogo' />
                           </button>
                         </div> */}
-                        {/* <p className='user-name'>{story.User.name}</p> */}
-                      {/* <p className="date-written">{dateWritten}</p> */}
-                    </div>
-                    <div>
-                        {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
-                   </div>
-                  </div>
+                          {/* <p className='user-name'>{story.User.name}</p> */}
+                          {/* <p className="date-written">{dateWritten}</p> */}
+                        </div>
+                        <div>
+                          {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
+                        </div>
+                      </div>
                     </NavLink>
                     <div id='e-d-btn-ctn'>
-                          <NavLink to={`/edit/story/${story.id}`}>
-                            <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
-                              <FaEdit />
-                            </button>
-                          </NavLink>
-                          <button
-                            className='my-5 btn neumorphic-btn'
-                            id="deleteButton"
-                            type='submit'
-                            onClick={() => dispatch(deleteStory(story.id)) }
-                          >
-                            <FaTrashAlt />
-                          </button>
-                        </div>
-                </li>
+                      <NavLink to={`/edit/story/${story.id}`}>
+                        <button
+                          className='my-5 btn neumorphic-btn'
+                          id='editButton'
+                          type='submit'
+                        >
+                          <FaEdit />
+                        </button>
+                      </NavLink>
+                      <button
+                        className='my-5 btn neumorphic-btn'
+                        id='deleteButton'
+                        type='submit'
+                        onClick={() => {
+                          dispatch(deleteStory(story.id));
+
+                          toast.error('Listing Removed!', {
+                            position: 'top-center',
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: false,
+                            draggable: false,
+                            progress: undefined,
+                            closeButton: false,
+                          });
+                        }}
+                      >
+                        <FaTrashAlt />
+                      </button>
+                      <ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+rtl={false}
+containerId={'deleteBookingToast'}
+closeButton={false}
+theme='colored'
+/>
+                    </div>
+                  </li>
                 );
               })}
             </ul>

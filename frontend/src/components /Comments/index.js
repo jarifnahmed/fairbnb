@@ -184,7 +184,7 @@ function Comments() {
                                 onClick={() =>
                                   {dispatch(deleteComment(comment.id))
 
-                                    toast.error('Review Deleted!', {
+                                    toast.error('Review Removed!', {
                                       position: "top-center",
                                       autoClose: 1000,
                                       hideProgressBar: false,
