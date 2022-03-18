@@ -188,20 +188,50 @@
     align-items: center;
 }
 
+.story-elements-body-truncate{
+    font-size: 1.4rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* turncate details text */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
+    cursor: pointer;
+}
+
+.showMoreOrLess {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    align-items: center;
+}
+
+.showMoreOrLess:hover{
+    color: #3F6DD8;
+}
+
 .story-elements-body{
     font-size: 1.4rem;
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: justify;
+    cursor: pointer;
 }
 
 .mapAndBooking{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .allStoryDetailsAndBooking {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: row;
     align-items: flex-start;
     margin-top: 3rem;
@@ -213,8 +243,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 45%;
+    width: 50%;
     flex-wrap: wrap;
+    margin-right: 4rem;
 }
 
 .allBookingsSection{

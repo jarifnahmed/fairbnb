@@ -5,6 +5,7 @@ import { deleteStory } from '../../store/stories';
 import Comments from '../Comments';
 import EditStory from '../UpdateStory';
 import { FaRegUserCircle } from 'react-icons/fa';
+import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import './StoryDetails.css';
 import renderHTML from 'react-render-html';
 
@@ -22,8 +23,8 @@ Geocode.setLanguage('en');
 const containerStyle = {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference
   // Lookup CSSProperties to see what is available
-  width: '1000px',
-  height: '600px',
+  width: '100%',
+  height: '38rem',
   borderRadius: '20px',
   boxShadow:
     '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
@@ -52,6 +53,16 @@ function StoryDetail() {
     }
   };
 
+  const [storyDetailsStyle, setStoryDetailsStyle] = useState('story-elements-body-truncate');
+
+  const changeStoryDetailsStyle = () => {
+    if (storyDetailsStyle === 'story-elements-body') {
+      setStoryDetailsStyle('story-elements-body-truncate');
+    } else {
+      setStoryDetailsStyle('story-elements-body');
+    }
+  };
+
   const coordinates = {
     lat: parseFloat(story.lat),
     lng: parseFloat(story.lng),
@@ -65,7 +76,7 @@ function StoryDetail() {
     let d = new Date(story.createdAt);
     let dateWritten = d.toString().slice(4, 10);
 
-    // if you don't own the listing, then you can make a review and booking for it
+    // if you are logged in and  don't own the listing, then you can make a review and booking for it
     if (story && sessionUser && story.authorId !== sessionUser.id) {
       return (
         <>
@@ -107,9 +118,10 @@ function StoryDetail() {
                   </p> */}
                   </div>
                   <div className='bottomStoryDetails'>
-                    <p className='story-elements-body' id='story-body'>
+                    <p className={storyDetailsStyle} id='story-body' onClick={changeStoryDetailsStyle}>
                       {renderHTML(story.body)}
                     </p>
+                    <p className='showMoreOrLess' onClick={changeStoryDetailsStyle}><strong><u >Show More / Less</u>&nbsp;</strong><strong><MdOutlineArrowForwardIos /></strong></p>
                   </div>
                   <div className='mapAndBooking'>
                     <hr></hr>
