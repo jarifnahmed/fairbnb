@@ -98,7 +98,7 @@ function UserStories() {
                           dispatch(deleteStory(story.id));
 
                           toast.error('Listing Removed!', {
-                            position: 'top-center',
+                            position: 'bottom-center',
                             autoClose: 1000,
                             hideProgressBar: false,
                             closeOnClick: false,
@@ -112,7 +112,7 @@ function UserStories() {
                         <FaTrashAlt />
                       </button>
                       <ToastContainer
-                        position='top-center'
+                        position='bottom-center'
                         autoClose={3000}
                         hideProgressBar={false}
                         newestOnTop={false}

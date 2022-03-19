@@ -157,7 +157,7 @@ function UserBookings() {
 
                               toast.success('Booking Updated!', {
                                 toastId: 'updateBookingToast',
-                                position: 'top-center',
+                                position: 'bottom-center',
                                 autoClose: 1000,
                                 hideProgressBar: false,
                                 closeOnClick: false,
@@ -349,7 +349,7 @@ function UserBookings() {
                         </div>
                       )}
                     <ToastContainer
-                      position='top-center'
+                      position='bottom-center'
                       autoClose={1000}
                       hideProgressBar={false}
                       newestOnTop={false}
@@ -406,7 +406,7 @@ function UserBookings() {
 
                                 toast.error('Booking Removed!', {
                                   toastId: 'deleteBookingToast',
-                                  position: 'top-center',
+                                  position: 'bottom-center',
                                   autoClose: 1000,
                                   hideProgressBar: false,
                                   closeOnClick: false,

@@ -46,7 +46,7 @@ function WriteStory() {
     e.preventDefault();
 
     toast.success('Listing Created!', {
-      position: 'top-center',
+      position: 'bottom-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -287,7 +287,7 @@ function WriteStory() {
               Submit
             </button>
             <ToastContainer
-              position='top-center'
+              position='bottom-center'
               autoClose={3000}
               hideProgressBar={false}
               newestOnTop={false}

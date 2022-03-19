@@ -35,10 +35,10 @@ function Bookings() {
   const dayjs = require('dayjs');
   const now = dayjs();
 
-  const tmmrw = now.add(1,'day');
+  const tmmrw = now.add(1, 'day');
 
-  console.log('today is', now.format('YYYY-MM-DD'))
-  console.log('tomorrow is', tmmrw.format('YYYY-MM-DD'))
+  console.log('today is', now.format('YYYY-MM-DD'));
+  console.log('tomorrow is', tmmrw.format('YYYY-MM-DD'));
 
   const currentStory = useSelector((state) => state.stories[storyId]);
 
@@ -50,7 +50,7 @@ function Bookings() {
   // const tmmrwFromStartDate = startDate.add(1,'day');
   const [endDate, setEndDate] = useState('');
 
-  console.log('startDate is', startDate)
+  console.log('startDate is', startDate);
   // console.log('startDateTomorrow is', startDate.add(1, 'day'))
 
   const [days, setDays] = useState(0);
@@ -62,8 +62,6 @@ function Bookings() {
   const [listingLat, setListingLat] = useState('');
   const [listingLng, setListingLng] = useState('');
 
-
-
   const [errors, setErrors] = useState([]);
   let newObj = {};
   for (const booking of bookingsArr) {
@@ -72,7 +70,6 @@ function Bookings() {
 
   const [editStartDate, setEditStartDate] = useState('');
   const [editEndDate, setEditEndDate] = useState('');
-
 
   const [editDays, setEditDays] = useState('');
   const [editTotal, setEditTotal] = useState('');
@@ -94,13 +91,24 @@ function Bookings() {
       storyId: Number(storyId),
       startDate: editStartDate,
       endDate: editEndDate,
-      days: ((-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')) === 0) || (Number.isNaN(
-        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-      )) ? 1 : (-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')),
+      days:
+        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day') === 0 ||
+        Number.isNaN(-1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'))
+          ? 1
+          : -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day'),
 
-      total: ((-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price) === 0) || (Number.isNaN(
-        -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-      ) * currentStory.price) ? currentStory.price : (-1 *dayjs(editStartDate).diff(dayjs(editEndDate), 'day') * currentStory.price),
+      total:
+        -1 *
+          dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
+          currentStory.price ===
+          0 ||
+        Number.isNaN(
+          -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
+        ) * currentStory.price
+          ? currentStory.price
+          : -1 *
+            dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
+            currentStory.price,
     };
 
     setshowEditBox(false);
@@ -125,7 +133,7 @@ function Bookings() {
     e.preventDefault();
 
     toast.success('Booking Reserved!', {
-      position: "top-center",
+      position: 'bottom-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -133,7 +141,7 @@ function Bookings() {
       draggable: false,
       progress: undefined,
       closeButton: false,
-      });
+    });
 
     const userId = sessionUser.id;
 
@@ -142,13 +150,23 @@ function Bookings() {
       storyId: Number(storyId),
       startDate,
       endDate,
-      days: ((-1 * dayjs(startDate).diff(dayjs(endDate), 'day')) === 0) || (Number.isNaN(
-        -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-      )) ? 1 : (-1 * dayjs(startDate).diff(dayjs(endDate), 'day')),
+      days:
+        -1 * dayjs(startDate).diff(dayjs(endDate), 'day') === 0 ||
+        Number.isNaN(-1 * dayjs(startDate).diff(dayjs(endDate), 'day'))
+          ? 1
+          : -1 * dayjs(startDate).diff(dayjs(endDate), 'day'),
 
-      total: ((-1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price) === 0) || (Number.isNaN(
-        -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-      ) * currentStory.price) ? currentStory.price : (-1 *dayjs(startDate).diff(dayjs(endDate), 'day') * currentStory.price),
+      total:
+        -1 *
+          dayjs(startDate).diff(dayjs(endDate), 'day') *
+          currentStory.price ===
+          0 ||
+        Number.isNaN(-1 * dayjs(startDate).diff(dayjs(endDate), 'day')) *
+          currentStory.price
+          ? currentStory.price
+          : -1 *
+            dayjs(startDate).diff(dayjs(endDate), 'day') *
+            currentStory.price,
       listingFirstImageUrl: currentStory.imageUrl[0],
       listingPricePerNight: currentStory.price,
       listingPricePerNight: currentStory.price,
@@ -215,17 +233,24 @@ function Bookings() {
                 </div>
                 <div className='daysAndTotal'>
                   <div className='daysAndTotalNumber'>
-                  Days: {(startDate === endDate) || (Number.isNaN(
+                    Days:{' '}
+                    {startDate === endDate ||
+                    Number.isNaN(
                       -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-                    )) ? 1 : (-1 * dayjs(startDate).diff(dayjs(endDate), 'day'))}
+                    )
+                      ? 1
+                      : -1 * dayjs(startDate).diff(dayjs(endDate), 'day')}
                   </div>
                   <div className='daysAndTotalNumber'>
                     <strong>Total:</strong> $
-                    {(startDate === endDate) || (Number.isNaN(
+                    {startDate === endDate ||
+                    Number.isNaN(
                       -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-                    ) * currentStory.price) ? currentStory.price : (-1 *
-                      dayjs(startDate).diff(dayjs(endDate), 'day') *
-                      currentStory.price) }
+                    ) * currentStory.price
+                      ? currentStory.price
+                      : -1 *
+                        dayjs(startDate).diff(dayjs(endDate), 'day') *
+                        currentStory.price}
                   </div>
                 </div>
                 <button
@@ -236,18 +261,18 @@ function Bookings() {
                   Reserve
                 </button>
                 <ToastContainer
-position="top-center"
-autoClose={3000}
-hideProgressBar={false}
-newestOnTop={false}
-// closeOnClick
-rtl={false}
-// pauseOnFocusLoss
-// draggable
-// pauseOnHover
-closeButton={false}
-theme='colored'
-/>
+                  position='bottom-center'
+                  autoClose={3000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  // closeOnClick
+                  rtl={false}
+                  // pauseOnFocusLoss
+                  // draggable
+                  // pauseOnHover
+                  closeButton={false}
+                  theme='colored'
+                />
               </form>
             </div>
           </div>

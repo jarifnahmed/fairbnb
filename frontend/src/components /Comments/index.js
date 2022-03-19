@@ -60,7 +60,7 @@ function Comments() {
 
     toast.success('Review Updated!', {
       toastId: 'updateReviewToast',
-      position: 'top-center',
+      position: 'bottom-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -98,7 +98,7 @@ function Comments() {
     e.preventDefault();
 
     toast.success('Review Created!', {
-      position: 'top-center',
+      position: 'bottom-center',
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: false,
@@ -185,7 +185,7 @@ function Comments() {
                                   dispatch(deleteComment(comment.id));
 
                                   toast.error('Review Removed!', {
-                                    position: 'top-center',
+                                    position: 'bottom-center',
                                     autoClose: 1000,
                                     hideProgressBar: false,
                                     closeOnClick: false,

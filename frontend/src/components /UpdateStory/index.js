@@ -51,9 +51,9 @@ function EditStory() {
     const handleSubmit = async (e) => {
       e.preventDefault();
 
-      if(! toast.isActive(toastId.current)) {
+      if (!toast.isActive(toastId.current)) {
         toastId.current = toast.success('Listing Updated!', {
-          position: "top-center",
+          position: 'bottom-center',
           autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: false,
@@ -61,7 +61,7 @@ function EditStory() {
           draggable: false,
           progress: undefined,
           closeButton: false,
-          });
+        });
       }
 
       const authorId = sessionUser.id;
@@ -237,8 +237,8 @@ function EditStory() {
                 multiple
                 required
                 name
-                type="file"
-                accept="image/*"
+                type='file'
+                accept='image/*'
                 onChange={updateFiles}
               />
             </div>
@@ -276,19 +276,19 @@ function EditStory() {
               Update
             </button>
             <ToastContainer
-position="top-center"
-autoClose={1000}
-hideProgressBar={false}
-newestOnTop={false}
-// closeOnClick
-rtl={false}
-// pauseOnFocusLoss
-// draggable
-// pauseOnHover
-closeButton={false}
-toastStyle={{ backgroundColor: '#3249CA' }}
-theme='colored'
-/>
+              position='bottom-center'
+              autoClose={1000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              // closeOnClick
+              rtl={false}
+              // pauseOnFocusLoss
+              // draggable
+              // pauseOnHover
+              closeButton={false}
+              toastStyle={{ backgroundColor: '#3249CA' }}
+              theme='colored'
+            />
           </form>
         </div>
       </>
