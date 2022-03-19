@@ -209,8 +209,31 @@ function EditStory() {
                 max='200'
                 step='10'
                 onChange={(e) => setPrice(e.target.value)}
+                list='tickmarks'
                 required
               />
+              <datalist id='tickmarks'>
+                <option value='10'></option>
+                <option value='20' label='$20'></option>
+                <option value='30'></option>
+                <option value='40' label='$40'></option>
+                <option value='50'></option>
+                <option value='60' label='$60'></option>
+                <option value='70'></option>
+                <option value='80' label='$80'></option>
+                <option value='90'></option>
+                <option value='100' label='$100'></option>
+                <option value='110'></option>
+                <option value='120' label='$120'></option>
+                <option value='130'></option>
+                <option value='140' label='$140'></option>
+                <option value='150'></option>
+                <option value='160' label='$160'></option>
+                <option value='170'></option>
+                <option value='180' label='$180'></option>
+                <option value='190'></option>
+                <option value='200' label='$200'></option>
+              </datalist>
             </div>
             <div className='ws-form-field'>
               {showImg && (
