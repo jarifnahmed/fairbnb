@@ -190,7 +190,6 @@ function EditStory() {
             </div>
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
-                <label htmlFor='price'>Price: </label>
                 <output name='result' for='price priceValue'>
                   ${price} / night
                 </output>

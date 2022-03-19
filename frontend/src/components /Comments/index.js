@@ -154,7 +154,7 @@ function Comments() {
                           <div className='commentIcon'>
                             <FaUserCircle />
                           </div>
-                          {comment.User.username}: "{comment.body}"
+                          {comment.User.name}: "{comment.body}"
                         </p>
                         <div className='editAndDeleteButtonRow'>
                           {sessionUser && sessionUser.id === comment.userId && (
@@ -264,7 +264,7 @@ function Comments() {
           {sessionUser &&
             currentStory.authorId !== sessionUser.id &&
             myStoryComments.length < 1 && (
-              <div>
+              <div className='createReviewBox'>
                 <form id='comments-form-send' onSubmit={handleSubmit}>
                   <ul className='ws-errors'>
                     {errors.map((error, idx) => (
@@ -329,7 +329,7 @@ function Comments() {
                         <div className='commentIcon'>
                           <FaUserCircle />
                         </div>
-                        {comment.User.username}: "{comment.body}"
+                        {comment.User.name}: "{comment.body}"
                       </p>
                     </div>
                   </li>

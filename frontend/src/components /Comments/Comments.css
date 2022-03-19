@@ -1,146 +1,3 @@
-/*
-.comments-title{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#comments-form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.wc-button{
-  background-color: #161618;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-}
-
-
-.wc-button:hover{
-  background-color: rgb(12, 163, 57);
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-}
-
-ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-}
-
-.the-comment{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  align-content: center;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
-.the-comment-username{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  align-content: center;
-}
-
-
-.commentsDiv{
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  align-items: center;
-}
-
-.edit-button{
-  margin-left: 10px;
-  background-color: #161618;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
-.edit-button:hover{
-  background-color: rgb(12, 163, 57);
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-}
-
-.delete-button{
-  margin-left: 10px;
-  background-color: rgb(172, 6, 6);
-  color: rgb(255, 255, 255);
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
-.delete-button:hover{
-  background-color: rgb(255, 255, 255);
-  color: rgb(172, 6, 6);
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-}
-
-
-ul {
-  padding: 0px;
-}
-
-.clear{
-  margin-top: 10px;
-  background-color: rgb(172, 6, 6);
-  color: rgb(255, 255, 255);
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-  margin-bottom: 15px;
-}
-
-.clear:hover{
-  background-color: rgb(255, 255, 255);
-  color: rgb(172, 6, 6);
-  text-align: center;
-  text-decoration: none;
-  font-size: medium;
-  border: 0;
-  box-shadow: none;
-} */
-
 .comments-title {
   display: flex;
   flex-direction: column;
@@ -152,10 +9,7 @@ ul {
 
 #commentUl {
   list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: nowrap;
+  display: inline;
 }
 
 #comments-form {
@@ -279,4 +133,13 @@ ul {
 
 #updateReviewToast{
   background-color: #3249CA
+}
+
+
+#comments-div{
+  columns: 2;
+}
+
+.createReviewBox{
+  margin-top: 2rem;
 }

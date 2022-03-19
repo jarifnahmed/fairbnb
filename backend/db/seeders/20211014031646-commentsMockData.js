@@ -19,6 +19,10 @@ module.exports = {
         { userId: 3, storyId: 2, body: 'Clean place.' },
         { userId: 2, storyId: 2, body: "Didn't have a good experience." },
         { userId: 3, storyId: 8, body: 'Too expensive.' },
+        { userId: 4, storyId: 8, body: 'Absolute rip off.' },
+        { userId: 5, storyId: 8, body: 'I have seen better.' },
+        { userId: 6, storyId: 8, body: 'Not big enough.' },
+        { userId: 7, storyId: 8, body: 'Pool was not big enough.' },
       ],
       {}
     );
