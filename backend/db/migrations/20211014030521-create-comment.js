@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -14,10 +14,10 @@ module.exports = {
         references: { model: 'Users' },
         onDelete: 'CASCADE',
       },
-      storyId: {
+      listingId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Stories' },
+        references: { model: 'Listings' },
         onDelete: 'CASCADE',
       },
       body: {
@@ -27,16 +27,16 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
-      }
+        defaultValue: Sequelize.fn('now'),
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Comments');
-  }
+  },
 };

@@ -1,120 +1,121 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { createListing } from '../../store/listings';
 import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { updateStory } from '../../store/stories';
 import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
-import './UpdateStory.css';
-
+import './WriteListing.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function EditStory() {
-  const toastId = React.useRef(null);
+function WriteListing() {
   const sessionUser = useSelector((state) => state.session.user);
-  const { editStoryId } = useParams();
-  const story = useSelector((state) => state.stories[editStoryId]);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [title, setTitle] = useState(story.title);
-  const [city, setCity] = useState(story.city);
-  const [lat, setLat] = useState(story.lat);
-  const [lng, setLng] = useState(story.lng);
+  const [title, setTitle] = useState('');
+  const [city, setCity] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
   const [coordinates, setCoordinates] = useState('');
-  const [propertyType, setPropertyType] = useState(story.propertyType);
-  const [price, setPrice] = useState(story.price);
-  const [oldImage, setOldImage] = useState(story.imageUrl);
-  const [showImg, setShowImg] = useState(true);
-  const [newImage, setNewImage] = useState([]);
-  const [body, setBody] = useState(story.body);
+  const [propertyType, setPropertyType] = useState('');
+  const [price, setPrice] = useState('100');
+  // const [image, setImage] = useState(null);
+
+  // for multiple file upload
+  const [images, setImages] = useState([]);
+  const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser && story) {
-    const updateFile = (e) => {
-      const file = e.target.files[0];
-      if (file) setNewImage(file);
+  // for single upload
+  // const updateFile = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) setImage(file);
+  // };
+
+  // for multiple file upload
+  const updateFiles = (e) => {
+    const files = e.target.files;
+    setImages(files);
+  };
+
+  console.log('images is ', images);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    toast.success('Listing Created!', {
+      position: 'bottom-center',
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      closeButton: false,
+    });
+
+    const authorId = sessionUser.id;
+
+    const newListing = {
+      authorId,
+      title,
+      propertyType,
+      city,
+      lat,
+      lng,
+      price,
+      images,
+      body,
     };
 
-    const updateFiles = (e) => {
-      const files = e.target.files;
-      if (files) setNewImage(files);
-      console.log('files is ', files);
-    };
+    return dispatch(createListing(newListing))
+      .then((createdListing) => history.push(`/listings/${createdListing.id}`))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  };
 
-    console.log('oldImage is ', oldImage);
-    console.log('newImage is ', newImage);
+  const editorConfiguration = {
+    toolbar: [
+      'bold',
+      'italic',
+      '|',
+      'link',
+      '|',
+      // 'outdent', 'indent', '|',
+      'numberedList',
+      '|',
+      // 'code', 'codeBlock', '|',
+      'undo',
+      'redo',
+    ],
+    shouldNotGroupWhenFull: true,
+  };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  // const { ref } = usePlacesWidget({
+  //   apiKey: 'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g',
+  //   onPlaceSelected: (place) => {
+  //     console.log(place);
+  //   },
+  //   options: {
+  //     types: ['(cities)'],
+  //     componentRestrictions: { country: 'us' },
+  //   },
+  // });
 
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.success('Listing Updated!', {
-          position: 'bottom-center',
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: false,
-          draggable: false,
-          progress: undefined,
-          closeButton: false,
-        });
-      }
-
-      const authorId = sessionUser.id;
-
-      const editedStory = {
-        id: editStoryId,
-        authorId,
-        title,
-        propertyType,
-        city,
-        lat,
-        lng,
-        price,
-        oldImage,
-        newImage,
-        body,
-      };
-
-      return dispatch(updateStory(editedStory))
-        .then((updatedStory) => history.push(`/stories/${updatedStory.id}`))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
-    };
-
-    const editorConfiguration = {
-      toolbar: [
-        'bold',
-        'italic',
-        '|',
-        'link',
-        '|',
-        // 'outdent', 'indent', '|',
-        'numberedList',
-        '|',
-        // 'code', 'codeBlock', '|',
-        //   'insertTable', '|',
-        'undo',
-        'redo',
-      ],
-      shouldNotGroupWhenFull: true,
-    };
-
+  if (sessionUser) {
     return (
       <>
-        <div className='story-form-container'>
+        <div className='listing-form-container'>
           <form
-            className='story-form'
+            className='listing-form'
             onSubmit={handleSubmit}
             autoComplete='off'
           >
-            <h2 className='ws-title'>Edit Listing</h2>
+            <h2 className='ws-title'>Create A Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -144,6 +145,7 @@ function EditStory() {
                 onChange={(e) => setPropertyType(e.target.value)}
                 required
               >
+                <option value=''>Property Type</option>
                 <option value='House'>House</option>
                 <option value='Condo'>Condo</option>
                 <option value='Apartment'>Apartment</option>
@@ -154,16 +156,7 @@ function EditStory() {
               </select>
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='story-city'></label>
-              {/* <input
-                className='sf-input'
-                id='story-city'
-                type='text'
-                value={city}
-                placeholder='Address'
-                onChange={(e) => setCity(e.target.value)}
-                required
-              /> */}
+              <label htmlFor='listing-city'></label>
               <Autocomplete
                 //   apiKey={process.env.REACT_APP_GOOGLE}
                 //   style={{ width: "90%" }}
@@ -184,9 +177,13 @@ function EditStory() {
                 }}
                 // defaultValue="New York, NY, USA"
                 placeholder='City'
+                className='sf-input'
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
+              {/* <p>{coordinates}</p> */}
+              {/* {console.log("listing-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
+                {console.log("listing-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
             </div>
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
@@ -200,7 +197,7 @@ function EditStory() {
                 name='priceValue'
                 type='range'
                 value={
-                  Math.round(price).toFixed() == 0
+                  Math.round(price).toFixed() === 0
                     ? Math.round(price).toFixed() + 1
                     : Math.round(price).toFixed()
                 }
@@ -234,39 +231,35 @@ function EditStory() {
                 <option value='200' label='$200'></option>
               </datalist>
             </div>
-            <div className='ws-form-field'>
-              {showImg && (
-                <>
-                  <div className='old-img-cnt'>
-                    {oldImage.map((pic) => {
-                      return (
-                        <div
-                          onClick={() => {
-                            setShowImg(false);
-                            setOldImage([]);
-                          }}
-                        >
-                          X
-                          <img className='rowPics' src={pic} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
-              <input
-                className='uploadImageButton'
-                multiple
-                required
-                name
-                type='file'
-                accept='image/*'
-                onChange={updateFiles}
-              />
+            <label className='ws-form-field-uploadImage'>
+              <div className='centeringChooseFilesButton'>
+                <strong>Upload Multiple Images. </strong>Or Drag In Them Below.
+                <input
+                  className='uploadImageButton'
+                  type='file'
+                  accept='image/*'
+                  multiple
+                  name
+                  required
+                  onChange={updateFiles}
+                />
+              </div>
+            </label>
+            <div className='ws-form-field-uploadImage'>
+              {/* <label>Upload Image</label>
+              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/> */}
+              {/* <label>
+            Choose Multiple Files. Or Drag Them Here.</label>
+            <input
+              className='uploadImageButton'
+              type="file"
+              multiple
+              required
+              onChange={updateFiles} /> */}
             </div>
-            {/* <div className="ws-form-field">
-                            <label htmlFor="content"></label>
-                                <textarea
+            <div className='ws-form-field'>
+              <label htmlFor='content'></label>
+              {/* <textarea
                                 className="sf-content"
                                 id="content"
                                 rows="15"
@@ -275,11 +268,8 @@ function EditStory() {
                                 placeholder="Description"
                                 onChange={(e) => setBody(e.target.value)}
                                 required
-                                />
-                        </div> */}
+                                /> */}
 
-            <div className='ws-form-field'>
-              <label htmlFor='content'></label>
               <CKEditor
                 className='input-data'
                 editor={ClassicEditor}
@@ -287,19 +277,17 @@ function EditStory() {
                 data={body}
                 onChange={(event, editor) => {
                   const data = editor.getData();
-
                   setBody(data);
                 }}
                 required
               />
             </div>
-
             <button className='ws-button' type='submit'>
-              Update
+              Submit
             </button>
             <ToastContainer
               position='bottom-center'
-              autoClose={1000}
+              autoClose={3000}
               hideProgressBar={false}
               newestOnTop={false}
               // closeOnClick
@@ -308,7 +296,6 @@ function EditStory() {
               // draggable
               // pauseOnHover
               closeButton={false}
-              toastStyle={{ backgroundColor: '#3249CA' }}
               theme='colored'
             />
           </form>
@@ -320,4 +307,4 @@ function EditStory() {
   }
 }
 
-export default EditStory;
+export default WriteListing;

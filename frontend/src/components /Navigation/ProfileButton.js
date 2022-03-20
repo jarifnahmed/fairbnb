@@ -9,11 +9,11 @@ function ProfileButton() {
   const allBookings = useSelector((state) => state.bookings);
   const bookingsArr = Object.values(allBookings);
 
-  const allStories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(allStories);
+  const allListings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(allListings);
 
-  const userStories = storiesArr.filter(
-    (story) => story.authorId === sessionUser.id
+  const userListings = listingsArr.filter(
+    (listing) => listing.authorId === sessionUser.id
   );
 
   const userBookings = bookingsArr.filter(
@@ -50,18 +50,19 @@ function ProfileButton() {
 
   return (
     <div id='profile-div'>
-      <NavLink className='story-link-nav' to={`/story/new`}>
+      <NavLink className='listing-link-nav' to={`/listing/new`}>
         Create Listing
       </NavLink>
 
-      <NavLink className='story-link-nav' to={`/user/stories`}>
-        My Listings {userStories.length === 0 ? '' : ('(' + userStories.length + ')')}
+      <NavLink className='listing-link-nav' to={`/user/listings`}>
+        My Listings{' '}
+        {userListings.length === 0 ? '' : '(' + userListings.length + ')'}
       </NavLink>
 
-      <NavLink className='story-link-nav' to={`/user/bookings`}>
-        My Bookings {userBookings.length === 0 ? '' : ('(' + userBookings.length + ')')}
+      <NavLink className='listing-link-nav' to={`/user/bookings`}>
+        My Bookings{' '}
+        {userBookings.length === 0 ? '' : '(' + userBookings.length + ')'}
       </NavLink>
-
 
       <button id='logout-btn' onClick={logout}>
         Log Out
@@ -73,17 +74,17 @@ function ProfileButton() {
       {/* {showMenu && (
         <ul id='profile-dropdown'>
           <li className='prof-list-item'>
-            <NavLink className='story-link' to={`/username`}>
+            <NavLink className='listing-link' to={`/username`}>
               {sessionUser.username}
             </NavLink>
           </li>
           <li className='prof-list-item'>
-            <NavLink className='story-link-nav' to={`/story/new`}>
+            <NavLink className='listing-link-nav' to={`/listing/new`}>
               Create Listing
             </NavLink>
           </li>
           <li className='prof-list-item'>
-            <NavLink className='story-link-nav' to={`/user/stories`}>
+            <NavLink className='listing-link-nav' to={`/user/listings`}>
               My Listings
             </NavLink>
           </li>

@@ -1,12 +1,12 @@
 import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
-import { deleteStory } from '../../store/stories';
+import { deleteListing } from '../../store/listings';
 import Comments from '../Comments';
-import EditStory from '../UpdateStory';
+import EditListing from '../UpdateListing';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
-import './StoryDetails.css';
+import './ListingDetails.css';
 import renderHTML from 'react-render-html';
 
 import { Carousel } from 'react-responsive-carousel';
@@ -30,18 +30,18 @@ const containerStyle = {
     '9px 9px 16px rgba(189, 189, 189, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5)',
 };
 
-function StoryDetail() {
+function ListingDetail() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { storyId } = useParams();
+  const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
-  const story = useSelector((state) => state.stories[storyId]);
+  const listing = useSelector((state) => state.listings[listingId]);
   const [showComments, setShowComments] = useState(false);
-  const deletingStory = () => dispatch(deleteStory(story.id));
+  const deletingListing = () => dispatch(deleteListing(listing.id));
 
-  const [image, setImage] = useState(story.imageUrl);
+  const [image, setImage] = useState(listing.imageUrl);
 
-  console.log('the imagesURl is', story.imageUrl);
+  console.log('the imagesURl is', listing.imageUrl);
 
   const [style, setStyle] = useState('sd-img');
 
@@ -53,45 +53,49 @@ function StoryDetail() {
     }
   };
 
-  const [storyDetailsStyle, setStoryDetailsStyle] = useState('story-elements-body-truncate');
+  const [listingDetailsStyle, setListingDetailsStyle] = useState(
+    'listing-elements-body-truncate'
+  );
 
-  const changeStoryDetailsStyle = () => {
-    if (storyDetailsStyle === 'story-elements-body') {
-      setStoryDetailsStyle('story-elements-body-truncate');
+  const changeListingDetailsStyle = () => {
+    if (listingDetailsStyle === 'listing-elements-body') {
+      setListingDetailsStyle('listing-elements-body-truncate');
     } else {
-      setStoryDetailsStyle('story-elements-body');
+      setListingDetailsStyle('listing-elements-body');
     }
   };
 
   const coordinates = {
-    lat: parseFloat(story.lat),
-    lng: parseFloat(story.lng),
+    lat: parseFloat(listing.lat),
+    lng: parseFloat(listing.lng),
   };
 
   const onLoad = (marker) => {
     console.log('marker: ', marker);
   };
 
-  if (story) {
-    let d = new Date(story.createdAt);
+  if (listing) {
+    let d = new Date(listing.createdAt);
     let dateWritten = d.toString().slice(4, 10);
 
     // if you are logged in and  don't own the listing, then you can make a review and booking for it
-    if (story && sessionUser && story.authorId !== sessionUser.id) {
+    if (listing && sessionUser && listing.authorId !== sessionUser.id) {
       return (
         <>
-          <div className='storyDetailsAll'>
-            <div id='story-details'>
-              <div className='topStoryDetails'>
-                {/* <h2 className='story-elements-title'>{story.title}</h2>
-              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
-                {/* <p className="story-elements date-written">{dateWritten}</p> */}
-                {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+          <div className='listingDetailsAll'>
+            <div id='listing-details'>
+              <div className='topListingDetails'>
+                {/* <h2 className='listing-elements-title'>{listing.title}</h2>
+              <h4 className='listing-elements-city'>{listing.city.slice(0, -5)}</h4> */}
+                {/* <p className="listing-elements date-written">{dateWritten}</p> */}
+                {/* <img id='sd-img' src={listing.imageUrl} alt='listing' /> */}
               </div>
-              <h2 className='story-elements-title'>{story.title}</h2>
-              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <h2 className='listing-elements-title'>{listing.title}</h2>
+              <h4 className='listing-elements-city'>
+                {listing.city.slice(0, -5)}
+              </h4>
               <div className='imageGallery'>
-                <div className='topStoryDetails'></div>
+                <div className='topListingDetails'></div>
                 <div className='pics'>
                   {image.map((pic) => {
                     return (
@@ -103,30 +107,44 @@ function StoryDetail() {
                 </div>
               </div>
 
-              <div className='allStoryDetailsAndBooking'>
-                <div className='allStoryDetails'>
-                  <div className='bottomStoryDetails'>
-                    <h4 className='story-elements-propertyType'>
-                      {story.propertyType} hosted by {story.User.name}
+              <div className='allListingDetailsAndBooking'>
+                <div className='allListingDetails'>
+                  <div className='bottomListingDetails'>
+                    <h4 className='listing-elements-propertyType'>
+                      {listing.propertyType} hosted by {listing.User.name}
                     </h4>
-                    <h4 className='story-elements-propertyType'>
-                      ${story.price === 0 ? story.price + 1 : story.price} /
-                      night
+                    <h4 className='listing-elements-propertyType'>
+                      ${listing.price === 0 ? listing.price + 1 : listing.price}{' '}
+                      / night
                     </h4>
-                    {/* <p className='story-elements-price'>
-                    ${story.price === 0 ? story.price + 1 : story.price} / night
+                    {/* <p className='listing-elements-price'>
+                    ${listing.price === 0 ? listing.price + 1 : listing.price} / night
                   </p> */}
                   </div>
-                  <div className='bottomStoryDetails'>
-                    <p className={storyDetailsStyle} id='story-body' onClick={changeStoryDetailsStyle}>
-                      {renderHTML(story.body)}
+                  <div className='bottomListingDetails'>
+                    <p
+                      className={listingDetailsStyle}
+                      id='listing-body'
+                      onClick={changeListingDetailsStyle}
+                    >
+                      {renderHTML(listing.body)}
                     </p>
-                    <p className='showMoreOrLess' onClick={changeStoryDetailsStyle}><strong><u >Show More / Less</u>&nbsp;</strong><strong><MdOutlineArrowForwardIos /></strong></p>
+                    <p
+                      className='showMoreOrLess'
+                      onClick={changeListingDetailsStyle}
+                    >
+                      <strong>
+                        <u>Show More / Less</u>&nbsp;
+                      </strong>
+                      <strong>
+                        <MdOutlineArrowForwardIos />
+                      </strong>
+                    </p>
                   </div>
                   <div className='mapAndBooking'>
                     <hr></hr>
                     <h2 className='mapHeader'>Where You'll Be</h2>
-                    <h3 className='mapCity'>{story.city}</h3>
+                    <h3 className='mapCity'>{listing.city}</h3>
                     <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
                       <div className='allGoogleMapWidgetInfo'>
                         <GoogleMap
@@ -147,7 +165,7 @@ function StoryDetail() {
                 </div>
               </div>
 
-              {/* <p className="story-elements" id="story-body">{story.body}</p> */}
+              {/* <p className="listing-elements" id="listing-body">{listing.body}</p> */}
               <div className='bottomMapAndReviews'>
                 <div className='allReviewsSection'>
                   <Comments />
@@ -160,21 +178,23 @@ function StoryDetail() {
     }
 
     // if you do own the listing then you can't review or book it.
-    else if (story && sessionUser && story.authorId === sessionUser.id) {
+    else if (listing && sessionUser && listing.authorId === sessionUser.id) {
       return (
         <>
-          <div className='storyDetailsAll'>
-            <div id='story-details'>
-              <div className='topStoryDetails'>
-                {/* <h2 className='story-elements-title'>{story.title}</h2>
-                <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
-                {/* <p className="story-elements date-written">{dateWritten}</p> */}
-                {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+          <div className='listingDetailsAll'>
+            <div id='listing-details'>
+              <div className='topListingDetails'>
+                {/* <h2 className='listing-elements-title'>{listing.title}</h2>
+                <h4 className='listing-elements-city'>{listing.city.slice(0, -5)}</h4> */}
+                {/* <p className="listing-elements date-written">{dateWritten}</p> */}
+                {/* <img id='sd-img' src={listing.imageUrl} alt='listing' /> */}
               </div>
-              <h2 className='story-elements-title'>{story.title}</h2>
-              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <h2 className='listing-elements-title'>{listing.title}</h2>
+              <h4 className='listing-elements-city'>
+                {listing.city.slice(0, -5)}
+              </h4>
               <div className='imageGallery'>
-                <div className='topStoryDetails'></div>
+                <div className='topListingDetails'></div>
                 <div className='pics'>
                   {image.map((pic) => {
                     return (
@@ -186,29 +206,29 @@ function StoryDetail() {
                 </div>
               </div>
 
-              <div className='allStoryDetailsAndBooking'>
-                <div className='allStoryDetails'>
-                  <div className='bottomStoryDetails'>
-                    <h4 className='story-elements-propertyType'>
-                      {story.propertyType} hosted by {story.User.name}
+              <div className='allListingDetailsAndBooking'>
+                <div className='allListingDetails'>
+                  <div className='bottomListingDetails'>
+                    <h4 className='listing-elements-propertyType'>
+                      {listing.propertyType} hosted by {listing.User.name}
                     </h4>
-                    <h4 className='story-elements-propertyType'>
-                      ${story.price === 0 ? story.price + 1 : story.price} /
-                      night
+                    <h4 className='listing-elements-propertyType'>
+                      ${listing.price === 0 ? listing.price + 1 : listing.price}{' '}
+                      / night
                     </h4>
-                    {/* <p className='story-elements-price'>
-                      ${story.price === 0 ? story.price + 1 : story.price} / night
+                    {/* <p className='listing-elements-price'>
+                      ${listing.price === 0 ? listing.price + 1 : listing.price} / night
                     </p> */}
                   </div>
-                  <div className='bottomStoryDetails'>
-                    <p className='story-elements-body' id='story-body'>
-                      {renderHTML(story.body)}
+                  <div className='bottomListingDetails'>
+                    <p className='listing-elements-body' id='listing-body'>
+                      {renderHTML(listing.body)}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* <p className="story-elements" id="story-body">{story.body}</p> */}
+              {/* <p className="listing-elements" id="listing-body">{listing.body}</p> */}
               <div className='bottomMapAndReviews'>
                 <div className='mapAndBooking'>
                   <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
@@ -235,21 +255,23 @@ function StoryDetail() {
     }
 
     // if you aren't signed in then you can't make a review or booking
-    else if (story) {
+    else if (listing) {
       return (
         <>
-          <div className='storyDetailsAll'>
-            <div id='story-details'>
-              <div className='topStoryDetails'>
-                {/* <h2 className='story-elements-title'>{story.title}</h2>
-                <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4> */}
-                {/* <p className="story-elements date-written">{dateWritten}</p> */}
-                {/* <img id='sd-img' src={story.imageUrl} alt='story' /> */}
+          <div className='listingDetailsAll'>
+            <div id='listing-details'>
+              <div className='topListingDetails'>
+                {/* <h2 className='listing-elements-title'>{listing.title}</h2>
+                <h4 className='listing-elements-city'>{listing.city.slice(0, -5)}</h4> */}
+                {/* <p className="listing-elements date-written">{dateWritten}</p> */}
+                {/* <img id='sd-img' src={listing.imageUrl} alt='listing' /> */}
               </div>
-              <h2 className='story-elements-title'>{story.title}</h2>
-              <h4 className='story-elements-city'>{story.city.slice(0, -5)}</h4>
+              <h2 className='listing-elements-title'>{listing.title}</h2>
+              <h4 className='listing-elements-city'>
+                {listing.city.slice(0, -5)}
+              </h4>
               <div className='imageGallery'>
-                <div className='topStoryDetails'></div>
+                <div className='topListingDetails'></div>
                 <div className='pics'>
                   {image.map((pic) => {
                     return (
@@ -261,29 +283,29 @@ function StoryDetail() {
                 </div>
               </div>
 
-              <div className='allStoryDetailsAndBooking'>
-                <div className='allStoryDetails'>
-                  <div className='bottomStoryDetails'>
-                    <h4 className='story-elements-propertyType'>
-                      {story.propertyType} hosted by {story.User.name}
+              <div className='allListingDetailsAndBooking'>
+                <div className='allListingDetails'>
+                  <div className='bottomListingDetails'>
+                    <h4 className='listing-elements-propertyType'>
+                      {listing.propertyType} hosted by {listing.User.name}
                     </h4>
-                    <h4 className='story-elements-propertyType'>
-                      ${story.price === 0 ? story.price + 1 : story.price} /
-                      night
+                    <h4 className='listing-elements-propertyType'>
+                      ${listing.price === 0 ? listing.price + 1 : listing.price}{' '}
+                      / night
                     </h4>
-                    {/* <p className='story-elements-price'>
-                      ${story.price === 0 ? story.price + 1 : story.price} / night
+                    {/* <p className='listing-elements-price'>
+                      ${listing.price === 0 ? listing.price + 1 : listing.price} / night
                     </p> */}
                   </div>
-                  <div className='bottomStoryDetails'>
-                    <p className='story-elements-body' id='story-body'>
-                      {renderHTML(story.body)}
+                  <div className='bottomListingDetails'>
+                    <p className='listing-elements-body' id='listing-body'>
+                      {renderHTML(listing.body)}
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* <p className="story-elements" id="story-body">{story.body}</p> */}
+              {/* <p className="listing-elements" id="listing-body">{listing.body}</p> */}
               <div className='bottomMapAndReviews'>
                 <div className='mapAndBooking'>
                   <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
@@ -314,4 +336,4 @@ function StoryDetail() {
   }
 }
 
-export default StoryDetail;
+export default ListingDetail;

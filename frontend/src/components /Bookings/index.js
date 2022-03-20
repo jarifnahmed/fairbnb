@@ -16,20 +16,22 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Bookings() {
-  const { storyId } = useParams();
+  const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const stories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(stories);
-  let story;
+  const listings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(listings);
+  let listing;
   if (sessionUser) {
-    story = storiesArr.filter((story) => story.authorId === sessionUser.id);
+    listing = listingsArr.filter(
+      (listing) => listing.authorId === sessionUser.id
+    );
   }
 
   const bookings = useSelector((state) => state.bookings);
   const bookingsArr = Object.values(bookings);
-  const storyBookings = bookingsArr.filter(
-    (booking) => booking.storyId === Number(storyId)
+  const listingBookings = bookingsArr.filter(
+    (booking) => booking.listingId === Number(listingId)
   );
 
   const dayjs = require('dayjs');
@@ -40,9 +42,9 @@ function Bookings() {
   console.log('today is', now.format('YYYY-MM-DD'));
   console.log('tomorrow is', tmmrw.format('YYYY-MM-DD'));
 
-  const currentStory = useSelector((state) => state.stories[storyId]);
+  const currentListing = useSelector((state) => state.listings[listingId]);
 
-  // console.log('storyPrice is', currentStory.price)
+  // console.log('listingPrice is', currentListing.price)
 
   const dispatch = useDispatch();
 
@@ -88,7 +90,7 @@ function Bookings() {
     const editedBooking = {
       id: showBookingId,
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       startDate: editStartDate,
       endDate: editEndDate,
       days:
@@ -100,15 +102,15 @@ function Bookings() {
       total:
         -1 *
           dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
-          currentStory.price ===
+          currentListing.price ===
           0 ||
         Number.isNaN(
           -1 * dayjs(editStartDate).diff(dayjs(editEndDate), 'day')
-        ) * currentStory.price
-          ? currentStory.price
+        ) * currentListing.price
+          ? currentListing.price
           : -1 *
             dayjs(editStartDate).diff(dayjs(editEndDate), 'day') *
-            currentStory.price,
+            currentListing.price,
     };
 
     setshowEditBox(false);
@@ -147,7 +149,7 @@ function Bookings() {
 
     const newBooking = {
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       startDate,
       endDate,
       days:
@@ -159,20 +161,20 @@ function Bookings() {
       total:
         -1 *
           dayjs(startDate).diff(dayjs(endDate), 'day') *
-          currentStory.price ===
+          currentListing.price ===
           0 ||
         Number.isNaN(-1 * dayjs(startDate).diff(dayjs(endDate), 'day')) *
-          currentStory.price
-          ? currentStory.price
+          currentListing.price
+          ? currentListing.price
           : -1 *
             dayjs(startDate).diff(dayjs(endDate), 'day') *
-            currentStory.price,
-      listingFirstImageUrl: currentStory.imageUrl[0],
-      listingPricePerNight: currentStory.price,
-      listingPricePerNight: currentStory.price,
-      listingCity: currentStory.city,
-      listingLat: currentStory.lat,
-      listingLng: currentStory.lng,
+            currentListing.price,
+      listingFirstImageUrl: currentListing.imageUrl[0],
+      listingPricePerNight: currentListing.price,
+      listingPricePerNight: currentListing.price,
+      listingCity: currentListing.city,
+      listingLat: currentListing.lat,
+      listingLng: currentListing.lng,
     };
 
     return dispatch(createBooking(newBooking))
@@ -195,7 +197,7 @@ function Bookings() {
 
   return (
     <>
-      {sessionUser && story.authorId !== sessionUser.id && (
+      {sessionUser && listing.authorId !== sessionUser.id && (
         <div className='bookingsInputBox'>
           <div className='bookingsInputBox__outer'>
             <div className='bookingsInputBox__inner'>
@@ -246,11 +248,11 @@ function Bookings() {
                     {startDate === endDate ||
                     Number.isNaN(
                       -1 * dayjs(startDate).diff(dayjs(endDate), 'day')
-                    ) * currentStory.price
-                      ? currentStory.price
+                    ) * currentListing.price
+                      ? currentListing.price
                       : -1 *
                         dayjs(startDate).diff(dayjs(endDate), 'day') *
-                        currentStory.price}
+                        currentListing.price}
                   </div>
                 </div>
                 <button

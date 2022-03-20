@@ -16,26 +16,28 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Comments() {
-  const { storyId } = useParams();
+  const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const stories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(stories);
+  const listings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(listings);
 
-  const currentStory = useSelector((state) => state.stories[storyId]);
+  const currentListing = useSelector((state) => state.listings[listingId]);
 
-  let story;
+  let listing;
   if (sessionUser) {
-    story = storiesArr.filter((story) => story.authorId === sessionUser.id);
+    listing = listingsArr.filter(
+      (listing) => listing.authorId === sessionUser.id
+    );
   }
 
   const comments = useSelector((state) => state.comments);
   const commentsArr = Object.values(comments);
-  const storyComments = commentsArr.filter(
-    (comment) => comment.storyId === Number(storyId)
+  const listingComments = commentsArr.filter(
+    (comment) => comment.listingId === Number(listingId)
   );
 
-  const myStoryComments = storyComments.filter(
+  const myListingComments = listingComments.filter(
     (comment) => comment.userId === sessionUser.id
   );
 
@@ -75,7 +77,7 @@ function Comments() {
     const editedComment = {
       id: showCommentId,
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       body: editBody,
     };
 
@@ -112,7 +114,7 @@ function Comments() {
 
     const newComment = {
       userId,
-      storyId: Number(storyId),
+      listingId: Number(listingId),
       body,
     };
 
@@ -124,27 +126,27 @@ function Comments() {
       });
   };
 
-  if (currentStory) {
+  if (currentListing) {
     // if you are logged in but do not own the listing
     if (
-      currentStory &&
+      currentListing &&
       sessionUser &&
-      currentStory.authorId !== sessionUser.id
+      currentListing.authorId !== sessionUser.id
     ) {
       return (
         <>
-          {storyComments.length === 0 && (
+          {listingComments.length === 0 && (
             <h2 className='comments-title'>No Reviews</h2>
           )}
-          {storyComments.length === 1 && (
+          {listingComments.length === 1 && (
             <h2 className='comments-title'>1 Review</h2>
           )}
-          {storyComments.length > 1 && (
-            <h2 className='comments-title'>{storyComments.length} Reviews</h2>
+          {listingComments.length > 1 && (
+            <h2 className='comments-title'>{listingComments.length} Reviews</h2>
           )}
           <div id='comments-div'>
             <ul id='commentUl'>
-              {storyComments.map((comment) => {
+              {listingComments.map((comment) => {
                 return (
                   <li key={comment.id} className='comments-list'>
                     {/* editing, deleting, saving, and canceling a review */}
@@ -176,7 +178,7 @@ function Comments() {
                           )}
                           {sessionUser &&
                             (sessionUser.id === comment.userId ||
-                              sessionUser.id === story.authorId) && (
+                              sessionUser.id === listing.authorId) && (
                               <button
                                 className='my-5 btn neumorphic-btn'
                                 id='deleteButton'
@@ -262,8 +264,8 @@ function Comments() {
 
           {/* Posting a review */}
           {sessionUser &&
-            currentStory.authorId !== sessionUser.id &&
-            myStoryComments.length < 1 && (
+            currentListing.authorId !== sessionUser.id &&
+            myListingComments.length < 1 && (
               <div className='createReviewBox'>
                 <form id='comments-form-send' onSubmit={handleSubmit}>
                   <ul className='ws-errors'>
@@ -305,23 +307,25 @@ function Comments() {
 
     // if you are not logged in
     else if (
-      currentStory ||
-      (currentStory && sessionUser && currentStory.authorId === sessionUser.id)
+      currentListing ||
+      (currentListing &&
+        sessionUser &&
+        currentListing.authorId === sessionUser.id)
     ) {
       return (
         <>
-          {storyComments.length === 0 && (
+          {listingComments.length === 0 && (
             <h2 className='comments-title'>No Reviews</h2>
           )}
-          {storyComments.length === 1 && (
+          {listingComments.length === 1 && (
             <h2 className='comments-title'>1 Review</h2>
           )}
-          {storyComments.length > 1 && (
-            <h2 className='comments-title'>{storyComments.length} Reviews</h2>
+          {listingComments.length > 1 && (
+            <h2 className='comments-title'>{listingComments.length} Reviews</h2>
           )}
           <div id='comments-div'>
             <ul id='commentUl'>
-              {storyComments.map((comment) => {
+              {listingComments.map((comment) => {
                 return (
                   <li key={comment.id} className='comments-list'>
                     <div className='commentsDiv' id={comment.id}>

@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -14,61 +14,61 @@ module.exports = {
         references: { model: 'Users' },
         onDelete: 'CASCADE',
       },
-      storyId: {
+      listingId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Stories' },
+        references: { model: 'Listings' },
         onDelete: 'CASCADE',
       },
       startDate: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
       },
       endDate: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
       },
       days: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       total: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       listingFirstImageUrl: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       listingPricePerNight: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       listingCity: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       listingLat: {
         type: Sequelize.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       listingLng: {
         type: Sequelize.DECIMAL,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now"),
-      }
+        defaultValue: Sequelize.fn('now'),
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Bookings');
-  }
+  },
 };
