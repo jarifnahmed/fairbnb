@@ -1,121 +1,122 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
+import { useParams } from 'react-router';
+import { updateListing } from '../../store/listings';
 import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
-import './WriteStory.css';
+import './UpdateListing.css';
+
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function WriteStory() {
+function EditListing() {
+  const toastId = React.useRef(null);
   const sessionUser = useSelector((state) => state.session.user);
+  const { editListingId } = useParams();
+  const listing = useSelector((state) => state.listings[editListingId]);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [title, setTitle] = useState('');
-  const [city, setCity] = useState('');
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
+  const [title, setTitle] = useState(listing.title);
+  const [city, setCity] = useState(listing.city);
+  const [lat, setLat] = useState(listing.lat);
+  const [lng, setLng] = useState(listing.lng);
   const [coordinates, setCoordinates] = useState('');
-  const [propertyType, setPropertyType] = useState('');
-  const [price, setPrice] = useState('100');
-  // const [image, setImage] = useState(null);
-
-  // for multiple file upload
-  const [images, setImages] = useState([]);
-  const [body, setBody] = useState('');
+  const [propertyType, setPropertyType] = useState(listing.propertyType);
+  const [price, setPrice] = useState(listing.price);
+  const [oldImage, setOldImage] = useState(listing.imageUrl);
+  const [showImg, setShowImg] = useState(true);
+  const [newImage, setNewImage] = useState([]);
+  const [body, setBody] = useState(listing.body);
   const [errors, setErrors] = useState([]);
 
-  // for single upload
-  // const updateFile = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) setImage(file);
-  // };
-
-  // for multiple file upload
-  const updateFiles = (e) => {
-    const files = e.target.files;
-    setImages(files);
-  };
-
-  console.log('images is ', images);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    toast.success('Listing Created!', {
-      position: 'bottom-center',
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      closeButton: false,
-    });
-
-    const authorId = sessionUser.id;
-
-    const newStory = {
-      authorId,
-      title,
-      propertyType,
-      city,
-      lat,
-      lng,
-      price,
-      images,
-      body,
+  if (sessionUser && listing) {
+    const updateFile = (e) => {
+      const file = e.target.files[0];
+      if (file) setNewImage(file);
     };
 
-    return dispatch(createStory(newStory))
-      .then((createdStory) => history.push(`/stories/${createdStory.id}`))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
-  };
+    const updateFiles = (e) => {
+      const files = e.target.files;
+      if (files) setNewImage(files);
+      console.log('files is ', files);
+    };
 
-  const editorConfiguration = {
-    toolbar: [
-      'bold',
-      'italic',
-      '|',
-      'link',
-      '|',
-      // 'outdent', 'indent', '|',
-      'numberedList',
-      '|',
-      // 'code', 'codeBlock', '|',
-      'undo',
-      'redo',
-    ],
-    shouldNotGroupWhenFull: true,
-  };
+    console.log('oldImage is ', oldImage);
+    console.log('newImage is ', newImage);
 
-  // const { ref } = usePlacesWidget({
-  //   apiKey: 'AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g',
-  //   onPlaceSelected: (place) => {
-  //     console.log(place);
-  //   },
-  //   options: {
-  //     types: ['(cities)'],
-  //     componentRestrictions: { country: 'us' },
-  //   },
-  // });
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-  if (sessionUser) {
+      if (!toast.isActive(toastId.current)) {
+        toastId.current = toast.success('Listing Updated!', {
+          position: 'bottom-center',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          closeButton: false,
+        });
+      }
+
+      const authorId = sessionUser.id;
+
+      const editedListing = {
+        id: editListingId,
+        authorId,
+        title,
+        propertyType,
+        city,
+        lat,
+        lng,
+        price,
+        oldImage,
+        newImage,
+        body,
+      };
+
+      return dispatch(updateListing(editedListing))
+        .then((updatedListing) =>
+          history.push(`/listings/${updatedListing.id}`)
+        )
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
+    };
+
+    const editorConfiguration = {
+      toolbar: [
+        'bold',
+        'italic',
+        '|',
+        'link',
+        '|',
+        // 'outdent', 'indent', '|',
+        'numberedList',
+        '|',
+        // 'code', 'codeBlock', '|',
+        //   'insertTable', '|',
+        'undo',
+        'redo',
+      ],
+      shouldNotGroupWhenFull: true,
+    };
+
     return (
       <>
-        <div className='story-form-container'>
+        <div className='listing-form-container'>
           <form
-            className='story-form'
+            className='listing-form'
             onSubmit={handleSubmit}
             autoComplete='off'
           >
-            <h2 className='ws-title'>Create A Listing</h2>
+            <h2 className='ws-title'>Edit Listing</h2>
             <ul className='ws-errors'>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
@@ -145,7 +146,6 @@ function WriteStory() {
                 onChange={(e) => setPropertyType(e.target.value)}
                 required
               >
-                <option value=''>Property Type</option>
                 <option value='House'>House</option>
                 <option value='Condo'>Condo</option>
                 <option value='Apartment'>Apartment</option>
@@ -156,7 +156,16 @@ function WriteStory() {
               </select>
             </div>
             <div className='ws-form-field'>
-              <label htmlFor='story-city'></label>
+              <label htmlFor='listing-city'></label>
+              {/* <input
+                className='sf-input'
+                id='listing-city'
+                type='text'
+                value={city}
+                placeholder='Address'
+                onChange={(e) => setCity(e.target.value)}
+                required
+              /> */}
               <Autocomplete
                 //   apiKey={process.env.REACT_APP_GOOGLE}
                 //   style={{ width: "90%" }}
@@ -177,13 +186,9 @@ function WriteStory() {
                 }}
                 // defaultValue="New York, NY, USA"
                 placeholder='City'
-                className='sf-input'
                 value={city}
                 onChange={(place) => setCity(place.formatted_address)}
               />
-              {/* <p>{coordinates}</p> */}
-              {/* {console.log("story-address lat is", JSON.parse(JSON.stringify(coordinates)).lat)}
-                {console.log("story-address lng is", JSON.parse(JSON.stringify(coordinates)).lng)} */}
             </div>
             <div className='ws-form-field'>
               <div className='priceAndDigits'>
@@ -197,7 +202,7 @@ function WriteStory() {
                 name='priceValue'
                 type='range'
                 value={
-                  Math.round(price).toFixed() === 0
+                  Math.round(price).toFixed() == 0
                     ? Math.round(price).toFixed() + 1
                     : Math.round(price).toFixed()
                 }
@@ -231,35 +236,39 @@ function WriteStory() {
                 <option value='200' label='$200'></option>
               </datalist>
             </div>
-            <label className='ws-form-field-uploadImage'>
-              <div className='centeringChooseFilesButton'>
-                <strong>Upload Multiple Images. </strong>Or Drag In Them Below.
-                <input
-                  className='uploadImageButton'
-                  type='file'
-                  accept='image/*'
-                  multiple
-                  name
-                  required
-                  onChange={updateFiles}
-                />
-              </div>
-            </label>
-            <div className='ws-form-field-uploadImage'>
-              {/* <label>Upload Image</label>
-              <input className='sf-input-uploadImage' type='file' onChange={updateFile} required/> */}
-              {/* <label>
-            Choose Multiple Files. Or Drag Them Here.</label>
-            <input
-              className='uploadImageButton'
-              type="file"
-              multiple
-              required
-              onChange={updateFiles} /> */}
-            </div>
             <div className='ws-form-field'>
-              <label htmlFor='content'></label>
-              {/* <textarea
+              {showImg && (
+                <>
+                  <div className='old-img-cnt'>
+                    {oldImage.map((pic) => {
+                      return (
+                        <div
+                          onClick={() => {
+                            setShowImg(false);
+                            setOldImage([]);
+                          }}
+                        >
+                          X
+                          <img className='rowPics' src={pic} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
+              <input
+                className='uploadImageButton'
+                multiple
+                required
+                name
+                type='file'
+                accept='image/*'
+                onChange={updateFiles}
+              />
+            </div>
+            {/* <div className="ws-form-field">
+                            <label htmlFor="content"></label>
+                                <textarea
                                 className="sf-content"
                                 id="content"
                                 rows="15"
@@ -268,8 +277,11 @@ function WriteStory() {
                                 placeholder="Description"
                                 onChange={(e) => setBody(e.target.value)}
                                 required
-                                /> */}
+                                />
+                        </div> */}
 
+            <div className='ws-form-field'>
+              <label htmlFor='content'></label>
               <CKEditor
                 className='input-data'
                 editor={ClassicEditor}
@@ -277,17 +289,19 @@ function WriteStory() {
                 data={body}
                 onChange={(event, editor) => {
                   const data = editor.getData();
+
                   setBody(data);
                 }}
                 required
               />
             </div>
+
             <button className='ws-button' type='submit'>
-              Submit
+              Update
             </button>
             <ToastContainer
               position='bottom-center'
-              autoClose={3000}
+              autoClose={1000}
               hideProgressBar={false}
               newestOnTop={false}
               // closeOnClick
@@ -296,6 +310,7 @@ function WriteStory() {
               // draggable
               // pauseOnHover
               closeButton={false}
+              toastStyle={{ backgroundColor: '#3249CA' }}
               theme='colored'
             />
           </form>
@@ -307,4 +322,4 @@ function WriteStory() {
   }
 }
 
-export default WriteStory;
+export default EditListing;

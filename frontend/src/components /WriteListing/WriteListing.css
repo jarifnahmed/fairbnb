@@ -1,0 +1,146 @@
+.listing-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ws-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  font-size: 1.5rem;
+}
+
+.listing-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  margin: 0;
+}
+
+.ws-errors {
+  color: rgb(255, 73, 73);
+}
+
+.ws-form-field {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  width: 100%;
+}
+
+#propertyType {
+  text-align: center;
+  padding-left: 2%;
+}
+
+.sf-input {
+  height: 40px;
+  border-width: 1px;
+  border-radius: 5px;
+  /* padding: 10px; */
+  margin-top: 10px;
+  padding: 0;
+  font-size: 1.1em;
+  padding-left: 1%;
+}
+
+.priceAndDigits {
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.pac-target-input {
+  padding-left: 10px;
+  border-width: 1px;
+  border-radius: 5px;
+  /* padding: 10px; */
+  padding: 0;
+  padding-left: 1%;
+}
+
+.sf-content {
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.sf-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px 5px rgb(216, 250, 215);
+  transition: all 0.2s ease-in-out;
+}
+
+.sf-content:focus {
+  outline: none;
+  box-shadow: 0 0 5px 5px rgb(215, 231, 250);
+  transition: all 0.2s ease-in-out;
+}
+
+.ws-button {
+  margin-left: 0px;
+  background-color: #161618;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
+  border: 0;
+  box-shadow: none;
+  transition-duration: 0.4s;
+  margin-top: 10px;
+}
+
+.ws-button:hover {
+  background-color: rgb(12, 163, 57);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  font-size: medium;
+  border: 0;
+  box-shadow: none;
+}
+
+.ws-form-field-uploadImage {
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.uploadImageButton {
+  /* width: 100%; */
+  /* background-color: #ffffff; */
+  /* visibility: hidden; */
+
+  padding: 2%;
+  /* padding-left: 37%; */
+
+  border: dashed black;
+  border-width: 1px;
+  border-radius: 5px;
+  /* padding: 10px; */
+  margin: 0;
+}
+
+.centeringChooseFilesButton {
+  /* margin-left: 10%;
+    margin-right: 10%; */
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.ck-editor__editable_inline {
+  min-height: 200px !important;
+}
+
+datalist {
+  display: none;
+}

@@ -25,35 +25,35 @@ function UserFeed() {
   );
 
   const sessionUser = useSelector((state) => state.session.user);
-  const allStories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(allStories);
+  const allListings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(allListings);
 
-  const filterStories = (recStories, query) => {
+  const filterListings = (recListings, query) => {
     if (!query) {
-      return recStories;
+      return recListings;
     }
 
-    return recStories.filter((story) => {
-      const storyTitleSearch = story.title.toLowerCase();
-      const storyPriceSearch = story.price.toString();
-      const storyCitySearch = story.city.toLowerCase();
-      const storyPropertyTypeSearch = story.propertyType.toLowerCase();
+    return recListings.filter((listing) => {
+      const listingTitleSearch = listing.title.toLowerCase();
+      const listingPriceSearch = listing.price.toString();
+      const listingCitySearch = listing.city.toLowerCase();
+      const listingPropertyTypeSearch = listing.propertyType.toLowerCase();
       return (
-        storyPropertyTypeSearch.includes(query.toLowerCase()) ||
-        storyCitySearch.includes(query.toLowerCase()) ||
-        storyPriceSearch.includes(query.toString())
+        listingPropertyTypeSearch.includes(query.toLowerCase()) ||
+        listingCitySearch.includes(query.toLowerCase()) ||
+        listingPriceSearch.includes(query.toString())
       );
     });
   };
 
-  const recStories = filterStories(
-    storiesArr.filter((story) => story.authorId !== sessionUser.id),
+  const recListings = filterListings(
+    listingsArr.filter((listing) => listing.authorId !== sessionUser.id),
     searchQuery,
     filterQuery,
-    filterQueryPrice,
+    filterQueryPrice
   );
 
-  if (recStories.length) {
+  if (recListings.length) {
     return (
       <>
         <div className='searchBarAndResults'>
@@ -81,38 +81,38 @@ function UserFeed() {
           {document.querySelectorAll(".feed-list").length > 1 ? 'listings' : 'listing'}.
             </h2> */}
             <ul className='allCards'>
-              {recStories.map((story) => {
-                let d = new Date(story.createdAt);
+              {recListings.map((listing) => {
+                let d = new Date(listing.createdAt);
                 let dateWritten = d.toString().slice(4, 10);
                 if (
-                  story.propertyType === filterQuery &&
-                  story.price <= filterQueryPrice
+                  listing.propertyType === filterQuery &&
+                  listing.price <= filterQueryPrice
                 ) {
                   return (
-                    <li key={story.id} className='feed-list'>
+                    <li key={listing.id} className='feed-list'>
                       <NavLink
-                        className='story-link'
-                        to={`/stories/${story.id}`}
+                        className='listing-link'
+                        to={`/listings/${listing.id}`}
                       >
                         <div className='neumorphic-card mx-auto'>
                           <div className='neumorphic-card__outer'>
                             <img
                               class='neumorphic-image'
-                              src={story.imageUrl[0]}
-                              alt='story'
+                              src={listing.imageUrl[0]}
+                              alt='listing'
                             />
                             <p className='neumorphic-card__title'>
-                              {story.city.slice(0, -5)}
+                              {listing.city.slice(0, -5)}
                             </p>
                             <div className='propertyTypeAndPriceLine'>
                               <p className='neumorphic-card__text'>
-                                {story.propertyType}
+                                {listing.propertyType}
                               </p>
                               <p className='neumorphic-card__text'>
                                 $
-                                {story.price === 0
-                                  ? story.price + 1
-                                  : story.price}{' '}
+                                {listing.price === 0
+                                  ? listing.price + 1
+                                  : listing.price}{' '}
                                 / night
                               </p>
                             </div>
@@ -124,33 +124,33 @@ function UserFeed() {
                   );
                 } else if (
                   filterQuery === '' &&
-                  story.price <= filterQueryPrice
+                  listing.price <= filterQueryPrice
                 ) {
                   return (
-                    <li key={story.id} className='feed-list'>
+                    <li key={listing.id} className='feed-list'>
                       <NavLink
-                        className='story-link'
-                        to={`/stories/${story.id}`}
+                        className='listing-link'
+                        to={`/listings/${listing.id}`}
                       >
                         <div className='neumorphic-card mx-auto'>
                           <div className='neumorphic-card__outer'>
                             <img
                               class='neumorphic-image'
-                              src={story.imageUrl[0]}
-                              alt='story'
+                              src={listing.imageUrl[0]}
+                              alt='listing'
                             />
                             <p className='neumorphic-card__title'>
-                              {story.city.slice(0, -5)}
+                              {listing.city.slice(0, -5)}
                             </p>
                             <div className='propertyTypeAndPriceLine'>
                               <p className='neumorphic-card__text'>
-                                {story.propertyType}
+                                {listing.propertyType}
                               </p>
                               <p className='neumorphic-card__text'>
                                 $
-                                {story.price === 0
-                                  ? story.price + 1
-                                  : story.price}{' '}
+                                {listing.price === 0
+                                  ? listing.price + 1
+                                  : listing.price}{' '}
                                 / night
                               </p>
                             </div>

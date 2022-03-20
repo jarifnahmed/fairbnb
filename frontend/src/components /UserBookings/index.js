@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { deleteStory } from '../../store/stories';
+import { deleteListing } from '../../store/listings';
 import { updateBooking, deleteBooking } from '../../store/bookings';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
@@ -32,9 +32,9 @@ function UserBookings() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
-  const allStories = useSelector((state) => state.stories);
+  const allListings = useSelector((state) => state.listings);
   const allBookings = useSelector((state) => state.bookings);
-  const storiesArr = Object.values(allStories);
+  const listingsArr = Object.values(allListings);
   const bookingsArr = Object.values(allBookings);
 
   const dayjs = require('dayjs');
@@ -82,8 +82,8 @@ function UserBookings() {
                 return (
                   <li key={booking.id} className='feed-list'>
                     <NavLink
-                      className='story-link'
-                      to={`/stories/${booking.storyId}`}
+                      className='listing-link'
+                      to={`/listings/${booking.listingId}`}
                     >
                       <div className='neumorphic-card-booking mx-auto'>
                         <div className='neumorphic-card__outer'>
@@ -92,7 +92,7 @@ function UserBookings() {
                               <img
                                 class='neumorphic-image-for-booking'
                                 src={booking.listingFirstImageUrl}
-                                alt='story'
+                                alt='listing'
                               />
                               <LoadScript googleMapsApiKey='AIzaSyA0M4-oBcEx1v77h2opyRZJp7sXdiU9w5g'>
                                 <div className='allGoogleMapWidgetInfoForBookings'>
@@ -172,7 +172,7 @@ function UserBookings() {
                               const editedBooking = {
                                 id: showBookingId,
                                 userId,
-                                // storyId: Number(storyId),
+                                // listingId: Number(listingId),
                                 startDate: editStartDate,
                                 endDate: editEndDate,
                                 days:

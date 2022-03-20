@@ -1,24 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { deleteStory } from '../../store/stories';
+import { deleteListing } from '../../store/listings';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
-import './UserStories.css';
+import './UserListings.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function UserStories() {
+function UserListings() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
-  const allStories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(allStories);
+  const allListings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(allListings);
 
-  let userStories;
+  let userListings;
 
   if (sessionUser) {
-    userStories = storiesArr.filter(
-      (story) => story.authorId === sessionUser.id
+    userListings = listingsArr.filter(
+      (listing) => listing.authorId === sessionUser.id
     );
 
     return (
@@ -28,37 +28,40 @@ function UserStories() {
           <div className='ud-center-div'>
             <h2 className='rec-title'>My Listings</h2>
             <ul>
-              {userStories.map((story) => {
-                let d = new Date(story.createdAt);
+              {userListings.map((listing) => {
+                let d = new Date(listing.createdAt);
                 let dateWritten = d.toString().slice(4, 10);
                 return (
-                  <li key={story.id} className='feed-list'>
-                    <NavLink className='story-link' to={`/stories/${story.id}`}>
+                  <li key={listing.id} className='feed-list'>
+                    <NavLink
+                      className='listing-link'
+                      to={`/listings/${listing.id}`}
+                    >
                       <div className='neumorphic-card mx-auto'>
                         <div className='neumorphic-card__outer'>
-                          {/* <h2 className='title'>{story.title}</h2> */}
+                          {/* <h2 className='title'>{listing.title}</h2> */}
                           <img
                             class='neumorphic-image'
-                            src={story.imageUrl[0]}
-                            alt='story'
+                            src={listing.imageUrl[0]}
+                            alt='listing'
                           />
                           <p className='neumorphic-card__title'>
-                            {story.city.slice(0, -5)}
+                            {listing.city.slice(0, -5)}
                           </p>
                           <div className='propertyTypeAndPriceLine'>
                             <p className='neumorphic-card__text'>
-                              {story.propertyType}
+                              {listing.propertyType}
                             </p>
                             <p className='neumorphic-card__text'>
                               $
-                              {story.price === 0
-                                ? story.price + 1
-                                : story.price}{' '}
+                              {listing.price === 0
+                                ? listing.price + 1
+                                : listing.price}{' '}
                               / night
                             </p>
                           </div>
                           {/* <div id='e-d-btn-ctn'>
-                          <NavLink to={`/edit/story/${story.id}`}>
+                          <NavLink to={`/edit/listing/${listing.id}`}>
                             <button className='my-5 btn neumorphic-btn' id="editButton" type='submit'>
                               <FaEdit id='editBttnLogo' />
                             </button>
@@ -67,21 +70,21 @@ function UserStories() {
                             className='my-5 btn neumorphic-btn'
                             id="deleteButton"
                             type='submit'
-                            onClick={() => dispatch(deleteStory(story.id))}
+                            onClick={() => dispatch(deleteListing(listing.id))}
                           >
                             <FaTrashAlt id='trashBttnLogo' />
                           </button>
                         </div> */}
-                          {/* <p className='user-name'>{story.User.name}</p> */}
+                          {/* <p className='user-name'>{listing.User.name}</p> */}
                           {/* <p className="date-written">{dateWritten}</p> */}
                         </div>
                         <div>
-                          {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
+                          {/* <img class='neumorphic-image' src={listing.imageUrl} alt='listing' /> */}
                         </div>
                       </div>
                     </NavLink>
                     <div id='e-d-btn-ctn'>
-                      <NavLink to={`/edit/story/${story.id}`}>
+                      <NavLink to={`/edit/listing/${listing.id}`}>
                         <button
                           className='my-5 btn neumorphic-btn'
                           id='editButton'
@@ -95,7 +98,7 @@ function UserStories() {
                         id='deleteButton'
                         type='submit'
                         onClick={() => {
-                          dispatch(deleteStory(story.id));
+                          dispatch(deleteListing(listing.id));
 
                           toast.error('Listing Removed!', {
                             position: 'bottom-center',
@@ -136,4 +139,4 @@ function UserStories() {
   }
 }
 
-export default UserStories;
+export default UserListings;

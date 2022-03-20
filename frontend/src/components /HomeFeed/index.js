@@ -5,36 +5,53 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import './HomeFeed.css';
 
 function HomeFeed() {
-  const allStories = useSelector((state) => state.stories);
-  const storiesArr = Object.values(allStories);
+  const allListings = useSelector((state) => state.listings);
+  const listingsArr = Object.values(allListings);
 
-  if (storiesArr.length) {
+  if (listingsArr.length) {
     return (
       <>
         <ul>
-          {storiesArr.map((story) => {
-            let d = new Date(story.createdAt);
+          {listingsArr.map((listing) => {
+            let d = new Date(listing.createdAt);
             let dateWritten = d.toString().slice(4, 10);
             return (
-              <li key={story.id} className='feed-list'>
-                <NavLink className='story-link' to={`/stories/${story.id}`}>
-                <div className='neumorphic-card mx-auto'>
-                  <div className='neumorphic-card__outer'>
-                      {/* <h2 className='title'>{story.title}</h2> */}
-                      <img class='neumorphic-image' src={story.imageUrl[0]} alt='story' />
-                      <p className="neumorphic-card__title">{story.city.slice(0,-5)}</p>
-                      <div className="propertyTypeAndPriceLine">
-                        <p className='neumorphic-card__text'>{story.propertyType}</p>
-                        <p className="neumorphic-card__text">${(story.price) === 0 ? (story.price) + 1 : (story.price)} / night</p>
+              <li key={listing.id} className='feed-list'>
+                <NavLink
+                  className='listing-link'
+                  to={`/listings/${listing.id}`}
+                >
+                  <div className='neumorphic-card mx-auto'>
+                    <div className='neumorphic-card__outer'>
+                      {/* <h2 className='title'>{listing.title}</h2> */}
+                      <img
+                        class='neumorphic-image'
+                        src={listing.imageUrl[0]}
+                        alt='listing'
+                      />
+                      <p className='neumorphic-card__title'>
+                        {listing.city.slice(0, -5)}
+                      </p>
+                      <div className='propertyTypeAndPriceLine'>
+                        <p className='neumorphic-card__text'>
+                          {listing.propertyType}
+                        </p>
+                        <p className='neumorphic-card__text'>
+                          $
+                          {listing.price === 0
+                            ? listing.price + 1
+                            : listing.price}{' '}
+                          / night
+                        </p>
                       </div>
-                      {/* <p className='user-name'>{story.User.name}</p> */}
-                    {/* <p className="date-written">{dateWritten}</p> */}
+                      {/* <p className='user-name'>{listing.User.name}</p> */}
+                      {/* <p className="date-written">{dateWritten}</p> */}
+                    </div>
+                    <div>
+                      {/* <img class='neumorphic-image' src={listing.imageUrl} alt='listing' /> */}
+                    </div>
                   </div>
-                  <div>
-                      {/* <img class='neumorphic-image' src={story.imageUrl} alt='story' /> */}
-                 </div>
-                </div>
-                  </NavLink>
+                </NavLink>
               </li>
             );
           })}

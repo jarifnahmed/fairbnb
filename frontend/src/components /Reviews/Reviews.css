@@ -1,4 +1,4 @@
-.comments-title {
+.reviews-title {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,32 +7,32 @@
   margin-bottom: 15px;
 }
 
-#commentUl {
+#reviewUl {
   list-style-type: none;
   display: inline;
 }
 
-#comments-form {
+#reviews-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-#comments-form-send {
+#reviews-form-send {
 }
 
-.the-comment {
+.the-review {
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 1.5rem;
 }
 
-.commentIcon {
+.reviewIcon {
   margin-right: 10px;
 }
 
-.comments-list {
+.reviews-list {
   margin: 0;
   padding: 0;
   margin-bottom: 20px;
@@ -48,24 +48,21 @@
   /* border-color: rgb(255, 90, 96);
   border-width: 5px; */
 
-
-
-
   background-color: var(--back-color);
   border-radius: 20px;
   border: 3px solid #f3f4f7;
-  box-shadow: 2px 2px 3px rgba(55, 84, 170, .15),
-              inset 0px 0px 4px rgba(255, 255, 255, 0),
-              inset 7px 7px 15px rgba(55, 84, 170, .15),
-              inset -7px -7px 20px rgba(255, 255, 255, 1),
-              0px 0px 4px rgba(255, 255, 255, .2) !important;
+  box-shadow: 2px 2px 3px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0),
+    inset 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset -7px -7px 20px rgba(255, 255, 255, 1),
+    0px 0px 4px rgba(255, 255, 255, 0.2) !important;
   padding: 5px 15px;
   outline: none !important;
-  color: #535D74;
+  color: #535d74;
   font-size: 1.5rem;
 }
 
-.commentsDiv {
+.reviewsDiv {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -123,23 +120,22 @@
   outline: none;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #6D7587;
+  color: #6d7587;
   /* letter-spacing: 0.75px; */
- }
+}
 
- /* .Toastify__toast-theme--colored.Toastify__toast--success {
+/* .Toastify__toast-theme--colored.Toastify__toast--success {
    width: 600px;
 } */
 
-#updateReviewToast{
-  background-color: #3249CA
+#updateReviewToast {
+  background-color: #3249ca;
 }
 
-
-#comments-div{
+#reviews-div {
   columns: 2;
 }
 
-.createReviewBox{
+.createReviewBox {
   margin-top: 2rem;
 }

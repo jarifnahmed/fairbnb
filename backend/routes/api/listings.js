@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Story, User } = require('../../db/models');
+const { Listing, User } = require('../../db/models');
 const {
   singleMulterUpload,
   singlePublicFileUpload,
@@ -13,7 +13,7 @@ const {
 
 const router = express.Router();
 
-const validateStory = [
+const validateListing = [
   check('title')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
@@ -37,27 +37,28 @@ const validateStory = [
   handleValidationErrors,
 ];
 
-//gets all stories from the Stories table
+//gets all listings from the Listings table
 router.get(
   '/',
   asyncHandler(async function (req, res) {
-    const stories = await Story.findAll({
+    const listings = await Listing.findAll({
       include: User,
     });
-    return res.json(stories);
+    return res.json(listings);
   })
 );
 
-//inserts a story into the Stories table
+//inserts a listing into the Listings table
 router.post(
   '/',
   requireAuth,
-  multipleMulterUpload("images"),
-  validateStory,
+  multipleMulterUpload('images'),
+  validateListing,
   asyncHandler(async function (req, res) {
-    const { authorId, title, propertyType, city, lat, lng, price, body } = req.body;
+    const { authorId, title, propertyType, city, lat, lng, price, body } =
+      req.body;
     const imageUrl = await multiplePublicFileUpload(req.files);
-    const newStory = await Story.create({
+    const newListing = await Listing.create({
       authorId,
       title,
       propertyType,
@@ -68,29 +69,40 @@ router.post(
       body,
       imageUrl,
     });
-    const story = await Story.findByPk(newStory.id, {
+    const listing = await Listing.findByPk(newListing.id, {
       include: User,
     });
-    if (story) {
-      return res.json(story);
+    if (listing) {
+      return res.json(listing);
     }
   })
 );
 
-//edits a story
+//edits a listing
 router.put(
   '/:id',
   requireAuth,
   multipleMulterUpload('imageUrl'),
-  validateStory,
+  validateListing,
   asyncHandler(async function (req, res) {
-    let { id, authorId, title, propertyType, city, lat, lng, price, body, imageUrl } = req.body;
+    let {
+      id,
+      authorId,
+      title,
+      propertyType,
+      city,
+      lat,
+      lng,
+      price,
+      body,
+      imageUrl,
+    } = req.body;
 
     if (req.files) {
       imageUrl = await multiplePublicFileUpload(req.files);
     }
 
-    const editedStory = {
+    const editedListing = {
       authorId,
       title,
       propertyType,
@@ -102,26 +114,26 @@ router.put(
       imageUrl,
     };
 
-    await Story.update(editedStory, { where: { id: id } });
-    const updatedStory = await Story.findByPk(id, {
+    await Listing.update(editedListing, { where: { id: id } });
+    const updatedListing = await Listing.findByPk(id, {
       include: User,
     });
 
-    if (updatedStory) {
-      return res.json(updatedStory);
+    if (updatedListing) {
+      return res.json(updatedListing);
     }
   })
 );
 
-//deletes a story
+//deletes a listing
 router.delete(
   '/delete/:id',
   requireAuth,
   asyncHandler(async function (req, res) {
-    const storyId = req.params.id;
-    const deletedStory = await Story.destroy({ where: { id: storyId } });
-    if (deletedStory) {
-      return res.json(storyId);
+    const listingId = req.params.id;
+    const deletedListing = await Listing.destroy({ where: { id: listingId } });
+    if (deletedListing) {
+      return res.json(listingId);
     }
   })
 );

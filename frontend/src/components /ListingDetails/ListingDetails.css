@@ -1,0 +1,262 @@
+#sd-img {
+  height: 300px;
+  width: 500px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0),
+    inset 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset -7px -7px 20px rgba(255, 255, 255, 1),
+    0px 0px 4px rgba(58, 76, 177, 0.274) !important;
+}
+
+/* #sd-img:hover {
+    box-shadow: 2px 2px 3px rgba(55, 84, 170, .15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0),
+    inset 7px 7px 15px rgba(55, 84, 170, .15),
+    inset -7px -7px 20px rgba(255, 255, 255, 1),
+    0px 0px 4px rgba(0, 0, 0, 0.863) !important;
+} */
+
+#sd-img2 {
+  height: 500px;
+  width: 700px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgba(55, 84, 170, 0.15),
+    inset 0px 0px 4px rgba(255, 255, 255, 0),
+    inset 7px 7px 15px rgba(55, 84, 170, 0.15),
+    inset -7px -7px 20px rgba(255, 255, 255, 1),
+    0px 0px 4px rgba(58, 76, 177, 0.274) !important;
+}
+
+/* #sd-img:active {
+    height: 500px;
+    width: 700px;
+} */
+
+/* #listing-reviews {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.listingDetailsAll {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+#listing-details {
+  /* width: 700px; */
+  margin-top: 40px;
+}
+
+.listing-elements-title {
+  font-size: 2.7rem;
+  display: flex;
+  justify-content: center;
+}
+
+.listing-elements-city {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#listing-body {
+  line-height: 1.6;
+}
+
+.listing-elements {
+  padding: 10px;
+  white-space: pre-wrap;
+}
+
+#reviews-btn {
+  margin-top: 5%;
+  margin-bottom: 30px;
+  border-radius: 30px;
+  background-color: transparent;
+  border-color: green;
+  height: 40px;
+  width: 30%;
+  margin-left: 30%;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 500px;
+  right: -500px;
+  transition: all 0.2s linear;
+  background-color: white;
+  box-shadow: 0px 0 8px 1px lightgray;
+  overflow: scroll;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+#sidebar-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: small;
+  cursor: pointer;
+}
+
+.allReviewsSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.allGoogleMapWidgetInfo:hover {
+  border-radius: 20px;
+  background-color: #f6f5f0;
+  background-image: linear-gradient(to bottom, #f6f5f0 100%, #f6f5f0 100%),
+    linear-gradient(to bottom, rgb(61, 152, 255) 0%, rgb(90, 195, 255) 100%);
+  background-clip: content-box, padding-box;
+  box-shadow: 9px 9px 16px rgba(116, 192, 255, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
+.imageGallery {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.bttnforImageLarger {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.topListingDetails {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.pics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bottomListingDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bottomMapAndReviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listing-elements-propertyType,
+.listing-elements-price {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  display: flex;
+}
+
+.listingBodyDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.listing-elements-body-truncate {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* turncate details text */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: justify;
+}
+
+.showMoreOrLess {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  align-items: center;
+}
+
+.showMoreOrLess:hover {
+  color: #3f6dd8;
+}
+
+.listing-elements-body {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.mapAndBooking {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.allListingDetailsAndBooking {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-bottom: 40px;
+}
+
+.allListingDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  flex-wrap: wrap;
+  margin-right: 4rem;
+}
+
+.allBookingsSection {
+  position: sticky;
+  top: 0;
+}
+
+.mapHeader {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mapCity {
+  margin-bottom: 1rem;
+}

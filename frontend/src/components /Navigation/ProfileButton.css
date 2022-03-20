@@ -48,7 +48,7 @@
   }
 
   a.listing-link {
-    background-color: rgb(0, 135, 214);
+    /* background-color: rgb(0, 135, 214); */
     color: white;
     text-align: center;
     text-decoration: none;
@@ -68,7 +68,7 @@
   }
 
   a.listing-link:hover {
-    background-color: rgb(255, 90, 96);
+    /* background-color: rgb(255, 90, 96); */
     color: white;
     text-align: center;
     text-decoration: none;
@@ -92,11 +92,15 @@
     /* border-radius: 8px; */
     margin-right: 30px;
     transition-duration: 0.4s;
-    /* font-family: Arial, Helvetica, sans-serif; */
+    text-align: center;
+    text-decoration: none;
+    font-weight: medium;
+    font-size: medium;
+    font-weight: bold;
 
-    padding-top: 4px;
+    padding-top: 1px;
     padding-right: 6px;
-    padding-bottom: 4px;
+    padding-bottom: 1px;
     padding-left: 6px;
   }
 
