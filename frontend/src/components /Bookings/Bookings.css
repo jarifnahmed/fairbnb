@@ -108,7 +108,7 @@
 
 #e-d-btn-ctn {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
