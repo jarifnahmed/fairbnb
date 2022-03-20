@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  createComment,
-  updateComment,
-  deleteComment,
-} from '../../store/comments';
-import './Comments.css';
+import { createReview, updateReview, deleteReview } from '../../store/reviews';
+import './Reviews.css';
 import { FaEdit, FaUserCircle, FaTrashAlt } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
@@ -15,7 +11,7 @@ import { MdSend } from 'react-icons/md';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Comments() {
+function Reviews() {
   const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -31,14 +27,14 @@ function Comments() {
     );
   }
 
-  const comments = useSelector((state) => state.comments);
-  const commentsArr = Object.values(comments);
-  const listingComments = commentsArr.filter(
-    (comment) => comment.listingId === Number(listingId)
+  const reviews = useSelector((state) => state.reviews);
+  const reviewsArr = Object.values(reviews);
+  const listingReviews = reviewsArr.filter(
+    (review) => review.listingId === Number(listingId)
   );
 
-  const myListingComments = listingComments.filter(
-    (comment) => comment.userId === sessionUser.id
+  const myListingReviews = listingReviews.filter(
+    (review) => review.userId === sessionUser.id
   );
 
   const dispatch = useDispatch();
@@ -46,17 +42,17 @@ function Comments() {
   const [body, setBody] = useState('');
   const [errors, setErrors] = useState([]);
   let newObj = {};
-  for (const comment of commentsArr) {
-    newObj[comment.id] = false;
+  for (const review of reviewsArr) {
+    newObj[review.id] = false;
   }
 
   const [editBody, setEditBody] = useState('');
   const [editErrors, setEditErrors] = useState([]);
   const [showEditBox, setshowEditBox] = useState(false);
-  const [showCommentId, setshowCommentId] = useState(null);
+  const [showReviewId, setshowReviewId] = useState(null);
   const [showEditBoxArr, setEditBoxArr] = useState(newObj);
 
-  //handles an edited comment submission
+  //handles an edited review submission
   const handleEdit = async (e) => {
     e.preventDefault();
 
@@ -74,17 +70,17 @@ function Comments() {
 
     const userId = sessionUser.id;
 
-    const editedComment = {
-      id: showCommentId,
+    const editedReview = {
+      id: showReviewId,
       userId,
       listingId: Number(listingId),
       body: editBody,
     };
 
     setshowEditBox(false);
-    setshowCommentId(null);
+    setshowReviewId(null);
 
-    return dispatch(updateComment(editedComment))
+    return dispatch(updateReview(editedReview))
       .then(() => {
         setBody('');
         setEditErrors([]);
@@ -95,7 +91,7 @@ function Comments() {
       });
   };
 
-  //handles new comment submission
+  //handles new review submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -112,13 +108,13 @@ function Comments() {
 
     const userId = sessionUser.id;
 
-    const newComment = {
+    const newReview = {
       userId,
       listingId: Number(listingId),
       body,
     };
 
-    return dispatch(createComment(newComment))
+    return dispatch(createReview(newReview))
       .then(() => setBody(''))
       .catch(async (res) => {
         const data = await res.json();
@@ -135,41 +131,41 @@ function Comments() {
     ) {
       return (
         <>
-          {listingComments.length === 0 && (
-            <h2 className='comments-title'>No Reviews</h2>
+          {listingReviews.length === 0 && (
+            <h2 className='reviews-title'>No Reviews</h2>
           )}
-          {listingComments.length === 1 && (
-            <h2 className='comments-title'>1 Review</h2>
+          {listingReviews.length === 1 && (
+            <h2 className='reviews-title'>1 Review</h2>
           )}
-          {listingComments.length > 1 && (
-            <h2 className='comments-title'>{listingComments.length} Reviews</h2>
+          {listingReviews.length > 1 && (
+            <h2 className='reviews-title'>{listingReviews.length} Reviews</h2>
           )}
-          <div id='comments-div'>
-            <ul id='commentUl'>
-              {listingComments.map((comment) => {
+          <div id='reviews-div'>
+            <ul id='reviewUl'>
+              {listingReviews.map((review) => {
                 return (
-                  <li key={comment.id} className='comments-list'>
+                  <li key={review.id} className='reviews-list'>
                     {/* editing, deleting, saving, and canceling a review */}
-                    {!showEditBoxArr[comment.id] && (
-                      <div className='commentsDiv' id={comment.id}>
-                        <p className='the-comment'>
-                          <div className='commentIcon'>
+                    {!showEditBoxArr[review.id] && (
+                      <div className='reviewsDiv' id={review.id}>
+                        <p className='the-review'>
+                          <div className='reviewIcon'>
                             <FaUserCircle />
                           </div>
-                          {comment.User.name}: "{comment.body}"
+                          {review.User.name}: "{review.body}"
                         </p>
                         <div className='editAndDeleteButtonRow'>
-                          {sessionUser && sessionUser.id === comment.userId && (
+                          {sessionUser && sessionUser.id === review.userId && (
                             <button
                               className='my-5 btn neumorphic-btn'
                               id='editButton'
                               type='submit'
                               onClick={() => {
                                 setshowEditBox(true);
-                                setshowCommentId(comment.id);
-                                setEditBody(comment.body);
+                                setshowReviewId(review.id);
+                                setEditBody(review.body);
                                 let newobj = { ...newObj };
-                                newobj[comment.id] = true;
+                                newobj[review.id] = true;
                                 setEditBoxArr(newobj);
                               }}
                             >
@@ -177,14 +173,14 @@ function Comments() {
                             </button>
                           )}
                           {sessionUser &&
-                            (sessionUser.id === comment.userId ||
+                            (sessionUser.id === review.userId ||
                               sessionUser.id === listing.authorId) && (
                               <button
                                 className='my-5 btn neumorphic-btn'
                                 id='deleteButton'
                                 type='submit'
                                 onClick={() => {
-                                  dispatch(deleteComment(comment.id));
+                                  dispatch(deleteReview(review.id));
 
                                   toast.error('Review Removed!', {
                                     position: 'bottom-center',
@@ -205,57 +201,55 @@ function Comments() {
                       </div>
                     )}
                     {/* editing, deleting, saving, and canceling a review */}
-                    {sessionUser &&
-                      showEditBox &&
-                      showCommentId === comment.id && (
-                        <div>
-                          <form id='comments-form' onSubmit={handleEdit}>
-                            <ul className='ws-errors'>
-                              {editErrors.map((error, idx) => (
-                                <li key={idx}>{error}</li>
-                              ))}
-                            </ul>
-                            <label>
-                              <textarea
-                                className='ic-field'
-                                rows='5'
-                                cols='60'
-                                value={editBody}
-                                onChange={(e) => setEditBody(e.target.value)}
-                                required
-                              />
-                            </label>
-                            <div className='saveAndCancelButtn'>
-                              <button
-                                className='my-5 btn neumorphic-btn'
-                                id='saveButton'
-                                // className='sc-button'
-                                type='submit'
-                                onClick={() => {
-                                  let newobj = { ...newObj };
-                                  newobj[comment.id] = false;
-                                  setEditBoxArr(newobj);
-                                }}
-                              >
-                                <BiSave />
-                              </button>
-                              <button
-                                className='my-5 btn neumorphic-btn'
-                                id='cancelButton'
-                                onClick={() => {
-                                  setshowEditBox(false);
-                                  setshowCommentId(null);
-                                  let newobj = { ...newObj };
-                                  newobj[comment.id] = false;
-                                  setEditBoxArr(newobj);
-                                }}
-                              >
-                                <GiCancel />
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      )}
+                    {sessionUser && showEditBox && showReviewId === review.id && (
+                      <div>
+                        <form id='reviews-form' onSubmit={handleEdit}>
+                          <ul className='ws-errors'>
+                            {editErrors.map((error, idx) => (
+                              <li key={idx}>{error}</li>
+                            ))}
+                          </ul>
+                          <label>
+                            <textarea
+                              className='ic-field'
+                              rows='5'
+                              cols='60'
+                              value={editBody}
+                              onChange={(e) => setEditBody(e.target.value)}
+                              required
+                            />
+                          </label>
+                          <div className='saveAndCancelButtn'>
+                            <button
+                              className='my-5 btn neumorphic-btn'
+                              id='saveButton'
+                              // className='sc-button'
+                              type='submit'
+                              onClick={() => {
+                                let newobj = { ...newObj };
+                                newobj[review.id] = false;
+                                setEditBoxArr(newobj);
+                              }}
+                            >
+                              <BiSave />
+                            </button>
+                            <button
+                              className='my-5 btn neumorphic-btn'
+                              id='cancelButton'
+                              onClick={() => {
+                                setshowEditBox(false);
+                                setshowReviewId(null);
+                                let newobj = { ...newObj };
+                                newobj[review.id] = false;
+                                setEditBoxArr(newobj);
+                              }}
+                            >
+                              <GiCancel />
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    )}
                   </li>
                 );
               })}
@@ -265,9 +259,9 @@ function Comments() {
           {/* Posting a review */}
           {sessionUser &&
             currentListing.authorId !== sessionUser.id &&
-            myListingComments.length < 1 && (
+            myListingReviews.length < 1 && (
               <div className='createReviewBox'>
-                <form id='comments-form-send' onSubmit={handleSubmit}>
+                <form id='reviews-form-send' onSubmit={handleSubmit}>
                   <ul className='ws-errors'>
                     {errors.map((error, idx) => (
                       <li key={idx}>{error}</li>
@@ -314,26 +308,26 @@ function Comments() {
     ) {
       return (
         <>
-          {listingComments.length === 0 && (
-            <h2 className='comments-title'>No Reviews</h2>
+          {listingReviews.length === 0 && (
+            <h2 className='reviews-title'>No Reviews</h2>
           )}
-          {listingComments.length === 1 && (
-            <h2 className='comments-title'>1 Review</h2>
+          {listingReviews.length === 1 && (
+            <h2 className='reviews-title'>1 Review</h2>
           )}
-          {listingComments.length > 1 && (
-            <h2 className='comments-title'>{listingComments.length} Reviews</h2>
+          {listingReviews.length > 1 && (
+            <h2 className='reviews-title'>{listingReviews.length} Reviews</h2>
           )}
-          <div id='comments-div'>
-            <ul id='commentUl'>
-              {listingComments.map((comment) => {
+          <div id='reviews-div'>
+            <ul id='reviewUl'>
+              {listingReviews.map((review) => {
                 return (
-                  <li key={comment.id} className='comments-list'>
-                    <div className='commentsDiv' id={comment.id}>
-                      <p className='the-comment'>
-                        <div className='commentIcon'>
+                  <li key={review.id} className='reviews-list'>
+                    <div className='reviewsDiv' id={review.id}>
+                      <p className='the-review'>
+                        <div className='reviewIcon'>
                           <FaUserCircle />
                         </div>
-                        {comment.User.name}: "{comment.body}"
+                        {review.User.name}: "{review.body}"
                       </p>
                     </div>
                   </li>
@@ -349,4 +343,4 @@ function Comments() {
   }
 }
 
-export default Comments;
+export default Reviews;

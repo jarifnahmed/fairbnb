@@ -3,11 +3,11 @@ const asyncHandler = require('express-async-handler');
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Comment, Listing, User } = require('../../db/models');
+const { Review, Listing, User } = require('../../db/models');
 
 const router = express.Router();
 
-const validateComment = [
+const validateReview = [
   check('body')
     .exists({ checkFalsy: true })
     .isLength({ min: 1 })
@@ -15,59 +15,59 @@ const validateComment = [
   handleValidationErrors,
 ];
 
-//gets all comments from the Comments table
+//gets all reviews from the Reviews table
 router.get(
   '/',
   asyncHandler(async function (req, res) {
-    const comments = await Comment.findAll({
+    const reviews = await Review.findAll({
       include: [User, Listing],
     });
-    return res.json(comments);
+    return res.json(reviews);
   })
 );
 
-//inserts a comment into the Comments table
+//inserts a review into the Reviews table
 router.post(
   '/',
   requireAuth,
-  validateComment,
+  validateReview,
   asyncHandler(async function (req, res) {
-    const newComment = await Comment.create(req.body);
-    const comment = await Comment.findByPk(newComment.id, {
+    const newReview = await Review.create(req.body);
+    const review = await Review.findByPk(newReview.id, {
       include: [User, Listing],
     });
-    if (comment) {
-      return res.json(comment);
+    if (review) {
+      return res.json(review);
     }
   })
 );
 
-//edits a comment
+//edits a review
 router.put(
   '/:id',
   requireAuth,
-  validateComment,
+  validateReview,
   asyncHandler(async function (req, res) {
-    await Comment.update(req.body, { where: { id: req.body.id } });
-    const updatedComment = await Comment.findByPk(req.body.id, {
+    await Review.update(req.body, { where: { id: req.body.id } });
+    const updatedReview = await Review.findByPk(req.body.id, {
       include: [User, Listing],
     });
 
-    if (updatedComment) {
-      return res.json(updatedComment);
+    if (updatedReview) {
+      return res.json(updatedReview);
     }
   })
 );
 
-//deletes a comment
+//deletes a review
 router.delete(
   '/delete/:id',
   requireAuth,
   asyncHandler(async function (req, res) {
-    const commentId = req.params.id;
-    const deletedComment = await Comment.destroy({ where: { id: commentId } });
-    if (deletedComment) {
-      return res.json(commentId);
+    const reviewId = req.params.id;
+    const deletedReview = await Review.destroy({ where: { id: reviewId } });
+    if (deletedReview) {
+      return res.json(reviewId);
     }
   })
 );

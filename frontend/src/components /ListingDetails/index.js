@@ -2,7 +2,7 @@ import { useParams, NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { deleteListing } from '../../store/listings';
-import Comments from '../Comments';
+import Reviews from '../Reviews';
 import EditListing from '../UpdateListing';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
@@ -36,7 +36,7 @@ function ListingDetail() {
   const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const listing = useSelector((state) => state.listings[listingId]);
-  const [showComments, setShowComments] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
   const deletingListing = () => dispatch(deleteListing(listing.id));
 
   const [image, setImage] = useState(listing.imageUrl);
@@ -168,7 +168,7 @@ function ListingDetail() {
               {/* <p className="listing-elements" id="listing-body">{listing.body}</p> */}
               <div className='bottomMapAndReviews'>
                 <div className='allReviewsSection'>
-                  <Comments />
+                  <Reviews />
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@ function ListingDetail() {
                   </LoadScript>
                 </div>
                 <div className='allReviewsSection'>
-                  <Comments />
+                  <Reviews />
                 </div>
               </div>
             </div>
@@ -322,8 +322,8 @@ function ListingDetail() {
                   </LoadScript>
                 </div>
                 <div className='allReviewsSection'>
-                  <h2 className='comments-title'>Log In To See Reviews</h2>
-                  {/* <Comments /> */}
+                  <h2 className='reviews-title'>Log In To See Reviews</h2>
+                  {/* <Reviews /> */}
                 </div>
               </div>
             </div>

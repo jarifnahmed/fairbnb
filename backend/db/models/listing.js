@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Listing.belongsTo(models.User, { foreignKey: 'authorId' });
-      Listing.hasMany(models.Comment, {
+      Listing.hasMany(models.Review, {
         foreignKey: 'listingId',
         onDelete: 'CASCADE',
         hooks: true,

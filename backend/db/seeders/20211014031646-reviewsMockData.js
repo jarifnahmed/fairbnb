@@ -14,7 +14,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Comments',
+      'Reviews',
       [
         { userId: 1, listingId: 4, body: faker.lorem.words(5) },
         { userId: 2, listingId: 1, body: faker.lorem.words(5) },
@@ -37,6 +37,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Comments', null, {});
+    await queryInterface.bulkDelete('Reviews', null, {});
   },
 };

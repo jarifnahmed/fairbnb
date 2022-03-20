@@ -11,7 +11,7 @@ import WriteListing from './components /WriteListing';
 import EditListing from './components /UpdateListing';
 import Footer from './components /Footer';
 import { getListings } from './store/listings';
-import { getComments } from './store/comments';
+import { getReviews } from './store/reviews';
 import { getBookings } from './store/bookings';
 import PageNotFound from './components /PageNotFound';
 import UserBookings from './components /UserBookings';
@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getListings());
-    dispatch(getComments());
+    dispatch(getReviews());
     dispatch(getBookings());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
