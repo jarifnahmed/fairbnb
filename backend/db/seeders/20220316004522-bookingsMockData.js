@@ -17,8 +17,8 @@ module.exports = {
         {
           userId: 1,
           listingId: 5,
-          startDate: '2022-04-01',
-          endDate: '2022-04-05',
+          startDate: '2022-12-01',
+          endDate: '2022-12-05',
           days: 4,
           total: 480,
           listingFirstImageUrl:
