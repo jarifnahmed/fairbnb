@@ -17,8 +17,8 @@ module.exports = {
         {
           userId: 1,
           listingId: 5,
-          startDate: '2022-04-01',
-          endDate: '2022-04-05',
+          startDate: '2022-12-01',
+          endDate: '2022-12-05',
           days: 4,
           total: 480,
           listingFirstImageUrl:
@@ -27,6 +27,21 @@ module.exports = {
           listingCity: 'Charlotte, NC, USA',
           listingLat: 35.227085,
           listingLng: -80.843124,
+        },
+
+        {
+          userId: 1,
+          listingId: 9,
+          startDate: '2023-05-01',
+          endDate: '2023-05-05',
+          days: 14,
+          total: 980,
+          listingFirstImageUrl:
+            'https://res.cloudinary.com/diiwknzfk/image/upload/v1647606025/fairbnb-SeedData/Stone%20Mansion/100987825-121017_EJ_stone_mansion_0014r_uobkj6.jpg',
+          listingPricePerNight: 70,
+          listingCity: 'Milwaukee, WI, USA',
+          listingLat: 43.038902,
+          listingLng: -87.906471,
         },
       ],
       {}
