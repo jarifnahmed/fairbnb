@@ -134,7 +134,7 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 
 <div align="center">
 
-## How To Run Locally
+## How To Run Locally & Deploy
 
 <div>
 
