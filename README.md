@@ -50,6 +50,13 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 - Filtered View For Other Listings
 - Add New Reviews
 - Edit and Delete Reviews
+- Create, View, Edit, and Delete Bookings
+- Live Search Bar and Filters
+- AWS S3 Bucket Upload
+- Google Location Autocomplete API
+- Google Geolocation Capture API
+- Google Maps API
+- Neumorphic Design
 
 <div>
 
@@ -160,12 +167,12 @@ To run locally, you must have **NodeJS** and **Postgres** installed on your mach
 
 <div align="justify">
 
-- Implement a bookings feature.
-- Implement a search feature.
-- Implement a side map that shows location.
+- ~~Implement a bookings feature.~~ Completed!
+- ~~Implement a search feature.~~ Completed!
+- ~~Implement a side map that shows location.~~ Completed!
 - Animation.
-- Improved UI/UX.
-- Extended create listings functionality.
+- ~~Improved UI/UX.~~ Completed!
+- ~~Extended create listings functionality.~~ Completed!
 - Extended create reviews functionality.
 
 <div>
