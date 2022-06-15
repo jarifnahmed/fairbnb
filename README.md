@@ -165,6 +165,9 @@ To run locally, you must have **NodeJS** and **Postgres** installed on your mach
 - Sequelize - ORM.
 - Dotenv - Load environment variables.
 - Nodemon - Development monitoring script.
+- AWS - Cloud Storage.
+- Multer - Uploading Middleware.
+- Google APIs - Location Features.
 
 <div>
 
