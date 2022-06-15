@@ -68,8 +68,8 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 <div>
 
 <div align="center">
-  
-### Home Page 
+
+### Home Page
 
 ![Main](https://user-images.githubusercontent.com/11577850/173890446-aab27bad-5e84-4020-b070-6b5a878c4e90.png)
 
@@ -81,14 +81,14 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 
 ![Signup](https://user-images.githubusercontent.com/11577850/173890498-c7d17f66-9b9d-49f9-9ff4-f8a3a61e38b7.png)
 
-### Login 
+### Login
 
 ![Login](https://user-images.githubusercontent.com/11577850/173890268-477bd3b0-f1a9-4fb1-b215-3a690dbb8b7e.png)
 
 ### Recommended Listings
 
 ![Listings](https://user-images.githubusercontent.com/11577850/173890602-054f6a7c-52de-445a-9f8a-046340915597.png)
-  
+
 ### Live Search & Filters
 
 ![Search   Filters](https://user-images.githubusercontent.com/11577850/173892229-3b31b8b9-ee86-47f1-93a6-fa8e3ba67868.png)
@@ -120,16 +120,16 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 ### Changing A Booking
 
 ![Changing A Booking](https://user-images.githubusercontent.com/11577850/173891607-e111ff72-4e8f-4dbb-ae74-98f5f5bc9710.png)
-  
+
 ### Google Maps & Geolocation API
 
 ![Google Maps API](https://user-images.githubusercontent.com/11577850/173891701-00f17638-aba8-4865-97db-0a9ea02b1686.png)
-  
+
 ### Google Maps & Geolocation API
 
 ![Google Autocomplete API](https://user-images.githubusercontent.com/11577850/173892162-63d336b9-5030-4f18-b3c7-eb7ffec85441.png)
-  
-  
+
+
 <div>
 
 <div align="center">
@@ -140,7 +140,7 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 
 <div align="justify">
 
-To run locally, you must have **NodeJS** and **Postgres** installed on your machine. Once they are installed, Download/Git Clone the repo and create an *.env* and database following the *.env.example* located in the root of the repo. Then look at the repo's *package.json* located in both the backend and frontend folders to see what packages the project is dependant on. Use `npm install` in both folders to install those dependencies. After that, use **Sequelize** in the backend folder to run all the migrations (`npx dotenv sequelize-cli db:migrate`) and then run all pending seeds (`npx dotenv sequelize-cli db:seed:all`). Check to see if the database was properly seeded using **psql**. If seeded correctly, run `npm start` in both folders.
+To run locally, you must have **NodeJS** and **Postgres** installed on your machine. Once they are installed, Download/Git Clone the repo and create an *.env* and database following the *.env.example* located in the root of the repo. Then look at the repo's *package.json* located in both the backend and frontend folders to see what packages the project is dependant on. Use `npm install` in both folders to install those dependencies. If `npm install` doesn't work with React due to an outdated version, then try `npm i --legacy-peer-deps`. After that, use **Sequelize** in the backend folder to run all the migrations (`npx dotenv sequelize-cli db:migrate`) and then run all pending seeds (`npx dotenv sequelize-cli db:seed:all`). Check to see if the database was properly seeded using **psql**. If seeded correctly, run `npm start` in both folders.
 
 <div>
 
