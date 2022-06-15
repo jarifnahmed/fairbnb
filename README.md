@@ -67,59 +67,68 @@ FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web applicat
 <div>
 
 <div align="center">
+  
+### Home Page 
+
+![Main](https://user-images.githubusercontent.com/11577850/173890446-aab27bad-5e84-4020-b070-6b5a878c4e90.png)
 
 ### Demo User
 
-![demo](https://user-images.githubusercontent.com/11577850/151828224-161be74a-83cc-4bf6-982c-134cb6f63c70.png)
+![Demo](https://user-images.githubusercontent.com/11577850/173890478-f0277186-70a9-4cca-a4c8-d05462dc2958.png)
 
 ### Sign Up
 
-![signup](https://user-images.githubusercontent.com/11577850/151828276-27ed651e-7cf3-4971-8d56-d2f1a28bbfa7.png)
+![Signup](https://user-images.githubusercontent.com/11577850/173890498-c7d17f66-9b9d-49f9-9ff4-f8a3a61e38b7.png)
 
-### Login
+### Login 
 
-![login](https://user-images.githubusercontent.com/11577850/151828334-d7eaa130-e67e-4cc5-8dda-cd7655b65215.png)
-
-### Signed-In Navigation Bar
-
-![signed-in-navbar](https://user-images.githubusercontent.com/11577850/151828500-88b24516-b144-44fa-b5e5-d3c7fa73bf18.png)
+![Login](https://user-images.githubusercontent.com/11577850/173890268-477bd3b0-f1a9-4fb1-b215-3a690dbb8b7e.png)
 
 ### Recommended Listings
 
-![recommended listings](https://user-images.githubusercontent.com/11577850/151828609-5c02fad4-91a7-45fe-b043-63073e48e01f.png)
+![Listings](https://user-images.githubusercontent.com/11577850/173890602-054f6a7c-52de-445a-9f8a-046340915597.png)
+  
+### Live Search & Filters
 
-### View Listing
+![Search   Filters](https://user-images.githubusercontent.com/11577850/173892229-3b31b8b9-ee86-47f1-93a6-fa8e3ba67868.png)
 
-![view-listing](https://user-images.githubusercontent.com/11577850/151828687-c4d1dc42-46f7-4e73-b5ce-d4e724872e51.png)
+### Listing Details
 
-### View & Create Reviews
+![Listing Details And Features](https://user-images.githubusercontent.com/11577850/173894185-cbc412ed-5019-4b6a-b5a3-7b70b914f876.gif)
 
-![view-review](https://user-images.githubusercontent.com/11577850/151828770-0ab14a0d-e518-4025-9301-08ca0fba6216.png)
+### Review Functionalities (Create, View, Edit, Delete)
 
-### Review Functionalities
-
-![review-options](https://user-images.githubusercontent.com/11577850/151828914-2d8bf668-9d51-4782-8f4a-650e5ee2a1f8.png)
-
-### Editing A Review
-
-![editing-review](https://user-images.githubusercontent.com/11577850/151829009-0c18029a-ccca-4260-b042-491e1c978d2b.png)
+![Reviews](https://user-images.githubusercontent.com/11577850/173890981-1b5dbe61-d866-4339-8619-4c3f0a4e9bf8.gif)
 
 ### Create Listing
 
-![create-listing](https://user-images.githubusercontent.com/11577850/151829091-7f7bed8f-513e-45c1-afdc-be9032427bce.png)
+![Creating Listings](https://user-images.githubusercontent.com/11577850/173891206-1d400107-0068-489f-b078-9f8580a8e019.png)
 
 ### My Listings
 
-![my-listings](https://user-images.githubusercontent.com/11577850/151829218-e621ca9e-8acd-4c19-be6b-e6f0efcdca10.png)
+![Viewing My Listings](https://user-images.githubusercontent.com/11577850/173891246-6dca6f42-a53a-4cce-aca8-41f91d556079.png)
 
-### Owner Of A Listing
+### Booking Reservations
 
-![owner-listing](https://user-images.githubusercontent.com/11577850/151829359-c5ecfdbc-444e-4e51-a588-ca30d1e93eba.png)
+![Booking Reservations](https://user-images.githubusercontent.com/11577850/173891547-1a0c5987-29eb-4960-97d6-55a4b7810c2b.png)
 
-### Edit A Listing
+### My Bookings
 
-![edit-listing](https://user-images.githubusercontent.com/11577850/151829400-01bfc1f0-f1c7-46ca-bac2-e224682f5091.png)
+![Viewing My Bookings](https://user-images.githubusercontent.com/11577850/173891791-5ba495b7-45de-4767-8819-b6dfa8dc3aed.png)
 
+### Changing A Booking
+
+![Changing A Booking](https://user-images.githubusercontent.com/11577850/173891607-e111ff72-4e8f-4dbb-ae74-98f5f5bc9710.png)
+  
+### Google Maps & Geolocation API
+
+![Google Maps API](https://user-images.githubusercontent.com/11577850/173891701-00f17638-aba8-4865-97db-0a9ea02b1686.png)
+  
+### Google Maps & Geolocation API
+
+![Google Autocomplete API](https://user-images.githubusercontent.com/11577850/173892162-63d336b9-5030-4f18-b3c7-eb7ffec85441.png)
+  
+  
 <div>
 
 <div align="center">
