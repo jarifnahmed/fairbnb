@@ -8,6 +8,7 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import { MdSend } from 'react-icons/md';
 
+//toasta
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -201,55 +202,57 @@ function Reviews() {
                       </div>
                     )}
                     {/* editing, deleting, saving, and canceling a review */}
-                    {sessionUser && showEditBox && showReviewId === review.id && (
-                      <div>
-                        <form id='reviews-form' onSubmit={handleEdit}>
-                          <ul className='ws-errors'>
-                            {editErrors.map((error, idx) => (
-                              <li key={idx}>{error}</li>
-                            ))}
-                          </ul>
-                          <label>
-                            <textarea
-                              className='ic-field'
-                              rows='5'
-                              cols='60'
-                              value={editBody}
-                              onChange={(e) => setEditBody(e.target.value)}
-                              required
-                            />
-                          </label>
-                          <div className='saveAndCancelButtn'>
-                            <button
-                              className='my-5 btn neumorphic-btn'
-                              id='saveButton'
-                              // className='sc-button'
-                              type='submit'
-                              onClick={() => {
-                                let newobj = { ...newObj };
-                                newobj[review.id] = false;
-                                setEditBoxArr(newobj);
-                              }}
-                            >
-                              <BiSave />
-                            </button>
-                            <button
-                              className='my-5 btn neumorphic-btn'
-                              id='cancelButton'
-                              onClick={() => {
-                                setshowEditBox(false);
-                                setshowReviewId(null);
-                                let newobj = { ...newObj };
-                                newobj[review.id] = false;
-                                setEditBoxArr(newobj);
-                              }}
-                            >
-                              <GiCancel />
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    )}
+                    {sessionUser &&
+                      showEditBox &&
+                      showReviewId === review.id && (
+                        <div>
+                          <form id='reviews-form' onSubmit={handleEdit}>
+                            <ul className='ws-errors'>
+                              {editErrors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                              ))}
+                            </ul>
+                            <label>
+                              <textarea
+                                className='ic-field'
+                                rows='5'
+                                cols='60'
+                                value={editBody}
+                                onChange={(e) => setEditBody(e.target.value)}
+                                required
+                              />
+                            </label>
+                            <div className='saveAndCancelButtn'>
+                              <button
+                                className='my-5 btn neumorphic-btn'
+                                id='saveButton'
+                                // className='sc-button'
+                                type='submit'
+                                onClick={() => {
+                                  let newobj = { ...newObj };
+                                  newobj[review.id] = false;
+                                  setEditBoxArr(newobj);
+                                }}
+                              >
+                                <BiSave />
+                              </button>
+                              <button
+                                className='my-5 btn neumorphic-btn'
+                                id='cancelButton'
+                                onClick={() => {
+                                  setshowEditBox(false);
+                                  setshowReviewId(null);
+                                  let newobj = { ...newObj };
+                                  newobj[review.id] = false;
+                                  setEditBoxArr(newobj);
+                                }}
+                              >
+                                <GiCancel />
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      )}
                   </li>
                 );
               })}
