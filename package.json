@@ -2,12 +2,15 @@
   "name": "fairbnb",
   "version": "1.0.0",
   "description": "FairBnB is an Airbnb inspired full-stack web application with dynamic features catered to people who want to list and rent affordable places. FairBnB lets users create listings and other users. Other users can review those listings.",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
     "install": "npm --prefix backend install backend && npm --prefix frontend install frontend --legacy-peer-deps",
     "dev:backend": "npm install --prefix backend start",
-    "dev:frontend": "npm install --prefix frontend --openssl-legacy-provider start",
+    "dev:frontend": "npm install --prefix frontend start",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
