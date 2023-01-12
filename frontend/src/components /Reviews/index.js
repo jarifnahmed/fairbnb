@@ -8,7 +8,6 @@ import { GiCancel } from 'react-icons/gi';
 import { BiSave } from 'react-icons/bi';
 import { MdSend } from 'react-icons/md';
 
-//toasta
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
