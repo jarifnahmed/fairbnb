@@ -9,7 +9,7 @@ import ListingDetail from './components /ListingDetails';
 import UserListings from './components /UserListings';
 import WriteListing from './components /WriteListing';
 import EditListing from './components /UpdateListing';
-import Footer from './components /Footer';
+// import Footer from './components /Footer';
 import { getListings } from './store/listings';
 import { getReviews } from './store/reviews';
 import { getBookings } from './store/bookings';
