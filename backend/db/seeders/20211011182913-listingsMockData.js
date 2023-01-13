@@ -14,7 +14,7 @@ module.exports = {
      */
 
     await queryInterface.bulkInsert(
-      'Listings',
+      'listings',
       [
         // The first 3 listings belong to demo user
         {
@@ -530,6 +530,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete('Listings', null, {});
+    await queryInterface.bulkDelete('listings', null, {});
   },
 };

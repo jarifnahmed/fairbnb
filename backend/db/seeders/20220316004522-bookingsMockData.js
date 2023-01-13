@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Bookings',
+      'bookings',
       [
         {
           userId: 1,
@@ -55,6 +55,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Bookings', null, {});
+    await queryInterface.bulkDelete('bookings', null, {});
   },
 };
