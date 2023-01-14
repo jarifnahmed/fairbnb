@@ -14,9 +14,9 @@ module.exports = {
      */
 
     await queryInterface.bulkInsert(
-      'listings',
+      'Listings',
       [
-        // The first 3 listings belong to demo user
+        // The first 3 Listings belong to demo user
         {
           authorId: 1,
           title: 'The Midtown Spot',
@@ -71,7 +71,7 @@ module.exports = {
           body: faker.lorem.paragraphs(6, '<br/><br/>'),
         },
 
-        // starting here, all the listings belong to other users
+        // starting here, all the Listings belong to other Users
         {
           authorId: 3,
           title: 'A Place to Stay in the Heights',
@@ -530,6 +530,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete('listings', null, {});
+    await queryInterface.bulkDelete('Listings', null, {});
   },
 };
