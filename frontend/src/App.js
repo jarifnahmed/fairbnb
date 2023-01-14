@@ -15,6 +15,7 @@ import { getReviews } from './store/reviews';
 import { getBookings } from './store/bookings';
 import PageNotFound from './components /PageNotFound';
 import UserBookings from './components /UserBookings';
+import {Helmet} from "react-helmet";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
 
   return (
     <>
+      <Helmet>
+            <meta name="google" content="notranslate"></meta>
+        </Helmet>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
