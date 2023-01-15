@@ -1,9 +1,9 @@
 <div align="center">
 
-# [FairBnB](https://fairbnb-app.herokuapp.com/)
+# [FairBnB](https://fairbnb-app-supabase.onrender.com/)
 
-[![Website](https://img.shields.io/website?down_message=OFFLINE%20%3A%28&label=APP%20IS%20&logo=HEROKU&style=for-the-badge&up_message=ONLINE.%20CLICK%20HERE%21&url=https%3A%2F%2Ffairbnb-app.herokuapp.com%2F)](https://fairbnb-app.herokuapp.com/)
-[![Project Wiki - Click Here!](https://img.shields.io/static/v1?label=Project+Wiki&message=Click+Here!&color=%23CFD8DC&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/NawalJAhmed/fairbnb/wiki)
+[![Website](https://img.shields.io/website?down_message=OFFLINE%20%3A%28&label=APP%20IS%20&logo=RENDER&style=for-the-badge&up_message=ONLINE.%20CLICK%20HERE%21&url=https%3A%2F%2Ffairbnb-app-supabase.onrender.com%2F)](https://fairbnb-app-supabase.onrender.com/)
+[![Project Wiki - Click Here!](https://img.shields.io/static/v1?label=Project+Wiki&message=Click+Here!&color=%23CFD8DC&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/JarifNAhmed/fairbnb/wiki)
 
 ## Technologies
 
@@ -18,7 +18,8 @@
 ![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![AWS](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 </div>
@@ -31,7 +32,7 @@
 
 <div align="justify">
 
-FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web application with dynamic features catered to people who want to list and rent affordable places. FairBnB lets users create listings and other users. Other users can review those listings. Try out the app as a Demo user by clicking on the [link](https://fairbnb-app.herokuapp.com/) above!
+FairBnB is an [AirBnB](https://www.airbnb.com/) inspired full-stack web application with dynamic features catered to people who want to list and rent affordable places. FairBnB lets users create listings and other users. Other users can review those listings. Try out the app as a Demo user by clicking on the [link](https://fairbnb-app-supabase.onrender.com/) above!
 
 <div>
 
@@ -217,9 +218,9 @@ My map for making CRUD features goes as the following:
 <div align="center">
 
 ## Project Created By
-### Nawal Ahmed
+### Jarif Ahmed
 
-[![Nawal Ahmed - LinkedIn](https://img.shields.io/static/v1?label=Nawal+Ahmed&message=LinkedIn&color=%230077B5&style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/nawaljahmed/) [![Nawal Ahmed - GitHub](https://img.shields.io/static/v1?label=Nawal+Ahmed&message=GitHub&color=%23161B22&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/nawaljahmed)
+[![Jarif Ahmed - LinkedIn](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=LinkedIn&color=%230077B5&style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/jarifnahmed/) [![Jarif Ahmed - GitHub](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=GitHub&color=%23161B22&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/jarifnahmed)
 
 <div>
 
