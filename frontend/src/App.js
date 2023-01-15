@@ -31,8 +31,8 @@ function App() {
   return (
     <>
       <Helmet>
-        <meta name="google" content="notranslate"></meta>
-      </Helmet>
+            <meta name="google" content="notranslate"></meta>
+        </Helmet>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
