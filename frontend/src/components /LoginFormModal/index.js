@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
+import { Modal, Button } from '@mantine/core';
 import LoginForm from './LoginForm';
 
 function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [opened, setOpened] = useState(false);
 
   return (
     <>
-      <button id="nav-login-btn" onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-      )}
+      <Button onClick={() => setOpened(true)}>Log In</Button>
+      <Modal centered opened={opened} onClose={() => setOpened(false)}>
+        <LoginForm />
+      </Modal>
     </>
   );
 }

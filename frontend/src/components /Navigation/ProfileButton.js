@@ -2,7 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
-import './ProfileButton.css';
+// import './ProfileButton.css';
+
+
+//mantine
+import {
+  createStyles,
+  Header,
+  Container,
+  Group,
+  Burger,
+  Menu,
+  Button,
+  Transition,
+  Paper,
+  List,
+  Text,
+  Flex,
+} from '@mantine/core';
 
 function ProfileButton() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -49,52 +66,22 @@ function ProfileButton() {
   };
 
   return (
-    <div id='profile-div'>
+    <div>
       <NavLink className='listing-link-nav' to={`/listing/new`}>
-        Create Listing
+        <Button>Create Listing</Button>
       </NavLink>
 
       <NavLink className='listing-link-nav' to={`/user/listings`}>
-        My Listings{' '}
-        {userListings.length === 0 ? '' : '(' + userListings.length + ')'}
+      <Button>My Listings {userListings.length === 0 ? '' : '(' + userListings.length + ')'}</Button>
       </NavLink>
 
       <NavLink className='listing-link-nav' to={`/user/bookings`}>
-        My Bookings{' '}
-        {userBookings.length === 0 ? '' : '(' + userBookings.length + ')'}
+        <Button>My Bookings {userBookings.length === 0 ? '' : '(' + userBookings.length + ')'}</Button>
       </NavLink>
 
-      <button id='logout-btn' onClick={logout}>
+      <Button color="red" id='logout-btn' onClick={logout}>
         Log Out
-      </button>
-      <button id='profile-button' onClick={openMenu}>
-        {' '}
-        {sessionUser.username}
-      </button>
-      {/* {showMenu && (
-        <ul id='profile-dropdown'>
-          <li className='prof-list-item'>
-            <NavLink className='listing-link' to={`/username`}>
-              {sessionUser.username}
-            </NavLink>
-          </li>
-          <li className='prof-list-item'>
-            <NavLink className='listing-link-nav' to={`/listing/new`}>
-              Create Listing
-            </NavLink>
-          </li>
-          <li className='prof-list-item'>
-            <NavLink className='listing-link-nav' to={`/user/listings`}>
-              My Listings
-            </NavLink>
-          </li>
-          <li className='prof-list-item'>
-            <button id='logout-btn' onClick={logout}>
-              Log Out
-            </button>
-          </li>
-        </ul>
-      )} */}
+      </Button>
     </div>
   );
 }

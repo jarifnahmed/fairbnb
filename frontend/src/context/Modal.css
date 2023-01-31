@@ -15,18 +15,18 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(240, 248, 248, 0.8);
+    background-color: rgba(240, 248, 241, 0.8);
   }
 
   #modal-content {
     position: absolute;
     background-color:white;
-    width: 30%;
+    width: 40%;
     height: fit-content;
     display: flex;
     justify-content: center;
     border-radius: 5px;
-    box-shadow: 0 0 5px 5px rgb(215, 231, 250);
+    box-shadow: 0 0 5px 5px rgb(0, 0, 0);
   }
 
   #modal-close {

@@ -90,7 +90,7 @@ function UserBookings() {
                           <div className='bookingImageCenter'>
                             <div className='bookingImageAsWellAsMapColumn'>
                               <img
-                                class='neumorphic-image-for-booking'
+                                className='neumorphic-image-for-booking'
                                 src={booking.listingFirstImageUrl}
                                 alt='listing'
                               />

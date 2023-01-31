@@ -9,12 +9,31 @@
     "@ckeditor/ckeditor5-alignment": "^32.0.0",
     "@ckeditor/ckeditor5-build-classic": "^32.0.0",
     "@ckeditor/ckeditor5-react": "^4.0.0",
+    "@emotion/react": "^11.10.5",
+    "@mantine/carousel": "^5.10.2",
+    "@mantine/core": "^5.10.2",
+    "@mantine/dates": "^5.10.2",
+    "@mantine/dropzone": "^5.10.2",
+    "@mantine/ds": "^5.10.2",
+    "@mantine/form": "^5.10.2",
+    "@mantine/hooks": "^5.10.2",
+    "@mantine/modals": "^5.10.2",
+    "@mantine/notifications": "^5.10.2",
+    "@mantine/nprogress": "^5.10.2",
+    "@mantine/prism": "^5.10.2",
+    "@mantine/spotlight": "^5.10.2",
+    "@mantine/tiptap": "^5.10.2",
     "@react-google-maps/api": "^2.7.0",
+    "@tabler/icons": "^1.119.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@tiptap/extension-link": "^2.0.0-beta.209",
+    "@tiptap/react": "^2.0.0-beta.209",
+    "@tiptap/starter-kit": "^2.0.0-beta.209",
     "ckeditor5": "^32.0.0",
-    "dayjs": "^1.11.0",
+    "dayjs": "^1.11.7",
+    "embla-carousel-react": "^7.0.9",
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -56,7 +75,9 @@
     ]
   },
   "devDependencies": {
-    "redux-logger": "^3.0.6"
+    "@types/react-router-dom": "^5.3.3",
+    "redux-logger": "^3.0.6",
+    "typescript": "^4.9.5"
   },
   "proxy": "http://localhost:5000"
 }
