@@ -102,11 +102,11 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+
+
 function Navigation() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(
-    (state: RootStateOrAny) => state.session.user
-  );
+  const sessionUser = useSelector((state) => state.session.user);
   const credential = 'Demo';
   const password = 'password';
 
@@ -124,7 +124,7 @@ function Navigation() {
         <SignupFormModal />
         <Button
           variant='gradient'
-          gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+          gradient={{ from: 'indigo', to: 'cyan' }}
           onClick={() =>
             dispatch(sessionActions.login({ credential, password }))
           }
@@ -162,17 +162,17 @@ function Navigation() {
             size='sm'
           />
 
-          <Transition
-            transition='pop-top-right'
-            duration={200}
-            mounted={opened}
-          >
-            {(styles) => (
-              <Paper className={classes.dropdown} withBorder style={styles}>
-                {sessionLinks}
-              </Paper>
-            )}
-          </Transition>
+
+
+          <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {sessionLinks}
+            </Paper>
+          )}
+        </Transition>
+
+
         </Container>
       </Header>
     </div>
