@@ -97,7 +97,7 @@ function UserFeed() {
                         <div className='neumorphic-card mx-auto'>
                           <div className='neumorphic-card__outer'>
                             <img
-                              class='neumorphic-image'
+                              className='neumorphic-image'
                               src={listing.imageUrl[0]}
                               alt='listing'
                             />
@@ -135,7 +135,7 @@ function UserFeed() {
                         <div className='neumorphic-card mx-auto'>
                           <div className='neumorphic-card__outer'>
                             <img
-                              class='neumorphic-image'
+                              className='neumorphic-image'
                               src={listing.imageUrl[0]}
                               alt='listing'
                             />

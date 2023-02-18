@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
+import React from 'react';
 import SignupForm from './SignupForm';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  Box,
+} from '@chakra-ui/react'
 
 function SignupFormModal() {
-  const [showModal, setShowModal] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <button id="nav-signup-btn" onClick={() => setShowModal(true)}>Sign Up</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <SignupForm />
-        </Modal>
-      )}
+      <Button onClick={onOpen}>Sign Up</Button>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Sign Up</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <SignupForm />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

@@ -1,57 +1,117 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
-import './Navigation.css';
 
-function Navigation({ isLoaded }) {
+import {
+  Box,
+  Flex,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useColorModeValue,
+  IconButton,
+  HStack,
+  useDisclosure,
+  Stack,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
+
+
+function Navigation() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const credential = 'Demo';
   const password = 'password';
 
-  let sessionLinks;
-  if (sessionUser) {
-    sessionLinks = (
-      <>
-        {/* <NavLink className='user-nav' to={`/user/listings`}>
-          My Listings
-        </NavLink>
-        <NavLink className='user-nav' to={`/listing/new`}>
-          Create A Listing
-        </NavLink> */}
-        <ProfileButton />
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <SignupFormModal />
-        <button
-          id='demo-btn'
-          onClick={() =>
-            dispatch(sessionActions.login({ credential, password }))
-          }
-        >
-          Demo User
-        </button>
-      </>
-    );
-  }
+  const history = useNavigate();
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history('/');
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div id='nav-container'>
-      <div id='home-link-div'>
-        <NavLink id='home-link' exact to='/'>
-          FairBnB
-        </NavLink>
-      </div>
-      <div id='nav-buttons'>{isLoaded && sessionLinks}</div>
-    </div>
+    <>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          <Box><NavLink exact to='/'>FairBnB</NavLink></Box>
+
+          {sessionUser ? null :
+            <IconButton
+              size={'md'}
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              aria-label={'Open Menu'}
+              display={{ md: 'none' }}
+              onClick={isOpen ? onClose : onOpen}
+            />}
+
+          {sessionUser ? null :
+            <HStack
+              as={'nav'}
+              spacing={4}
+              display={{ base: 'none', md: 'flex' }}>
+              <LoginFormModal />
+              <SignupFormModal />
+              <Button
+                id='demo-btn'
+                onClick={() =>
+                  dispatch(sessionActions.login({ credential, password }))
+                }
+              >
+                Demo User Login
+              </Button>
+            </HStack>
+          }
+
+          {sessionUser ?
+            <Flex alignItems={'center'}>
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  aria-label='Options'
+                  icon={<HamburgerIcon />}
+                  variant='outline'
+                />
+                <MenuList >
+                  {sessionUser ? <MenuItem as='a' href='/user/listings'>My Listings</MenuItem> : false}
+                  {sessionUser ? <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem> : false}
+                  {sessionUser ? <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem> : false}
+                  <MenuDivider />
+                  {sessionUser ? <MenuItem onClick={logout}>Log Out</MenuItem> : false}
+                </MenuList>
+              </Menu>
+            </Flex> : false}
+
+        </Flex>
+
+        {isOpen && !sessionUser ? (
+          <Box pb={4} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4}>
+              <LoginFormModal />
+              <SignupFormModal />
+              <Button
+                id='demo-btn'
+                onClick={() =>
+                  dispatch(sessionActions.login({ credential, password }))
+                }
+              >
+                Demo User Login
+              </Button>
+            </Stack>
+          </Box>
+        ) : null}
+
+
+      </Box>
+    </>
   );
 }
 

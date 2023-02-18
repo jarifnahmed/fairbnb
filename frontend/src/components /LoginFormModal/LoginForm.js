@@ -23,7 +23,6 @@ function LoginForm() {
 
   return (
     <form className="cred-form" onSubmit={handleSubmit}>
-      <h2 className="form-title">Log In</h2>
       <ul className="cred-errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>

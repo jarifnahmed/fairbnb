@@ -1,10 +1,10 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./FilterButton.css"
 import { IoMdArrowDropdownCircle } from 'react-icons/io';
 
 const FilterButton = ({ filterQuery, setFilterQuery }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const onSubmit = (e) => {
     history.push(`?s=${filterQuery}`);
     e.preventDefault();

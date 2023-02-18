@@ -1,4 +1,4 @@
-import { useParams, NavLink, useHistory } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { deleteListing } from '../../store/listings';
@@ -32,7 +32,7 @@ const containerStyle = {
 
 function ListingDetail() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const listing = useSelector((state) => state.listings[listingId]);

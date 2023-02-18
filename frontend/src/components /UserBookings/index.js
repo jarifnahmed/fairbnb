@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { deleteListing } from '../../store/listings';
 import { updateBooking, deleteBooking } from '../../store/bookings';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
@@ -30,7 +30,7 @@ const containerStyle = {
 
 function UserBookings() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const allListings = useSelector((state) => state.listings);
   const allBookings = useSelector((state) => state.bookings);
@@ -90,7 +90,7 @@ function UserBookings() {
                           <div className='bookingImageCenter'>
                             <div className='bookingImageAsWellAsMapColumn'>
                               <img
-                                class='neumorphic-image-for-booking'
+                                className='neumorphic-image-for-booking'
                                 src={booking.listingFirstImageUrl}
                                 alt='listing'
                               />

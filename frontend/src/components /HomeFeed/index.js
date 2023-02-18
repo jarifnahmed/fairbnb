@@ -25,7 +25,7 @@ function HomeFeed() {
                     <div className='neumorphic-card__outer'>
                       {/* <h2 className='title'>{listing.title}</h2> */}
                       <img
-                        class='neumorphic-image'
+                        className='neumorphic-image'
                         src={listing.imageUrl[0]}
                         alt='listing'
                       />

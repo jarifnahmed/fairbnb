@@ -1,10 +1,10 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import "./SearchBad.css"
 import { FaSearch } from 'react-icons/fa';
 
 const SearchBad = ({ searchQuery, setSearchQuery }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const onSubmit = (e) => {
     history.push(`?s=${searchQuery}`);
     e.preventDefault();

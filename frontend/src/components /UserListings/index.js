@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { deleteListing } from '../../store/listings';
 import { FaEdit, FaRegUserCircle, FaTrashAlt } from 'react-icons/fa';
 import './UserListings.css';
@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function UserListings() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const allListings = useSelector((state) => state.listings);
   const listingsArr = Object.values(allListings);
@@ -41,7 +41,7 @@ function UserListings() {
                         <div className='neumorphic-card__outer'>
                           {/* <h2 className='title'>{listing.title}</h2> */}
                           <img
-                            class='neumorphic-image'
+                            className='neumorphic-image'
                             src={listing.imageUrl[0]}
                             alt='listing'
                           />
