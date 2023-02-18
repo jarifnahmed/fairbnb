@@ -12,6 +12,8 @@ import {
   Button,
   Heading,
   useColorModeValue,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
 
 
@@ -31,6 +33,9 @@ function LoginForm() {
       }
     );
   };
+
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
   return (
     <>
@@ -56,7 +61,14 @@ function LoginForm() {
                 </FormControl>
                 <FormControl id="password" isRequired>
                   <FormLabel>Password</FormLabel>
-                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <InputGroup size='md'>
+                    <Input type={show ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <InputRightElement width='4.5rem'>
+                      <Button h='1.75rem' size='sm' onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
                 <Stack spacing={10}>
                   <Button

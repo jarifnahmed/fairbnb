@@ -12,6 +12,8 @@ import {
   Button,
   Heading,
   useColorModeValue,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
 
 function SignupForm() {
@@ -35,6 +37,9 @@ function SignupForm() {
     }
     return setErrors(['Confirm Password field must match Password field']);
   };
+
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
   return (
     <>
@@ -66,11 +71,25 @@ function SignupForm() {
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Password</FormLabel>
-                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <InputGroup size='md'>
+                    <Input type={show ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <InputRightElement width='4.5rem'>
+                      <Button h='1.75rem' size='sm' onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Confirm Password</FormLabel>
-                  <Input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                  <InputGroup size='md'>
+                    <Input type={show ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <InputRightElement width='4.5rem'>
+                      <Button h='1.75rem' size='sm' onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
                 <Stack spacing={10}>
                   <Button
