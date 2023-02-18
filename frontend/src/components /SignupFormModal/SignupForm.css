@@ -1,27 +1,9 @@
-#nav-signup-btn{
-    background-color: #4d4d4d;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    border: 0;
-    font-weight: bold;
-    box-shadow: none;
-    margin-right: 30px;
-    margin-left: 30px;
-    transition-duration: 0.4s;
+.cred-form{
+    display: flex;
+    flex-direction: column;
 }
 
-#nav-signup-btn:hover{
-    background-color: rgb(12, 163, 57);
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    border: 0;
-    box-shadow: none;
-    margin-right: 30px;
-    margin-left: 30px;
+.cred-errors{
+    margin-bottom: 1rem;
+    color: red;
 }

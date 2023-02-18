@@ -20,7 +20,7 @@ import {
   useDisclosure,
   Stack,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, ChevronDownIcon} from '@chakra-ui/icons';
 
 
 function Navigation() {
@@ -62,6 +62,7 @@ function Navigation() {
               <SignupFormModal />
               <Button
                 id='demo-btn'
+                colorScheme='pink'
                 onClick={() =>
                   dispatch(sessionActions.login({ credential, password }))
                 }
@@ -74,18 +75,13 @@ function Navigation() {
           {sessionUser ?
             <Flex alignItems={'center'}>
               <Menu>
-                <MenuButton
-                  as={IconButton}
-                  aria-label='Options'
-                  icon={<HamburgerIcon />}
-                  variant='outline'
-                />
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme='pink'>{sessionUser.name}</MenuButton>
                 <MenuList >
                   {sessionUser ? <MenuItem as='a' href='/user/listings'>My Listings</MenuItem> : false}
                   {sessionUser ? <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem> : false}
                   {sessionUser ? <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem> : false}
                   <MenuDivider />
-                  {sessionUser ? <MenuItem onClick={logout}>Log Out</MenuItem> : false}
+                  {sessionUser ? <MenuItem onClick={logout} color='red' as='b'>Log Out</MenuItem> : false}
                 </MenuList>
               </Menu>
             </Flex> : false}
@@ -99,6 +95,7 @@ function Navigation() {
               <SignupFormModal />
               <Button
                 id='demo-btn'
+                colorScheme='pink'
                 onClick={() =>
                   dispatch(sessionActions.login({ credential, password }))
                 }

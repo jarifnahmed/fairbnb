@@ -4,13 +4,10 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   Button,
   useDisclosure,
-  Box,
 } from '@chakra-ui/react'
 
 function SignupFormModal() {
@@ -20,21 +17,15 @@ function SignupFormModal() {
   return (
     <>
       <Button onClick={onOpen}>Sign Up</Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay
+          bg='blackAlpha.300'
+          backdropFilter='blur(20px)' />
         <ModalContent>
-          <ModalHeader>Sign Up</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <SignupForm />
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

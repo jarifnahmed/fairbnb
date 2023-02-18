@@ -3,6 +3,17 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css';
 
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  Button,
+  Heading,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -22,34 +33,49 @@ function LoginForm() {
   };
 
   return (
-    <form className="cred-form" onSubmit={handleSubmit}>
-      <ul className="cred-errors">
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label className="cred-form-field">
-        Username or Email
-        <input
-          className="cred-input"
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label className="cred-form-field">
-        Password
-        <input
-          className="cred-input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button className="cred-button" type="submit">Log In</button>
-    </form>
+    <>
+      <Box
+        align={'center'}
+        justify={'center'}
+        bg={useColorModeValue('white', 'white')}>
+        <Stack maxW={'lg'} pt={9} px={6}>
+          <Stack align={'center'}>
+            <Heading fontSize={'4xl'}>Log In</Heading>
+          </Stack>
+          <Box>
+            <form className="cred-form" onSubmit={handleSubmit}>
+              <ul className="cred-errors">
+                {errors.map((error, idx) => (
+                  <li key={idx}>{error}</li>
+                ))}
+              </ul>
+              <Stack spacing={4}>
+                <FormControl id="text" isRequired>
+                  <FormLabel>Username or Email</FormLabel>
+                  <Input type="text" value={credential} onChange={(e) => setCredential(e.target.value)} />
+                </FormControl>
+                <FormControl id="password" isRequired>
+                  <FormLabel>Password</FormLabel>
+                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </FormControl>
+                <Stack spacing={10}>
+                  <Button
+                    type="submit"
+                    bg={'blue.400'}
+                    color={'white'}
+                    _hover={{
+                      bg: 'blue.500',
+                    }}
+                  >
+                    Log in
+                  </Button>
+                </Stack>
+              </Stack>
+            </form>
+          </Box>
+        </Stack>
+      </Box>
+    </>
   );
 }
 

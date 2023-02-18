@@ -1,72 +1,9 @@
-#nav-login-btn{
-    background-color: #4D4D4D;
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    font-weight: bold;
-    border: 0;
-    box-shadow: none;
-    transition-duration: 0.4s;
-}
-
-#nav-login-btn:hover{
-    background-color: rgb(12, 163, 57);
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    border: 0;
-    box-shadow: none;
-}
-
 .cred-form{
-    /* font-family: Arial, Helvetica, sans-serif; */
-    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
 }
 
-.cred-form-field{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: auto;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.form-title{
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding-top: 10px;
-}
-
-.cred-button{
-    margin-top: 10px;
-    background-color: rgb(219, 219, 219);
-    color: rgb(95, 95, 95);
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    border: 0;
-    box-shadow: none;
-    transition-duration: 0.4s;
-}
-
-.cred-button:hover{
-    margin-top: 10px;
-    background-color: rgb(12, 163, 57);
-    color: #ffffff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: medium;
-    font-size: medium;
-    border: 0;
-    box-shadow: none;
+.cred-errors{
+    margin-bottom: 1rem;
+    color: red;
 }
