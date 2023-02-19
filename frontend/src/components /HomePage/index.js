@@ -21,10 +21,6 @@ function Homepage() {
                   Have your own place to offer? Create a listing now!
                 </p>
               </div>
-              <img
-                id='home-house-img'
-                src='http://www.cla1mortgage.com/wp-content/uploads/2019/11/456-4560260_house-images-clip-art-free-clipart-house-silhouette.png'
-              ></img>
             </div>
             <div id='aboutDiv'>
               <p id='about'>Explore all the listings available to you!</p>
