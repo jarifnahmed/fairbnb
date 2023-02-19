@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useRef } from "react";
+import React from "react";
 import "./FilterPrice.css"
 
 const FilterPrice = ({ filterQueryPrice, setFilterQueryPrice }) => {
@@ -8,10 +8,6 @@ const FilterPrice = ({ filterQueryPrice, setFilterQueryPrice }) => {
     history.push(`?s=${filterQueryPrice}`);
     e.preventDefault();
   };
-
-  const [style, setStyle] = useState("finder");
-
-  const magnifyingGlass = useRef("icon");
 
   return (
     <div className='container'>

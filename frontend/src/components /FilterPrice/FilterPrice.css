@@ -1,37 +1,19 @@
 .priceValueSearch{
-    width: 300px;
+    width: 30rem;
 }
 
 .priceSliderContainer{
     margin: 0;
     padding: 0;
     display: block;
-
-  font-size: 1.2rem;
-  font-weight: bold;
-  border: none;
-  /* padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 40px; */
-  color: #6D7587;
-  background-color: var(--back-color);
-  /* box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              inset 0px 0px 4px rgba(255, 255, 255, .2),
-              inset 7px 7px 15px rgba(55, 84, 170, 0),
-              inset -7px -7px 20px rgba(255, 255, 255, 0),
-              0px 0px 4px rgba(255, 255, 255, 0) !important; */
-  cursor: pointer;
-  outline: none;
-
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    color: #6D7587;
+    background-color: var(--back-color);
+    cursor: pointer;
+    outline: none;
 }
-
 
 .priceSliderContainerOutput{
     margin-right: 10px;

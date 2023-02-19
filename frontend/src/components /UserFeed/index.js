@@ -1,15 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { FaRegUserCircle } from 'react-icons/fa';
 import './UserFeed.css';
 
 import Searchbar from '../Searchbar/index';
 import FilterByPropertyType from '../FilterByPropertyType/index';
-
 import FilterPrice from '../FilterPrice/index';
 
-import { Center, Square, Circle, Text, Divider, Wrap, WrapItem } from '@chakra-ui/react'
+import { Center, Text, Wrap, WrapItem } from '@chakra-ui/react'
 
 function UserFeed() {
   const { search } = window.location;
@@ -90,6 +88,14 @@ function UserFeed() {
                 <FilterByPropertyType
                   filterQuery={filterQuery}
                   setFilterQuery={setFilterQuery}
+                />
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                <FilterPrice
+                  filterQueryPrice={filterQueryPrice}
+                  setFilterQueryPrice={setFilterQueryPrice}
                 />
               </Center>
             </WrapItem>
