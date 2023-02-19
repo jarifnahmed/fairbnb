@@ -5,11 +5,11 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import './UserFeed.css';
 
 import Searchbar from '../Searchbar/index';
+import FilterByPropertyType from '../FilterByPropertyType/index';
 
-import FilterButton from '../FilterButton/index';
 import FilterPrice from '../FilterPrice/index';
 
-import { Center, Square, Circle } from '@chakra-ui/react'
+import { Center, Square, Circle, Text, Divider, Wrap, WrapItem } from '@chakra-ui/react'
 
 function UserFeed() {
   const { search } = window.location;
@@ -73,13 +73,31 @@ function UserFeed() {
             </div>
           </div> */}
         <div>
-          <Center>
-            <Searchbar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
-          </Center>
-          <Center>{recListings.length} Results</Center>
+
+          <div className='oneRemMargin'></div>
+
+          <Wrap>
+            <WrapItem>
+              <Center>
+                <Searchbar
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                />
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                <FilterByPropertyType
+                  filterQuery={filterQuery}
+                  setFilterQuery={setFilterQuery}
+                />
+              </Center>
+            </WrapItem>
+          </Wrap>
+
+          <div className='oneRemMargin'></div>
+
+          <Center><Text as='b' fontSize='3xl'>{recListings.length} Results</Text></Center>
 
           <ul className='allCards'>
             {recListings.map((listing) => {

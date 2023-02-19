@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
-import { Input, InputGroup, InputLeftElement, } from '@chakra-ui/react'
+import { Input, InputGroup, InputLeftElement, Box } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
 
 const Searchbar = ({ searchQuery, setSearchQuery }) => {
