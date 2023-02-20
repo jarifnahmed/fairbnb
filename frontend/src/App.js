@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes , Route } from 'react-router';
+import { Routes, Route } from 'react-router';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import Navigation from './components /Navigation';
@@ -15,11 +15,14 @@ import { getReviews } from './store/reviews';
 import { getBookings } from './store/bookings';
 import PageNotFound from './components /PageNotFound';
 import UserBookings from './components /UserBookings';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(getListings());
@@ -31,9 +34,9 @@ function App() {
   return (
     <>
       <Helmet>
-            <meta name="google" content="notranslate"></meta>
-        </Helmet>
-      <Navigation isLoaded={isLoaded} />
+        <meta name="google" content="notranslate"></meta>
+      </Helmet>
+      {sessionUser ? <Navigation isLoaded={isLoaded} /> : null}
       {isLoaded && (
         <Routes >
           <Route exact="true" path="/" element={<Homepage />} />

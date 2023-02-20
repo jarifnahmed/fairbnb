@@ -14,13 +14,16 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useColorModeValue,
   IconButton,
   HStack,
   useDisclosure,
   Stack,
+  Text,
+  Spacer,
+  Grid,
+  useBreakpointValue
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, ChevronDownIcon} from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 
 
 function Navigation() {
@@ -38,57 +41,101 @@ function Navigation() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+
+  const marginRight = useBreakpointValue({ base: "1rem", md: "5rem" });
+  const marginLeft = useBreakpointValue({ base: "1rem", md: "5rem" });
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box><NavLink exact to='/'>FairBnB</NavLink></Box>
+      <Flex h={16} w='100%' alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} w='100%' alignItems={'center'} justifyContent={'space-between'}>
 
-          {sessionUser ? null :
-            <IconButton
-              size={'md'}
-              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-              aria-label={'Open Menu'}
-              display={{ md: 'none' }}
-              onClick={isOpen ? onClose : onOpen}
-            />}
-
-          {sessionUser ? null :
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              <LoginFormModal />
-              <SignupFormModal />
-              <Button
-                id='demo-btn'
-                colorScheme='pink'
-                onClick={() =>
-                  dispatch(sessionActions.login({ credential, password }))
-                }
+          <Box ml={marginLeft}>
+            <NavLink exact to='/'>
+              <Text
+                color="white"
+                fontSize="4xl"
+                textShadow="2px 2px 4px rgba(0, 0, 0, 1)"
               >
-                Demo User Login
-              </Button>
-            </HStack>
-          }
+                <Text as="span" fontWeight="bold" color="pink">fair</Text>bnb
+              </Text>
+            </NavLink>
+          </Box>
 
-          {sessionUser ?
-            <Flex alignItems={'center'}>
-              <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme='pink'>{sessionUser.name}</MenuButton>
-                <MenuList >
-                  {sessionUser ? <MenuItem as='a' href='/user/listings'>My Listings</MenuItem> : false}
-                  {sessionUser ? <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem> : false}
-                  {sessionUser ? <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem> : false}
-                  <MenuDivider />
-                  {sessionUser ? <MenuItem onClick={logout} color='red' as='b'>Log Out</MenuItem> : false}
-                </MenuList>
-              </Menu>
-            </Flex> : false}
+          {sessionUser ? null : (
+            <>
+              {isMobile && (
+                <Box mr={marginRight}>
+                  <Flex alignItems={'center'}>
+                    <Menu>
+                      <MenuButton as={Button} colorScheme='pink'><HamburgerIcon /></MenuButton>
+                      <MenuList>
+                        <MenuItem><LoginFormModal /></MenuItem>
+                        <MenuItem><SignupFormModal /></MenuItem>
+                        <MenuItem><Button
+                          id='demo-btn'
+                          colorScheme='pink'
+                          onClick={() =>
+                            dispatch(sessionActions.login({ credential, password }))
+                          }
+                        >
+                          Demo User Login
+                        </Button></MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </Flex>
+                </Box>
+              )}
+            </>
+          )}
 
         </Flex>
 
-        {isOpen && !sessionUser ? (
+        <Box  mr={marginRight} display={{ base: 'none', md: 'block' }}>
+          {sessionUser ? null :
+            <Box>
+              <HStack
+                as={'nav'}
+                spacing={4}
+                display={{ base: 'none', md: 'flex' }}>
+                <LoginFormModal />
+                <SignupFormModal />
+                <Button
+                  id='demo-btn'
+                  colorScheme='pink'
+                  onClick={() =>
+                    dispatch(sessionActions.login({ credential, password }))
+                  }
+                >
+                  Demo User Login
+                </Button>
+              </HStack>
+            </Box>
+          }
+        </Box>
+        {
+          sessionUser &&
+          <Box mr={marginRight}>
+            <Flex alignItems={'center'}>
+              <Menu>
+                <MenuButton as={Button} rightIcon={' '} colorScheme='pink'>{sessionUser.name}{<ChevronDownIcon />}</MenuButton>
+                <MenuList>
+                  {sessionUser && <MenuItem as='a' href='/user/listings'>My Listings</MenuItem>}
+                  {sessionUser && <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem>}
+                  {sessionUser && <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem>}
+                  <MenuDivider />
+                  {sessionUser && <MenuItem onClick={logout} color='red' as='b'>Log Out</MenuItem>}
+                </MenuList>
+              </Menu>
+            </Flex>
+          </Box>
+        }
+
+      </Flex>
+
+      {
+        isOpen && !sessionUser ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               <LoginFormModal />
@@ -104,10 +151,8 @@ function Navigation() {
               </Button>
             </Stack>
           </Box>
-        ) : null}
-
-
-      </Box>
+        ) : null
+      }
     </>
   );
 }

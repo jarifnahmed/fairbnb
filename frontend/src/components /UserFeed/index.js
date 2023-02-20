@@ -91,14 +91,14 @@ function UserFeed() {
                 />
               </Center>
             </WrapItem>
-            <WrapItem>
+            {/* <WrapItem>
               <Center>
                 <FilterPrice
                   filterQueryPrice={filterQueryPrice}
                   setFilterQueryPrice={setFilterQueryPrice}
                 />
               </Center>
-            </WrapItem>
+            </WrapItem> */}
           </Wrap>
 
           <div className='oneRemMargin'></div>
