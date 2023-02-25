@@ -56,9 +56,19 @@ function Navigation() {
               <Text
                 color="white"
                 fontSize="4xl"
-                textShadow="2px 2px 4px rgba(0, 0, 0, 1)"
               >
-                <Text as="span" fontWeight="bold" color="pink.300">fair</Text>bnb
+                <Text as="span" fontWeight="bold" color="#ED64A6">
+                  fair
+                </Text>
+                <span
+                  style={{
+                    backgroundImage: "linear-gradient(to top, #ED64A6 90%, transparent 50%)",
+                    backgroundClip: "text",
+                    textFillColor: "transparent",
+                  }}
+                >
+                  bnb
+                </span>
               </Text>
             </NavLink>
           </Box>
