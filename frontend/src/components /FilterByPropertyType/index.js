@@ -14,6 +14,7 @@ const FilterByPropertyType = ({ filterQuery, setFilterQuery }) => {
       <form action='/' method='get' autoComplete='off' onSubmit={onSubmit}>
         <div>
           <Select
+            rounded={'full'}
             variant='filled'
             value={filterQuery}
             onChange={(e) => setFilterQuery(e.target.value)}

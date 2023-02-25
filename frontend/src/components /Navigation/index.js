@@ -104,6 +104,7 @@ function Navigation() {
                 <LoginFormModal />
                 <SignupFormModal />
                 <Button
+                  rounded={'full'}
                   id='demo-btn'
                   colorScheme='pink'
                   onClick={() =>
@@ -121,7 +122,7 @@ function Navigation() {
           <Box mr={marginRight}>
             <Flex alignItems={'center'}>
               <Menu>
-                <MenuButton as={Button} rightIcon={' '} colorScheme='pink'>{sessionUser.name}{<ChevronDownIcon />}</MenuButton>
+                <MenuButton rounded={'full'} as={Button} rightIcon={' '} colorScheme='pink'>{sessionUser.name}{<ChevronDownIcon />}</MenuButton>
                 <MenuList>
                   {sessionUser && <MenuItem as='a' href='/user/listings'>My Listings</MenuItem>}
                   {sessionUser && <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem>}

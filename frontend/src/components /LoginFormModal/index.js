@@ -16,7 +16,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Log In</Button>
+      <Button rounded={'full'} onClick={onOpen}>Log In</Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay
           bg='blackAlpha.300'

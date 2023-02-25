@@ -59,22 +59,22 @@ function SignupForm() {
               <Stack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel>Full Name</FormLabel>
-                  <Input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                  <Input rounded={'full'} type="text" value={name} onChange={(e) => setName(e.target.value)} />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Email</FormLabel>
-                  <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                  <Input rounded={'full'} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Username</FormLabel>
-                  <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                  <Input rounded={'full'} type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Password</FormLabel>
                   <InputGroup size='md'>
-                    <Input type={show ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input rounded={'full'} type={show ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
                     <InputRightElement width='4.5rem'>
-                      <Button h='1.75rem' size='sm' onClick={handleClick}>
+                      <Button rounded={'full'} h='1.75rem' size='sm' onClick={handleClick}>
                         {show ? 'Hide' : 'Show'}
                       </Button>
                     </InputRightElement>
@@ -83,9 +83,9 @@ function SignupForm() {
                 <FormControl isRequired>
                   <FormLabel>Confirm Password</FormLabel>
                   <InputGroup size='md'>
-                    <Input type={show ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <Input rounded={'full'} type={show ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                     <InputRightElement width='4.5rem'>
-                      <Button h='1.75rem' size='sm' onClick={handleClick}>
+                      <Button rounded={'full'} h='1.75rem' size='sm' onClick={handleClick}>
                         {show ? 'Hide' : 'Show'}
                       </Button>
                     </InputRightElement>
@@ -93,6 +93,7 @@ function SignupForm() {
                 </FormControl>
                 <Stack spacing={10}>
                   <Button
+                    rounded={'full'}
                     type="submit"
                     bg={'pink.400'}
                     color={'white'}

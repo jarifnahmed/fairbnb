@@ -16,7 +16,7 @@ function SignupFormModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Sign Up</Button>
+      <Button rounded={'full'} onClick={onOpen}>Sign Up</Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay
           bg='blackAlpha.300'

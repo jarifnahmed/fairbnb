@@ -50,6 +50,7 @@ const Searchbar = ({ searchQuery, setSearchQuery }) => {
               children={<SearchIcon color='gray.300' />}
             />
             <Input
+              rounded={'full'}
               isInvalid={recListings.length === 0}
               errorBorderColor='crimson'
               htmlSize={33}
