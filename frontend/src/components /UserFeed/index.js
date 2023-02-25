@@ -50,20 +50,11 @@ function UserFeed() {
     filterQueryPrice
   );
 
-  // if (recListings.length) {
   return (
     <>
       <div className='searchBarAndResults'>
         {/* <div className='barAndFilter'>
             <div className='topSearchBar'>
-              <Search
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-              />
-              <FilterButton
-                filterQuery={filterQuery}
-                setFilterQuery={setFilterQuery}
-              />
               <FilterPrice
                 filterQueryPrice={filterQueryPrice}
                 setFilterQueryPrice={setFilterQueryPrice}
@@ -190,29 +181,6 @@ function UserFeed() {
       </div>
     </>
   );
-  // } else {
-  // return (
-  //   <>
-  //     <div className='barAndFilter'>
-  //       <div className='topSearchBar'>
-  //         <SearchBad
-  //           searchQuery={searchQuery}
-  //           setSearchQuery={setSearchQuery}
-  //         />
-  //         <FilterButton
-  //           filterQuery={filterQuery}
-  //           setFilterQuery={setFilterQuery}
-  //         />
-  //         <FilterPrice
-  //           filterQueryPrice={filterQueryPrice}
-  //           setFilterQueryPrice={setFilterQueryPrice}
-  //         />
-  //       </div>
-  //     </div>
-  //     <h2 className='rec-title'>No Listings Match Current Search</h2>
-  //   </>
-  // );
 }
-// }
 
 export default UserFeed;

@@ -21,7 +21,9 @@ import {
   Text,
   Spacer,
   Grid,
-  useBreakpointValue
+  useBreakpointValue,
+  Link,
+  ButtonGroup
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 
@@ -80,7 +82,7 @@ function Navigation() {
                   <Flex alignItems={'center'}>
                     <Menu>
                       <MenuButton as={Button} colorScheme='pink'><HamburgerIcon /></MenuButton>
-                      <MenuList p="0">
+                      <MenuList p="0"  bg="gray.100">
                         <Flex flexDirection="column">
                           <LoginFormModal />
                           <SignupFormModal />
@@ -127,22 +129,31 @@ function Navigation() {
             </Box>
           }
         </Box>
-        {
-          sessionUser &&
-          <Box mr={marginRight}>
-            <Flex alignItems={'center'}>
-              <Menu>
-                <MenuButton rounded={'full'} as={Button} rightIcon={' '} colorScheme='pink'>{sessionUser.name}{<ChevronDownIcon />}</MenuButton>
-                <MenuList>
-                  {sessionUser && <MenuItem as='a' href='/user/listings'>My Listings</MenuItem>}
-                  {sessionUser && <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem>}
-                  {sessionUser && <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem>}
-                  <MenuDivider />
-                  {sessionUser && <MenuItem onClick={logout} color='red' as='b'>Log Out</MenuItem>}
-                </MenuList>
-              </Menu>
-            </Flex>
-          </Box>
+        {sessionUser &&
+          <>
+            {!isMobile && (<Box mr={marginRight}>
+              <ButtonGroup gap='2'>
+                <Button rounded={'full'} as='a' href='/user/listings'>My Listings</Button>
+                <Button rounded={'full'} as='a' href='/user/bookings'>My Bookings</Button>
+                <Button rounded={'full'} as='a' href='/listing/new'>Create Listing</Button>
+                <Button rounded={'full'} colorScheme='pink' onClick={logout} as='b'>Log Out {sessionUser.name}</Button>
+              </ButtonGroup>
+            </Box>)}
+            {isMobile && (<Box mr={marginRight}>
+              <Flex alignItems={'center'}>
+                <Menu>
+                  <MenuButton rounded={'full'} as={Button} rightIcon={' '} colorScheme='pink'>{sessionUser.name}{<ChevronDownIcon />}</MenuButton>
+                  <MenuList>
+                    {sessionUser && <MenuItem as='a' href='/user/listings'>My Listings</MenuItem>}
+                    {sessionUser && <MenuItem as='a' href='/user/bookings'>My Bookings</MenuItem>}
+                    {sessionUser && <MenuItem as='a' href='/listing/new'>Create Listing</MenuItem>}
+                    <MenuDivider />
+                    {sessionUser && <MenuItem onClick={logout} color='red' as='b'>Log Out</MenuItem>}
+                  </MenuList>
+                </Menu>
+              </Flex>
+            </Box>)}
+          </>
         }
 
       </Flex>
