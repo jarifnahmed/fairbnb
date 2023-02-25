@@ -39,7 +39,7 @@ function Navigation() {
     history('/');
   };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen } = useDisclosure();
 
 
   const marginRight = useBreakpointValue({ base: "1rem", md: "5rem" });
@@ -58,7 +58,7 @@ function Navigation() {
                 fontSize="4xl"
                 textShadow="2px 2px 4px rgba(0, 0, 0, 1)"
               >
-                <Text as="span" fontWeight="bold" color="pink">fair</Text>bnb
+                <Text as="span" fontWeight="bold" color="pink.300">fair</Text>bnb
               </Text>
             </NavLink>
           </Box>
@@ -70,18 +70,20 @@ function Navigation() {
                   <Flex alignItems={'center'}>
                     <Menu>
                       <MenuButton as={Button} colorScheme='pink'><HamburgerIcon /></MenuButton>
-                      <MenuList>
-                        <MenuItem><LoginFormModal /></MenuItem>
-                        <MenuItem><SignupFormModal /></MenuItem>
-                        <MenuItem><Button
-                          id='demo-btn'
-                          colorScheme='pink'
-                          onClick={() =>
-                            dispatch(sessionActions.login({ credential, password }))
-                          }
-                        >
-                          Demo User Login
-                        </Button></MenuItem>
+                      <MenuList p="0">
+                        <Flex flexDirection="column">
+                          <LoginFormModal />
+                          <SignupFormModal />
+                          <Button
+                            id='demo-btn'
+                            colorScheme='pink'
+                            onClick={() =>
+                              dispatch(sessionActions.login({ credential, password }))
+                            }
+                          >
+                            Demo User Login
+                          </Button>
+                        </Flex>
                       </MenuList>
                     </Menu>
                   </Flex>
@@ -92,7 +94,7 @@ function Navigation() {
 
         </Flex>
 
-        <Box  mr={marginRight} display={{ base: 'none', md: 'block' }}>
+        <Box mr={marginRight} display={{ base: 'none', md: 'block' }}>
           {sessionUser ? null :
             <Box>
               <HStack

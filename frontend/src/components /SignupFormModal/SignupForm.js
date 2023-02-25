@@ -94,10 +94,10 @@ function SignupForm() {
                 <Stack spacing={10}>
                   <Button
                     type="submit"
-                    bg={'blue.400'}
+                    bg={'pink.400'}
                     color={'white'}
                     _hover={{
-                      bg: 'blue.500',
+                      bg: 'pink.500',
                     }}
                   >
                     Sign Up

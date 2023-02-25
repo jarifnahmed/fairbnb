@@ -23,7 +23,7 @@ function SignupFormModal() {
           backdropFilter='blur(20px)' />
         <ModalContent>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody pb="3rem">
             <SignupForm />
           </ModalBody>
         </ModalContent>
