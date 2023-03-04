@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css';
+import SignupForm from '../SignupFormModal/SignupForm';
 
 import {
   Box,
@@ -14,13 +15,14 @@ import {
   useColorModeValue,
   InputGroup,
   InputRightElement,
+  Link
 } from '@chakra-ui/react';
 
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [credential, setCredential] = useState("Demo");
+  const [password, setPassword] = useState("password");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
@@ -80,7 +82,7 @@ function LoginForm() {
                       bg: 'pink.500',
                     }}
                   >
-                    Log in
+                    Log In
                   </Button>
                 </Stack>
               </Stack>
