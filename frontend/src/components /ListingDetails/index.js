@@ -9,10 +9,6 @@ import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import './ListingDetails.css';
 // import renderHTML from 'react-render-html';
 
-import { Carousel } from 'react-responsive-carousel';
-import Slider from 'react-slick';
-import { Slide } from 'react-slideshow-image';
-
 import Bookings from '../Bookings';
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
