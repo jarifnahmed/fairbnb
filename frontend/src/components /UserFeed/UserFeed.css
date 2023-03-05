@@ -1,3 +1,11 @@
+.oneRemMargin{
+  margin-bottom: 1rem;
+}
+
+.sfasfsdfd {
+  
+}
+
 .rec-title {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -212,7 +220,7 @@
               -7px -7px 20px rgba(255, 255, 255, 1),
               0px 0px 4px rgba(255, 255, 255, .2) !important;
   border-radius: 30px;
-  max-width: 200px;
+  max-width: 280px;
   /* background-color: rgb(61, 152, 255); */
   /* width: min-content; */
 }
@@ -402,65 +410,3 @@
 
   /* height: 76px; */
 }
-
-/* Dropdown arrow */
-select.neumorphic-btn-filter {
-  /* background-image:
-    linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%),
-    radial-gradient(#ddd 70%, transparent 72%)
-    ; */
-  /* background-position: */
-    /* calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    calc(100% - .5em) .5em; */
-    /* calc(100% - 21px) calc(1em + 9px),
-    calc(100% - 16px) calc(1em + 9px),
-    135px
-    ; */
-  /* background-size:
-    5px 5px,
-    5px 5px,
-    1.3em 1.3em
-    ;
-  background-repeat: no-repeat; */
-
-  /* height: 76px; */
-}
-
-select.neumorphic-btn-filter:focus {
-  /* background-image:
-    linear-gradient(45deg, white 50%, transparent 50%),
-    linear-gradient(135deg, transparent 50%, white 50%),
-    radial-gradient(rgb(189, 189, 189) 70%, transparent 72%); */
-  /* background-position: */
-    /* calc(100% - 15px) 1em,
-    calc(100% - 20px) 1em,
-    calc(100% - .5em) .5em; */
-    /* calc(100% - 16px) calc(1em + 8px),
-    calc(100% - 21px) calc(1em + 8px),
-    135px
-    ; */
-  /* background-size:
-    5px 5px,
-    5px 5px,
-    1.3em 1.3em;
-  background-repeat: no-repeat;
-  outline: 0; */
-}
-
-/* .neumorphic-btn-filter:hover {
-  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              inset 0px 0px 4px rgba(255, 255, 255, 0),
-              inset 7px 7px 15px rgba(55, 84, 170, .15),
-              inset -7px -7px 20px rgba(255, 255, 255, 1),
-              0px 0px 4px rgba(255, 255, 255, .2) !important;
-}
-
-.neumorphic-btn-filter:active {
-  box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
-              inset 0px 0px 4px rgba(255, 255, 255, 0),
-              inset 7px 7px 15px rgba(55, 84, 170, .15),
-              inset -7px -7px 20px rgba(255, 255, 255, 1),
-              0px 0px 4px rgba(255, 255, 255, .2) !important;
-} */

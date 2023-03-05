@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router';
 import UserFeed from '../UserFeed';
 import './UserDashboard.css'
 
@@ -14,7 +14,7 @@ function Userdashboard() {
           );
     } else {
         return (
-            <Redirect to='/' />
+            <Navigate to='/' />
         );
     }
 }

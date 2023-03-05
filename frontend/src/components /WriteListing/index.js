@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createListing } from '../../store/listings';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
 import './WriteListing.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function WriteListing() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [title, setTitle] = useState('');
   const [city, setCity] = useState('');

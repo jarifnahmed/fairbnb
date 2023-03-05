@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { updateListing } from '../../store/listings';
 import Autocomplete, { usePlacesWidget } from 'react-google-autocomplete';
@@ -18,7 +18,7 @@ function EditListing() {
   const { editListingId } = useParams();
   const listing = useSelector((state) => state.listings[editListingId]);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [title, setTitle] = useState(listing.title);
   const [city, setCity] = useState(listing.city);

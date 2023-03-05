@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router';
+import { Routes, Route } from 'react-router';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from './store/session';
 import Navigation from './components /Navigation';
@@ -15,11 +15,14 @@ import { getReviews } from './store/reviews';
 import { getBookings } from './store/bookings';
 import PageNotFound from './components /PageNotFound';
 import UserBookings from './components /UserBookings';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(getListings());
@@ -31,36 +34,20 @@ function App() {
   return (
     <>
       <Helmet>
-            <meta name="google" content="notranslate"></meta>
-        </Helmet>
-      <Navigation isLoaded={isLoaded} />
+        <meta name="google" content="notranslate"></meta>
+      </Helmet>
+      {sessionUser ? <Navigation isLoaded={isLoaded} /> : null}
       {isLoaded && (
-        <Switch>
-          <Route path='/' exact>
-            <Homepage />
-          </Route>
-          <Route path='/listings/:listingId'>
-            <ListingDetail />
-          </Route>
-          <Route path='/user/dashboard'>
-            <Userdashboard />
-          </Route>
-          <Route path='/user/listings'>
-            <UserListings />
-          </Route>
-          <Route path='/listing/new'>
-            <WriteListing />
-          </Route>
-          <Route path='/edit/listing/:editListingId'>
-            <EditListing />
-          </Route>
-          <Route path='/user/bookings'>
-            <UserBookings />
-          </Route>
-          <Route path='/'>
-            <PageNotFound />
-          </Route>
-        </Switch>
+        <Routes >
+          <Route exact="true" path="/" element={<Homepage />} />
+          <Route path="/listings/:listingId" element={<ListingDetail />} />
+          <Route path="/user/dashboard" element={<Userdashboard />} />
+          <Route path="/user/listings" element={<UserListings />} />
+          <Route path="/listing/new" element={<WriteListing />} />
+          <Route path="/edit/listing/:editListingId" element={<EditListing />} />
+          <Route path="/user/bookings" element={<UserBookings />} />
+          <Route path="/" element={<PageNotFound />} />
+        </Routes >
       )}
       {/* <Footer /> */}
     </>
