@@ -7,7 +7,7 @@ import EditListing from '../UpdateListing';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import './ListingDetails.css';
-import renderHTML from 'react-render-html';
+// import renderHTML from 'react-render-html';
 
 import { Carousel } from 'react-responsive-carousel';
 import Slider from 'react-slick';
@@ -127,7 +127,8 @@ function ListingDetail() {
                       id='listing-body'
                       onClick={changeListingDetailsStyle}
                     >
-                      {renderHTML(listing.body)}
+                      {/* {renderHTML(listing.body)} */}
+                      {listing.body}
                     </p>
                     <p
                       className='showMoreOrLess'
@@ -222,7 +223,8 @@ function ListingDetail() {
                   </div>
                   <div className='bottomListingDetails'>
                     <p className='listing-elements-body' id='listing-body'>
-                      {renderHTML(listing.body)}
+                      {/* {renderHTML(listing.body)} */}
+                      {listing.body}
                     </p>
                   </div>
                 </div>
@@ -299,7 +301,8 @@ function ListingDetail() {
                   </div>
                   <div className='bottomListingDetails'>
                     <p className='listing-elements-body' id='listing-body'>
-                      {renderHTML(listing.body)}
+                      {/* {renderHTML(listing.body)} */}
+                      {listing.body}
                     </p>
                   </div>
                 </div>
