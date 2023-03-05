@@ -36,11 +36,10 @@ function SignupFormModal() {
         <ModalContent>
           <ModalCloseButton />
           <ModalBody pb="3rem">
-            {/* <SignupForm /> */}
             {showLogIn ? (
               <>
                 <LoginForm />
-                <Center> {/* Center component used here */}
+                <Center>
                   <Link color='pink.500' onClick={handleClick}>Click Here To Sign Up</Link>
                 </Center>
               </>
@@ -48,7 +47,7 @@ function SignupFormModal() {
             {showSignUp ? (
               <>
                 <SignupForm />
-                <Center> {/* Center component used here */}
+                <Center>
                   <Link color='pink.500' onClick={handleClick}>Click Here To Log In</Link>
                 </Center>
               </>
