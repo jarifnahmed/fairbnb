@@ -3,6 +3,7 @@
 # [FairBnB](https://fairbnb-app-supabase.onrender.com/)
 
 [Link](https://fairbnb-app-supabase.onrender.com/)
+
 [Project Wiki](https://github.com/nawaljahmed/fairbnb/wiki)
 
 ## Technologies
