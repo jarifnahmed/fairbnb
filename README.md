@@ -2,8 +2,8 @@
 
 # [FairBnB](https://fairbnb-app-supabase.onrender.com/)
 
-[![Website](https://img.shields.io/website?down_message=OFFLINE%20%3A%28&label=APP%20IS%20&logo=RENDER&style=for-the-badge&up_message=ONLINE.%20CLICK%20HERE%21&url=https%3A%2F%2Ffairbnb-app-supabase.onrender.com%2F)](https://fairbnb-app-supabase.onrender.com/)
-[![Project Wiki - Click Here!](https://img.shields.io/static/v1?label=Project+Wiki&message=Click+Here!&color=%23CFD8DC&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/JarifNAhmed/fairbnb/wiki)
+[Link](https://fairbnb-app-supabase.onrender.com/)
+[Project Wiki](https://github.com/nawaljahmed/fairbnb/wiki)
 
 ## Technologies
 
