@@ -221,7 +221,7 @@ My map for making CRUD features goes as the following:
 ## Project Created By
 ### Jarif Ahmed
 
-[![Jarif Ahmed - LinkedIn](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=LinkedIn&color=%230077B5&style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/jarifnahmed/) [![Jarif Ahmed - GitHub](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=GitHub&color=%23161B22&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/jarifnahmed)
+[![Nawal Ahmed - LinkedIn](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=LinkedIn&color=%230077B5&style=for-the-badge&logo=LinkedIn&logoColor=white)](https://www.linkedin.com/in/jarifnahmed/) [![Nawal Ahmed - GitHub](https://img.shields.io/static/v1?label=Jarif+Ahmed&message=GitHub&color=%23161B22&style=for-the-badge&logo=GitHub&logoColor=white)](https://github.com/jarifnahmed)
 
 <div>
 
