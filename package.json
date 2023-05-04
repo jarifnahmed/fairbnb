@@ -18,13 +18,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jarifnahmed/fairbnb.git"
+    "url": "git+https://github.com/nawaljahmed/fairbnb.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jarifnahmed/fairbnb/issues"
+    "url": "https://github.com/nawaljahmed/fairbnb/issues"
   },
-  "homepage": "https://github.com/jarifnahmed/fairbnb#readme"
+  "homepage": "https://github.com/nawaljahmed/fairbnb#readme"
 }
